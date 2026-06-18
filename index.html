@@ -32,7 +32,9 @@
       <button onClick="{{ goEmp }}" style="{{ tabEmpStyle }}">③ Employee · Nhân sự</button>
       <button onClick="{{ goPos }}" style="{{ tabPosStyle }}">④ Chức vụ</button>
       <button onClick="{{ goChart }}" style="{{ tabChartStyle }}">⑤ Sơ đồ tổ chức</button>
-      <button onClick="{{ goTask }}" style="{{ tabTaskStyle }}">⑥ Giao việc &amp; phê duyệt</button>
+      <button onClick="{{ goRole }}" style="{{ tabRoleStyle }}">⑥ Vai trò &amp; phân quyền</button>
+      <button onClick="{{ goTask }}" style="{{ tabTaskStyle }}">⑦ Giao việc &amp; phê duyệt</button>
+      <button onClick="{{ goStates }}" style="{{ tabStatesStyle }}">⑧ Trạng thái UI &amp; Validate</button>
     </div>
   </header>
 
@@ -42,7 +44,7 @@
 
     <!-- Frame A: Tree + Detail -->
     <section style="flex:none; width:920px;">
-      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">A · Cây tổ chức &amp; chi tiết đơn vị <span style="font-weight:400; color:#7a766c;">— F1.1–F1.4</span></div>
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">A · Cây tổ chức &amp; chi tiết đơn vị <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span> <span style="font-weight:400; color:#7a766c;">— F1.1–F1.4</span></div>
       <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); overflow:hidden;">
         <!-- toolbar -->
         <div style="display:flex; align-items:center; gap:10px; padding:14px 16px; border-bottom:1.5px solid #d8d5cc;">
@@ -70,7 +72,7 @@
               </div>
               <div style="margin-left:22px; margin-top:6px; font-family:'Be Vietnam Pro', system-ui, sans-serif; color:#356fa3; font-size:13px;">+ thêm chi nhánh con…</div>
             </div>
-            <div style="margin-top:18px; transform:rotate(-1deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 10px; font-family:'Be Vietnam Pro', system-ui, sans-serif; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> 3 cấp pháp nhân: Mẹ → Con → Chi nhánh (A2). Chặn vòng lặp khi chọn đơn vị cha.</div>
+            <div style="margin-top:18px; transform:rotate(-1deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 10px; font-family:'Be Vietnam Pro', system-ui, sans-serif; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> 3 cấp pháp nhân: Mẹ → Con → Chi nhánh (A2). Chặn vòng lặp khi chọn đơn vị cha.<br><span style="color:#356fa3;">▣ Data scope: cây giới hạn theo đơn vị actor.</span> <span style="color:#8a6d1f;">API: <code>GET /api/org-units/tree</code> · TC-A1.x</span></div>
           </div>
           <!-- detail column -->
           <div style="flex:1; padding:18px 20px;">
@@ -105,7 +107,7 @@
 
     <!-- Frame B: Create/Edit Org Unit form -->
     <section style="flex:none; width:480px;">
-      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">B · Tạo / Sửa đơn vị <span style="font-weight:400; color:#7a766c;">— form</span></div>
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">B · Tạo / Sửa đơn vị <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span> <span style="font-weight:400; color:#7a766c;">— form</span></div>
       <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:20px 22px;">
         <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:18px; margin-bottom:16px;">Thêm đơn vị mới</div>
 
@@ -141,7 +143,7 @@
 
     <!-- Frame C: Deactivate / restructure confirm -->
     <section style="flex:none; width:440px;">
-      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">C · Vô hiệu hóa / Tái cơ cấu <span style="font-weight:400; color:#7a766c;">— rule</span></div>
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">C · Vô hiệu hóa / Tái cơ cấu <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span> <span style="font-weight:400; color:#7a766c;">— rule</span></div>
       <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:22px;">
         <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
           <div style="width:34px; height:34px; border-radius:50%; background:#fbe7e6; border:1.5px solid #d8a9a6; display:flex; align-items:center; justify-content:center; font-size:18px;"><img src="https://img.icons8.com/fluency-systems-regular/96/b94a48/error.png" alt="" style="width:20px;height:20px;vertical-align:-2px;display:inline-block;flex:none;" /></div>
@@ -176,7 +178,7 @@
 
     <!-- Frame A: Department list -->
     <section style="flex:none; width:880px;">
-      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">A · Danh sách phòng ban <span style="font-weight:400; color:#7a766c;">— F2.1, F2.2, F2.4</span></div>
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">A · Danh sách phòng ban <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span> <span style="font-weight:400; color:#7a766c;">— F2.1, F2.2, F2.4</span></div>
       <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); overflow:hidden;">
         <div style="display:flex; align-items:center; gap:10px; padding:14px 16px; border-bottom:1.5px solid #d8d5cc;">
           <div style="flex:none; width:220px; height:34px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; padding:0 10px; color:#8c887e; font-size:14px;"><img src="https://img.icons8.com/fluency-systems-regular/96/8c887e/search.png" alt="" style="width:15px;height:15px;vertical-align:-2px;display:inline-block;flex:none;" /> Tìm phòng ban…</div>
@@ -206,12 +208,12 @@
           <div style="display:flex; gap:6px;"><span style="border:1.5px solid #b9b6ad; border-radius:3px; padding:3px 9px;">‹</span><span style="border:1.5px solid #356fa3; background:#eaf1f8; border-radius:3px; padding:3px 9px;">1</span><span style="border:1.5px solid #b9b6ad; border-radius:3px; padding:3px 9px;">2</span><span style="border:1.5px solid #b9b6ad; border-radius:3px; padding:3px 9px;">3</span><span style="border:1.5px solid #b9b6ad; border-radius:3px; padding:3px 9px;">›</span></div>
         </div>
       </div>
-      <div style="margin-top:14px; width:520px; transform:rotate(-.6deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-family:'Be Vietnam Pro', system-ui, sans-serif; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Phòng ban gắn vào 1 công ty/chi nhánh (F2.2). Trưởng phòng = người duyệt mặc định công việc (F2.4). Nhóm/tổ con là MVP+ — chưa vẽ.</div>
+      <div style="margin-top:14px; width:520px; transform:rotate(-.6deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-family:'Be Vietnam Pro', system-ui, sans-serif; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Phòng ban gắn vào 1 công ty/chi nhánh (F2.2). Trưởng phòng = người duyệt mặc định công việc (F2.4). Nhóm/tổ con là MVP+ — chưa vẽ.<br><span style="color:#356fa3;">▣ Data scope: chỉ hiện phòng ban thuộc đơn vị actor được gán.</span> <span style="color:#8a6d1f;">API: <code>GET /api/departments</code> · TC-B2.x</span></div>
     </section>
 
     <!-- Frame B: Department form -->
     <section style="flex:none; width:460px;">
-      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">B · Tạo / Sửa phòng ban <span style="font-weight:400; color:#7a766c;">— form</span></div>
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">B · Tạo / Sửa phòng ban <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span> <span style="font-weight:400; color:#7a766c;">— form</span></div>
       <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:20px 22px;">
         <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:18px; margin-bottom:16px;">Thêm phòng ban</div>
         <div style="display:flex; flex-direction:column; gap:14px;">
@@ -238,7 +240,7 @@
 
     <!-- Frame C: Department detail + staff -->
     <section style="flex:none; width:480px;">
-      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">C · Chi tiết phòng ban <span style="font-weight:400; color:#7a766c;">— xem &amp; nhân sự</span></div>
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">C · Chi tiết phòng ban <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span> <span style="font-weight:400; color:#7a766c;">— xem &amp; nhân sự</span></div>
       <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); overflow:hidden;">
         <div style="padding:18px 20px; border-bottom:1.5px solid #e3e0d8;">
           <div style="display:flex; align-items:flex-start; gap:12px;">
@@ -285,7 +287,7 @@
 
     <!-- Frame A: Employee list -->
     <section style="flex:none; width:1000px;">
-      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">A · Danh sách nhân sự <span style="font-weight:400; color:#7a766c;">— F3.1–F3.4, F8.1, F8.3</span></div>
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">A · Danh sách nhân sự <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span> <span style="font-weight:400; color:#7a766c;">— F3.1–F3.4, F8.1, F8.3</span></div>
       <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); overflow:hidden;">
         <div style="display:flex; align-items:center; gap:10px; padding:14px 16px; border-bottom:1.5px solid #d8d5cc; flex-wrap:wrap;">
           <div style="flex:none; width:230px; height:34px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; padding:0 10px; color:#8c887e; font-size:14px;"><img src="https://img.icons8.com/fluency-systems-regular/96/8c887e/search.png" alt="" style="width:15px;height:15px;vertical-align:-2px;display:inline-block;flex:none;" /> Tìm tên / mã NV…</div>
@@ -318,12 +320,12 @@
           <div style="display:flex; gap:6px;"><span style="border:1.5px solid #b9b6ad; border-radius:3px; padding:3px 9px;">‹</span><span style="border:1.5px solid #356fa3; background:#eaf1f8; border-radius:3px; padding:3px 9px;">1</span><span style="border:1.5px solid #b9b6ad; border-radius:3px; padding:3px 9px;">2</span><span style="border:1.5px solid #b9b6ad; border-radius:3px; padding:3px 9px;">…</span><span style="border:1.5px solid #b9b6ad; border-radius:3px; padding:3px 9px;">›</span></div>
         </div>
       </div>
-      <div style="margin-top:14px; width:560px; transform:rotate(-.5deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-family:'Be Vietnam Pro', system-ui, sans-serif; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Mỗi NV thuộc 1 phòng ban chính (A3 — kiêm nhiệm là Non-MVP). Cột "Tài khoản" = liên kết Module 9 (F3.6).</div>
+      <div style="margin-top:14px; width:560px; transform:rotate(-.5deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-family:'Be Vietnam Pro', system-ui, sans-serif; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Mỗi NV thuộc 1 phòng ban chính (A3 — kiêm nhiệm là Non-MVP). Cột "Tài khoản" = liên kết Module 9 (F3.6).<br><span style="color:#356fa3;">▣ Data scope: danh sách lọc theo chi nhánh/công ty actor được gán.</span> <span style="color:#8a6d1f;">API: <code>GET /api/employees</code> · TC-C·F8</span></div>
     </section>
 
     <!-- Frame B: Employee profile form -->
     <section style="flex:none; width:520px;">
-      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">B · Hồ sơ nhân sự (Tạo / Sửa) <span style="font-weight:400; color:#7a766c;">— F3.x</span></div>
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">B · Hồ sơ nhân sự (Tạo / Sửa) <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span> <span style="font-weight:400; color:#7a766c;">— F3.x</span></div>
       <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:20px 22px;">
         <div style="display:flex; align-items:center; gap:14px; margin-bottom:18px;">
           <div style="width:60px; height:60px; border-radius:50%; border:1.5px dashed #b9b6ad; display:flex; align-items:center; justify-content:center; color:#9a968c; font-size:12px;">Ảnh</div>
@@ -333,17 +335,33 @@
         <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:15px; color:#356fa3; border-bottom:1.5px solid #e3e0d8; padding-bottom:5px; margin-bottom:12px;">1 · Thông tin cơ bản <span style="color:#9a968c; font-weight:400;">(F3.1)</span></div>
         <div style="display:flex; flex-direction:column; gap:12px;">
           <div style="display:flex; gap:12px;">
-            <div style="flex:1;"><div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Mã NV *</div><div style="height:34px; border:1.5px solid #b9b6ad; border-radius:3px;"></div></div>
+            <div style="flex:1;"><div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Mã NV * <span style="color:#9a968c;">(tự sinh · C7)</span></div><div style="height:34px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; padding:0 10px; color:#9a968c; font-size:13px; background:#f6f4ee;">NV-1007 (auto)</div></div>
             <div style="flex:2;"><div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Họ và tên *</div><div style="height:34px; border:1.5px solid #b9b6ad; border-radius:3px;"></div></div>
           </div>
           <div style="display:flex; gap:12px;">
-            <div style="flex:1;"><div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Số điện thoại</div><div style="height:34px; border:1.5px solid #b9b6ad; border-radius:3px;"></div></div>
-            <div style="flex:1;"><div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Email</div><div style="height:34px; border:1.5px solid #b9b6ad; border-radius:3px;"></div></div>
+            <div style="flex:1;"><div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Giới tính</div>
+              <div style="display:flex; gap:6px;">
+                <div style="flex:1; text-align:center; padding:7px 0; border:1.5px solid #356fa3; background:#eaf1f8; border-radius:3px; font-size:13px;">◉ Nam</div>
+                <div style="flex:1; text-align:center; padding:7px 0; border:1.5px solid #b9b6ad; border-radius:3px; font-size:13px; color:#6b675e;">○ Nữ</div>
+                <div style="flex:1; text-align:center; padding:7px 0; border:1.5px solid #b9b6ad; border-radius:3px; font-size:13px; color:#6b675e;">○ Khác</div>
+              </div>
+            </div>
+            <div style="flex:1;"><div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Ngày sinh</div><div style="height:34px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; padding:0 10px; color:#9a968c; font-size:13px;"><img src="https://img.icons8.com/fluency-systems-regular/96/9a968c/calendar.png" alt="" style="width:14px;height:14px;vertical-align:-2px;display:inline-block;flex:none;" /> dd/mm/yyyy</div></div>
           </div>
-          <div><div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Địa chỉ</div><div style="height:34px; border:1.5px solid #b9b6ad; border-radius:3px;"></div></div>
+          <div style="display:flex; gap:12px;">
+            <div style="flex:1;"><div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Số CCCD <span style="color:#9a968c;">(duy nhất)</span></div><div style="height:34px; border:1.5px solid #b9b6ad; border-radius:3px;"></div></div>
+            <div style="flex:1;"><div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Số điện thoại * <span style="color:#9a968c;">(duy nhất)</span></div><div style="height:34px; border:1.5px solid #b9b6ad; border-radius:3px;"></div></div>
+          </div>
+          <div style="display:flex; gap:12px;">
+            <div style="flex:1;"><div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Email * <span style="color:#9a968c;">(duy nhất)</span></div><div style="height:34px; border:1.5px solid #b9b6ad; border-radius:3px;"></div></div>
+            <div style="flex:1;"><div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Địa chỉ</div><div style="height:34px; border:1.5px solid #b9b6ad; border-radius:3px;"></div></div>
+          </div>
         </div>
 
-        <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:15px; color:#356fa3; border-bottom:1.5px solid #e3e0d8; padding-bottom:5px; margin:18px 0 12px;">2 · Công tác <span style="color:#9a968c; font-weight:400;">(F3.2, F3.3)</span></div>
+        <div style="display:flex; align-items:center; border-bottom:1.5px solid #e3e0d8; padding-bottom:5px; margin:18px 0 12px;">
+          <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:15px; color:#356fa3;">2 · Công tác <span style="color:#9a968c; font-weight:400;">(F3.2, F3.3)</span></div>
+          <div style="margin-left:auto; display:flex; align-items:center; gap:6px; font-size:12.5px; color:#356fa3; font-weight:600;">⇄ Điều chuyển / cập nhật công tác <span style="font-size:10px; font-weight:600; background:#f6eed6; color:#8a6d1f; border:1px solid #d9c489; padding:1px 5px; border-radius:3px;">MVP+</span></div>
+        </div>
         <div style="display:flex; flex-direction:column; gap:12px;">
           <div style="display:flex; gap:12px;">
             <div style="flex:1;"><div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Chi nhánh / Đơn vị *</div><div style="height:34px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; padding:0 10px; color:#9a968c; font-size:13px;">Chọn… ▾</div></div>
@@ -375,7 +393,7 @@
 
     <!-- Frame C: Change employee status -->
     <section style="flex:none; width:440px;">
-      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">C · Đổi trạng thái nhân sự <span style="font-weight:400; color:#7a766c;">— F3.4 · vòng đời</span></div>
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">C · Đổi trạng thái nhân sự <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span> <span style="font-weight:400; color:#7a766c;">— F3.4 · vòng đời</span></div>
       <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:22px;">
         <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
           <span style="width:42px; height:42px; border-radius:50%; background:#dfe6ee; flex:none;"></span>
@@ -417,7 +435,7 @@
 
     <!-- Frame A: Position catalogue -->
     <section style="flex:none; width:720px;">
-      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">A · Danh mục chức vụ <span style="font-weight:400; color:#7a766c;">— F4.1, F4.2a</span></div>
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">A · Danh mục chức vụ <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span> <span style="font-weight:400; color:#7a766c;">— F4.1 · F4.2a MVP+</span></div>
       <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); overflow:hidden;">
         <div style="display:flex; align-items:center; gap:10px; padding:14px 16px; border-bottom:1.5px solid #d8d5cc;">
           <div style="flex:none; width:220px; height:34px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; padding:0 10px; color:#8c887e; font-size:14px;"><img src="https://img.icons8.com/fluency-systems-regular/96/8c887e/search.png" alt="" style="width:15px;height:15px;vertical-align:-2px;display:inline-block;flex:none;" /> Tìm chức vụ…</div>
@@ -445,7 +463,7 @@
 
     <!-- Frame B: Position form -->
     <section style="flex:none; width:440px;">
-      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">B · Tạo / Sửa chức vụ <span style="font-weight:400; color:#7a766c;">— form</span></div>
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">B · Tạo / Sửa chức vụ <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span> <span style="font-weight:400; color:#7a766c;">— form</span></div>
       <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:20px 22px;">
         <div style="font-weight:700; font-size:18px; margin-bottom:16px;">Thêm chức vụ</div>
         <div style="display:flex; flex-direction:column; gap:14px;">
@@ -479,7 +497,7 @@
 
     <!-- Frame A: Org chart tree -->
     <section style="flex:none; width:940px;">
-      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">A · Sơ đồ tổ chức toàn doanh nghiệp <span style="font-weight:400; color:#7a766c;">— F6.1, F6.3</span></div>
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">A · Sơ đồ tổ chức toàn doanh nghiệp <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span> <span style="font-weight:400; color:#7a766c;">— F6.1, F6.3</span></div>
       <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); overflow:hidden;">
         <!-- toolbar -->
         <div style="display:flex; align-items:center; gap:10px; padding:12px 16px; border-bottom:1.5px solid #d8d5cc;">
@@ -582,7 +600,7 @@
 
     <!-- Frame B: Node detail -->
     <section style="flex:none; width:380px;">
-      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">B · Chi tiết node <span style="font-weight:400; color:#7a766c;">— F6.3</span></div>
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">B · Chi tiết node <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span> <span style="font-weight:400; color:#7a766c;">— F6.3</span></div>
       <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); overflow:hidden;">
         <div style="background:#eaf1f8; padding:16px 18px; border-bottom:1.5px solid #bcd2e6;">
           <div style="font-size:12px; color:#356fa3;"><img src="https://img.icons8.com/fluency-systems-regular/96/5b574e/marker.png" alt="" style="width:15px;height:15px;vertical-align:-2px;display:inline-block;flex:none;" /> Chi nhánh</div>
@@ -619,7 +637,7 @@
 
     <!-- Frame A: Task list -->
     <section style="flex:none; width:960px;">
-      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">A · Danh sách công việc <span style="font-weight:400; color:#7a766c;">— F9.1, F9.2, F9.3</span></div>
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">A · Danh sách công việc <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0 · Epic I</span> <span style="font-weight:400; color:#7a766c;">— F9.1, F9.2, F9.3</span></div>
       <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); overflow:hidden;">
         <div style="display:flex; align-items:center; gap:10px; padding:14px 16px; border-bottom:1.5px solid #d8d5cc; flex-wrap:wrap;">
           <div style="flex:none; width:220px; height:34px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; gap:6px; padding:0 10px; color:#8c887e; font-size:14px;"><img src="https://img.icons8.com/fluency-systems-regular/96/8c887e/search.png" alt="" style="width:15px;height:15px;flex:none;" /> Tìm công việc…</div>
@@ -654,7 +672,7 @@
 
     <!-- Frame B: Create / assign task -->
     <section style="flex:none; width:460px;">
-      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">B · Tạo / Giao việc <span style="font-weight:400; color:#7a766c;">— F9.1, F9.3</span></div>
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">B · Tạo / Giao việc <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span> <span style="font-weight:400; color:#7a766c;">— F9.1, F9.3</span></div>
       <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:20px 22px;">
         <div style="font-weight:700; font-size:18px; margin-bottom:16px;">Đầu việc mới</div>
         <div style="display:flex; flex-direction:column; gap:14px;">
@@ -694,7 +712,7 @@
 
     <!-- Frame C: Approval (1 level) -->
     <section style="flex:none; width:440px;">
-      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">C · Phê duyệt 1 cấp <span style="font-weight:400; color:#7a766c;">— F9.4</span></div>
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">C · Phê duyệt 1 cấp <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span> <span style="font-weight:400; color:#7a766c;">— F9.4</span></div>
       <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); overflow:hidden;">
         <div style="padding:16px 18px; border-bottom:1.5px solid #e3e0d8;">
           <div style="display:flex; align-items:flex-start; gap:10px;">
@@ -732,6 +750,224 @@
       <div style="margin-top:14px; transform:rotate(-.5deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;flex:none;" /> MVP chỉ phê duyệt 1 cấp (trưởng phòng người nhận hoặc người được chỉ định). Workflow nhiều cấp = Future.</div>
     </section>
 
+  </main>
+  </sc-if>
+
+  <!-- ===== ROLE & SCOPE / VAI TRÒ & PHÂN QUYỀN (Epic E) ===== -->
+  <sc-if value="{{ isRole }}" hint-placeholder-val="{{ true }}">
+  <main style="padding:40px 48px 80px 48px; display:flex; gap:44px; align-items:flex-start;">
+
+    <!-- Frame A: Role catalogue -->
+    <section style="flex:none; width:560px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">A · Danh mục vai trò <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span> <span style="font-weight:400; color:#7a766c;">— F5.1</span></div>
+      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); overflow:hidden;">
+        <div style="display:flex; align-items:center; gap:10px; padding:14px 16px; border-bottom:1.5px solid #d8d5cc;">
+          <div style="flex:none; width:200px; height:34px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; padding:0 10px; color:#8c887e; font-size:14px;"><img src="https://img.icons8.com/fluency-systems-regular/96/8c887e/search.png" alt="" style="width:15px;height:15px;vertical-align:-2px;display:inline-block;flex:none;" /> Tìm vai trò…</div>
+          <div style="flex:1;"></div>
+          <div style="height:34px; padding:0 14px; background:#356fa3; color:#fff; border-radius:3px; display:flex; align-items:center; font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:14px;">+ Vai trò</div>
+        </div>
+        <div style="display:grid; grid-template-columns:70px 1.3fr 1.4fr 64px 100px 50px; gap:10px; padding:11px 16px; background:#f3f1ea; font-size:13px; color:#6b675e; border-bottom:1.5px solid #d8d5cc;">
+          <div>Mã</div><div>Tên vai trò</div><div>Phạm vi mặc định</div><div>User</div><div>Trạng thái</div><div></div>
+        </div>
+        <sc-for list="{{ roles }}" as="r" hint-placeholder-count="6">
+          <div style="display:grid; grid-template-columns:70px 1.3fr 1.4fr 64px 100px 50px; gap:10px; padding:13px 16px; font-size:14px; border-bottom:1px solid #ece9e1; align-items:center;">
+            <div style="color:#7a766c;">{{ r.code }}</div>
+            <div style="font-weight:700;">{{ r.name }}</div>
+            <div style="color:#7a766c; font-size:12.5px;">{{ r.scope }}</div>
+            <div>{{ r.users }}</div>
+            <div>{{ r.statusEl }}</div>
+            <div style="color:#356fa3;">✎ ⋯</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-top:14px; width:520px; transform:rotate(-.5deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> M1 <b>định nghĩa</b> vai trò ở mức nghiệp vụ (F5.1); M9 thực thi kỹ thuật. Trước mắt dùng vai trò cố định (A5). <span style="color:#8a6d1f;">API: <code>GET/POST /api/roles</code> · TC-E1.x</span></div>
+    </section>
+
+    <!-- Frame B: Role-permission matrix -->
+    <section style="flex:none; width:600px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">B · Ma trận vai trò – quyền <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span> <span style="font-weight:400; color:#7a766c;">— F5.2 · mặc định DENY</span></div>
+      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); overflow:hidden;">
+        <div style="display:flex; align-items:center; gap:10px; padding:12px 16px; border-bottom:1.5px solid #d8d5cc;">
+          <div style="height:32px; padding:0 12px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; color:#6b675e; font-size:13.5px;">Vai trò: so sánh 3 ▾</div>
+          <div style="flex:1;"></div>
+          <div style="display:flex; align-items:center; gap:12px; font-size:12px; color:#6b675e;">
+            <span><span style="display:inline-block; width:11px; height:11px; background:#dceadf; border:1px solid #9cc3a8; border-radius:2px; vertical-align:-1px;"></span> Cho phép</span>
+            <span><span style="display:inline-block; width:11px; height:11px; background:#fbe7e6; border:1px solid #dcb1af; border-radius:2px; vertical-align:-1px;"></span> Cấm</span>
+            <span><span style="display:inline-block; width:11px; height:11px; background:#f3f1ea; border:1px solid #dad6cc; border-radius:2px; vertical-align:-1px;"></span> —</span>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:10px; padding:11px 16px; background:#f3f1ea; font-size:12.5px; color:#6b675e; border-bottom:1.5px solid #d8d5cc; align-items:center;">
+          <div>Chức năng</div><div style="text-align:center;">QL chi nhánh</div><div style="text-align:center;">Trưởng phòng</div><div style="text-align:center;">Nhân viên</div>
+        </div>
+        <sc-for list="{{ permRows }}" as="p" hint-placeholder-count="6">
+          <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:10px; padding:9px 16px; font-size:13.5px; border-bottom:1px solid #ece9e1; align-items:center;">
+            <div>{{ p.fn }}</div>
+            <div>{{ p.c0 }}</div>
+            <div>{{ p.c1 }}</div>
+            <div>{{ p.c2 }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-top:14px; width:560px; transform:rotate(-.5deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Mặc định <b>deny</b>; khi vai trò mâu thuẫn → ưu tiên <b>cấm</b> (E4). Quyền cấp trường (F5.5) = Non-MVP. <span style="color:#8a6d1f;">API: <code>GET /api/roles/:id/permissions</code> · TC-E2/E4</span></div>
+    </section>
+
+    <!-- Frame C: Assign role + data scope -->
+    <section style="flex:none; width:480px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">C · Gán vai trò &amp; phạm vi dữ liệu <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span> <span style="font-weight:400; color:#7a766c;">— F5.4, F5.6</span></div>
+      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:20px 22px;">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+          <span style="width:42px; height:42px; border-radius:50%; background:#dfe6ee; flex:none;"></span>
+          <div><div style="font-weight:700; font-size:16px;">Hoàng Thị E</div><div style="font-size:13px; color:#7a766c;">NV-1004 · Quản lý kho · CN Hải Phòng</div></div>
+        </div>
+
+        <div style="font-size:13px; color:#8c887e; margin-bottom:6px;">Vai trò được gán *</div>
+        <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:16px;">
+          <div style="border:1.5px solid #356fa3; background:#eaf1f8; border-radius:4px; padding:9px 12px; font-size:14px; display:flex; align-items:center; gap:8px;"><span style="color:#356fa3;">✓</span> Quản lý kho <span style="margin-left:auto; font-size:11.5px; color:#5b6b7e;">R-06</span></div>
+          <div style="border:1.5px solid #b9b6ad; border-radius:4px; padding:9px 12px; font-size:14px; color:#6b675e; display:flex; align-items:center; gap:8px;"><span style="color:#9a968c;">＋</span> Thêm vai trò khác…</div>
+        </div>
+
+        <div style="font-size:13px; color:#8c887e; margin-bottom:6px;">Phạm vi dữ liệu (data scope) * <span style="color:#9a968c;">(F5.6 · tách khỏi vai trò)</span></div>
+        <div style="display:flex; gap:8px; margin-bottom:10px;">
+          <div style="flex:1; text-align:center; padding:8px 0; border:1.5px solid #b9b6ad; border-radius:3px; font-size:13px; color:#6b675e;">○ Công ty</div>
+          <div style="flex:1; text-align:center; padding:8px 0; border:1.5px solid #356fa3; background:#eaf1f8; border-radius:3px; font-size:13px;">◉ Chi nhánh</div>
+          <div style="flex:1; text-align:center; padding:8px 0; border:1.5px solid #b9b6ad; border-radius:3px; font-size:13px; color:#6b675e;">○ Kho</div>
+        </div>
+        <div style="height:36px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; padding:0 10px; color:#4a463e; font-size:14px; margin-bottom:14px;">CN Hải Phòng ▾</div>
+
+        <div style="display:flex; gap:12px;">
+          <div style="flex:1;"><div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Hiệu lực từ</div><div style="height:34px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; padding:0 10px; color:#9a968c; font-size:13px;"><img src="https://img.icons8.com/fluency-systems-regular/96/9a968c/calendar.png" alt="" style="width:14px;height:14px;vertical-align:-2px;display:inline-block;flex:none;" /> dd/mm/yyyy</div></div>
+          <div style="flex:1;"><div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Đến ngày</div><div style="height:34px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; padding:0 10px; color:#9a968c; font-size:13px;"><img src="https://img.icons8.com/fluency-systems-regular/96/9a968c/calendar.png" alt="" style="width:14px;height:14px;vertical-align:-2px;display:inline-block;flex:none;" /> — không giới hạn</div></div>
+        </div>
+
+        <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:22px;">
+          <div style="height:38px; padding:0 18px; border:1.5px solid #2b2b2b; border-radius:3px; display:flex; align-items:center; font-size:14px;">Hủy</div>
+          <div style="height:38px; padding:0 22px; background:#356fa3; color:#fff; border-radius:3px; display:flex; align-items:center; font-weight:700; font-size:15px;">Lưu phân quyền</div>
+        </div>
+        <div style="margin-top:14px; transform:rotate(-.6deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 10px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Scope gán khi gán vai trò, lưu ở <code>user_data_scopes</code> (F5.6). Kế thừa đa cấp/theo kho (F5.3b) = MVP+. <span style="color:#8a6d1f;">API: <code>POST /api/users/:id/role-scopes</code> · TC-E5</span></div>
+      </div>
+    </section>
+
+  </main>
+  </sc-if>
+
+  <!-- ===== UI STATES & VALIDATE ===== -->
+  <sc-if value="{{ isStates }}" hint-placeholder-val="{{ true }}">
+  <main style="padding:40px 48px 80px 48px;">
+    <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-size:14px; color:#7a766c; max-width:760px; margin-bottom:24px;">Thư viện <b>trạng thái UI dùng chung</b> cho mọi màn list/form/detail — FE &amp; Tester dùng làm chuẩn nghiệm thu. Áp cho Org Unit · Department · Employee · Position · Role.</div>
+
+    <!-- Row 1: loading / empty / error / permission -->
+    <div style="display:flex; gap:44px; align-items:flex-start; flex-wrap:nowrap;">
+
+      <!-- Loading skeleton -->
+      <section style="flex:none; width:360px;">
+        <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">A · Đang tải (loading) <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span></div>
+        <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:16px;">
+          <div style="display:flex; gap:10px; margin-bottom:14px;"><div style="width:140px; height:30px; background:#ece9e1; border-radius:3px;"></div><div style="flex:1;"></div><div style="width:80px; height:30px; background:#e3eaf2; border-radius:3px;"></div></div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="height:14px; background:#ece9e1; border-radius:3px; width:90%; animation:wfin .9s ease-in-out infinite alternate;"></div>
+            <div style="height:14px; background:#ece9e1; border-radius:3px; width:75%; animation:wfin .9s ease-in-out infinite alternate;"></div>
+            <div style="height:14px; background:#ece9e1; border-radius:3px; width:84%; animation:wfin .9s ease-in-out infinite alternate;"></div>
+            <div style="height:14px; background:#ece9e1; border-radius:3px; width:68%; animation:wfin .9s ease-in-out infinite alternate;"></div>
+            <div style="height:14px; background:#ece9e1; border-radius:3px; width:80%; animation:wfin .9s ease-in-out infinite alternate;"></div>
+          </div>
+          <div style="text-align:center; margin-top:16px; font-size:13px; color:#9a968c;">Đang tải dữ liệu…</div>
+        </div>
+      </section>
+
+      <!-- Empty state -->
+      <section style="flex:none; width:360px;">
+        <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">B · Rỗng (empty) <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span></div>
+        <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:38px 24px; text-align:center; min-height:212px; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+          <div style="width:56px; height:56px; border:1.5px dashed #b9b6ad; border-radius:8px; display:flex; align-items:center; justify-content:center; margin-bottom:14px;"><img src="https://img.icons8.com/fluency-systems-regular/96/9a968c/search.png" alt="" style="width:24px;height:24px;" /></div>
+          <div style="font-weight:700; font-size:16px; margin-bottom:6px;">Chưa có dữ liệu</div>
+          <div style="font-size:13px; color:#8c887e; line-height:1.5; margin-bottom:16px; max-width:240px;">Chưa có phòng ban nào khớp bộ lọc. Tạo mới hoặc xóa bộ lọc để xem tất cả.</div>
+          <div style="height:34px; padding:0 16px; background:#356fa3; color:#fff; border-radius:3px; display:flex; align-items:center; font-weight:700; font-size:14px;">+ Tạo mới</div>
+        </div>
+      </section>
+
+      <!-- Error state -->
+      <section style="flex:none; width:360px;">
+        <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">C · Lỗi tải (error) <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span></div>
+        <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:38px 24px; text-align:center; min-height:212px; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+          <div style="width:56px; height:56px; border-radius:50%; background:#fbe7e6; border:1.5px solid #d8a9a6; display:flex; align-items:center; justify-content:center; margin-bottom:14px;"><img src="https://img.icons8.com/fluency-systems-regular/96/b94a48/error.png" alt="" style="width:26px;height:26px;" /></div>
+          <div style="font-weight:700; font-size:16px; margin-bottom:6px; color:#a5413f;">Không tải được dữ liệu</div>
+          <div style="font-size:13px; color:#8c887e; line-height:1.5; margin-bottom:16px; max-width:250px;">Lỗi kết nối máy chủ (500). Vui lòng thử lại sau giây lát.</div>
+          <div style="height:34px; padding:0 16px; border:1.5px solid #2b2b2b; border-radius:3px; display:flex; align-items:center; font-weight:600; font-size:14px;">↻ Thử lại</div>
+        </div>
+      </section>
+
+      <!-- Permission denied -->
+      <section style="flex:none; width:360px;">
+        <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">D · Không có quyền (403) <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span></div>
+        <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:38px 24px; text-align:center; min-height:212px; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+          <div style="width:56px; height:56px; border-radius:50%; background:#f6eed6; border:1.5px solid #d9c489; display:flex; align-items:center; justify-content:center; margin-bottom:14px; font-size:26px; color:#8a6d1f;">⊘</div>
+          <div style="font-weight:700; font-size:16px; margin-bottom:6px; color:#8a6d1f;">Bạn không có quyền</div>
+          <div style="font-size:13px; color:#8c887e; line-height:1.5; max-width:250px;">Nội dung nằm ngoài phạm vi dữ liệu (data scope) được gán. Liên hệ quản trị viên nếu cần truy cập.</div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Row 2: validation + confirm modals -->
+    <div style="display:flex; gap:44px; align-items:flex-start; margin-top:44px;">
+
+      <!-- Validation errors -->
+      <section style="flex:none; width:480px;">
+        <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">E · Lỗi nhập liệu (validation) <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span></div>
+        <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:20px 22px;">
+          <div style="display:flex; align-items:flex-start; gap:8px; background:#fbe7e6; border:1.5px solid #d8a9a6; border-radius:4px; padding:10px 12px; font-size:13px; color:#a5413f; margin-bottom:16px;"><img src="https://img.icons8.com/fluency-systems-regular/96/b94a48/error.png" alt="" style="width:16px;height:16px;flex:none;margin-top:1px;" /> <div>Không lưu được — kiểm tra 3 lỗi bên dưới.</div></div>
+
+          <div style="margin-bottom:14px;">
+            <div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Mã phòng ban *</div>
+            <div style="height:36px; border:1.5px solid #b94a48; background:#fdf4f3; border-radius:3px; display:flex; align-items:center; padding:0 10px; font-size:14px; color:#2b2b2b;">PB-001</div>
+            <div style="font-size:12px; color:#b94a48; margin-top:4px;"><img src="https://img.icons8.com/fluency-systems-regular/96/b94a48/error.png" alt="" style="width:12px;height:12px;vertical-align:-2px;" /> Mã đã tồn tại — mỗi mã phải duy nhất.</div>
+          </div>
+          <div style="margin-bottom:14px;">
+            <div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Đơn vị cha</div>
+            <div style="height:36px; border:1.5px solid #b94a48; background:#fdf4f3; border-radius:3px; display:flex; align-items:center; padding:0 10px; font-size:14px;">Chi nhánh Hà Nội ▾</div>
+            <div style="font-size:12px; color:#b94a48; margin-top:4px;"><img src="https://img.icons8.com/fluency-systems-regular/96/b94a48/error.png" alt="" style="width:12px;height:12px;vertical-align:-2px;" /> Sai cấp: chi nhánh không thể là cha của công ty con (chặn vòng lặp &amp; sai cấp).</div>
+          </div>
+          <div>
+            <div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Đơn vị trực thuộc *</div>
+            <div style="height:36px; border:1.5px solid #b94a48; background:#fdf4f3; border-radius:3px; display:flex; align-items:center; padding:0 10px; font-size:14px; color:#9a968c;">Chọn đơn vị… ▾</div>
+            <div style="font-size:12px; color:#b94a48; margin-top:4px;"><img src="https://img.icons8.com/fluency-systems-regular/96/b94a48/error.png" alt="" style="width:12px;height:12px;vertical-align:-2px;" /> Bắt buộc — phòng ban phải thuộc đúng 1 đơn vị (B6).</div>
+          </div>
+        </div>
+        <div style="margin-top:14px; width:520px; transform:rotate(-.5deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Rule validate: <b>mã trùng</b>, <b>sai parent / vòng lặp</b>, <b>phòng ban ≠ org_unit</b>, trường bắt buộc. <span style="color:#8a6d1f;">TC-VAL-01..04</span></div>
+      </section>
+
+      <!-- Confirm modals -->
+      <section style="flex:none; width:440px;">
+        <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">F · Xác nhận: Khôi phục / Xóa <span style="font-size:11px; font-weight:600; background:#f6eed6; color:#8a6d1f; border:1px solid #d9c489; padding:1px 7px; border-radius:3px; vertical-align:2px;">P1</span></div>
+
+        <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:18px 20px; margin-bottom:18px;">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+            <div style="width:30px; height:30px; border-radius:50%; background:#dceadf; border:1.5px solid #9cc3a8; display:flex; align-items:center; justify-content:center; color:#3c6e4f; font-size:16px;">↺</div>
+            <div style="font-weight:700; font-size:16px;">Khôi phục phòng ban?</div>
+          </div>
+          <div style="font-size:13.5px; color:#4a463e; line-height:1.5;">Phòng ban <b>Tổ Bảo trì (cũ)</b> sẽ hoạt động trở lại và hiện trong danh sách chọn.</div>
+          <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:16px;">
+            <div style="height:36px; padding:0 16px; border:1.5px solid #2b2b2b; border-radius:3px; display:flex; align-items:center; font-size:14px;">Hủy</div>
+            <div style="height:36px; padding:0 18px; background:#3c6e4f; color:#fff; border-radius:3px; display:flex; align-items:center; font-weight:700; font-size:14px;">Khôi phục</div>
+          </div>
+        </div>
+
+        <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:18px 20px;">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+            <div style="width:30px; height:30px; border-radius:50%; background:#fbe7e6; border:1.5px solid #d8a9a6; display:flex; align-items:center; justify-content:center;"><img src="https://img.icons8.com/fluency-systems-regular/96/b94a48/error.png" alt="" style="width:17px;height:17px;" /></div>
+            <div style="font-weight:700; font-size:16px;">Xóa (mềm) chức vụ?</div>
+          </div>
+          <div style="font-size:13.5px; color:#4a463e; line-height:1.5;">Chức vụ <b>Thực tập sinh</b> sẽ được ẩn (soft delete) và có thể khôi phục. Nhập <b>XÓA</b> để xác nhận.</div>
+          <div style="height:34px; border:1.5px solid #b9b6ad; border-radius:3px; margin-top:10px; display:flex; align-items:center; padding:0 10px; color:#9a968c; font-size:13px;">Nhập XÓA…</div>
+          <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:16px;">
+            <div style="height:36px; padding:0 16px; border:1.5px solid #2b2b2b; border-radius:3px; display:flex; align-items:center; font-size:14px;">Hủy</div>
+            <div style="height:36px; padding:0 18px; background:#b94a48; color:#fff; border-radius:3px; display:flex; align-items:center; font-weight:700; font-size:14px;">Xóa</div>
+          </div>
+        </div>
+        <div style="margin-top:14px; transform:rotate(-.5deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Quy tắc inactive / soft delete / khôi phục thuộc M1 (BR). Mọi hành động phá hủy đều cần modal xác nhận.</div>
+      </section>
+
+    </div>
   </main>
   </sc-if>
 
@@ -794,6 +1030,19 @@ class Component extends DCLogic {
       : React.createElement('span', { style: { color: '#b0aca2', fontSize: '13px' } }, '— Chưa');
   }
 
+  allowCell(mode) {
+    const map = {
+      allow: ['#dceadf', '#3c6e4f', '#9cc3a8', '✓'],
+      deny:  ['#fbe7e6', '#a5413f', '#dcb1af', '✕'],
+      none:  ['#f3f1ea', '#a8a499', '#dad6cc', '–'],
+    };
+    const [bg, fg, bd, mk] = map[mode] || map.none;
+    return React.createElement('div', { style: {
+      width: '100%', textAlign: 'center', padding: '5px 0', background: bg, color: fg,
+      border: '1px solid ' + bd, borderRadius: '3px', fontSize: '13px', fontWeight: 700
+    } }, mk);
+  }
+
   renderVals() {
     const t = this.state.tab;
     const set = (v) => () => this.setState({ tab: v });
@@ -844,18 +1093,42 @@ class Component extends DCLogic {
       { code: 'CV#1030', title: 'Lập kế hoạch tuyển dụng', from: 'Phạm Văn D', to: 'P. Nhân sự', due: '25/06/2026', priEl: this.priPill('low'), statusEl: this.taskPill('Mới tạo', 'newt') },
     ];
 
+    const roles = [
+      { code: 'R-01', name: 'Quản trị viên hệ thống', scope: 'Toàn doanh nghiệp', users: 2, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'R-02', name: 'Quản lý chi nhánh', scope: '1 chi nhánh (gán khi gán vai trò)', users: 5, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'R-03', name: 'Trưởng phòng', scope: 'Phòng ban phụ trách', users: 6, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'R-04', name: 'Nhân viên (cấp 3)', scope: 'Cá nhân', users: 78, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'R-05', name: 'Thực tập sinh (cấp 4)', scope: 'Cá nhân (giới hạn)', users: 9, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'R-06', name: 'Quản lý kho', scope: 'Kho được gán', users: 5, statusEl: this.statusPill('Hoạt động', 'active') },
+    ];
+
+    // permission matrix rows: each = function group; cells per role R-02..R-04 sample
+    const A = (m) => this.allowCell(m);
+    const permRows = [
+      { fn: 'Org Unit / Chi nhánh', cells: ['allow','deny','deny'] },
+      { fn: 'Phòng ban', cells: ['allow','allow','deny'] },
+      { fn: 'Nhân sự', cells: ['allow','allow','none'] },
+      { fn: 'Chức vụ', cells: ['allow','deny','deny'] },
+      { fn: 'Giao việc / phê duyệt', cells: ['allow','allow','allow'] },
+      { fn: 'Xóa / khôi phục', cells: ['allow','deny','deny'] },
+    ].map(r => ({ fn: r.fn, c0: A(r.cells[0]), c1: A(r.cells[1]), c2: A(r.cells[2]) }));
+
     return {
       isOrg: t === 'org', isDept: t === 'dept', isEmp: t === 'emp',
       isPos: t === 'pos', isChart: t === 'chart', isTask: t === 'task',
-      deptStaff, positions, tasks,
+      isRole: t === 'role', isStates: t === 'states',
+      deptStaff, positions, tasks, roles, permRows,
       goOrg: set('org'), goDept: set('dept'), goEmp: set('emp'),
       goPos: set('pos'), goChart: set('chart'), goTask: set('task'),
+      goRole: set('role'), goStates: set('states'),
       tabOrgStyle: this.tabStyle(t === 'org'),
       tabDeptStyle: this.tabStyle(t === 'dept'),
       tabEmpStyle: this.tabStyle(t === 'emp'),
       tabPosStyle: this.tabStyle(t === 'pos'),
       tabChartStyle: this.tabStyle(t === 'chart'),
       tabTaskStyle: this.tabStyle(t === 'task'),
+      tabRoleStyle: this.tabStyle(t === 'role'),
+      tabStatesStyle: this.tabStyle(t === 'states'),
       depts, emps,
     };
   }
