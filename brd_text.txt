@@ -1,0 +1,3398 @@
+1. Tổng quan Module
+1.1. Mục tiêu module
+Xây dựng và duy trì cơ cấu tổ chức nhiều cấp, nhiều pháp nhân, nhiều chi nhánh tại các tỉnh khác nhau.
+Quản lý hồ sơ nhân sự và gán nhân sự vào đúng đơn vị, phòng ban, chức vụ.
+Thiết lập vai trò và phân quyền theo hai trục: theo chức năng và theo phạm vi dữ liệu (công ty/chi nhánh/kho).
+Trực quan hóa toàn bộ cơ cấu doanh nghiệp thông qua sơ đồ tổ chức.
+Quản lý giao việc, phối hợp liên phòng ban và phê duyệt công việc 1 cấp trong phạm vi tổ chức.
+Hỗ trợ nhân bản mô hình tổ chức khi mở rộng chi nhánh/công ty mới - đáp ứng trực tiếp định hướng “nhân bản mô hình vận hành” mà khách hàng đặt ra. -> note lại có thể làm sau
+1.2. Phạm vi module
+Trong phạm vi (In-scope)
+Quản lý pháp nhân: công ty mẹ, công ty con.
+Quản lý chi nhánh / đơn vị trực thuộc theo tỉnh/khu vực.
+Quản lý phòng ban và nhóm/tổ.
+Quản lý hồ sơ nhân sự cơ bản (phục vụ vận hành và phân quyền); kèm lưu trữ hồ sơ hợp đồng lao động & bảo hiểm ở mức tham chiếu + đính kèm file (F3.8/F3.9, MVP+).
+Quản lý danh mục chức vụ (chức danh công việc).
+Định nghĩa vai trò (role) và cấu hình quyền (theo chức năng + phạm vi dữ liệu).
+Gán vai trò cho nhân sự/tài khoản người dùng.
+Sơ đồ tổ chức.
+Giao việc cho cá nhân/phòng ban, phối hợp liên phòng ban, theo dõi trạng thái công việc và phê duyệt công việc 1 cấp theo cơ cấu tổ chức.
+Nhân bản / áp template cơ cấu tổ chức khi mở rộng — định hướng tương lai (Future), NGOÀI cam kết MVP/MVP+ (xem Epic G, mục 2 & câu hỏi Nhóm F mục 5).
+Ngoài phạm vi (Out-of-scope - thuộc module/giai đoạn khác)
+Tài khoản đăng nhập, xác thực, nhật ký thao tác chi tiết, cấu hình hệ thống → Module 9 (Quản trị hệ thống & phân quyền).
+Nghiệp vụ nhân sự chuyên sâu: chấm công, tính lương, tuyển dụng, đào tạo. Riêng hợp đồng lao động & bảo hiểm NẰM TRONG ERP: MVP+ chỉ lưu trữ hồ sơ cơ bản (F3.8/F3.9); quản lý đầy đủ vòng đời là Non-MVP (F3.10), phần tính lương/mức đóng thuộc Module 14 (đã chốt — xem A8/BR-03).
+Tính KPI, chấm điểm hiệu suất, báo cáo năng suất/chấm công → Module 13. Workflow phê duyệt nhiều cấp, rule động phức tạp và tự động hóa SLA nâng cao để giai đoạn sau; Module 1 MVP chỉ làm giao việc/phối hợp và phê duyệt công việc 1 cấp.
+1.3. Đối tượng sử dụng (Actors)
+Tác nhân
+ | Mô tả vai trò
+ | Mức tương tác với Module 1
+ | 
+Quản trị viên hệ thống
+ | Thiết lập cấu hình gốc; tạo công ty/chi nhánh; tạo vai trò & phân quyền (thiết lập dữ liệu gốc, cấu hình, vận hành kỹ thuật hằng ngày — công việc mang tính tác nghiệp/IT.)
+ | Cao - người dùng chính
+ | 
+Cán bộ Nhân sự / Quản trị
+ | Quản lý hồ sơ nhân sự, phòng ban; gán chức vụ; cập nhật trạng thái nhân sự
+ | Cao
+ | 
+Ban lãnh đạo / Chủ doanh nghiệp
+ | Xem sơ đồ tổ chức, cơ cấu nhân sự toàn doanh nghiệp( note lý do ->Ban lãnh đạo: tiêu thụ thông tin (sơ đồ tổ chức, cơ cấu nhân sự, báo cáo) để ra quyết định — họ thường không muốn và không nên đi cấu hình hệ thống. ->nếu ông chủ muốn có thể gán thêm quyền quản trị viên hệ thống / áp dụng mô hình 1 người – nhiều vai trò)
+ | Trung bình (chủ yếu xem)
+ | 
+Quản lý chi nhánh
+ | Quản lý phòng ban & nhân sự trong phạm vi chi nhánh được phân quyền
+ | Trung bình (giới hạn phạm vi)
+ | 
+Trưởng phòng ban
+ | Xem cơ cấu và nhân sự thuộc phòng ban mình
+ | Thấp (xem)
+ | 
+Quản lý kho (không đưa vào module) _ tương tự các tác nhân còn lại
+ |   Nghiệp vụ của họ — nhập/xuất, tồn kho, vận hành kho — nằm ở Module 2 (Kho đa tầng). Là actor chính của Module 2, không phải Module 1.
+Trong Module 1, kho chỉ là một đối tượng dữ liệu được tạo và gắn vào chi nhánh, còn quản lý kho chỉ là một nhân sự được gán vào đơn vị đó. Tức là ở Module 1, họ là dữ liệu được quản lý, không phải người dùng module. Người thực sự tạo kho và gán họ vào là Admin/HR.
+  Họ không tạo công ty/chi nhánh, không định nghĩa vai trò–phân quyền, và để làm việc kho thì không cần mở sơ đồ tổ chức toàn doanh nghiệp.
+ | 
+1.4. Phụ thuộc và liên kết với các module khác
+Module 1 là dữ liệu gốc nền tảng. Hầu hết các module khác đều phụ thuộc vào nó, do đó Module 1 cần được triển khai trước (hoặc song song ở phần nền tảng) các module nghiệp vụ:
+Module phụ thuộc
+ | Dữ liệu cần từ Module 1
+ | 
+Module 2 - Quản lý kho đa tầng (cũ Module 3)
+ | Đơn vị/chi nhánh để gắn kho; phân quyền kho theo đơn vị
+ | 
+Module 3–7 - Nhóm Kinh doanh & Đơn hàng (cũ Module 5 - Bán hàng; sơ đồ tách thành: 3 Kinh doanh & thị trường, 4 KM & chiết khấu, 5 Xử lý đơn hàng, 6 Theo dõi doanh số, 7 Cảnh báo & kiểm tra hợp lệ)
+ | Nhân sự bán hàng/TDV, chi nhánh & khu vực bán hàng; đơn hàng, doanh số, hạn mức gắn theo đơn vị và nhân sự
+ | 
+Module 8 - Báo cáo & kết xuất dữ liệu
+ | Lọc/nhóm báo cáo theo phòng ban, chi nhánh
+ | 
+Module 9 - Quản trị người dùng & Phân quyền (cũ Module 10)
+ | Tiêu thụ danh mục vai trò định nghĩa ở Module 1
+ | 
+Module 10 - Shipper / Giao nhận
+ | Nhân sự giao nhận, chi nhánh xuất hàng
+ | 
+Module 12 - Zalo Mini App cho TDV
+ | Hồ sơ nhân sự TDV; tài khoản & phân quyền phối hợp Module 9
+ | 
+Module 13 - KPI & Hiệu suất (cũ Module 2 — ngoài 12 khối sơ đồ)
+ | Nhận dữ liệu công việc/phối hợp từ Module 1: người giao, người nhận, phòng ban, trạng thái, hạn hoàn thành, kết quả duyệt để tính KPI/hiệu suất.
+ | 
+Module 14 - Hoa hồng (cũ Module 6 — ngoài 12 khối sơ đồ, lộ trình sau)
+ | Nhân sự, chức vụ/cấp bậc để tính & chi trả hoa hồng
+ | 
+Module 15 - Kế toán & Tài chính (cũ Module 7 — trên sơ đồ là tích hợp MISA)
+ | Pháp nhân/đơn vị để hạch toán và phân bổ chi phí
+ | 
+Bảng ánh xạ đánh số module (chốt 12/06/2026 — đồng bộ theo sơ đồ hệ thống ERP 12 khối của khách hàng): Module 1 Quản lý tổ chức & phòng ban (giữ nguyên); Module 2 = Quản lý kho đa tầng (cũ Module 3); Module 3–7 = nhóm Kinh doanh & Đơn hàng (cũ Module 5 - Bán hàng, sơ đồ tách: 3 Kinh doanh & thị trường, 4 KM & chiết khấu, 5 Xử lý đơn hàng, 6 Theo dõi doanh số, 7 Cảnh báo & kiểm tra hợp lệ); Module 8 = Báo cáo & kết xuất dữ liệu; Module 9 = Quản trị người dùng & Phân quyền (cũ Module 10); Module 10 = Shipper/Giao nhận; Module 11 = Hệ thống & tiện ích (không phụ thuộc dữ liệu M1 nên không có dòng trong bảng trên); Module 12 = Zalo Mini App cho TDV; Module 13 = KPI & Hiệu suất (cũ Module 2 — ngoài 12 khối sơ đồ; dùng dữ liệu giao việc/phối hợp do Module 1 ghi nhận để tính KPI/hiệu suất; giao việc/phê duyệt cơ bản giữ trong Module 1 theo sơ đồ hệ thống); Module 14 = Hoa hồng (cũ Module 6 — ngoài sơ đồ, lộ trình sau); Module 15 = Kế toán & Tài chính (cũ Module 7 — trên sơ đồ là tích hợp MISA). Dòng “Cổ đông & Gọi vốn” (trước đây đánh số Module 9) đã lược bỏ ngày 12/06/2026 do không có trong sơ đồ hệ thống của khách hàng; nếu được khôi phục trong lộ trình thì bổ sung lại với số mới.
+1.5. Ranh giới giữa Module 1 và Module 9 (cần thống nhất)
+Hạng mục
+ | Module 1 (Quản lý tổ chức)
+ | Module 9 (Quản trị hệ thống & phân quyền)
+ | 
+Sở hữu
+ | Cơ cấu tổ chức, hồ sơ nhân sự, chức vụ, danh mục vai trò (ý nghĩa nghiệp vụ), gán vai trò cho nhân sự, sơ đồ tổ chức
+ | Tài khoản đăng nhập, liên kết tài khoản-nhân sự, ma trận quyền-chức năng chi tiết toàn hệ thống, nhật ký thao tác, cấu hình hệ thống/quy trình/báo cáo
+ | 
+Giao thoa
+ | Định nghĩa vai trò ở mức nghiệp vụ tổ chức
+ | Cung cấp cơ chế kỹ thuật để map quyền-chức năng và thực thi phân quyền
+ | 
+Phân định chi tiết hồ sơ nhân sự & dữ liệu liên quan (Module 1 ↔ Module 9): bảng dưới làm rõ trường/khía cạnh nào do Module 1 sở hữu và quản lý, khía cạnh nào thuộc Module 9.
+Hạng mục
+ | Thuộc Module 1 (Quản lý tổ chức)
+ | Thuộc Module 9 (Quản trị & phân quyền)
+ | 
+Hồ sơ nhân sự (họ tên, mã NV, phòng ban, chi nhánh, chức vụ, người quản lý, địa chỉ, SĐT, email)
+ | Sở hữu & quản lý toàn bộ hồ sơ
+ | Không lưu hồ sơ nhấn sự; chỉ liên kết tài khoản ↔ nhân sự
+ | 
+Trường ’name’ (định danh đăng nhập của tài khoản)
+ | —
+ | Tên đăng nhập / định danh tài khoản
+ | 
+Trường ’mã/code’ nhân sự (mã nhân viên)
+ | Sở hữu (mã nhân viên)
+ | Dùng để map tài khoản ↔ nhân sự
+ | 
+Trường ’mô tả’ (mô tả nhân sự/đơn vị)
+ | Sở hữu
+ | —
+ | 
+Tài khoản đăng nhập, mật khẩu, xác thực
+ | —
+ | Sở hữu toàn bộ
+ | 
+Vai trò & ma trận phân quyền
+ | Định nghĩa vai trò ở mức nghiệp vụ tổ chức
+ | Cấu hình & thực thi quyền chi tiết toàn hệ thống
+ | 
+Audit log (nhật ký thao tác)
+ | Không tự lưu; dùng chung
+ | Sở hữu audit log chung toàn hệ thống
+ | 
+Data scope theo chi nhánh/pháp nhân
+ | Cung cấp cấu trúc đơn vị làm phạm vi dữ liệu
+ | Áp dụng scope vào phân quyền & thực thi
+ | 
+Chốt phạm vi các module liên quan: Module 1 phụ trách tổ chức – nhân sự – phân quyền nền tảng – giao việc/phối hợp liên phòng ban và phê duyệt công việc 1 cấp. Các phần account/đăng nhập, xác thực, audit log kỹ thuật thuộc Module 9; KPI/chấm công/báo cáo hiệu suất thuộc Module 13; lương/hoa hồng thuộc Module 14. Workflow nhiều cấp/rule động phức tạp là giai đoạn sau, không đưa vào MVP Sprint 2 của Module 1.
+Thuộc Module 1 (M1 làm)
+ | KHÔNG thuộc Module 1 (ở module khác)
+ | 
+Mô hình tổ chức/pháp nhân (công ty mẹ, con, chi nhánh), phòng ban, nhóm/tổ; quan hệ cha-con
+ | Tài khoản đăng nhập, mật khẩu, xác thực (đăng nhập/SSO) — Module 9
+ | 
+Hồ sơ & vòng đời nhân sự (tạo, trạng thái, chuyển đơn vị, lịch sử)
+ | Audit log / nhật ký thao tác toàn hệ thống — Module 9
+ | 
+Chức vụ (job title) và định nghĩa vai trò ở mức tổ chức
+ | Thực thi & kiểm soát phân quyền ở mức kỹ thuật (authorization) — Module 9
+ | 
+Thiết kế rule phân quyền chức năng + phạm vi dữ liệu (data scope)
+ | Thực thi & kiểm soát phân quyền ở mức kỹ thuật (authorization) — Module 9
+ | 
+Quy tắc inactive / soft delete / archive / khôi phục
+ | Chấm công, KPI, báo cáo hiệu suất — Module 13; lương, hoa hồng — Module 14
+ | 
+Dữ liệu nền: đơn vị, phòng ban làm phạm vi cho các module khác
+ | Nghiệp vụ kho (gắn theo chi nhánh) — Module 2
+ | 
+Giao việc, phối hợp liên phòng ban, theo dõi trạng thái công việc và phê duyệt công việc 1 cấp
+ | Workflow phê duyệt nhiều cấp/rule động phức tạp, tự động tính KPI — Module 13/Future
+ | 
+RACI giữa các module liên quan (R = thực hiện, A = chịu trách nhiệm cuối, C = tham vấn, I = được thông báo):
+Hoạt động / Dữ liệu
+ | M1
+ | M13 (KPI/Hiệu suất)
+ | M9 (Phân quyền/Hệ thống)
+ | Ghi chú
+ | 
+Mô hình tổ chức & đơn vị
+ | A, R
+ | I
+ | C
+ | M1 sở hữu cây tổ chức
+ | 
+Hồ sơ & vòng đời nhân sự
+ | A, R
+ | C
+ | C
+ | M9 map tài khoản; M13 dùng dữ liệu nhân sự cho KPI/hiệu suất
+ | 
+Chức vụ (job title)
+ | A, R
+ | C
+ | I
+ | 
+ | 
+Định nghĩa vai trò (mức tổ chức)
+ | R
+ | I
+ | A
+ | M9 cấu hình & thực thi
+ | 
+Thực thi phân quyền (kỹ thuật)
+ | C
+ | I
+ | A, R
+ | M1 cung cấp rule & scope
+ | 
+Tài khoản đăng nhập & xác thực
+ | I
+ | I
+ | A, R
+ | 
+ | 
+Audit log
+ | I
+ | I
+ | A, R
+ | 
+ | 
+Giao việc / phối hợp / phê duyệt 1 cấp
+ | A, R
+ | C
+ | C
+ | M1 sở hữu nghiệp vụ giao việc/phối hợp; M9 cung cấp tài khoản/quyền kỹ thuật
+ | 
+Chấm công / KPI / lương
+ | I
+ | A, R
+ | I
+ | KPI/chấm công/báo cáo hiệu suất thuộc M13; hoa hồng thuộc M14
+ | 
+RACI theo vai trò đội ngũ giao Module 1 — BA / DEV / TEST:
+(R = thực hiện, A = chịu trách nhiệm cuối, C = tham vấn, I = được thông báo). Bảng này bổ sung cho bảng RACI giữa các module ở trên: bảng trên phân định trách nhiệm giữa M1/M13/M9, còn bảng dưới phân định trách nhiệm giữa các vai trò trong đội triển khai (BA viết yêu cầu/AC/ERD nghiệp vụ; DEV thiết kế kỹ thuật & code; TEST làm kịch bản & nghiệm thu).
+Hoạt động / Sản phẩm bàn giao (Module 1)
+ | BA
+ | DEV
+ | TEST
+ | Ghi chú
+ | 
+Làm rõ yêu cầu, chốt phạm vi & ranh giới (M1 / M9 / M13)
+ | A, R
+ | C
+ | C
+ | PM / khách hàng phê duyệt cuối
+ | 
+Viết User Story & Acceptance Criteria (Given–When–Then)
+ | A, R
+ | C
+ | C
+ | TEST góp ý tính kiểm thử được của AC
+ | 
+Định nghĩa quy tắc nghiệp vụ (BR), validate, rule phân quyền + data scope
+ | A, R
+ | C
+ | C
+ | M9 phối hợp cơ chế thực thi quyền
+ | 
+ERD nghiệp vụ (entity, quan hệ, khóa nghiệp vụ, effective date)
+ | A, R
+ | C
+ | I
+ | 
+ | 
+ERD kỹ thuật (PK/FK, index, migration)
+ | C
+ | A, R
+ | I
+ | DEV làm trong tài liệu riêng (M1_ERD_Draft)
+ | 
+Thiết kế & lập trình chức năng theo AC
+ | I
+ | A, R
+ | C
+ | 
+ | 
+Ước lượng & đưa vào Sprint (estimate, dependency, DoR)
+ | C
+ | A, R
+ | I
+ | BA đề xuất cỡ S/M/L; DEV chốt điểm/giờ
+ | 
+Xây dựng bộ kịch bản kiểm thử / test case (≥ 50 kịch bản)
+ | C
+ | C
+ | A, R
+ | BA cung cấp luồng nghiệp vụ & dữ liệu mẫu
+ | 
+Chuẩn bị test data & negative case
+ | I
+ | C
+ | A, R
+ | 
+ | 
+Thực thi kiểm thử & nghiệm thu theo AC (pass/fail)
+ | C
+ | I
+ | A, R
+ | 
+ | 
+Sửa lỗi sau kiểm thử (defect fixing)
+ | I
+ | A, R
+ | C
+ | TEST verify lại sau khi fix
+ | 
+Nghiệm thu nghiệp vụ / xác nhận đáp ứng yêu cầu (UAT)
+ | A, R
+ | C
+ | C
+ | Khách hàng / PM ký nghiệm thu cuối
+ | 
+1.6. Giả định và ràng buộc
+(Vì khách hàng chưa cung cấp chi tiết một số điểm, BA tạm đưa ra các giả định dưới đây để có thể tiến hành. Mỗi giả định cần được khách hàng/PM xác nhận; nếu sai, các phần liên quan của tài liệu sẽ được điều chỉnh.) -> note Lưu ý mã hóa: mã A2–A10 trong bảng giả định này KHÁC với mã câu hỏi ở “Nhóm A” mục 5. Từ bản v10, câu hỏi Nhóm A mục 5 đã đổi tiền tố thành QA- (QA-1…QA-12) theo quyết định ngày 12/06/2026 để tránh nhầm hai bộ mã. Các tham chiếu trong Business Rules (vd BR-03 → A8, BR-04 → A9) trỏ tới bảng giả định mục 1.6 này; tham chiếu dạng QA-x trỏ tới câu hỏi mục 5. Giả định A1 cũ (một hệ thống ERP duy nhất quản lý tất cả pháp nhân; nhân bản mô hình bằng template trong cùng hệ thống) đã được lược bỏ ngày 12/06/2026 theo yêu cầu khách hàng — nội dung “một hệ thống quản lý tất cả pháp nhân” đã được trả lời tại câu hỏi QA-3, phần nhân bản mô hình đã chốt Non-MVP (Epic G).
+Mã
+ | Giả định của BA
+ | Cần xác nhận bởi
+ | 
+A2
+ | Bài toán hiện tại chỉ cần 3 cấp pháp nhân: Công ty mẹ → Công ty con → Chi nhánh (phòng ban, nhóm/tổ, nhân sự nằm dưới chi nhánh). Áp dụng xử lý tập trung, minh bạch theo chi nhánh.
+ | Đã chốt (Quang Hiệp Nguyễn)
+ | 
+A3
+ | Mỗi nhân sự thuộc một phòng ban chính; kiêm nhiệm nhiều phòng ban là giai đoạn sau.
+ | Đã chốt (Quang Hiệp Nguyễn, 12/06/2026)
+ | 
+A4
+ | Phân biệt rõ Chức vụ (chức danh công việc) và Vai trò (tập quyền hệ thống). Một nhân sự có 1 chức vụ chính và có thể được gán nhiều vai trò.
+ | Đã chốt (Quang Hiệp Nguyễn, 12/06/2026)
+ | 
+A5
+ | Phân quyền theo chức năng (mô hình RBAC). Trước mắt dùng vai trò cố định (bắt đầu cấp 3 và cấp 4), sau đó bổ sung phân quyền linh hoạt; ưu tiên bài toán xử lý của khách hàng.
+ | Đã chốt (Quang Hiệp Nguyễn)
+ | 
+A6
+ | Bắt buộc tạo tài khoản và cấp mã cho nhân sự, kèm cấp quyền truy cập tương ứng (mọi nhân sự đều có tài khoản).
+ | Đã chốt (Quang Hiệp Nguyễn)
+ | 
+A8
+ | Hợp đồng lao động & bảo hiểm NẰM TRONG ERP này (khách đã xác nhận). MVP+: chỉ LƯU TRỮ hồ sơ ở mức tham chiếu + đính kèm file (F3.8/F3.9) — không vòng đời tự động, không cảnh báo, không tính lương. Quản lý đầy đủ (gia hạn, cảnh báo, phụ lục, tính mức đóng, liên thông lương) là Non-MVP (F3.10): phần tính lương/hoa hồng thuộc Module 14, workflow gia hạn dùng cơ chế Module 13. Mâu thuẫn cũ với mục 1.2/C1 đã gỡ (1.2 cập nhật cho phép lưu trữ cơ bản).
+ | Đã chốt (Quang Hiệp Nguyễn)
+ | 
+A9
+ | Module 1 giữ giao việc/phối hợp liên phòng ban và phê duyệt công việc 1 cấp theo sơ đồ tổng thể. MVP của M1 KHÔNG làm workflow nhiều cấp/rule động phức tạp; thao tác tạo/sửa cơ cấu tổ chức vẫn chỉ kiểm tra quyền, không bắt buộc qua phê duyệt. KPI/chấm công/báo cáo hiệu suất dùng dữ liệu công việc từ M1 và thuộc Module 13.
+ | Đã chốt (Quang Hiệp Nguyễn, 18/06/2026) — cập nhật theo ảnh sơ đồ tổng thể: giao việc/phê duyệt cơ bản giữ trong Module 1; Module 13 tính KPI/hiệu suất
+ | 
+A10
+ | Áp dụng xóa mềm để giữ dữ liệu lịch sử; hồ sơ giữ tối thiểu 6 tháng (có log). Cronjob chạy theo chu kỳ (vd mỗi 30 ngày) chỉ rà và xóa cứng những bản ghi đã hết thời hạn giữ VÀ không còn ràng buộc nghiệp vụ (theo BR-14); không xóa cứng dữ liệu đã phát sinh nghiệp vụ.
+ | Đã chốt (Quang Hiệp Nguyễn)
+ | 
+1.7. Tiêu chí đầu ra của Module 1 (Definition of Done)
+Module 1 (ở phạm vi tài liệu nghiệp vụ của BA) được coi là hoàn thành khi đạt đủ các tiêu chí sau. Đây là mức tự đứng được như một cấu phần module độc lập.
+Hạng mục
+ | Tiêu chí đạt
+ | 
+Scope & ranh giới
+ | Chốt rõ M1 làm gì, M9/M13 làm gì; M1 giữ giao việc/phối hợp và phê duyệt 1 cấp; M9 giữ account/auth/audit; M13 giữ KPI/hiệu suất; có RACI cập nhật.
+ | 
+Mô hình tổ chức
+ | Có rule 3 cấp pháp nhân, chặn vòng lặp, tái cơ cấu, inactive, chuyển đơn vị
+ | 
+Vòng đời nhân sự
+ | Có đủ trạng thái (TTS/thử việc/chính thức/tạm ngưng/nghỉ việc/disable/reactivate), rule disable user & giữ lịch sử
+ | 
+Chức vụ vs vai trò
+ | Phân biệt rõ job title và system role; rule chức vụ không tự sinh quyền; có cơ chế gợi ý role
+ | 
+RBAC & data scope
+ | Có danh mục quyền, ma trận vai trò–quyền, allow/deny (mặc định deny), data scope công ty/chi nhánh/kho, kế thừa scope; scope tách khỏi định nghĩa vai trò (gán khi gán vai trò cho user — assignment), kèm direct scope allow/deny có thời hạn
+ | 
+Xóa/khôi phục
+ | Chốt inactive/soft delete/hard delete/archive/anonymize/restore; không hard delete dữ liệu đã phát sinh nghiệp vụ
+ | 
+User story & AC
+ | Story Must có actor, input, output, validate, permission, edge case, AC test được (pass/fail)
+ | 
+Bàn giao kiểm thử
+ | Có ≥50 kịch bản nghiệp vụ (phân loại), 10 rủi ro, 15 câu hỏi cần xác nhận
+ | 
+Mô hình dữ liệu
+ | Có entity nghiệp vụ, quan hệ, khóa nghiệp vụ, trạng thái, effective date (ERD nghiệp vụ); ERD kỹ thuật do DEV làm riêng
+ | 
+Sẵn sàng Sprint
+ | Backlog có ưu tiên, phụ thuộc, MVP/giai đoạn, ước lượng (DEV xác nhận), Definition of Ready, story mapping
+ | 
+Demo MVP
+ | Demo được luồng: tạo tổ chức → phòng ban/chi nhánh → nhân sự → gán chức vụ → gán vai trò/scope → tạo/giao việc → người nhận xử lý → gửi duyệt → trưởng phòng/người được chỉ định duyệt hoặc từ chối → kiểm tra quyền.
+ | 
+Giao việc & phê duyệt
+ | Có mô hình công việc, người giao/người nhận/người duyệt; trạng thái công việc; rule người duyệt cấp 1; không cho người nhận tự duyệt; lưu lịch sử trạng thái và duyệt/từ chối.
+ | 
+2. Phân rã chức năng (Danh sách chức năng module)
+Epic A - Cấu trúc pháp nhân & đơn vị
+Mã
+ | Chức năng
+ | Mô tả ngắn
+ | Ưu tiên
+ | MVP
+ | 
+F1.1
+ | Quản lý công ty mẹ
+ | Tạo/sửa hồ sơ pháp nhân gốc (tên, MST, địa chỉ, người đại diện, logo)
+ | Must
+ | MVP
+ | 
+F1.2
+ | Quản lý công ty con
+ | Tạo công ty con và gắn vào công ty mẹ
+ | Must
+ | MVP
+ | 
+F1.3
+ | Quản lý chi nhánh / đơn vị trực thuộc
+ | Tạo chi nhánh/kho tỉnh theo khu vực, gắn vào công ty
+ | Must
+ | MVP
+ | 
+F1.4
+ | Thiết lập quan hệ phân cấp
+ | Xây dựng cây phân cấp cha - con giữa các đơn vị
+ | Must
+ | MVP
+ | 
+Epic B - Phòng ban & Nhóm
+Mã
+ | Chức năng
+ | Mô tả ngắn
+ | Ưu tiên
+ | MVP
+ | 
+F2.1
+ | Quản lý phòng ban
+ | Tạo/sửa/vô hiệu hóa phòng ban
+ | Must
+ | MVP
+ | 
+F2.2
+ | Gán phòng ban vào đơn vị
+ | Gắn phòng ban vào công ty/chi nhánh tương ứng
+ | Must
+ | MVP
+ | 
+F2.3
+ | Phòng ban cha - con (nhóm/tổ)
+ | Phân cấp phòng ban thành nhóm/tổ nhỏ hơn
+ | Should
+ | MVP+
+ | 
+F2.4
+ | Gán trưởng phòng ban
+ | Chỉ định nhân sự phụ trách phòng ban; làm người duyệt mặc định cho công việc/phối hợp trong MVP
+ | Must
+ | MVP
+ | 
+Epic C - Nhân sự
+Mã
+ | Chức năng
+ | Mô tả ngắn
+ | Ưu tiên
+ | MVP
+ | 
+F3.1
+ | Quản lý hồ sơ nhân sự
+ | Tạo/sửa thông tin cơ bản, mã NV, liên hệ
+ | Must
+ | MVP
+ | 
+F3.2
+ | Gán nhân sự vào phòng ban/đơn vị
+ | Xác định nơi công tác của nhân sự
+ | Must
+ | MVP
+ | 
+F3.3
+ | Gán chức vụ cho nhân sự
+ | Gắn chức danh công việc
+ | Must
+ | MVP
+ | 
+F3.4
+ | Quản lý trạng thái nhân sự
+ | Đang làm / tạm ngưng / nghỉ việc
+ | Must
+ | MVP
+ | 
+F3.5
+ | Lịch sử công tác / điều chuyển
+ | Lưu vết thay đổi vị trí, đơn vị theo thời gian
+ | Could
+ | Non-MVP
+ | 
+F3.6
+ | Liên kết nhân sự - tài khoản
+ | Gắn hồ sơ nhân sự với tài khoản đăng nhập (phối hợp Module 9)
+ | Must
+ | MVP
+ | 
+F3.7
+ | Kiêm nhiệm nhiều phòng ban
+ | Một nhân sự thuộc nhiều phòng ban
+ | Could
+ | Non-MVP
+ | 
+F3.8
+ | Hồ sơ hợp đồng lao động (lưu trữ)
+ | Lưu loại HĐ, số HĐ, ngày bắt đầu/kết thúc + đính kèm file; không vòng đời tự động
+ | Should
+ | MVP+
+ | 
+F3.9
+ | Hồ sơ bảo hiểm (lưu trữ)
+ | Lưu số sổ BHXH/BHYT, ngày tham gia, mức lương đóng (chỉ lưu) + đính kèm; không tính toán
+ | Should
+ | MVP+
+ | 
+F3.10
+ | Quản lý vòng đời HĐ & bảo hiểm (đầy đủ)
+ | Trạng thái tự động, cảnh báo hết hạn, phụ lục/gia hạn; tính mức đóng & liên thông lương thuộc Module 14
+ | Could
+ | Non-MVP
+ | 
+Epic D - Chức vụ
+Mã
+ | Chức năng
+ | Mô tả ngắn
+ | Ưu tiên
+ | MVP
+ | 
+F4.1
+ | Danh mục chức vụ
+ | Quản lý danh sách chức danh công việc
+ | Must
+ | MVP
+ | 
+F4.2a
+ | Cấp bậc chức vụ (cơ bản)
+ | Danh sách cấp bậc cơ bản phục vụ hiển thị/cơ cấu
+ | Should
+ | MVP+
+ | 
+F4.2b
+ | Ngạch / cấp bậc đầy đủ
+ | Khung ngạch đầy đủ, liên thông KPI/hoa hồng (chi tiết thuộc Module 14)
+ | Could
+ | Non-MVP
+ | 
+Epic E - Vai trò & Phân quyền
+Mã
+ | Chức năng
+ | Mô tả ngắn
+ | Ưu tiên
+ | MVP
+ | 
+F5.1
+ | Danh mục vai trò
+ | Tạo/sửa vai trò (role)
+ | Must
+ | MVP
+ | 
+F5.2
+ | Cấu hình quyền chức năng
+ | Gán quyền xem/thêm/sửa/xóa/duyệt/xuất cho vai trò (phối hợp M9)
+ | Must
+ | MVP
+ | 
+F5.3a
+ | Phạm vi dữ liệu theo chi nhánh
+ | Giới hạn dữ liệu theo 1 công ty/chi nhánh (phối hợp M9)
+ | Must
+ | MVP
+ | 
+F5.3b
+ | Kế thừa scope đa cấp & theo kho
+ | Kế thừa phạm vi đa cấp theo nhánh đơn vị và scope theo kho (phối hợp M9)
+ | Should
+ | MVP+
+ | 
+F5.4
+ | Gán vai trò cho nhân sự/tài khoản
+ | Gán một hoặc nhiều vai trò
+ | Must
+ | MVP
+ | 
+F5.6
+ | Phạm vi dữ liệu trực tiếp cho user
+ | Cấp/cấm thêm phạm vi dữ liệu trực tiếp cho user có hiệu lực từ ngày–đến ngày, lưu ở user_data_scopes
+ | Must
+ | MVP
+ | 
+F5.5
+ | Quyền cấp trường (field-level)
+ | Ẩn/hiện từng trường dữ liệu nhạy cảm
+ | Could
+ | Non-MVP
+ | 
+Epic F - Sơ đồ tổ chức
+Mã
+ | Chức năng
+ | Mô tả ngắn
+ | Ưu tiên
+ | MVP
+ | 
+F6.1
+ | Hiển thị sơ đồ tổ chức
+ | Sơ đồ cây toàn doanh nghiệp
+ | Must
+ | MVP
+ | 
+F6.2
+ | Lọc sơ đồ theo công ty/chi nhánh
+ | Xem cơ cấu theo từng đơn vị
+ | Should
+ | MVP+
+ | 
+F6.3
+ | Xem chi tiết từ sơ đồ
+ | Click node để xem thông tin đơn vị/nhân sự
+ | Must
+ | MVP
+ | 
+F6.4
+ | Xuất sơ đồ (PDF/ảnh)
+ | Tải sơ đồ để in/trình bày
+ | Should
+ | MVP+
+ | 
+Epic G - Nhân bản mô hình tổ chức [NGOÀI MVP — Future]
+Lưu ý phạm vi: Epic G (nhân bản mô hình) KHÔNG nằm trong cam kết MVP/MVP+ của Module 1 — giữ lại như định hướng tương lai (Future). Khách hàng đã chốt (12/06/2026): giữ Non-MVP, không nâng ưu tiên (xem câu hỏi Nhóm F mục 5; user story Epic G mục 7; backlog US-026/US-027). F7.1–F7.3 không tính vào phạm vi hay ước lượng MVP.
+Mã
+ | Chức năng
+ | Mô tả ngắn
+ | Ưu tiên
+ | MVP
+ | 
+F7.1
+ | Tạo & quản lý template cơ cấu
+ | Khuôn mẫu phòng ban + chức vụ + vai trò mẫu để dùng lại
+ | Should
+ | Ngoài MVP (Future)
+ | 
+F7.2
+ | Tạo đơn vị mới từ template & tùy chỉnh
+ | Sinh phòng ban/chức vụ/vai trò theo template rồi tùy chỉnh độc lập
+ | Should
+ | Ngoài MVP (Future)
+ | 
+F7.3
+ | Sao chép cơ cấu từ đơn vị nguồn
+ | Nhân bản cơ cấu trực tiếp từ một đơn vị có sẵn (không copy nhân sự/kho)
+ | Should
+ | Ngoài MVP (Future)
+ | 
+Epic H - Tiện ích dùng chung
+Mã
+ | Chức năng
+ | Mô tả ngắn
+ | Ưu tiên
+ | MVP
+ | 
+F8.1
+ | Tìm kiếm / lọc / phân trang
+ | Trên mọi danh mục của module
+ | Must
+ | MVP
+ | 
+F8.2
+ | Import nhân sự từ Excel
+ | Nhập danh sách nhân sự hàng loạt
+ | Should
+ | MVP+
+ | 
+F8.3
+ | Export danh sách (Excel/PDF)
+ | Xuất danh mục đơn vị/nhân sự
+ | Must
+ | MVP
+ | 
+Epic I - Giao việc & phối hợp liên phòng ban [MVP trong Module 1]
+Lưu ý phạm vi cập nhật 18/06/2026: khối Giao việc / phối hợp liên phòng ban được GIỮ trong Module 1 theo ảnh sơ đồ tổng thể. Module 1 sở hữu nghiệp vụ tạo việc, giao việc, theo dõi trạng thái và phê duyệt công việc 1 cấp. Module 13 chỉ tiêu thụ dữ liệu công việc từ Module 1 để tính KPI/hiệu suất; workflow nhiều cấp/rule động phức tạp để giai đoạn sau.
+Mã
+ | Chức năng
+ | Mô tả ngắn
+ | Ưu tiên
+ | MVP
+ | 
+F9.1
+ | Giao việc cho cá nhân/phòng ban
+ | Tạo đầu việc, chọn người giao, người nhận/phòng ban nhận, mô tả, hạn chót, mức ưu tiên
+ | Must
+ | MVP
+ | 
+F9.2
+ | Theo dõi trạng thái công việc
+ | Quản lý trạng thái: Mới tạo, Đã giao, Đang xử lý, Chờ duyệt, Hoàn thành, Từ chối/Yêu cầu làm lại, Hủy; Quá hạn hiển thị theo hạn hoàn thành
+ | Must
+ | MVP
+ | 
+F9.3
+ | Phối hợp liên phòng ban
+ | Tạo yêu cầu phối hợp giữa phòng ban, giao cho phòng ban/cá nhân phụ trách, lưu người giao và phòng ban giao
+ | Must
+ | MVP
+ | 
+F9.4
+ | Phê duyệt công việc 1 cấp
+ | Người nhận gửi duyệt; trưởng phòng của người nhận hoặc người được chỉ định duyệt/từ chối; không cho người nhận tự duyệt
+ | Must
+ | MVP
+ | 
+F9.5
+ | Liên thông dữ liệu công việc sang KPI (Module 13)
+ | Cung cấp dữ liệu công việc, trạng thái, hạn hoàn thành và kết quả duyệt cho Module 13 tính KPI/hiệu suất
+ | Should
+ | MVP+
+ | 
+3. Phạm vi MVP (Minimum Viable Product)
+3.1. Chức năng thuộc MVP
+Các chức năng bậc MVP (bắt buộc) ở Phần 2, tóm tắt theo nhóm:
+Cấu trúc đơn vị: tạo công ty (mẹ/con), chi nhánh và thiết lập phân cấp (F1.1-F1.4).
+Phòng ban: tạo phòng ban, gắn vào đơn vị, gán trưởng phòng (F2.1, F2.2, F2.4).
+Nhân sự: hồ sơ nhân sự, gán phòng ban/chức vụ, trạng thái, liên kết tài khoản (F3.1-F3.4, F3.6).
+Chức vụ: danh mục chức vụ (F4.1).
+Vai trò & phân quyền: vai trò, quyền chức năng, phạm vi dữ liệu theo 1 chi nhánh, gán vai trò (F5.1, F5.2, F5.3a, F5.4, F5.6) - mô hình RBAC; kế thừa scope đa cấp/theo kho (F5.3b) ở MVP+.
+Sơ đồ tổ chức: sơ đồ cây, xem chi tiết node (F6.1, F6.3). Lọc theo đơn vị (F6.2) chuyển sang MVP+.
+Tiện ích: tìm kiếm/lọc và export danh sách (F8.1, F8.3).
+Giao việc & phê duyệt: tạo công việc/yêu cầu phối hợp, giao cho cá nhân/phòng ban, theo dõi trạng thái, gửi duyệt và phê duyệt 1 cấp (F9.1–F9.4).
+3.2. Chức năng MVP+ (làm ngay sau MVP)
+Phòng ban: phân cấp nhóm/tổ con trong phòng ban (F2.3).
+Nhân sự: lưu trữ hồ sơ hợp đồng lao động & bảo hiểm ở mức cơ bản — tham chiếu + đính kèm file (F3.8, F3.9).
+Chức vụ: cấp bậc chức vụ cơ bản (F4.2a).
+Vai trò & phân quyền: kế thừa scope đa cấp theo nhánh đơn vị và scope theo kho (F5.3b).
+Sơ đồ tổ chức: lọc sơ đồ theo đơn vị (F6.2) và xuất sơ đồ PDF/ảnh (F6.4).
+Tiện ích: import danh sách từ Excel (F8.2).
+Giao việc & KPI: liên thông dữ liệu công việc sang Module 13 để tính KPI/hiệu suất; thông báo nâng cao, bình luận/đính kèm và báo cáo tiến độ chi tiết để sau MVP nếu cần (F9.5).
+3.3. Chức năng Non-MVP (Future – làm sau)
+Nhân bản mô hình tổ chức (F7.1–F7.3) — định hướng tương lai (Future), giữ làm khối parked (Epic G); khách hàng đã chốt giữ Non-MVP, không nâng ưu tiên (12/06/2026 — câu hỏi Nhóm F/F4).
+Lịch sử công tác/điều chuyển (F3.5), kiêm nhiệm nhiều phòng ban (F3.7). Lưu ý: dù màn hình quản lý/xem F3.5 để sau MVP, tầng dữ liệu ở MVP vẫn GHI lịch sử điều chuyển dạng chuỗi thời gian theo effective date (xem Phụ lục G và BR-13/BR-14) để không mất lịch sử giai đoạn đầu.
+Quyền cấp trường dữ liệu (F5.5); ngạch/cấp bậc chức vụ đầy đủ (F4.2b — chi tiết thuộc Module 14); quản lý đầy đủ vòng đời hợp đồng/bảo hiểm (F3.10 — tính lương/mức đóng thuộc Module 14).
+Workflow phê duyệt nhiều cấp/rule động phức tạp và tự động tính KPI là Non-MVP/Future. MVP của Module 1 chỉ triển khai giao việc/phối hợp và phê duyệt công việc 1 cấp; Module 13 nhận dữ liệu công việc từ M1 để tính KPI/hiệu suất. Các điểm trước để ngỏ nay cập nhật: kế thừa scope đa cấp/theo kho (F5.3b) và lọc sơ đồ (F6.2) xếp MVP+; hợp đồng/bảo hiểm tách bậc rõ (lưu trữ = MVP+, vòng đời đầy đủ = Non-MVP — A8/BR-03).
+3.4. Tiêu chí “đủ MVP”
+Module 1 được coi là đạt MVP khi một quản trị viên có thể thực hiện trọn vẹn các việc sau:
+Dựng cây tổ chức gồm 1 công ty + n chi nhánh + các phòng ban, hiển thị đúng trên sơ đồ tổ chức.
+Tạo nhân sự, gán nhân sự vào phòng ban và chức vụ; vô hiệu hóa nhân sự nghỉ việc.
+Gán vai trò “Quản lý chi nhánh” cho một người với phạm vi = Chi nhánh A, để người đó chỉ xem/thao tác được dữ liệu của Chi nhánh A (phạm vi gắn khi gán vai trò, không nằm trong định nghĩa vai trò).
+Liên kết nhân sự với tài khoản đăng nhập (phối hợp Module 9) để người dùng đăng nhập đúng quyền.
+Tìm kiếm, lọc và xuất danh sách đơn vị/nhân sự.
+Tạo và giao một công việc/yêu cầu phối hợp cho cá nhân hoặc phòng ban; người nhận cập nhật trạng thái, gửi duyệt; trưởng phòng của người nhận hoặc người được chỉ định duyệt/từ chối 1 cấp.
+4. Phân loại yêu cầu theo MoSCoW
+Bảng phân loại scope, ánh xạ 1-1 với 3 bậc ở mục 2: Must-have = MVP (bắt buộc); Should-have = MVP+ (làm ngay sau MVP); Could-have/Future = Non-MVP (mở rộng tương lai). Khối giao việc/phối hợp liên phòng ban được chuyển vào Module 1 MVP theo cập nhật 18/06/2026; nhóm nhân bản vẫn parked/Future.
+Phân loại
+ | Chức năng (mã)
+ | Lý do phân loại
+ | 
+Must-have (MVP)
+ | F1.1, F1.2, F1.3, F1.4, F2.1, F2.2, F2.4, F3.1, F3.2, F3.3, F3.4, F3.6, F4.1, F5.1, F5.2, F5.3a, F5.4, F5.6, F6.1, F6.3, F8.1, F8.3, F9.1, F9.2, F9.3, F9.4
+ | Là xương sống của hệ thống. Không có cơ cấu tổ chức, nhân sự, phân quyền và giao việc/phê duyệt cơ bản thì các module kho/bán hàng/tài chính/KPI không thể vận hành hay phân trách nhiệm đúng.
+ | 
+Should-have (MVP+)
+ | F2.3, F3.8, F3.9, F4.2a, F5.3b, F6.2, F6.4, F8.2, F9.5
+ | Tăng đáng kể giá trị vận hành & trải nghiệm, nên làm ngay sau MVP (fast-follow); hệ thống vẫn chạy được nếu tạm thiếu ở giai đoạn đầu.
+ | 
+Could-have / Future (Non-MVP)
+ | F3.5, F3.7, F3.10, F4.2b, F5.5
+ | Hữu ích cho doanh nghiệp lớn/đặc thù, bổ sung khi quy mô tăng mà không ảnh hưởng nền tảng; phần tính lương của F3.10/F4.2b thuộc Module 14.
+ | 
+Ngoài phạm vi M1 / Future
+ | F7.1–F7.3 (nhân bản – Future); workflow nhiều cấp/rule động phức tạp và tự động tính KPI chi tiết
+ | Nhân bản chưa thuộc cam kết Module 1 MVP/MVP+; KPI/hiệu suất chi tiết thuộc Module 13; workflow nhiều cấp chỉ xem xét khi nhu cầu vận hành phát sinh.
+ | 
+5. Danh sách câu hỏi cần làm rõ với khách hàng
+Nhóm A - Mô hình pháp nhân & đa công ty
+Mã
+ | Câu hỏi
+ | Vì sao cần làm rõ
+ | Giả định / Câu trả lời
+ | 
+QA-1
+ | Hiện tại doanh nghiệp có bao nhiêu pháp nhân (công ty mẹ/con), chi nhánh, kho?
+ | Xác định quy mô dữ liệu gốc và độ phức tạp phân cấp
+ | Có 1 công ty mẹ, một số chi nhánh tỉnh
+ | 
+QA-3
+ | Một hệ thống ERP duy nhất quản lý tất cả pháp nhân, hay mỗi pháp nhân một hệ thống riêng?
+ | Quyết định kiến trúc dữ liệu (multi-company)
+ | Một hệ thống quản lý tất cả pháp nhân (nội dung giả định A1 cũ — đã chốt tại câu này)
+ | 
+QA-4
+ | Mỗi công ty con có cần định danh thuế (MST) và báo cáo tài chính riêng không?
+ | Ảnh hưởng cách tổ chức pháp nhân & hạch toán
+ | Có MST riêng; báo cáo riêng ở Module 15
+ | 
+QA-5
+ | Công ty con khác chi nhánh ở điểm nào trong nghiệp vụ thực tế của doanh nghiệp?
+ | Tránh mô hình hóa sai cấp đơn vị
+ | Công ty con là pháp nhân độc lập; chi nhánh là đơn vị phụ thuộc
+ | 
+QA-6
+ | Trường mã số thuế (MST) bắt buộc nhập hay tự sinh? Nếu bắt buộc: độ dài tối thiểu/tối đa, định dạng ký tự? Có kiểm tra tính duy nhất toàn hệ thống không? Message khi trùng MST?
+ | Xác định quy tắc nhập & validate MST
+ | Đã chốt: MST bắt buộc nhập (không tự sinh); 10–13 chữ số thuần; hệ thống kiểm tra trùng — KHÔNG cho phép trùng MST, duy nhất toàn hệ thống (kể cả bản ghi inactive/soft-delete); message khi trùng: ’Mã số thuế đã tồn tại trong hệ thống’. Chi tiết: Phụ lục C (bảng validate + quy tắc mã tạm TMP) & BR-10.
+ | 
+QA-7
+ | Công ty con có nhìn thấy dữ liệu của chi nhánh trực thuộc nó không?
+ | Ảnh hưởng phạm vi xem dữ liệu theo cây pháp nhân
+ | Chỉ thấy dữ liệu của chi nhánh trực thuộc công ty con đó
+ | 
+QA-8
+ | Một user quản lý nhiều chi nhánh: khi đăng nhập vào chi nhánh A có được chuyển (switch) sang chi nhánh khác không? Làm chính ở đâu, lưu hồ sơ ở đâu?
+ | Ảnh hưởng cơ chế đăng nhập đa chi nhánh & nơi lưu hồ sơ
+ | Đã chốt (12/06/2026): 1 hồ sơ nhân sự duy nhất cấp tenant/công ty; mỗi chi nhánh làm việc có 1 bản phân công (assignment, vai trò có thể khác nhau theo chi nhánh — khớp QA-12); đánh dấu 1 chi nhánh là “chính” (dùng tính headcount/báo cáo, xác định quản lý trực tiếp, là đầu vào chi phí lương Module 14); khi đăng nhập, người dùng được chuyển (switch) giữa các chi nhánh mình được phân công — cơ chế switch phối hợp Module 9. Nhất quán với C12 (một hồ sơ + phân công chi nhánh) và Phụ lục G (Assignment, effective date).
+ | 
+QA-9
+ | Dữ liệu dùng chung toàn hệ thống hay tách theo pháp nhân?
+ | Quyết định danh mục dùng chung hay riêng
+ | Danh mục sản phẩm đặc thù riêng theo từng công ty/chi nhánh
+ | 
+QA-10
+ | Ai có quyền xem dữ liệu của nhiều chi nhánh/công ty con?
+ | Quyết định phạm vi xem dữ liệu của cấp trên
+ | Công ty mẹ chỉ dừng ở xem các đơn vị trực thuộc
+ | 
+QA-11
+ | Khi chuyển đổi cấu trúc pháp nhân, dữ liệu cũ được lưu lại hay chuyển theo?
+ | Ảnh hưởng cách xử lý dữ liệu khi tái cấu trúc
+ | Đã chốt (12/06/2026) — xử lý theo effective date (hybrid): dữ liệu phát sinh TRƯỚC thời điểm chuyển đổi giữ nguyên gắn pháp nhân cũ (không “viết lại” báo cáo lịch sử); từ ngày hiệu lực chuyển đổi, dữ liệu mới ghi theo pháp nhân mới. Nhất quán với B8 (MVP giữ trạng thái hiện tại, báo cáo as-of để giai đoạn sau) và Phụ lục G (effective date).
+ | 
+QA-12
+ | Một user có làm việc ở nhiều chi nhánh không? Nếu có, được phân vai trò (role) khác nhau theo từng chi nhánh không?
+ | Ảnh hưởng mô hình phân quyền đa chi nhánh
+ | Có thể làm việc nhiều chi nhánh; role có thể khác theo từng chi nhánh (phân quyền linh hoạt — xem nhóm D/E)
+ | 
+Nhóm B - Cấu trúc phân cấp
+Mã
+ | Câu hỏi
+ | Vì sao cần làm rõ
+ | Giả định / Câu trả lời
+ | 
+B1
+ | Cơ cấu có số cấp cố định hay cần cấu hình linh hoạt số cấp?
+ | Quyết định mô hình dữ liệu cây tổ chức
+ | MVP cố định 3 cấp pháp nhân: Công ty mẹ → Công ty con → Chi nhánh; phòng ban/nhóm/tổ nằm dưới chi nhánh. Khi hiển thị sơ đồ có thể mở rộng tới 5 tầng hiển thị nếu tính cả phòng ban/nhóm/tổ.
+ | 
+B2
+ | Có loại đơn vị đặc thù ngoài “phòng ban” không (ban, trung tâm, VPĐD, dự án)?
+ | Bổ sung loại đơn vị nếu cần
+ | Chỉ công ty/chi nhánh/phòng ban/nhóm
+ | 
+B3
+ | Một chi nhánh có thể trực thuộc công ty con (không trực thuộc công ty mẹ) không?
+ | Ảnh hưởng quy tắc phân cấp
+ | Có thể trực thuộc bất kỳ đơn vị cấp trên nào
+ | 
+B4
+ | Kho có được coi là một loại đơn vị trong sơ đồ tổ chức, hay tách riêng ở Module 2?
+ | Tránh trùng lặp với module kho
+ | Kho quản lý ở Module 2, liên kết tới chi nhánh
+ | 
+B5
+ | Mã phòng ban do hệ thống tự sinh hay nhập theo quy tắc riêng? Quy tắc đặt mã (độ dài tối thiểu/tối đa, định dạng)? Có kiểm tra tính duy nhất toàn hệ thống không? Message lỗi cụ thể (trùng mã, thiếu ký tự...)?
+ | Quyết định quy tắc đánh mã phòng ban
+ | Đã chốt (12/06/2026). Mã công ty: NHẬP TAY theo quy tắc. Mã phòng ban: hệ thống TỰ SINH theo tiền tố cấu hình (giống cơ chế mã NV — C7), vd PB-HCNS-01, cho phép sửa trước khi lưu. Quy tắc chung cho cả hai: dài 2–20 ký tự; chỉ gồm chữ in hoa A–Z, số 0–9, dấu - và _; không dấu cách, không tiếng Việt có dấu; hệ thống tự chuyển in hoa khi lưu; duy nhất toàn hệ thống kể cả bản ghi inactive/soft-delete (đồng nhất rule MST). Message: trùng → “Mã công ty/phòng ban đã tồn tại”; sai định dạng → “Mã chỉ gồm chữ in hoa, số, dấu - hoặc _, dài 2–20 ký tự”; trống → “Mã … không được để trống”. Chi tiết: Phụ lục C.
+ | 
+B6
+ | Một phòng ban có thể dùng chung cho nhiều chi nhánh/công ty (shared service) không, hay luôn thuộc đúng một đơn vị?
+ | Ảnh hưởng mô hình dữ liệu phòng ban (1-n hay n-n) và phân quyền
+ | Mỗi phòng ban thuộc đúng một đơn vị (1-n); shared service chưa thuộc MVP
+ | 
+B7
+ | Phòng ban có bắt buộc phải có trưởng phòng không? Có cho phép phó phòng / nhiều người phụ trách không?
+ | Ảnh hưởng ràng buộc dữ liệu và mô hình người phụ trách
+ | Nên có trưởng phòng/phó phòng; nếu chưa có thì cấp quyền tạm thời ngắn hạn cho nhân sự trong phòng.
+ | 
+B8
+ | Khi tái cơ cấu (đổi tên/tách/gộp/giải thể phòng ban, đơn vị), hệ thống chỉ giữ trạng thái hiện tại hay cần lưu cơ cấu “tại thời điểm“ để xem báo cáo theo mốc lịch sử (as-of)?
+ | Quyết định có cần lưu phiên bản/lịch sử cơ cấu tổ chức không
+ | MVP chỉ giữ trạng thái hiện tại (kèm xóa mềm A10); lịch sử phiên bản cơ cấu để giai đoạn sau
+ | 
+B9
+ | Nếu phòng ban bị inactive (ngừng hoạt động), user có xem được dữ liệu/lịch sử của phòng ban đó không?
+ | Quyết định quyền xem dữ liệu đã ngừng hoạt động
+ | Giám đốc được quyền xem và khôi phục
+ | 
+B10
+ | [UI] Khi phòng ban inactive, có bị ẩn khỏi danh sách chọn (dropdown) khi tạo nhân sự không?
+ | Quyết định cách hiển thị đơn vị inactive trên giao diện
+ | Không ẩn hẳn; với dropdown sẽ hiển thị nhãn inactive bên phải
+ | 
+B11
+ | Dữ liệu đã inactive khi xem lại báo cáo cũ có còn hiển thị thông tin không?
+ | Đảm bảo báo cáo lịch sử vẫn đúng
+ | Có
+ | 
+B12
+ | Khi xóa phòng ban/chi nhánh thì nhân sự bên dưới xử lý ra sao? Nội dung message cảnh báo là gì, có chặn nút thao tác không?
+ | Quyết định quy tắc xử lý phụ thuộc khi xóa đơn vị
+ | Đã chốt (cập nhật 12/06/2026) — phương án Cảnh báo + xóa mềm có thời hạn (THAY THẾ phương án Chặn cứng chốt trước đó cùng ngày): khi xóa phòng ban/chi nhánh còn nhân sự đang hoạt động, hệ thống KHÔNG chặn mà hiển thị cảnh báo: “[Tên đơn vị] còn N nhân sự đang hoạt động. Nếu tiếp tục xóa, toàn bộ nhân sự sẽ bị vô hiệu (inactive) và đơn vị chuyển vào xóa mềm; sau 14 ngày không khôi phục, đơn vị sẽ bị xóa vĩnh viễn.” Nếu người dùng xác nhận: toàn bộ nhân sự đang hoạt động của đơn vị → Inactive; đơn vị (kèm phòng ban/nhóm-tổ bên dưới) → Xóa mềm với cửa sổ khôi phục 14 ngày, giao diện hiển thị số ngày còn lại. Khôi phục trong 14 ngày (Giám đốc/Quản trị viên) → đơn vị hoạt động trở lại và các nhân sự bị inactive bởi chính thao tác xóa này chuyển lại Active (nhân sự đã nghỉ việc/inactive từ trước giữ nguyên trạng thái). Hết 14 ngày không khôi phục → xóa vĩnh viễn nếu không còn ràng buộc nghiệp vụ (BR-14); nếu còn ràng buộc → tự chuyển Lưu trữ (Archive). Hồ sơ và lịch sử phân công của nhân sự KHÔNG bị xóa theo đơn vị. Lưu ý: trạng thái Ngừng hoạt động (inactive) của đơn vị theo B9–B11 là trạng thái riêng, không áp dụng đếm ngược. Chi tiết: BR-19.
+ | 
+B13
+ | Trường hợp công ty chưa có mã số thuế nhưng vẫn muốn đặt hàng thì xử lý thế nào?
+ | Cho phép vận hành khi hồ sơ pháp lý chưa đầy đủ
+ | Dùng bảng mã quy ước tạm thay MST; hiển thị cảnh báo công ty chưa có MST/giấy phép (yêu cầu cập nhật trong 7-14 ngày sau khi cập nhật đơn hàng). Định dạng & vòng đời mã tạm đã chốt: tiền tố TMP, duy nhất toàn hệ thống — xem Phụ lục C & BR-10
+ | 
+B14
+ | Giữa các công ty/đối tượng liên kết, được phép xem dữ liệu gì của nhau?
+ | Quyết định phạm vi chia sẻ dữ liệu giữa pháp nhân liên kết
+ | Chỉ cho phép xem thông tin giới thiệu giữa các công ty
+ | 
+Nhóm C - Nhân sự & tài khoản
+Mã
+ | Câu hỏi
+ | Vì sao cần làm rõ
+ | Giả định / Câu trả lời
+ | 
+C1
+ | Hồ sơ nhân sự giai đoạn này gồm thông tin gì (cơ bản hay cả hợp đồng/lương/bảo hiểm)?
+ | Xác định phạm vi trường dữ liệu & ranh giới HR
+ | Thông tin cơ bản phục vụ vận hành/phân quyền; bổ sung lưu trữ hồ sơ hợp đồng & bảo hiểm mức cơ bản (tham chiếu + đính kèm) ở MVP+ (F3.8/F3.9). Quản lý đầy đủ là Non-MVP (F3.10); tính lương/mức đóng thuộc Module 14. Đã chốt (xem A8/BR-03).
+ | 
+C2
+ | Mỗi nhân sự bắt buộc có tài khoản đăng nhập, hay có người không cần?
+ | Quyết định quan hệ nhân sự - tài khoản
+ | Bắt buộc có tài khoản — mọi nhân sự đều có tài khoản (đã chốt ở A6); đã làm rõ ở mục trên.
+ | 
+C3
+ | Một nhân sự có thể thuộc nhiều phòng ban/kiêm nhiệm không? Có “phòng ban chính” không?
+ | Ảnh hưởng mô hình gán nhân sự
+ | 1 phòng ban chính; kiêm nhiệm là giai đoạn sau (A3)
+ | 
+C4
+ | Một nhân sự có thể công tác ở nhiều chi nhánh/công ty cùng lúc không?
+ | Ảnh hưởng phân quyền dữ liệu
+ | Có thể công tác nhiều chi nhánh theo mô hình Assignment; mỗi nhân sự có 1 chi nhánh/phòng ban chính để tính headcount/báo cáo, role có thể khác theo từng chi nhánh (QA-8/QA-12).
+ | 
+C5
+ | Khi nhân sự nghỉ việc, dữ liệu lịch sử đã gắn xử lý ra sao?
+ | Quyết định cơ chế xóa mềm/giữ lịch sử
+ | Xóa mềm có thời hạn: giữ 6 tháng (có log) rồi archive/anonymize; cronjob chạy theo chu kỳ chỉ xóa cứng bản ghi đã hết hạn giữ và không còn ràng buộc nghiệp vụ (A10/BR-14).
+ | 
+C6
+ | Có cần quản lý điều chuyển/lịch sử thay đổi vị trí công tác không?
+ | Quyết định có làm F3.5 sớm không
+ | Chưa thuộc MVP (Could)
+ | 
+C7
+ | Mã nhân viên do hệ thống tự sinh hay nhập theo quy tắc riêng?
+ | Quyết định quy tắc đánh mã
+ | Tự sinh, cho phép cấu hình tiền tố
+ | 
+C8
+ | Hệ thống có cần khái niệm “quản lý trực tiếp / line manager“ tách biệt với “trưởng phòng ban“ không (vì giao việc & phê duyệt thường chạy theo line manager, không theo phòng ban)?
+ | Ảnh hưởng mô hình tổ chức, đường báo cáo và luồng giao việc/phê duyệt
+ | MVP dùng trưởng phòng ban làm người phụ trách; line manager riêng tạm thời để giai đoạn sau (đã chốt).
+ | 
+C9
+ | Nhân sự thực tập/thử việc có được cấp tài khoản không? Có người phụ trách quản lý không?
+ | Quyết định cấp tài khoản & quản lý cho nhân sự chưa chính thức
+ | Có trạng thái Thử việc/TTS (đổi sang chính thức khi lên chính thức); CÓ cấp tài khoản; có người phụ trách
+ | 
+C10
+ | Quy trình cấp tài khoản cho nhân sự như thế nào? Một user có thể có nhiều tài khoản không?
+ | Quyết định luồng tạo & phê duyệt tài khoản
+ | Admin/HR cấp tài khoản, hoặc nhân viên tự tạo (có chọn chi nhánh) rồi phòng nhân sự phê duyệt; sau phê duyệt, nhân sự thuộc quản lý của phòng ban đó
+ | 
+C11
+ | Khi user bị disable thì có mất quyền đăng nhập không?
+ | Quyết định hành vi khi vô hiệu hóa/xóa tài khoản
+ | Có; user bị xóa thì không đăng nhập lại được vào tài khoản
+ | 
+C12
+ | Email/số điện thoại của nhân sự là duy nhất toàn hệ thống hay theo từng công ty/chi nhánh?
+ | Quyết định ràng buộc duy nhất của email/SĐT. Áp dụng unique theo tenant/công ty: UNIQUE(tenant_id, email), UNIQUE(tenant_id, phone)
+ | một email/SĐT không được trùng trong cùng tenant/công ty. Nhân sự làm nhiều chi nhánh thì dùng một hồ sơ nhân sự và thêm phân công chi nhánh
+ | 
+C13
+ | Các trường bắt buộc của một hồ sơ nhân sự gồm những gì?
+ | Chốt danh sách trường & trường bắt buộc
+ | Đã chốt (12/06/2026) — phương án chặt, thống nhất theo Phụ lục C. Bắt buộc: họ tên; mã NV (hệ thống tự sinh theo C7); số điện thoại và email (duy nhất theo tenant/công ty — C12); địa chỉ; giới tính; ngày sinh; số CCCD/CMND (duy nhất toàn hệ thống); phòng ban; chi nhánh/đơn vị công tác; người quản lý; trạng thái; tài khoản đăng nhập (A6). Không bắt buộc: ngày vào làm; mã số thuế cá nhân (cho bổ sung sau); các trường mở rộng. Chi tiết validate: Phụ lục C, bảng 4.
+ | 
+C14
+ | Khi nhân sự chuyển chi nhánh (công tác), dữ liệu cũ được xử lý thế nào?
+ | Đảm bảo truy vết quá trình công tác
+ | Vẫn lưu dữ liệu dạng chuỗi thời gian (lịch sử công tác)
+ | 
+C15
+ | Quy tắc tái kích hoạt (reactivate) nhân sự đã nghỉ: khôi phục hồ sơ cũ kèm lịch sử hay tạo hồ sơ mới liên kết hồ sơ cũ? Điều kiện/thời hạn áp dụng, ai được thao tác, vai trò & quyền cũ xử lý ra sao?
+ | Chốt quy tắc tái kích hoạt ở Phụ lục F (bản trước trỏ “Q-13” nhưng chưa có câu hỏi tương ứng — bổ sung tại đây)
+ | Đã chốt (12/06/2026): trong thời hạn lưu 6 tháng → khôi phục hồ sơ cũ, giữ nguyên mã NV và toàn bộ lịch sử; quá thời hạn/đã archive → tạo hồ sơ mới có liên kết tham chiếu hồ sơ cũ; tài khoản mở khóa lại qua Module 9; vai trò/quyền cũ KHÔNG tự khôi phục — phải gán lại theo vị trí mới.
+ | 
+Nhóm D - Chức vụ & vai trò
+Mã
+ | Câu hỏi
+ | Vì sao cần làm rõ
+ | Giả định / Câu trả lời
+ | 
+D1
+ | Phân biệt “chức vụ” (chức danh) và “vai trò” (tập quyền) như BA hiểu có đúng không?
+ | Tránh nhầm lẫn 2 khái niệm khi thiết kế
+ | Đúng - là 2 thực thể tách biệt (A4)
+ | 
+D2
+ | Có khái niệm cấp bậc/ngạch chức vụ (ảnh hưởng KPI/hoa hồng) không?
+ | Quyết định độ sâu của F4.2
+ | Có cấp bậc cơ bản; chi tiết để Module 14
+ | 
+D3
+ | Một nhân sự có thể giữ nhiều chức vụ cùng lúc không?
+ | Ảnh hưởng quan hệ nhân sự - chức vụ
+ | 1 chức vụ chính
+ | 
+D4
+ | Danh mục chức vụ dùng chung toàn hệ thống hay riêng theo từng công ty?
+ | Quyết định phạm vi danh mục
+ | Dùng chung, có thể lọc theo đơn vị
+ | 
+D5
+ | Vai trò (role) áp dụng cho toàn hệ thống hay theo chi nhánh/phòng ban? Một quản lý có thể quản lý nhiều chi nhánh cùng lúc hay chỉ một (tương tự với công ty)?
+ | Quyết định phạm vi áp dụng vai trò & quản lý đa đơn vị
+ | Phân quyền linh hoạt, có thể gắn nhiều chi nhánh; trước mắt cố định vai trò (bắt đầu cấp 3 và cấp 4), sau bổ sung phân quyền linh hoạt
+ | 
+D6
+ | Khi hai người cùng một vai trò nhưng mâu thuẫn trong quyết định thì xử lý thế nào?
+ | Quyết định cơ chế giải quyết mâu thuẫn
+ | Người có quyền cao hơn sẽ xử lý
+ | 
+D7
+ | Vai trò trưởng phòng/trưởng chi nhánh có tự động kèm quyền của nhân viên không?
+ | Làm rõ kế thừa quyền giữa các cấp
+ | Không tự động; tương tự các vai trò cấp trên khác
+ | 
+Nhóm E - Phân quyền
+Mã
+ | Câu hỏi
+ | Vì sao cần làm rõ
+ | Giả định / Câu trả lời
+ | 
+E1
+ | Phân quyền theo cả chức năng và phạm vi dữ liệu (theo đơn vị/kho) đúng không?
+ | Khẳng định mô hình phân quyền 2 lớp
+ | Đúng - RBAC + scope dữ liệu (A5)
+ | 
+E2
+ | Mức chi tiết quyền: theo module, theo màn hình, hay tới từng thao tác?
+ | Quyết định độ mịn ma trận quyền
+ | Tới từng thao tác (xem/thêm/sửa/xóa/duyệt/xuất)
+ | 
+E3
+ | Có cần phân quyền tới cấp trường dữ liệu (vd ẩn giá vốn) không?
+ | Quyết định có làm F5.5 không
+ | Chưa thuộc MVP (Could)
+ | 
+E4
+ | Khi một người có nhiều vai trò mâu thuẫn, áp dụng nguyên tắc nào?
+ | Tránh lỗ hổng/khoá nhầm quyền
+ | Ưu tiên quyền cấm (deny): vừa có quyền sửa/xóa vừa bị chặn xóa thì ưu tiên chặn xóa. Cần phân quyền chi tiết theo từng công ty/chi nhánh.
+ | 
+E5
+ | Có vai trò cấp trên tự xem dữ liệu cấp dưới (vd GĐ vùng) không?
+ | Quyết định cơ chế phân quyền theo cây
+ | Có; giám đốc tự động có vai trò (kế thừa quyền) của cấp dưới theo nhánh đơn vị.
+ | 
+E6
+ | Có cần phân quyền tạm thời / ủy quyền khi đi vắng không?
+ | Quyết định tính năng ủy quyền
+ | Chưa thuộc MVP
+ | 
+E7
+ | Nếu admin không cấp quyền Xem thì các quyền liên quan (thêm/sửa/xóa) của module có tự động ẩn không?
+ | Quyết định hành vi giao diện khi thiếu quyền xem
+ | Đã chốt (12/06/2026): CÓ — không có quyền Xem thì hệ thống tự ẩn/chặn các thao tác liên quan (thêm/sửa/xóa) của module đó trên giao diện; truy cập trực tiếp bị từ chối. Đồng bộ với BR-07 và Phụ lục E.3.
+ | 
+E8
+ | Hành vi mặc định khi chưa có rule (chưa gán quyền): cho phép (allow) hay từ chối (deny)?
+ | Quyết định default behavior phân quyền
+ | Deny (từ chối), chờ được cấp/accept
+ | 
+E9
+ | Nếu chỉ tích quyền Sửa mà không tích quyền Xem, hệ thống tự động tích Xem hay báo lỗi?
+ | Quyết định ràng buộc giữa các quyền
+ | Tự động cấp quyền Xem
+ | 
+E10
+ | Khi một chi nhánh mới được tạo từ công ty con, quản lý của công ty có tự động được xem dữ liệu chi nhánh đó không?
+ | Quyết định kế thừa quyền xem khi mở đơn vị mới
+ | Chỉ quản lý của công ty được tự động xem; các đối tượng khác phải được gán quyền
+ | 
+E11
+ | Các admin ngang cấp có được cấp quyền cho nhau không?
+ | Tránh leo thang đặc quyền giữa các admin
+ | Không; admin không được cấp quyền chéo cho nhau
+ | 
+E12
+ | Khi phạm vi dữ liệu theo vai trò và phạm vi gán trực tiếp cho người dùng cùng tồn tại, hệ thống phối hợp theo nguyên tắc nào?
+ | Chốt nguyên tắc tính scope hiệu lực cho US-M1-019 (tiêu chí này trước đây trỏ nhầm E3)
+ | Đã chốt (14/06/2026): khi phạm vi dữ liệu đến từ cả vai trò và gán trực tiếp cho người dùng, hệ thống lấy HỢP NHẤT (union) các phạm vi được phép từ hai nguồn — người dùng thấy tổng của cả hai vùng (vd: vừa mang vai trò gắn Chi nhánh Hà Nội, vừa được gán trực tiếp phụ trách Chi nhánh TP.HCM thì thấy dữ liệu của cả Hà Nội và TP.HCM). Đơn vị nằm ngoài cả hai phạm vi (vd Chi nhánh Đà Nẵng) → mặc định DENY, không hiển thị. Khi có rule cấm cụ thể (vd cấm xem một kho) → lệnh cấm luôn ưu tiên, kể cả khi đối tượng/đơn vị đó nằm trong vùng đã hợp nhất (đồng bộ E4/BR-07). Đồng bộ Phụ lục E.3 & E.4. Bổ sung (15/06/2026): phần “gán trực tiếp” được lưu ở bảng riêng user_data_scopes (mỗi dòng allow/deny + lý do + hiệu lực từ ngày–đến ngày + audit thu hồi), KHÔNG mô hình hóa bằng cách gán thêm một bản ghi vai trò cho vùng mới — để lịch sử bổ nhiệm vai trò không bị hiểu nhầm là user được bổ nhiệm chính thức ở đơn vị đó. Chi tiết thuật toán hợp nhất: Phụ lục E.6.
+ | 
+Nhóm F - Nhân bản mô hình tổ chức (Future — đã chốt Non-MVP 12/06/2026, xem Epic G mục 2)
+Mã
+ | Câu hỏi
+ | Vì sao cần làm rõ
+ | Giả định / Câu trả lời
+ | 
+F1
+ | “Nhân bản mô hình” sao chép cụ thể những gì khi mở chi nhánh mới?
+ | Định nghĩa rõ phạm vi tính năng lõi của khách hàng
+ | Sao chép cơ cấu phòng ban + chức vụ + vai trò; KHÔNG sao chép nhân sự & dữ liệu kho
+ | 
+F2
+ | Cần cơ chế template/khuôn mẫu, hay sao chép trực tiếp từ một đơn vị nguồn?
+ | Quyết định cách hiện thực
+ | Có template; đồng thời cho sao chép từ đơn vị có sẵn
+ | 
+F3
+ | Sau khi nhân bản, đơn vị mới liên kết với template hay độc lập?
+ | Quyết định có cơ chế đồng bộ template không
+ | Độc lập sau khi sao chép
+ | 
+F4
+ | Tính năng này có thuộc MVP/Giai đoạn 1 không, hay làm sau?
+ | Quyết định xếp ưu tiên Must/Should
+ | Đã chốt (12/06/2026): Non-MVP (Future) — không thuộc cam kết MVP/MVP+, giữ nguyên ưu tiên thấp; chỉ xem xét lại khi khách hàng có nhu cầu mở rộng chi nhánh hàng loạt.
+ | 
+Nhóm G - Ranh giới module & quy trình
+Mã
+ | Câu hỏi
+ | Vì sao cần làm rõ
+ | Giả định / Câu trả lời
+ | 
+G1
+ | Đề xuất ranh giới Module 1 ↔ Module 9 (mục 1.5) có được chấp nhận không?
+ | Tránh trùng/thiếu chức năng giữa 2 module
+ | Theo đề xuất mục 1.5
+ | 
+G2
+ | Tạo/sửa/xóa đơn vị, phòng ban, nhân sự có cần phê duyệt nhiều cấp không?
+ | Quyết định có làm workflow duyệt không
+ | Chỉ cần quyền, chưa cần workflow (A9)
+ | 
+G3
+ | Ai được phép tạo công ty/chi nhánh mới (chỉ Admin hay cả quản lý chi nhánh)?
+ | Quyết định phân quyền cho chức năng tạo đơn vị
+ | Chỉ Quản trị viên hệ thống
+ | 
+G4
+ | Nhật ký thay đổi cơ cấu nằm ở Module 1 hay dùng audit log chung Module 9?
+ | Tránh trùng chức năng nhật ký
+ | Dùng audit log chung của Module 9
+ | 
+Nhóm H - Phi chức năng & khác
+Mã
+ | Câu hỏi
+ | Vì sao cần làm rõ
+ | Giả định / Câu trả lời
+ | 
+H1
+ | Số người dùng đồng thời dự kiến? Quy mô nhân sự tối đa?
+ | Ảnh hưởng thiết kế hiệu năng & phân trang
+ | Quy mô vừa, tăng dần theo mở rộng
+ | 
+H2
+ | Có yêu cầu giao diện đa ngôn ngữ (Việt/Anh) không?
+ | Ảnh hưởng thiết kế đa ngôn ngữ
+ | Tiếng Việt là chính
+ | 
+H3
+ | Có cần nhập dữ liệu nhân sự từ hệ thống HR/Excel hiện có không?
+ | Quyết định ưu tiên F8.2 (import)
+ | Có nhu cầu import từ Excel (Should)
+ | 
+H4
+ | Yêu cầu lưu vết & bảo mật dữ liệu nhân sự (PII) ở mức nào?
+ | Đảm bảo tuân thủ bảo mật
+ | Phân quyền chặt + audit log (Module 9)
+ | 
+Nhóm I - Giao việc & phối hợp liên phòng ban
+Cập nhật 18/06/2026: theo ảnh sơ đồ tổng quan của khách hàng, “Giao việc / phê duyệt liên phòng ban” được giữ trong Module 1. Nhóm câu hỏi này dùng để chốt phạm vi MVP của giao việc/phối hợp, ranh giới với Module 13 KPI và rule phê duyệt 1 cấp.
+Mã
+ | Câu hỏi
+ | Vì sao cần làm rõ
+ | Giả định / Câu trả lời
+ | 
+I1
+ | “Giao việc / phối hợp liên phòng ban“ thuộc phạm vi Module 1, hay là một module nghiệp vụ riêng (vd Module 13 - KPI & Hiệu suất / module workflow)? Nếu thuộc Module 1 thì tới mức nào?
+ | Câu hỏi ranh giới quan trọng nhất - quyết định Module 1 có thêm epic này hay không
+ | Đã chốt (18/06/2026): thuộc Module 1 theo ảnh sơ đồ tổng thể. Module 1 sở hữu tạo việc, giao việc, phối hợp liên phòng ban, theo dõi trạng thái và phê duyệt công việc 1 cấp. Module 13 chỉ tiêu thụ dữ liệu công việc để tính KPI/hiệu suất.
+ | 
+I2
+ | “Giao việc“ cụ thể là gì: giao đầu việc/nhiệm vụ cho cá nhân, hay luân chuyển/bàn giao công việc giữa các phòng ban?
+ | Làm rõ bản chất nghiệp vụ để mô hình hóa đúng
+ | Bao gồm cả giao việc cho cá nhân và phối hợp giữa phòng ban
+ | 
+I3
+ | Có cần theo dõi trạng thái công việc (chưa làm / đang làm / hoàn thành), hạn chót, người giao - người nhận không?
+ | Quyết định độ phức tạp của tính năng và dữ liệu cần lưu
+ | Có. MVP theo dõi tối thiểu: người giao, người nhận/phòng ban nhận, hạn chót, mức ưu tiên và trạng thái Mới tạo/Đã giao/Đang xử lý/Chờ duyệt/Hoàn thành/Từ chối/Hủy; Quá hạn hiển thị tự động theo hạn hoàn thành.
+ | 
+I4
+ | “Phối hợp liên phòng ban“ kích hoạt khi nào, có cần bước phê duyệt và thông báo (notification) cho các bên liên quan không?
+ | Quyết định có cần workflow duyệt và cơ chế thông báo không
+ | Có phê duyệt 1 cấp trong MVP. Người duyệt mặc định là trưởng phòng của cá nhân/phòng ban nhận việc; khi tạo việc có thể chỉ định người duyệt khác nếu người đó có quyền. Người nhận không được tự duyệt việc của mình. Phê duyệt nhiều cấp để giai đoạn sau.
+ | 
+I5
+ | Dữ liệu giao việc/phối hợp này về sau có dùng làm đầu vào cho KPI/đánh giá hiệu suất (Module 13) không?
+ | Ảnh hưởng cách thiết kế dữ liệu để liên thông với module KPI
+ | Có. Module 1 lưu dữ liệu giao việc/phối hợp và kết quả duyệt; Module 13 dùng dữ liệu này để tính KPI/đánh giá hiệu suất ở giai đoạn sau.
+ | 
+I6
+ | Người duyệt cấp 1 mặc định là ai?
+ | Quyết định rule luồng phê duyệt MVP và tránh nhầm giữa người giao việc và quản lý của người nhận.
+ | Đã chốt (18/06/2026): mặc định là trưởng phòng của người nhận/phòng ban nhận việc; có thể chỉ định người duyệt khác nếu có quyền; fallback khi không có trưởng phòng là người giao việc hoặc Admin/Quản trị viên; không cho người nhận tự duyệt.
+ | 
+6. Luồng nghiệp vụ (Business Flow)
+BF-01 — Thiết lập cơ cấu tổ chức ban đầu
+Mục tiêu: Khởi tạo bộ khung tổ chức cho doanh nghiệp/đơn vị mới.
+Tác nhân chính: Quản trị viên hệ thống
+Tiền điều kiện: Đã đăng nhập và có quyền “Quản lý tổ chức”.
+Các bước:
+Bước 1: Vào phân hệ Quản lý tổ chức.
+Bước 2: Tạo hồ sơ Công ty mẹ (nhập tên, mã, MST, địa chỉ, người đại diện, logo).
+Bước 3: Nếu có nhiều pháp nhân: tạo các Công ty con và gắn vào công ty mẹ.
+Bước 4: Tạo các Chi nhánh/đơn vị trực thuộc và gắn vào công ty/công ty con tương ứng.
+Bước 5: Tạo các Phòng ban cho từng đơn vị; (tùy chọn) tạo nhóm/tổ trong phòng ban.
+Bước 6: Gán trưởng phòng ban (nếu đã có nhân sự).
+Bước 7: Hệ thống tự dựng Sơ đồ tổ chức từ dữ liệu vừa nhập.
+Bước 8: Quản trị viên kiểm tra lại cây tổ chức và xác nhận.
+Điểm rẽ nhánh / kiểm tra:
+Trùng mã đơn vị hoặc trùng MST → hệ thống báo lỗi (’Mã công ty đã tồn tại’ / ’Mã số thuế đã tồn tại trong hệ thống’), yêu cầu sửa.
+Không có quyền tạo đơn vị → chức năng bị ẩn/khóa.
+Gán đơn vị cha tạo thành vòng lặp phân cấp → hệ thống chặn.
+Hậu điều kiện: Cơ cấu tổ chức được lưu, hiển thị đầy đủ trên sơ đồ và sẵn sàng để gán nhân sự/phân quyền.
+BF-02 — Tạo và quản lý hồ sơ nhân sự
+Mục tiêu: Số hóa hồ sơ nhân sự và gắn nhân sự vào đúng vị trí.
+Tác nhân chính: Cán bộ Nhân sự / Quản trị
+Tiền điều kiện: Cơ cấu tổ chức (đơn vị, phòng ban, chức vụ) đã tồn tại.
+Các bước:
+Bước 1: Vào danh sách Nhân sự, chọn “Thêm nhân sự”.
+Bước 2: Nhập thông tin cơ bản (họ tên, ngày sinh, giới tính, điện thoại, email...).
+Bước 3: Hệ thống sinh mã nhân viên (theo quy tắc cấu hình).
+Bước 4: Chọn đơn vị và phòng ban công tác (phòng ban chính).
+Bước 5: Chọn chức vụ cho nhân sự.
+Bước 6: (Tùy chọn) Liên kết/tạo tài khoản đăng nhập - phối hợp Module 9.
+Bước 7: Lưu hồ sơ; nhân sự xuất hiện trong phòng ban tương ứng trên sơ đồ tổ chức.
+Điểm rẽ nhánh / kiểm tra:
+Email/điện thoại trùng → cảnh báo (cho phép cấu hình bắt buộc duy nhất hay không).
+Nhân sự nghỉ việc → chuyển trạng thái “Nghỉ việc” (xóa mềm), thu hồi quyền truy cập, vẫn giữ lịch sử.
+Điều chuyển phòng ban → cập nhật đơn vị/phòng ban, ghi nhận thay đổi (lịch sử công tác - giai đoạn sau).
+Hậu điều kiện: Hồ sơ nhân sự được lưu, gắn đúng đơn vị/phòng ban/chức vụ và (nếu có) tài khoản.
+BF-03 — Thiết lập chức vụ và gán vị trí
+Mục tiêu: Chuẩn hóa danh mục chức danh và gán cho nhân sự.
+Tác nhân chính: Quản trị viên / Cán bộ Nhân sự
+Tiền điều kiện: Có quyền quản lý danh mục.
+Các bước:
+Bước 1: Vào Danh mục chức vụ.
+Bước 2: Tạo chức vụ mới (tên, mã, mô tả, cấp bậc nếu có).
+Bước 3: Lưu chức vụ vào danh mục dùng chung.
+Bước 4: Khi tạo/sửa nhân sự, chọn chức vụ từ danh mục để gán.
+Điểm rẽ nhánh / kiểm tra:
+Trùng tên/mã chức vụ → báo lỗi.
+Vô hiệu hóa chức vụ đang được gán → cảnh báo, không cho xóa cứng (chỉ ngừng sử dụng cho hồ sơ mới).
+Hậu điều kiện: Danh mục chức vụ sẵn sàng và được dùng khi gán vị trí cho nhân sự.
+BF-04 — Tạo vai trò và cấu hình phân quyền
+Mục tiêu: Định nghĩa vai trò và gắn quyền (chức năng + phạm vi dữ liệu).
+Tác nhân chính: Quản trị viên hệ thống (phối hợp Module 9)
+Tiền điều kiện: Đã có cơ cấu đơn vị để xác định phạm vi dữ liệu.
+Các bước:
+Bước 1: Vào Quản lý vai trò, chọn “Tạo vai trò” (vd “Quản lý kho” — tên vai trò KHÔNG gắn chi nhánh; phạm vi gắn khi gán cho user ở BF-05).
+Bước 2: Cấu hình quyền chức năng: chọn module/chức năng và các thao tác được phép (xem/thêm/sửa/xóa/duyệt/xuất).
+Bước 3: Phạm vi dữ liệu KHÔNG cấu hình ở bước tạo vai trò — vai trò chỉ gồm quyền chức năng; phạm vi (công ty/chi nhánh/kho) được chọn khi gán vai trò cho user (xem BF-05).
+Bước 4: Lưu vai trò.
+Điểm rẽ nhánh / kiểm tra:
+Vai trò không có quyền nào → cảnh báo trước khi lưu.
+Phạm vi dữ liệu rỗng → mặc định không thấy dữ liệu nào (an toàn theo nguyên tắc tối thiểu).
+Hậu điều kiện: Vai trò sẵn sàng để gán cho nhân sự/tài khoản.
+BF-05 — Gán vai trò và kiểm soát truy cập
+Mục tiêu: Áp quyền cho người dùng theo vai trò.
+Tác nhân chính: Quản trị viên hệ thống
+Tiền điều kiện: Đã có vai trò và hồ sơ nhân sự/tài khoản.
+Các bước:
+Bước 1: Mở hồ sơ nhân sự/tài khoản cần phân quyền.
+Bước 2: Gán một hoặc nhiều vai trò cho nhân sự/tài khoản; với MỖI vai trò, chọn kèm phạm vi dữ liệu (công ty/chi nhánh/kho) cho chính lần gán đó (mỗi bản ghi gán = vai trò + phạm vi, lưu ở user_role_scopes).
+Bước 3: (Tùy chọn) Cấp phạm vi dữ liệu TRỰC TIẾP cho user: thêm vùng (allow) hoặc cấm vùng (deny) kèm thời hạn và lý do — lưu ở bảng user_data_scopes. Dùng cho mở/cấm vùng tạm thời (vd hỗ trợ chi nhánh khác 30 ngày); KHÔNG gán thêm một vai trò mới để mở vùng. Quyền hiệu lực = hợp nhất scope từ vai trò và direct scope, trừ các vùng deny (Phụ lục E.6).
+Bước 4: Lưu; khi người dùng đăng nhập, hệ thống áp đúng quyền & phạm vi dữ liệu.
+Điểm rẽ nhánh / kiểm tra:
+Nhiều vai trò mâu thuẫn → ưu tiên quyền cấm (deny) — nguyên tắc hợp nhất đã chốt (câu hỏi E4, BR-07).
+Thu hồi vai trò → quyền cập nhật ngay ở phiên đăng nhập kế tiếp.
+Hậu điều kiện: Người dùng chỉ thấy/thao tác đúng phần dữ liệu và chức năng được phép.
+BF-06 — Giao việc, phối hợp liên phòng ban và phê duyệt 1 cấp
+Mục tiêu: Tạo và theo dõi công việc/yêu cầu phối hợp giữa cá nhân/phòng ban, có bước gửi duyệt và duyệt/từ chối 1 cấp trước khi đóng việc.
+Tác nhân chính: Người giao việc, người nhận việc, trưởng phòng/người được chỉ định duyệt, Quản trị viên/HR khi cần hỗ trợ.
+Tiền điều kiện: Đã có cơ cấu tổ chức, phòng ban, nhân sự đang hoạt động và trưởng phòng/người duyệt được xác định.
+Các bước:
+Bước 1: Người giao tạo công việc/yêu cầu phối hợp, nhập tiêu đề, mô tả, hạn hoàn thành, mức ưu tiên, người nhận hoặc phòng ban nhận.
+Bước 2: Hệ thống xác định người duyệt cấp 1 mặc định là trưởng phòng của người nhận/phòng ban nhận việc; người giao có thể chỉ định người duyệt khác nếu người đó có quyền.
+Bước 3: Người nhận tiếp nhận việc, chuyển trạng thái Đang xử lý và cập nhật tiến độ/kết quả.
+Bước 4: Khi hoàn thành phần xử lý, người nhận bấm Gửi duyệt; công việc chuyển sang Chờ duyệt.
+Bước 5: Người duyệt cấp 1 kiểm tra kết quả. Nếu đạt, bấm Duyệt hoàn thành; nếu chưa đạt, bấm Từ chối/Yêu cầu làm lại và nhập lý do.
+Bước 6: Nếu bị từ chối, công việc quay về Đang xử lý; nếu được duyệt, công việc chuyển Hoàn thành.
+Điểm rẽ nhánh / kiểm tra:
+Không cho giao việc cho nhân sự/phòng ban inactive hoặc nhân sự đã nghỉ việc/tạm ngưng.
+Người nhận không được tự duyệt công việc của chính mình.
+Nếu phòng ban nhận việc chưa có trưởng phòng, hệ thống chuyển quyền duyệt về người giao việc hoặc Admin/Quản trị viên theo phân quyền.
+Quá hạn được hiển thị/cảnh báo dựa trên hạn hoàn thành; không bắt buộc là trạng thái lưu cứng trong MVP.
+Hậu điều kiện: Công việc có lịch sử trạng thái, lịch sử duyệt/từ chối và dữ liệu đủ để Module 13 dùng cho KPI/hiệu suất sau này.
+BF-07 — Nhân bản mô hình khi mở chi nhánh/công ty mới
+Mục tiêu: Triển khai nhanh đơn vị mới theo khuôn mẫu đã thiết lập.
+Tác nhân chính: Quản trị viên hệ thống
+Tiền điều kiện: Đã có template cơ cấu hoặc một đơn vị nguồn để sao chép.
+Các bước:
+Bước 1: Chọn “Mở chi nhánh/công ty mới”.
+Bước 2: Chọn template cơ cấu (hoặc chọn đơn vị nguồn để sao chép).
+Bước 3: Hệ thống tạo đơn vị mới và sao chép phòng ban + chức vụ + vai trò mẫu.
+Bước 4: Quản trị viên tùy chỉnh (đổi tên, thêm/bớt phòng ban, điều chỉnh phạm vi quyền).
+Bước 5: Gán quản lý chi nhánh và nhân sự cho đơn vị mới.
+Bước 6: Hoàn tất - đơn vị mới sẵn sàng vận hành theo mô hình chuẩn.
+Điểm rẽ nhánh / kiểm tra:
+Template không tồn tại → yêu cầu tạo template trước (F7.1).
+Hệ thống KHÔNG sao chép nhân sự và dữ liệu kho (chỉ sao chép cơ cấu) - chờ xác nhận câu hỏi F1.
+Hậu điều kiện: Đơn vị mới có cơ cấu chuẩn, rút ngắn thời gian triển khai - hiện thực hóa định hướng “nhân bản mô hình vận hành”.
+7. User Story và Tiêu chí nghiệm thu (Acceptance Criteria)
+Quy ước: mỗi user story theo mẫu “Là <vai trò>, tôi muốn <mục tiêu>, để <giá trị>”. Tiêu chí nghiệm thu viết theo cấu trúc Cho trước – Khi – Thì (Given – When – Then) để Tester nghiệm thu và Dev hiểu chức năng cần code. Mức ưu tiên hiển thị trong ngoặc [Must/Should/Could] bám theo bảng MoSCoW ở Phần 4. Các story Must được mô tả chi tiết hơn; story Should/Could mô tả ở mức vừa đủ và sẽ được làm rõ thêm khi đưa vào sprint.
+Epic A – Cấu trúc pháp nhân & đơn vị
+US-M1-001  [Must]
+Là Quản trị viên hệ thống, tôi muốn tạo và quản lý hồ sơ công ty mẹ (pháp nhân gốc), để toàn hệ thống có một thực thể tổ chức cấp cao nhất làm gốc cho mọi đơn vị bên dưới.
+Tác nhân: Quản trị viên hệ thống.
+Đầu vào & trường dữ liệu (chi tiết validate ở Phụ lục C):
+Tên công ty — Bắt buộc; không để trống; ≤ 200 ký tự.
+Mã công ty — Bắt buộc, NHẬP TAY; dài 2–20 ký tự, chỉ gồm A–Z in hoa, 0–9, dấu - và _ (không dấu cách/tiếng Việt có dấu), hệ thống tự chuyển in hoa khi lưu; duy nhất toàn hệ thống kể cả bản ghi inactive/soft-delete (đã chốt B5).
+Mã số thuế (MST) — Bắt buộc (tạm thời ’có’); duy nhất toàn hệ thống — không cho phép trùng, kể cả với bản ghi inactive/soft-delete; nếu chưa có MST thì dùng mã quy ước tạm TMP thay thế kèm cảnh báo (BR-10 / câu B13).
+Địa chỉ — Bắt buộc; không để trống.
+Người đại diện — Không bắt buộc.
+Điện thoại, Email — Không bắt buộc; nếu nhập phải đúng định dạng.
+Logo — Không bắt buộc.
+Trạng thái: Hoạt động / Ngừng hoạt động (mặc định Hoạt động).
+Quyền thao tác (role được / không được): Được: Quản trị viên hệ thống. Không được: trưởng chi nhánh/HR/nhân viên (chỉ Xem nếu được cấp quyền). Quyền chi tiết theo Phụ lục E.
+Trường hợp biên (edge case): MST trùng hoặc để trống; mã công ty trùng; đã tồn tại công ty mẹ gốc; tên vượt 200 ký tự; công ty chưa có MST (dùng mã quy ước tạm).
+Tiêu chí nghiệm thu (Given – When – Then, pass/fail – có kết quả mong đợi):
+Cho trước người dùng có quyền ’Tạo công ty’, khi mở form tạo công ty, thì hệ thống hiển thị đầy đủ các trường trên, các trường bắt buộc được đánh dấu (*).
+Cho trước form tạo công ty, khi bỏ trống bất kỳ trường bắt buộc nào và bấm Lưu, thì hệ thống chặn lưu và hiển thị lỗi ngay tại trường thiếu (’Trường … không được để trống’).
+Cho trước đã có công ty với mã X, khi nhập mã công ty = X và Lưu, thì hệ thống báo ’Mã công ty đã tồn tại’ và không lưu.
+Cho trước MST đã dùng cho công ty khác (kể cả công ty đang inactive/đã xóa mềm), khi nhập trùng MST, thì hệ thống báo ’Mã số thuế đã tồn tại trong hệ thống’ và không lưu.
+Cho trước công ty chưa có MST, khi chọn dùng mã quy ước tạm và Lưu, thì hệ thống tự sinh mã tạm duy nhất dạng TMP-xxxxxx, lưu và đặt trạng thái ’Chờ cấp MST’, hiển thị cảnh báo ’Công ty chưa có MST/giấy phép’ và yêu cầu cập nhật trong 7–14 ngày.
+Khi lưu thành công, thì công ty mẹ xuất hiện ở gốc cây cơ cấu và có thể được chọn làm đơn vị cha cho công ty con/chi nhánh.
+Cho trước mô hình chỉ 3 cấp pháp nhân (A2 đã chốt), khi đã tồn tại công ty mẹ gốc, thì pháp nhân tạo tiếp theo được xử lý như công ty con.
+US-M1-002  [Must]
+Là Quản trị viên hệ thống, tôi muốn tạo công ty con và gắn vào công ty mẹ, để quản lý nhiều pháp nhân trên cùng một hệ thống tập trung.
+Tác nhân: Quản trị viên hệ thống.
+Đầu vào & trường dữ liệu (chi tiết validate ở Phụ lục C):
+Đơn vị cha (công ty mẹ) — Bắt buộc; chọn từ danh sách.
+Tên công ty con — Bắt buộc; ≤ 200 ký tự.
+Mã công ty con — Bắt buộc; duy nhất.
+Mã số thuế (MST) — Bắt buộc (tạm thời); duy nhất toàn hệ thống (kể cả bản ghi inactive/soft-delete); mã quy ước tạm TMP nếu chưa có (BR-10).
+Địa chỉ — Bắt buộc.
+Người đại diện, Điện thoại, Email — Không bắt buộc.
+Trạng thái: Hoạt động / Ngừng hoạt động.
+Quyền thao tác (role được / không được): Được: Quản trị viên hệ thống. Không được: vai trò không có quyền tạo pháp nhân.
+Trường hợp biên (edge case): Chọn đơn vị cha là chính nó hoặc đơn vị con của nó (vòng lặp); bỏ trống đơn vị cha; tạo vượt 3 cấp pháp nhân; MST/mã trùng.
+Tiêu chí nghiệm thu (Given – When – Then, pass/fail – có kết quả mong đợi):
+Cho trước đã có công ty mẹ, khi tạo công ty con, thì hệ thống bắt buộc chọn đơn vị cha và nhập các trường bắt buộc trên.
+Cho trước form, khi bỏ trống đơn vị cha hoặc trường bắt buộc, thì hệ thống chặn lưu và báo lỗi tại trường.
+Cho trước cây cơ cấu, khi chọn chính nó hoặc một đơn vị con của nó làm cha (quan hệ vòng), thì hệ thống chặn và báo ’Không thể tạo quan hệ vòng’.
+Khi lưu thành công, thì công ty con hiển thị đúng dưới công ty mẹ trong cây cơ cấu và sơ đồ tổ chức.
+Cho trước phân quyền theo pháp nhân, khi công ty con được tạo, thì nó trở thành một phạm vi dữ liệu (data scope) có thể gán cho vai trò (phối hợp Module 9).
+Cho trước A9 (công ty con được tuyển nhân sự, sửa/sa thải, giao việc), khi cấu hình quyền cho công ty con, thì các quyền này khả dụng để gán.
+US-M1-003  [Must]
+Là Quản trị viên hệ thống, tôi muốn tạo chi nhánh/đơn vị trực thuộc theo tỉnh/khu vực, để phản ánh mô hình mở rộng nhiều địa phương của doanh nghiệp.
+Tác nhân: Quản trị viên hệ thống.
+Đầu vào & trường dữ liệu (chi tiết validate ở Phụ lục C):
+Công ty/đơn vị cha — Bắt buộc.
+Tên chi nhánh — Bắt buộc; ≤ 200 ký tự.
+Mã chi nhánh — Bắt buộc; duy nhất.
+Tỉnh/khu vực — Bắt buộc.
+Địa chỉ — Bắt buộc.
+Người phụ trách — Không bắt buộc.
+Điện thoại, Email — Không bắt buộc.
+Trạng thái: Hoạt động / Ngừng hoạt động.
+Quyền thao tác (role được / không được): Được: Quản trị viên hệ thống (và quản lý công ty con cho chi nhánh thuộc công ty con đó nếu được cấp quyền). Không được: nhân viên thường.
+Trường hợp biên (edge case): Bỏ trống đơn vị cha/tỉnh; tạo cấp sâu hơn chi nhánh; mã trùng; user công ty con cố xem chi nhánh ngoài phạm vi.
+Tiêu chí nghiệm thu (Given – When – Then, pass/fail – có kết quả mong đợi):
+Cho trước đã có công ty (mẹ hoặc con), khi tạo chi nhánh, thì hệ thống bắt buộc chọn đơn vị cha và nhập các trường bắt buộc.
+Cho trước chi nhánh là cấp thấp nhất trong 3 cấp pháp nhân (A2), khi tạo chi nhánh, thì hệ thống không cho tạo cấp pháp nhân sâu hơn chi nhánh.
+Khi lưu thành công, thì chi nhánh gắn đúng vào đơn vị cha và sẵn sàng để gán phòng ban, nhân sự; kho (Module 2) có thể tham chiếu chi nhánh này.
+Khi lọc danh sách theo tỉnh/khu vực, thì hệ thống chỉ hiển thị chi nhánh thuộc khu vực đã chọn.
+Cho trước QA-7 (công ty con chỉ thấy chi nhánh trực thuộc nó), khi user của công ty con xem danh sách chi nhánh, thì chỉ thấy các chi nhánh trực thuộc công ty con đó.
+US-M1-004  [Must]
+Là Quản trị viên hệ thống, tôi muốn thiết lập quan hệ phân cấp cha – con giữa các đơn vị, để hình thành cây cơ cấu tổ chức phục vụ phân quyền và báo cáo theo đơn vị.
+Tác nhân: Quản trị viên hệ thống.
+Đầu vào & trường dữ liệu (chi tiết validate ở Phụ lục C):
+Đơn vị cần gán cha — Bắt buộc.
+Đơn vị cha mới — Bắt buộc; chọn trong phạm vi 3 cấp pháp nhân.
+Quyền thao tác (role được / không được): Được: Quản trị viên hệ thống. Không được: vai trò khác.
+Trường hợp biên (edge case): Vòng lặp cha-con; vượt 3 cấp; di chuyển nhánh đang có dữ liệu lịch sử (tái cơ cấu) — xem BR tái cơ cấu ở Phụ lục D.
+Tiêu chí nghiệm thu (Given – When – Then, pass/fail – có kết quả mong đợi):
+Cho trước đã có các đơn vị, khi gán/đổi đơn vị cha cho một đơn vị, thì hệ thống cập nhật lại vị trí của nó và toàn bộ nhánh con trong cây.
+Cho trước mô hình 3 cấp pháp nhân Công ty mẹ → Công ty con → Chi nhánh (A2 đã chốt, thay cho giả định 4/5 cấp trước đây), khi thao tác tạo cấp pháp nhân vượt quá 3 cấp, thì hệ thống chặn và cảnh báo. (Phòng ban, nhóm/tổ và nhân sự nằm dưới chi nhánh, không tính vào 3 cấp pháp nhân.)
+Cho trước cây cơ cấu, khi thao tác tạo ra vòng lặp phân cấp, thì hệ thống chặn và cảnh báo.
+Cho trước đơn vị đang có dữ liệu lịch sử/nghiệp vụ, khi tái cơ cấu (đổi cha/tách/gộp), thì hệ thống giữ nguyên dữ liệu lịch sử và ghi vết thay đổi (không xóa cứng).
+Khi cây cơ cấu thay đổi, thì sơ đồ tổ chức và các bộ lọc theo đơn vị phản ánh đúng cấu trúc mới.
+US-M1-005  [Must]
+Là Quản trị viên hệ thống, tôi muốn sửa thông tin và vô hiệu hóa (ngừng hoạt động) một đơn vị, để giữ dữ liệu lịch sử mà vẫn phản ánh đúng cơ cấu hiện tại.
+Tiêu chí nghiệm thu:
+Khi tôi sửa thông tin đơn vị và lưu, thì thay đổi được áp dụng và ghi nhận thời điểm cập nhật.
+Cho trước xóa là xóa mềm theo giả định A10, khi tôi vô hiệu hóa một đơn vị, thì đơn vị chuyển trạng thái Ngừng hoạt động, ẩn khỏi các danh sách chọn mặc định nhưng dữ liệu lịch sử vẫn được giữ.
+Cho trước đơn vị còn phòng ban/nhân sự đang hoạt động, khi tôi chọn xóa, thì hệ thống cảnh báo ’[Tên đơn vị] còn N nhân sự đang hoạt động…’ và yêu cầu xác nhận; khi tôi xác nhận, thì toàn bộ nhân sự đang hoạt động chuyển Inactive và đơn vị (kèm phòng ban/nhóm-tổ bên dưới) chuyển Xóa mềm với cửa sổ khôi phục 14 ngày, hiển thị số ngày còn lại; khi khôi phục trong 14 ngày, thì đơn vị hoạt động lại và các nhân sự bị inactive bởi chính thao tác này chuyển lại Active; khi hết hạn không khôi phục, thì xóa vĩnh viễn nếu không còn ràng buộc nghiệp vụ, còn ràng buộc thì chuyển Archive (đã chốt B12/BR-19 — tham chiếu cũ ghi nhầm B3).
+Epic B – Phòng ban & Nhóm
+US-M1-006  [Must]
+Là Quản trị viên/Phòng nhân sự, tôi muốn tạo phòng ban và gán vào đúng công ty/chi nhánh, để cơ cấu bên trong từng đơn vị được phản ánh chính xác.
+Tác nhân: Quản trị viên hệ thống / Phòng nhân sự.
+Đầu vào & trường dữ liệu (chi tiết validate ở Phụ lục C):
+Tên phòng ban — Bắt buộc; ≤ 200 ký tự.
+Mã phòng ban — Bắt buộc; hệ thống TỰ SINH theo tiền tố cấu hình (vd PB-HCNS-01), cho phép sửa trước khi lưu; dài 2–20 ký tự, chỉ gồm A–Z in hoa, 0–9, dấu - và _, tự chuyển in hoa khi lưu; duy nhất toàn hệ thống kể cả bản ghi inactive/soft-delete (đã chốt B5); message lỗi rõ ràng khi trùng mã hoặc sai định dạng.
+Đơn vị trực thuộc (công ty/chi nhánh) — Bắt buộc.
+Trưởng phòng — Không bắt buộc; nếu chưa có thì cấp quyền tạm thời ngắn hạn cho nhân sự trong phòng (B7).
+Mô tả — Không bắt buộc.
+Trạng thái: Hoạt động / Ngừng hoạt động (inactive).
+Quyền thao tác (role được / không được): Được: Quản trị viên / HR trong phạm vi đơn vị được cấp. Không được: nhân viên thường.
+Trường hợp biên (edge case): Mã phòng trùng/thiếu ký tự; bỏ trống đơn vị; vô hiệu hóa phòng còn nhân sự đang hoạt động; phòng inactive hiển thị trong dropdown khi tạo nhân sự.
+Tiêu chí nghiệm thu (Given – When – Then, pass/fail – có kết quả mong đợi):
+Cho trước form, khi bỏ trống trường bắt buộc, thì hệ thống chặn lưu và báo lỗi tại trường.
+Cho trước mã phòng ban đã tồn tại, khi nhập trùng, thì hệ thống báo ’Mã phòng ban đã tồn tại’ và không lưu; mã sai định dạng (ký tự ngoài A–Z/0–9/-/_, dài dưới 2 hoặc trên 20 ký tự) bị chặn với thông báo ’Mã chỉ gồm chữ in hoa, số, dấu - hoặc _, dài 2–20 ký tự’ (đã chốt B5).
+Khi lưu thành công, thì phòng ban hiển thị dưới đúng đơn vị trong cây cơ cấu và sơ đồ tổ chức.
+Cho trước phòng ban bị inactive (B9/B10), khi tạo nhân sự, thì phòng ban inactive không hiển thị mặc định trong dropdown nhưng có nhãn ’inactive’; báo cáo cũ vẫn hiển thị thông tin phòng ban inactive (B11).
+Cho trước A10 (xóa mềm, có thể xóa cứng), khi vô hiệu hóa phòng ban, thì áp dụng xóa mềm; giám đốc được quyền xem và khôi phục (B9).
+Cho trước phòng ban còn nhân sự đang hoạt động (B12/BR-19), khi người dùng chọn xóa, thì hệ thống cảnh báo ’[Tên phòng ban] còn N nhân sự đang hoạt động. Nếu tiếp tục xóa, toàn bộ nhân sự sẽ bị vô hiệu (inactive) và phòng ban chuyển vào xóa mềm; sau 14 ngày không khôi phục, phòng ban sẽ bị xóa vĩnh viễn.’ và yêu cầu xác nhận; khi xác nhận, thì nhân sự đang hoạt động chuyển Inactive, phòng ban chuyển Xóa mềm với cửa sổ khôi phục 14 ngày (hiển thị số ngày còn lại); khi khôi phục trong hạn, thì phòng ban hoạt động lại và các nhân sự bị inactive bởi chính thao tác này chuyển lại Active; khi hết hạn không khôi phục, thì xóa vĩnh viễn nếu không còn ràng buộc nghiệp vụ (BR-14), còn ràng buộc thì chuyển Archive.
+US-M1-007  [Should]
+Là Phòng nhân sự, tôi muốn phân cấp phòng ban thành nhóm/tổ nhỏ hơn, để mô tả các bộ phận có cơ cấu nội bộ nhiều tầng.
+Tác nhân: Phòng nhân sự.
+Đầu vào & trường dữ liệu (chi tiết validate ở Phụ lục C):
+Phòng ban cha — Bắt buộc.
+Tên nhóm/tổ — Bắt buộc.
+Mã nhóm/tổ — Không bắt buộc; nếu nhập thì duy nhất trong phòng ban.
+Người phụ trách nhóm — Không bắt buộc.
+Trạng thái: Hoạt động / Ngừng hoạt động.
+Quyền thao tác (role được / không được): Được: HR trong phạm vi. Không được: nhân viên thường.
+Trường hợp biên (edge case): Bỏ trống tên nhóm hoặc phòng ban cha; mã nhóm trùng trong phòng.
+Tiêu chí nghiệm thu (Given – When – Then, pass/fail – có kết quả mong đợi):
+Cho trước đã có phòng ban, khi tạo nhóm/tổ bên trong một phòng ban, thì nhóm hiển thị như nút con của phòng ban đó trong cây cơ cấu.
+Khi gán nhân sự vào nhóm/tổ, thì nhân sự đồng thời được hiểu là thuộc phòng ban cha của nhóm.
+Cho trước form, khi bỏ trống tên nhóm hoặc phòng ban cha, thì hệ thống chặn lưu và báo lỗi.
+US-M1-008  [Must]
+Là Quản trị viên/Phòng nhân sự, tôi muốn chỉ định trưởng phòng ban, để xác định người phụ trách phục vụ giao việc và báo cáo về sau (Module 13).
+Tiêu chí nghiệm thu:
+Khi tôi chọn một nhân sự làm trưởng phòng ban, thì hệ thống lưu vai trò phụ trách và hiển thị trên hồ sơ phòng ban cùng sơ đồ tổ chức.
+Cho trước một nhân sự chỉ nên là trưởng của phòng đang xét, khi tôi gán trưởng phòng mới, thì hệ thống cho phép thay thế người cũ và lưu vết thay đổi.
+Epic C – Nhân sự
+US-M1-009  [Must]
+Là Phòng nhân sự, tôi muốn tạo và cập nhật hồ sơ nhân sự, để có dữ liệu nhân sự phục vụ vận hành và phân quyền.
+Tác nhân: Phòng nhân sự.
+Đầu vào & trường dữ liệu (chi tiết validate ở Phụ lục C):
+Họ và tên — Bắt buộc; không để trống.
+Mã nhân viên (ID) — Bắt buộc; duy nhất toàn hệ thống.
+Số điện thoại — Bắt buộc; đúng định dạng; duy nhất trong cùng tenant/công ty — đã chốt câu C12 (nhân sự làm nhiều chi nhánh dùng một hồ sơ + phân công chi nhánh).
+Email — Bắt buộc; đúng định dạng; duy nhất trong cùng tenant/công ty — đã chốt câu C12.
+Địa chỉ — Bắt buộc.
+Giới tính — Bắt buộc; chọn Nam / Nữ / Khác (đã chốt C13 — phương án chặt).
+Ngày sinh — Bắt buộc; ngày trong quá khứ, tuổi ≥ tuổi lao động tối thiểu (C13).
+Số CCCD/CMND — Bắt buộc; 12 chữ số (CCCD) hoặc 9 chữ số (CMND cũ); duy nhất toàn hệ thống (C13).
+Mã số thuế cá nhân — Không bắt buộc (cho phép bổ sung sau); 10 chữ số nếu nhập; duy nhất (C13).
+Phòng ban — Bắt buộc.
+Chi nhánh/đơn vị công tác — Bắt buộc.
+Người quản lý — Bắt buộc.
+Ngày vào làm và các trường mở rộng — Không bắt buộc.
+Trạng thái: Thử việc / Thực tập (TTS) / Chính thức / Tạm ngưng / Nghỉ việc (C9) — xem vòng đời ở Phụ lục F.
+Quyền thao tác (role được / không được): Được: HR (Phòng nhân sự) trong phạm vi đơn vị được cấp. Không được: nhân viên thường (chỉ xem hồ sơ của chính mình nếu được cấp).
+Trường hợp biên (edge case): Mã NV trùng; email/SĐT sai định dạng hoặc trùng trong cùng tenant/công ty (C12); số CCCD/CMND trùng; bỏ trống trường bắt buộc; nhân sự thử việc/TTS; nhân sự đã phát sinh giao dịch ở module khác (không xóa cứng).
+Tiêu chí nghiệm thu (Given – When – Then, pass/fail – có kết quả mong đợi):
+Cho trước form tạo nhân sự, khi bỏ trống bất kỳ trường bắt buộc nào (họ tên, mã NV, SĐT, email, địa chỉ, giới tính, ngày sinh, số CCCD/CMND, phòng ban, chi nhánh, người quản lý — danh sách đã chốt C13, phương án chặt) và Lưu, thì hệ thống chặn lưu và báo ’không được để trống’ tại trường thiếu.
+Cho trước mã NV đã tồn tại, khi nhập trùng, thì hệ thống báo lỗi và không lưu.
+Cho trước email/SĐT sai định dạng, khi Lưu, thì hệ thống báo lỗi định dạng.
+Cho trước email hoặc SĐT đã tồn tại trong cùng tenant/công ty, khi Lưu, thì hệ thống báo trùng và không lưu (đã chốt C12); cùng email/SĐT ở tenant/công ty khác không bị tính là trùng.
+Khi lưu thành công, thì nhân sự xuất hiện trong danh sách và có thể được gán chức vụ, vai trò, tài khoản.
+Cho trước A6 (bắt buộc tạo tài khoản), khi tạo nhân sự, thì hệ thống yêu cầu/khởi tạo tài khoản và cấp mã cho nhân sự (luồng tài khoản phối hợp Module 9 — xem US-M1-012).
+Cho trước nhân sự thử việc/TTS (C9), khi tạo, thì chọn trạng thái tương ứng và vẫn được cấp tài khoản; khi lên chính thức, thì đổi trạng thái sang Chính thức.
+Khi sửa hồ sơ, thì hệ thống ghi nhận thời điểm và người cập nhật (audit log — Module 9); khi đổi chi nhánh, thì lưu lịch sử công tác dạng chuỗi thời gian (C14).
+US-M1-010  [Must]
+Là Phòng nhân sự, tôi muốn gán nhân sự vào phòng ban/đơn vị và gán chức vụ, để xác định nơi công tác và chức danh của từng người.
+Tác nhân: Phòng nhân sự.
+Đầu vào & trường dữ liệu (chi tiết validate ở Phụ lục C):
+Nhân sự — Bắt buộc.
+Đơn vị/phòng ban công tác — Bắt buộc; đánh dấu phòng ban chính.
+Chức vụ — Bắt buộc.
+Vai trò theo từng chi nhánh — Không bắt buộc; áp dụng khi nhân sự làm ở nhiều chi nhánh (QA-12).
+Quyền thao tác (role được / không được): Được: HR. Không được: nhân viên thường.
+Trường hợp biên (edge case): Gán nhiều hơn một phòng ban chính; chưa có chức vụ hoặc phòng ban; nhân sự làm nhiều chi nhánh (vai trò theo từng chi nhánh).
+Tiêu chí nghiệm thu (Given – When – Then, pass/fail – có kết quả mong đợi):
+Cho trước đã có phòng ban và danh mục chức vụ, khi gán nhân sự, thì hệ thống bắt buộc chọn đơn vị/phòng ban công tác và chức vụ.
+Cho trước mỗi nhân sự có đúng một phòng ban chính (A3), khi gán, thì hệ thống ghi nhận một phòng ban chính; kiêm nhiệm (nếu bật) được đánh dấu là phụ — kiêm nhiệm để giai đoạn sau.
+Cho trước nhân sự đã có phòng ban chính đang hiệu lực, khi gán/đổi sang phòng ban chính mới, thì hệ thống tự đóng bản ghi cũ theo effective date và đặt bản ghi mới làm phòng ban chính — không tồn tại hai phòng ban chính active cùng lúc (BR-20).
+Cho trước nhân sự làm ở nhiều chi nhánh (QA-12/QA-8), khi gán phòng ban ở chi nhánh khác, thì hệ thống cho phép (đa chi nhánh — mỗi chi nhánh một Assignment) và không coi đó là phòng ban chính thứ hai; phòng ban chính vẫn là phòng tại chi nhánh chính (BR-20).
+Khi nhân sự được gán vào đơn vị, thì người đó xuất hiện đúng vị trí trong sơ đồ tổ chức.
+Cho trước QA-12 (1 user có thể làm nhiều chi nhánh, role khác theo chi nhánh), khi gán nhân sự cho nhiều chi nhánh, thì hệ thống cho phép và lưu vai trò theo từng chi nhánh (phân quyền linh hoạt — phối hợp Module 9).
+US-M1-011  [Must]
+Là Phòng nhân sự, tôi muốn quản lý trạng thái nhân sự, để hệ thống và phân quyền phản ánh đúng tình trạng làm việc thực tế.
+Tác nhân: Phòng nhân sự.
+Đầu vào & trường dữ liệu (chi tiết validate ở Phụ lục C):
+Nhân sự — Bắt buộc.
+Trạng thái mới — Bắt buộc; Thử việc/TTS/Chính thức/Tạm ngưng/Nghỉ việc/Tái kích hoạt.
+Lý do thay đổi — Không bắt buộc.
+Trạng thái: Chuyển trạng thái: TTS/Thử việc → Chính thức; Chính thức → Tạm ngưng (suspend) → Nghỉ việc; Nghỉ việc/Tạm ngưng → Tái kích hoạt (reactivate). Xem sơ đồ ở Phụ lục F.
+Quyền thao tác (role được / không được): Được: HR. Không được: nhân viên thường. Vô hiệu hóa tài khoản phối hợp Module 9.
+Trường hợp biên (edge case): Nghỉ việc khi còn vai trò/tài khoản đang active; nhân sự có giao dịch lịch sử ở module khác (không xóa cứng); tái kích hoạt nhân sự cũ; nhân sự đã chuyển chi nhánh.
+Tiêu chí nghiệm thu (Given – When – Then, pass/fail – có kết quả mong đợi):
+Khi đổi trạng thái sang Nghỉ việc, thì hệ thống cảnh báo về tài khoản đăng nhập và vai trò đang gán, đề nghị vô hiệu hóa truy cập tương ứng (phối hợp Module 9).
+Cho trước nhân sự đã nghỉ việc, khi liệt kê danh sách mặc định, thì hệ thống ẩn người đã nghỉ nhưng vẫn cho lọc/tra cứu lại khi cần.
+Cho trước A6/C11 (user bị disable mất quyền login; xóa user thì không login lại được), khi vô hiệu hóa hoặc xóa tài khoản nhân sự, thì người đó không đăng nhập được.
+Cho trước nhân sự đã phát sinh nghiệp vụ ở module khác (M13 KPI, M5 bán hàng…), khi nghỉ việc, thì hệ thống KHÔNG xóa cứng; chuyển xóa mềm/lưu trữ và giữ tối thiểu 6 tháng (có log) trước khi xét xóa cứng (A10/C5).
+Cho trước nhân sự đã nghỉ/tạm ngưng, khi tái kích hoạt (reactivate), thì hệ thống khôi phục hồ sơ và yêu cầu xem xét lại tài khoản/vai trò.
+Khi trạng thái thay đổi, thì thời điểm và người thực hiện được ghi nhận (audit log — Module 9).
+US-M1-012  [Must]
+Là Quản trị viên hệ thống, tôi muốn liên kết hồ sơ nhân sự với một tài khoản đăng nhập, để nhân sự có thể truy cập hệ thống theo đúng quyền được phân.
+Tiêu chí nghiệm thu:
+Cho trước liên kết nhân sự – tài khoản là 1–1 tùy chọn theo ranh giới M1–M9, khi tôi liên kết, thì một nhân sự gắn tối đa một tài khoản và ngược lại.
+Cho trước việc tạo tài khoản và mật khẩu thuộc Module 9, khi cần cấp tài khoản, thì hệ thống điều hướng sang quy trình tạo/khởi tạo tài khoản của Module 9 thay vì để BA/hệ thống tự đặt mật khẩu (tuân thủ ranh giới M1–M9 và yêu cầu bảo mật).
+Khi nhân sự nghỉ việc, thì hệ thống đề xuất vô hiệu hóa tài khoản liên kết.
+US-M1-013  [Could]
+Là Phòng nhân sự, tôi muốn xem lịch sử công tác/điều chuyển của nhân sự, để tra cứu quá trình thay đổi vị trí theo thời gian.
+Tiêu chí nghiệm thu:
+Khi nhân sự đổi phòng ban/chức vụ/đơn vị, thì hệ thống lưu một bản ghi lịch sử gồm mốc thời gian và nội dung thay đổi.
+Khi tôi mở tab lịch sử của một nhân sự, thì danh sách thay đổi hiển thị theo thứ tự thời gian.
+US-M1-014  [Should]
+Là Phòng nhân sự, tôi muốn import danh sách nhân sự từ file Excel theo mẫu, để khởi tạo dữ liệu ban đầu nhanh khi triển khai.
+Tiêu chí nghiệm thu:
+Khi tôi tải file mẫu, thì hệ thống cung cấp template Excel với đúng các cột bắt buộc.
+Khi tôi nhập file, thì hệ thống kiểm tra dữ liệu (trùng mã, thiếu trường bắt buộc, sai định dạng) và hiển thị báo cáo dòng lỗi trước khi ghi.
+Khi tôi xác nhận, thì chỉ các dòng hợp lệ được tạo; các dòng lỗi được bỏ qua và có thể tải lại danh sách lỗi để sửa.
+US-M1-034  [Should] (MVP+)
+Là Phòng nhân sự, tôi muốn lưu hồ sơ hợp đồng lao động của nhân sự (loại HĐ, số HĐ, ngày bắt đầu/kết thúc) kèm đính kèm file, để tra cứu nhanh mà không phải quản lý vòng đời.
+Tiêu chí nghiệm thu: khi lưu HĐ, thì hệ thống ghi loại HĐ, số HĐ (duy nhất theo nhân sự), ngày bắt đầu/kết thúc và cho đính kèm PDF/ảnh; trạng thái HĐ nhập tay (không tự đổi); KHÔNG có cảnh báo hết hạn và KHÔNG liên thông tính lương (các phần này là Non-MVP/F3.10 – Module 14).
+US-M1-035  [Should] (MVP+)
+Là Phòng nhân sự, tôi muốn lưu thông tin bảo hiểm của nhân sự (số sổ BHXH/BHYT, ngày tham gia, mức lương đóng) kèm đính kèm, để lưu trữ hồ sơ phục vụ vận hành.
+Tiêu chí nghiệm thu: khi lưu, thì hệ thống ghi số sổ BHXH/BHYT, ngày bắt đầu/dừng tham gia, mức lương đóng (chỉ lưu – không tính) và cho đính kèm file; mọi tính mức đóng/đối soát/báo cáo BHXH là Non-MVP và thuộc Module 14 (F3.10).
+Epic D – Chức vụ
+US-M1-015  [Must]
+Là Phòng nhân sự, tôi muốn quản lý danh mục chức vụ (chức danh công việc), để gán chức danh thống nhất cho nhân sự toàn hệ thống.
+Tác nhân: Phòng nhân sự.
+Đầu vào & trường dữ liệu (chi tiết validate ở Phụ lục C):
+Tên chức vụ — Bắt buộc; ≤ 200 ký tự.
+Mã chức vụ — Bắt buộc; duy nhất.
+Mô tả — Không bắt buộc.
+Cấp bậc/ngạch — Không bắt buộc; chi tiết để Module 14.
+Trạng thái: Hoạt động / Ngừng hoạt động.
+Quyền thao tác (role được / không được): Được: HR. Không được: nhân viên thường.
+Trường hợp biên (edge case): Mã chức vụ trùng; bỏ trống tên/mã; kỳ vọng chức vụ tự sinh quyền (KHÔNG — quyền chỉ qua vai trò; xem BR job title vs role).
+Tiêu chí nghiệm thu (Given – When – Then, pass/fail – có kết quả mong đợi):
+Cho trước form chức vụ, khi bỏ trống tên hoặc mã, thì hệ thống chặn lưu và báo lỗi.
+Cho trước mã chức vụ đã tồn tại, khi nhập trùng và Lưu, thì hệ thống báo lỗi và không lưu.
+Cho trước danh mục chức vụ dùng chung toàn hệ thống (D4), khi tạo chức vụ, thì có thể dùng cho mọi đơn vị và lọc theo đơn vị khi cần.
+Cho trước phân biệt Chức vụ ≠ Vai trò (A4/D1), khi gán chức vụ cho nhân sự, thì chức vụ là chức danh công việc và KHÔNG tự kèm quyền hệ thống (vai trò/quyền cấu hình riêng — Phụ lục E; có thể hiện gợi ý vai trò theo chức vụ).
+US-M1-016  [Should]
+Là Phòng nhân sự, tôi muốn phân cấp bậc/ngạch cho chức vụ, để phục vụ tính KPI và hoa hồng theo cấp bậc ở các module sau.
+Tiêu chí nghiệm thu:
+Khi tôi gán cấp bậc/ngạch cho chức vụ, thì thông tin này lưu cùng chức vụ và có thể được module KPI/hoa hồng tham chiếu về sau.
+Cho trước cấu trúc ngạch bậc có thể thay đổi, khi định nghĩa, thì hệ thống cho phép cấu hình danh mục cấp bậc thay vì cố định cứng.
+Epic E – Vai trò & Phân quyền
+US-M1-017  [Must]
+Là Quản trị viên hệ thống, tôi muốn tạo và quản lý danh mục vai trò (role), để nhóm các quyền lại và tái sử dụng khi phân quyền cho nhân sự.
+Tiêu chí nghiệm thu:
+Khi tôi tạo vai trò, thì hệ thống cho nhập tên vai trò (bắt buộc, duy nhất) và mô tả.
+Khi tôi vô hiệu hóa/xóa mềm một vai trò đang gán cho người dùng, thì hệ thống cảnh báo số người dùng bị ảnh hưởng trước khi xác nhận.
+Cho trước định nghĩa vai trò là dữ liệu gốc dùng chung M1–M9, khi vai trò được tạo, thì nó sẵn sàng để cấu hình quyền chức năng và phạm vi dữ liệu.
+US-M1-018  [Must]
+Là Quản trị viên hệ thống, tôi muốn cấu hình quyền theo chức năng cho từng vai trò (xem/thêm/sửa/xóa/duyệt/xuất), để kiểm soát mỗi vai trò được làm gì trên từng phân hệ.
+Tiêu chí nghiệm thu:
+Khi tôi mở ma trận phân quyền của một vai trò, thì hệ thống liệt kê các nhóm chức năng và cho bật/tắt từng hành động (xem, thêm, sửa, xóa, duyệt, xuất).
+Khi tôi lưu, thì quyền có hiệu lực ở phiên đăng nhập kế tiếp của người dùng mang vai trò đó.
+Cho trước người dùng không có quyền một chức năng, khi họ truy cập, thì hệ thống ẩn lối vào hoặc chặn thao tác và báo không đủ quyền.
+Cho trước độ chi tiết quyền đã chốt là tới từng thao tác — xem/thêm/sửa/xóa/duyệt/xuất (câu hỏi E2), khi triển khai, thì ma trận phân quyền thể hiện đúng mức chi tiết này và cấu trúc quyền đủ linh hoạt để mở rộng về sau.
+Ghi chú: ma trận quyền chi tiết và nhật ký thao tác do Module 9 sở hữu; Module 1 cung cấp định nghĩa vai trò và phối hợp cấu hình.
+US-M1-019  [Must]
+Là Quản trị viên hệ thống, tôi muốn gán phạm vi dữ liệu (công ty/chi nhánh/kho) cho mỗi lần gán vai trò cho người dùng, để mỗi người chỉ thấy dữ liệu thuộc đơn vị mình phụ trách (vai trò không chứa phạm vi).
+Tiêu chí nghiệm thu:
+Khi tôi gán một vai trò cho người dùng, thì tôi chọn kèm phạm vi dữ liệu cho lần gán đó: toàn hệ thống, theo (các) công ty, theo (các) chi nhánh, hoặc theo (các) kho — phạm vi gắn vào bản ghi gán (user_role_scopes), không gắn vào định nghĩa vai trò; nhờ vậy cùng một vai trò tái dùng được cho nhiều đơn vị qua nhiều lần gán.
+Cho trước người dùng có phạm vi giới hạn ở một chi nhánh, khi họ xem danh sách (nhân sự, phòng ban, và dữ liệu các module khác), thì chỉ dữ liệu thuộc phạm vi đó hiển thị.
+Cho trước người dùng có phạm vi đến từ cả vai trò và gán trực tiếp, khi cả hai cùng tồn tại, thì hệ thống lấy hợp nhất (union) các vùng được phép từ hai nguồn; đơn vị ngoài cả hai vùng mặc định DENY; khi có rule cấm cụ thể thì lệnh cấm luôn ưu tiên kể cả trong vùng đã hợp nhất (đã chốt E12 — tham chiếu cũ ghi nhầm E3; đồng bộ E4/BR-07).
+US-M1-020  [Must]
+Là Quản trị viên hệ thống, tôi muốn gán một hoặc nhiều vai trò cho nhân sự/tài khoản, để người dùng nhận đủ quyền cho công việc kiêm nhiệm.
+Tiêu chí nghiệm thu:
+Khi tôi mở phần phân quyền của một người dùng, thì có thể gán thêm/bỏ bớt nhiều vai trò.
+Khi tôi lưu, thì quyền hợp nhất từ các vai trò có hiệu lực ở phiên đăng nhập kế tiếp.
+Khi tôi thu hồi một vai trò, thì các quyền tương ứng bị gỡ ngay ở lần đăng nhập kế tiếp.
+US-M1-021  [Must]
+Là Quản trị viên hệ thống, tôi muốn hệ thống xử lý nhất quán khi một người có nhiều vai trò cho quyền mâu thuẫn, để tránh rủi ro truy cập ngoài ý muốn.
+Tiêu chí nghiệm thu:
+Cho trước một người có nhiều vai trò mà quyền khác nhau, khi hệ thống tính quyền hiệu lực, thì áp đúng nguyên tắc hợp nhất đã chốt: ưu tiên quyền cấm (deny) khi mâu thuẫn — vd vừa có quyền sửa/xóa vừa bị chặn xóa thì chặn xóa (câu hỏi E4, BR-07, Phụ lục E.3).
+Khi quyền hiệu lực được tính, thì giao diện chỉ hiển thị đúng những gì người dùng thực sự được phép.
+Ghi chú: nguyên tắc này cần ghi rõ trong tài liệu thiết kế để Module 9 hiện thực thống nhất.
+US-M1-036  [Must]
+Là Quản trị viên hệ thống, tôi muốn cấp và thu hồi phạm vi dữ liệu TRỰC TIẾP cho một người dùng (cộng thêm hoặc cấm thêm một vùng, có thời hạn), để xử lý các nhu cầu mở/cấm vùng tạm thời mà không phải gán thêm vai trò mới.
+Tiêu chí nghiệm thu:
+Khi tôi cấp phạm vi trực tiếp cho một user, thì tôi chọn: user, vùng (công ty/chi nhánh/phòng ban/kho), effect = allow hoặc deny, từ ngày – đến ngày, và lý do (lưu ở user_data_scopes).
+Cho trước một dòng direct scope đã quá đến ngày, khi hệ thống tính quyền, thì dòng đó không còn hiệu lực và vùng tương ứng bị loại khỏi phạm vi (tự hết hạn).
+Khi tôi thu hồi một dòng direct scope, thì hệ thống ghi nhận người thu hồi và thời điểm thu hồi (audit), và quyền cập nhật ở phiên đăng nhập kế tiếp.
+Cho trước user có phạm vi từ cả vai trò và direct scope, khi tính quyền hiệu lực, thì lấy hợp nhất (union) các vùng allow rồi trừ các vùng deny — deny luôn thắng (Phụ lục E.6); mở vùng tạm KHÔNG được làm bằng cách gán thêm vai trò.
+Epic F – Sơ đồ tổ chức
+US-M1-022  [Must]
+Là Ban lãnh đạo/Quản trị viên, tôi muốn xem sơ đồ tổ chức dạng cây của toàn doanh nghiệp, để nắm nhanh cơ cấu pháp nhân – chi nhánh – phòng ban – nhân sự.
+Tiêu chí nghiệm thu:
+Khi tôi mở sơ đồ tổ chức, thì hệ thống hiển thị cây từ công ty mẹ xuống công ty con, chi nhánh, phòng ban và (tùy mức) nhân sự chủ chốt.
+Khi cơ cấu thay đổi (thêm/sửa/vô hiệu hóa đơn vị, phòng ban), thì sơ đồ phản ánh đúng dữ liệu hiện tại.
+Khi cây lớn, thì tôi có thể thu gọn/mở rộng từng nhánh để xem.
+US-M1-023  [Should]
+Là người dùng, tôi muốn lọc sơ đồ tổ chức theo công ty/chi nhánh, để chỉ xem cơ cấu của đơn vị mình quan tâm.
+Tiêu chí nghiệm thu:
+Khi tôi chọn một công ty/chi nhánh ở bộ lọc, thì sơ đồ chỉ hiển thị nhánh thuộc đơn vị đó.
+Cho trước người dùng có phạm vi dữ liệu giới hạn, khi họ mở sơ đồ, thì chỉ thấy phần cơ cấu trong phạm vi được phép.
+US-M1-024  [Must]
+Là người dùng, tôi muốn nhấp vào một nút trên sơ đồ để xem chi tiết, để truy cập nhanh thông tin đơn vị/phòng ban/nhân sự.
+Tiêu chí nghiệm thu:
+Khi tôi nhấp vào một nút, thì hệ thống hiển thị bảng thông tin tóm tắt (tên, người phụ trách, số nhân sự, trạng thái).
+Khi tôi chọn xem chi tiết, thì hệ thống điều hướng tới hồ sơ đầy đủ của đối tượng đó.
+US-M1-025  [Should]
+Là Ban lãnh đạo/Quản trị viên, tôi muốn xuất sơ đồ tổ chức ra PDF/ảnh, để in hoặc đưa vào tài liệu trình bày.
+Tiêu chí nghiệm thu:
+Khi tôi chọn xuất, thì hệ thống tạo file PDF/ảnh phản ánh sơ đồ đang hiển thị (kèm bộ lọc đang áp).
+Khi sơ đồ lớn, thì file xuất giữ được bố cục đọc được (phân trang hoặc thu phóng phù hợp).
+Epic G – Nhân bản mô hình tổ chức
+[NGOÀI PHẠM VI M1 — Future] Nhóm chức năng nhân bản dưới đây được giữ làm định hướng tương lai, KHÔNG thuộc cam kết MVP/MVP+; khách hàng đã chốt giữ Non-MVP (12/06/2026 — xem mục 2, câu hỏi Nhóm F).
+US-M1-026  [Should]
+Là Quản trị viên hệ thống, tôi muốn tạo template (khuôn mẫu) cơ cấu gồm phòng ban + chức vụ + vai trò mẫu, để chuẩn hóa mô hình vận hành dùng lại khi mở đơn vị mới.
+Tiêu chí nghiệm thu:
+Khi tôi tạo template, thì có thể định nghĩa danh sách phòng ban mẫu, chức vụ mẫu và vai trò mẫu kèm cấu hình quyền gợi ý.
+Cho trước có thể tạo template từ đầu hoặc từ một đơn vị có sẵn (câu hỏi F2), khi tôi chọn lấy từ đơn vị nguồn, thì hệ thống sao chép cơ cấu của đơn vị đó thành template.
+Khi template được lưu, thì nó xuất hiện trong danh sách template để dùng khi nhân bản.
+US-M1-027  [Should]
+Là Quản trị viên hệ thống, tôi muốn tạo nhanh một chi nhánh/công ty mới từ template rồi tùy chỉnh, để hiện thực hóa định hướng “nhân bản mô hình vận hành” khi mở rộng.
+Tiêu chí nghiệm thu:
+Khi tôi chọn mở đơn vị mới và chọn một template, thì hệ thống tạo đơn vị và sinh sẵn phòng ban + chức vụ + vai trò theo template.
+Cho trước phạm vi nhân bản chỉ gồm cơ cấu theo giả định, khi nhân bản, thì hệ thống KHÔNG sao chép nhân sự và dữ liệu kho (chờ xác nhận câu hỏi F1).
+Khi đơn vị mới đã sinh, thì tôi có thể tùy chỉnh (đổi tên, thêm/bớt phòng ban, điều chỉnh phạm vi quyền) mà không ảnh hưởng template gốc (độc lập sau sao chép – giả định F3).
+Epic H – Tiện ích dùng chung
+US-M1-028  [Must]
+Là người dùng, tôi muốn tìm kiếm, lọc và phân trang trên mọi danh mục của module, để nhanh chóng tìm đúng đơn vị/phòng ban/nhân sự/vai trò cần làm việc.
+Tiêu chí nghiệm thu:
+Khi tôi nhập từ khóa, thì hệ thống lọc theo các trường chính (tên, mã) gần thời gian thực.
+Khi danh sách dài, thì hệ thống phân trang và cho chọn số dòng mỗi trang.
+Cho trước người dùng có phạm vi dữ liệu giới hạn, khi tìm kiếm, thì kết quả chỉ nằm trong phạm vi được phép.
+US-M1-029  [Must]
+Là người dùng, tôi muốn xuất danh sách đơn vị/nhân sự ra Excel/PDF, để phục vụ báo cáo và lưu trữ ngoài hệ thống.
+Tiêu chí nghiệm thu:
+Khi tôi chọn xuất, thì hệ thống xuất đúng tập dữ liệu đang lọc/hiển thị ra Excel hoặc PDF.
+Cho trước có dữ liệu nhạy cảm, khi xuất, thì chỉ các cột người dùng được phép xem mới có trong file.
+Epic I – Giao việc & phê duyệt liên phòng ban
+US-M1-030  [Must]
+Là người giao việc, tôi muốn tạo công việc hoặc yêu cầu phối hợp cho cá nhân/phòng ban, để công việc được ghi nhận rõ người phụ trách, nội dung và hạn hoàn thành.
+Đầu vào tối thiểu: tiêu đề, mô tả, người giao, phòng ban giao, người nhận hoặc phòng ban nhận, hạn hoàn thành, mức ưu tiên, loại công việc (cá nhân/liên phòng ban/cần phê duyệt).
+Tiêu chí nghiệm thu:
+Khi tạo công việc, hệ thống bắt buộc nhập tiêu đề, người/phòng ban nhận và hạn hoàn thành.
+Khi chọn người/phòng ban nhận đang inactive hoặc nhân sự nghỉ việc/tạm ngưng, hệ thống chặn giao việc.
+Khi lưu thành công, công việc có trạng thái Mới tạo/Đã giao và xuất hiện trong danh sách của người/phòng ban nhận.
+US-M1-031  [Must]
+Là người giao việc, tôi muốn giao công việc cho cá nhân hoặc phòng ban, để người nhận biết rõ trách nhiệm xử lý.
+Tiêu chí nghiệm thu:
+Cho trước công việc giao cho cá nhân, khi lưu, thì người đó được ghi là người nhận chính.
+Cho trước công việc giao cho phòng ban nhưng chưa chọn người xử lý, khi lưu, thì trưởng phòng ban nhận việc được ghi là đầu mối xử lý/duyệt mặc định.
+Khi công việc được giao, người nhận/phòng ban nhận có thể xem trong danh sách việc được giao trong phạm vi quyền của mình.
+US-M1-032  [Must]
+Là người giao/người nhận/quản lý, tôi muốn theo dõi trạng thái công việc, để biết công việc đang ở bước nào và có quá hạn hay không.
+Trạng thái MVP: Mới tạo, Đã giao, Đang xử lý, Chờ duyệt, Hoàn thành, Từ chối/Yêu cầu làm lại, Hủy. Quá hạn là trạng thái hiển thị tự động dựa trên hạn hoàn thành.
+Tiêu chí nghiệm thu:
+Khi người nhận bắt đầu xử lý, công việc chuyển sang Đang xử lý.
+Khi người nhận bấm Gửi duyệt, công việc chuyển sang Chờ duyệt.
+Mỗi lần đổi trạng thái phải lưu lịch sử: trạng thái cũ, trạng thái mới, người thực hiện, thời điểm, ghi chú nếu có.
+US-M1-033  [Must]
+Là trưởng phòng hoặc người được chỉ định duyệt, tôi muốn duyệt hoặc từ chối kết quả công việc, để đảm bảo công việc hoàn thành đúng yêu cầu trước khi đóng.
+Rule chính: chỉ công việc Chờ duyệt mới được duyệt/từ chối; người nhận không được tự duyệt; người duyệt mặc định là trưởng phòng của người nhận/phòng ban nhận việc; người giao có thể chỉ định người duyệt khác nếu người đó có quyền; nếu không có trưởng phòng thì fallback về người giao việc hoặc Admin/Quản trị viên.
+Tiêu chí nghiệm thu:
+Cho trước công việc ở trạng thái Chờ duyệt, khi người duyệt bấm Duyệt hoàn thành, thì công việc chuyển sang Hoàn thành.
+Cho trước công việc ở trạng thái Chờ duyệt, khi người duyệt bấm Từ chối và nhập lý do, thì công việc quay về Đang xử lý và lưu lý do từ chối.
+Cho trước người nhận cố tự duyệt công việc của mình, khi bấm duyệt, thì hệ thống chặn thao tác.
+Cho trước công việc bị từ chối nhiều lần, khi người nhận gửi duyệt lại, thì hệ thống tạo thêm lịch sử duyệt mới, không ghi đè lịch sử cũ.
+US-M1-037  [Should]
+Là người phụ trách KPI/Quản trị, tôi muốn dữ liệu công việc trong Module 1 có thể liên thông sang Module 13, để dùng làm đầu vào tính KPI/hiệu suất sau này.
+Tiêu chí nghiệm thu: hệ thống lưu đủ người giao, người nhận, phòng ban, trạng thái, hạn hoàn thành, thời điểm hoàn thành, kết quả duyệt/từ chối để Module 13 có thể đọc/tổng hợp.
+8. Wireframe màn hình chính (bản nháp low-fi)
+Phạm vi: đây là mô tả low-fidelity (bố cục, vùng chức năng, trường dữ liệu, nút thao tác) cho các màn hình chính của Module 1, nhằm thống nhất ý tưởng giao diện với Dev/khách hàng trước khi dựng wireframe hi-fi. Bản hi-fi (Figma) sẽ được bổ sung sau khi nội dung này được duyệt. Mọi màn hình dùng chung khung layout: thanh điều hướng trái (menu module) – thanh tiêu đề trên (breadcrumb, ô tìm kiếm, tài khoản) – vùng nội dung chính.
+WF-01 – Sơ đồ tổ chức (màn hình trang chủ module)
+Mục đích: Cho cái nhìn tổng quan cơ cấu doanh nghiệp và là điểm điều hướng tới các đối tượng.
+Bố cục chính:
+Vùng trên: bộ lọc theo công ty/chi nhánh + nút thu gọn/mở rộng tất cả + nút xuất PDF/ảnh.
+Vùng giữa (chiếm phần lớn): sơ đồ cây dạng node, từ công ty mẹ xuống công ty con → chi nhánh → phòng ban → (tùy chọn) nhân sự chủ chốt.
+Vùng phải (panel trượt): hiện chi tiết khi nhấp một node.
+Trường / thông tin hiển thị:
+Mỗi node: tên đơn vị/phòng ban, người phụ trách, số nhân sự, trạng thái (đang hoạt động/ngừng).
+Panel chi tiết: thông tin tóm tắt + liên kết “Xem hồ sơ đầy đủ”.
+Nút / thao tác chính:
+Lọc theo đơn vị
+Thu gọn/mở rộng nhánh
+Nhấp node → xem chi tiết
+Xuất sơ đồ (PDF/ảnh)
+Ghi chú: Liên quan US-M1-022..025, F6.1–F6.4.
+WF-02 – Danh sách & chi tiết Công ty / Đơn vị
+Mục đích: Quản lý pháp nhân và chi nhánh (CRUD, phân cấp).
+Bố cục chính:
+Bên trái: cây đơn vị (chọn để lọc danh sách bên phải).
+Bên phải trên: thanh công cụ (ô tìm kiếm, lọc theo loại/tỉnh, nút “+ Thêm đơn vị”).
+Bên phải giữa: bảng danh sách đơn vị (phân trang).
+Form thêm/sửa: mở dạng trang hoặc hộp thoại bên phải.
+Trường / thông tin hiển thị:
+Cột bảng: mã, tên, loại (công ty mẹ/con/chi nhánh), đơn vị cha, tỉnh/khu vực, người phụ trách, trạng thái.
+Form: tên, mã, loại, đơn vị cha, mã số thuế, địa chỉ, người đại diện, điện thoại, email, logo.
+Nút / thao tác chính:
+Thêm / Sửa / Vô hiệu hóa (xóa mềm)
+Gán đơn vị cha
+Tìm kiếm & lọc
+Xuất Excel/PDF
+Ghi chú: Liên quan US-M1-001..005, F1.1–F1.4.
+WF-03 – Quản lý Phòng ban
+Mục đích: Tạo và sắp xếp phòng ban/nhóm bên trong từng đơn vị.
+Bố cục chính:
+Bên trái: chọn đơn vị để xem phòng ban thuộc đơn vị đó.
+Bên phải: bảng/cây phòng ban (hỗ trợ nhóm/tổ con) + nút “+ Thêm phòng ban”.
+Form thêm/sửa phòng ban.
+Trường / thông tin hiển thị:
+Cột: mã, tên phòng ban, đơn vị trực thuộc, trưởng phòng, số nhân sự, trạng thái.
+Form: tên, mã, đơn vị trực thuộc, phòng ban cha (nếu là nhóm/tổ), trưởng phòng, mô tả.
+Nút / thao tác chính:
+Thêm / Sửa / Vô hiệu hóa
+Gán trưởng phòng
+Tạo nhóm/tổ con
+Ghi chú: Liên quan US-M1-006..008, F2.1–F2.4.
+WF-04 – Danh sách Nhân sự
+Mục đích: Tra cứu, lọc và thao tác hàng loạt trên nhân sự.
+Bố cục chính:
+Trên: ô tìm kiếm + bộ lọc (đơn vị, phòng ban, chức vụ, trạng thái) + nút “+ Thêm nhân sự” + nút “Import Excel” + nút “Xuất”.
+Giữa: bảng nhân sự, phân trang, cho chọn số dòng/trang.
+Trường / thông tin hiển thị:
+Cột: mã NV, họ tên, đơn vị, phòng ban, chức vụ, trạng thái, có/không tài khoản đăng nhập.
+Nút / thao tác chính:
+Thêm / Sửa
+Đổi trạng thái
+Import từ Excel
+Xuất Excel/PDF
+Mở chi tiết
+Ghi chú: Liên quan US-M1-009, 011, 014, 028, 029.
+WF-05 – Chi tiết / Tạo – Sửa Nhân sự
+Mục đích: Nhập/chỉnh hồ sơ nhân sự và các gán kết liên quan.
+Bố cục chính:
+Bố cục dạng tab: (1) Thông tin cơ bản, (2) Công tác & chức vụ, (3) Vai trò & tài khoản, (4) Lịch sử (nếu bật).
+Trường / thông tin hiển thị:
+Tab 1: họ tên, mã NV, email/điện thoại, ngày vào làm và các trường hồ sơ cơ bản theo Phụ lục C (đã chốt C1); hồ sơ hợp đồng lao động & bảo hiểm (lưu trữ + đính kèm) bổ sung ở MVP+ (F3.8/F3.9).
+Tab 2: đơn vị, phòng ban chính, (tùy chọn) kiêm nhiệm, chức vụ, trạng thái.
+Tab 3: tài khoản đăng nhập liên kết, danh sách vai trò được gán, (tùy chọn) phạm vi dữ liệu riêng.
+Tab 4: dòng thời gian thay đổi vị trí/chức vụ/đơn vị.
+Nút / thao tác chính:
+Lưu
+Gán/bỏ vai trò
+Liên kết tài khoản (điều hướng Module 9)
+Đổi trạng thái
+Ghi chú: Liên quan US-M1-009..013, 020.
+WF-06 – Danh mục Chức vụ
+Mục đích: Quản lý chức danh và cấp bậc/ngạch.
+Bố cục chính:
+Bảng đơn giản + form thêm/sửa bên phải.
+Trường / thông tin hiển thị:
+Cột: mã, tên chức vụ, cấp bậc/ngạch (nếu dùng), số nhân sự đang giữ, trạng thái.
+Form: tên, mã, cấp bậc/ngạch, mô tả.
+Nút / thao tác chính:
+Thêm / Sửa / Vô hiệu hóa
+Ghi chú: Liên quan US-M1-015..016, F4.1–F4.2.
+WF-07 – Vai trò & Ma trận phân quyền
+Mục đích: Định nghĩa vai trò và cấu hình quyền chức năng + phạm vi dữ liệu (phối hợp Module 9).
+Bố cục chính:
+Bên trái: danh sách vai trò + nút “+ Thêm vai trò”.
+Bên phải khi chọn một vai trò: hai tab – (1) Quyền chức năng (ma trận), (2) Phạm vi dữ liệu.
+Tab Quyền chức năng: bảng ma trận – hàng là nhóm chức năng/phân hệ, cột là hành động (Xem, Thêm, Sửa, Xóa, Duyệt, Xuất) với ô tích.
+Tab Phạm vi dữ liệu: chọn mức (toàn hệ thống / theo công ty / chi nhánh / kho) kèm danh sách đơn vị áp dụng.
+Trường / thông tin hiển thị:
+Vai trò: tên, mô tả, số người dùng đang gán.
+Ma trận: trạng thái tích cho từng hành động × phân hệ.
+Nút / thao tác chính:
+Thêm/sửa vai trò
+Bật/tắt quyền theo hành động
+Thiết lập phạm vi dữ liệu
+Lưu
+Ghi chú: Liên quan US-M1-017..021, F5.1–F5.4. Ma trận chi tiết & nhật ký thuộc Module 9.
+WF-08 – Danh sách & chi tiết Công việc / Phối hợp
+Mục đích: Quản lý công việc, yêu cầu phối hợp liên phòng ban và phê duyệt 1 cấp trong Module 1.
+Bố cục chính:
+Bên trái/trên: bộ lọc theo người giao, người nhận, phòng ban, trạng thái, hạn hoàn thành, quá hạn.
+Giữa: bảng danh sách công việc, phân trang; cột chính gồm mã/tên việc, người giao, người nhận/phòng ban nhận, hạn hoàn thành, trạng thái, người duyệt, mức ưu tiên.
+Bên phải hoặc trang chi tiết: thông tin công việc, lịch sử trạng thái, lịch sử duyệt/từ chối, ghi chú.
+Nút / thao tác chính:
+Tạo công việc / Giao việc
+Bắt đầu xử lý / Cập nhật trạng thái
+Gửi duyệt
+Duyệt hoàn thành / Từ chối yêu cầu làm lại
+Hủy công việc (nếu có quyền)
+Ghi chú: Liên quan US-M1-030..033, F9.1–F9.4. Bình luận/đính kèm/thông báo nâng cao có thể đưa vào MVP+ nếu cần.
+WF-09 – Nhân bản mô hình / Trình tạo đơn vị từ template
+Mục đích: Hỗ trợ mở chi nhánh/công ty mới theo khuôn mẫu (wizard nhiều bước).
+Bố cục chính:
+Dạng wizard: Bước 1 – chọn template hoặc đơn vị nguồn; Bước 2 – nhập thông tin đơn vị mới; Bước 3 – xem trước cơ cấu sẽ sinh (phòng ban + chức vụ + vai trò); Bước 4 – xác nhận & tùy chỉnh.
+Trường / thông tin hiển thị:
+Bước 1: danh sách template / chọn đơn vị nguồn.
+Bước 3: cây xem trước phòng ban, chức vụ, vai trò mẫu; cảnh báo rõ “không sao chép nhân sự & dữ liệu kho”.
+Nút / thao tác chính:
+Chọn template
+Nhập thông tin đơn vị
+Xem trước
+Tạo & tùy chỉnh
+Ghi chú: Liên quan US-M1-026..027, F7.1–F7.3.
+9. Backlog (tổng hợp đưa vào sprint)
+
+Mã
+ | Epic
+ | User story (rút gọn)
+ | MoSCoW
+ | Giai đoạn
+ | Phụ thuộc
+ | Ước lượng
+ | Trạng thái
+ | 
+US-001
+ | A
+ | Tạo & quản lý công ty mẹ
+ | Must
+ | GĐ1 (MVP)
+ | –
+ | M
+ | Chờ duyệt
+ | 
+US-002
+ | A
+ | Tạo công ty con
+ | Must
+ | GĐ1 (MVP)
+ | US-001
+ | S
+ | Chờ duyệt
+ | 
+US-003
+ | A
+ | Tạo chi nhánh / đơn vị trực thuộc
+ | Must
+ | GĐ1 (MVP)
+ | US-001, US-002
+ | M
+ | Chờ duyệt
+ | 
+US-004
+ | A
+ | Thiết lập phân cấp cây đơn vị
+ | Must
+ | GĐ1 (MVP)
+ | US-001–003
+ | M
+ | Chờ duyệt
+ | 
+US-005
+ | A
+ | Sửa / vô hiệu hóa đơn vị
+ | Must
+ | GĐ1 (MVP)
+ | US-001–003
+ | S
+ | Chờ duyệt
+ | 
+US-006
+ | B
+ | Tạo phòng ban & gán vào đơn vị
+ | Must
+ | GĐ1 (MVP)
+ | US-003
+ | M
+ | Chờ duyệt
+ | 
+US-007
+ | B
+ | Nhóm/tổ con trong phòng ban
+ | Should
+ | Sau MVP
+ | US-006
+ | S
+ | Chờ duyệt
+ | 
+US-008
+ | B
+ | Gán trưởng phòng ban / người duyệt mặc định
+ | Must
+ | GĐ1 (MVP / Sprint 2)
+ | US-006, US-009
+ | S
+ | Chờ duyệt
+ | 
+US-009
+ | C
+ | Tạo / sửa hồ sơ nhân sự
+ | Must
+ | GĐ1 (MVP)
+ | US-006
+ | M
+ | Chờ duyệt
+ | 
+US-010
+ | C
+ | Gán nhân sự vào phòng ban + chức vụ
+ | Must
+ | GĐ1 (MVP)
+ | US-009, US-015
+ | S
+ | Chờ duyệt
+ | 
+US-011
+ | C
+ | Quản lý trạng thái nhân sự
+ | Must
+ | GĐ1 (MVP)
+ | US-009
+ | S
+ | Chờ duyệt
+ | 
+US-012
+ | C
+ | Liên kết nhân sự – tài khoản
+ | Must
+ | GĐ1 (MVP)
+ | US-009, Module 9
+ | M
+ | Chờ duyệt
+ | 
+US-013
+ | C
+ | Lịch sử công tác / điều chuyển
+ | Could
+ | Tương lai
+ | US-009
+ | M
+ | Chờ duyệt
+ | 
+US-014
+ | C/H
+ | Import nhân sự từ Excel
+ | Should
+ | Sau MVP
+ | US-009
+ | M
+ | Chờ duyệt
+ | 
+US-015
+ | D
+ | Danh mục chức vụ
+ | Must
+ | GĐ1 (MVP)
+ | –
+ | S
+ | Chờ duyệt
+ | 
+US-016
+ | D
+ | Cấp bậc / ngạch chức vụ
+ | Should
+ | Sau MVP
+ | US-015
+ | S
+ | Chờ duyệt
+ | 
+US-017
+ | E
+ | Tạo & quản lý vai trò
+ | Must
+ | GĐ1 (MVP)
+ | –
+ | M
+ | Chờ duyệt
+ | 
+US-018
+ | E
+ | Cấu hình quyền chức năng
+ | Must
+ | GĐ1 (MVP)
+ | US-017, Module 9
+ | L
+ | Chờ duyệt
+ | 
+US-019
+ | E
+ | Cấu hình phạm vi dữ liệu
+ | Must
+ | GĐ1 (MVP)
+ | US-017, US-001–003, M9
+ | L
+ | Chờ duyệt
+ | 
+US-020
+ | E
+ | Gán nhiều vai trò cho người dùng
+ | Must
+ | GĐ1 (MVP)
+ | US-017, US-009
+ | M
+ | Chờ duyệt
+ | 
+US-021
+ | E
+ | Xử lý xung đột quyền đa vai trò
+ | Must
+ | GĐ1 (MVP)
+ | US-018–020, M9
+ | M
+ | Chờ duyệt
+ | 
+US-036
+ | E
+ | Phạm vi dữ liệu trực tiếp cho user (allow/deny có thời hạn)
+ | Must
+ | GĐ1 (MVP)
+ | US-019, Module 9
+ | M
+ | Chờ duyệt
+ | 
+US-022
+ | F
+ | Xem sơ đồ tổ chức
+ | Must
+ | GĐ1 (MVP)
+ | US-001–006
+ | M
+ | Chờ duyệt
+ | 
+US-023
+ | F
+ | Lọc sơ đồ theo đơn vị
+ | Should
+ | Sau MVP
+ | US-022
+ | S
+ | Chờ duyệt
+ | 
+US-024
+ | F
+ | Xem chi tiết từ node sơ đồ
+ | Must
+ | GĐ1 (MVP)
+ | US-022
+ | S
+ | Chờ duyệt
+ | 
+US-025
+ | F
+ | Xuất sơ đồ (PDF/ảnh)
+ | Should
+ | Sau MVP
+ | US-022
+ | M
+ | Chờ duyệt
+ | 
+US-026
+ | G
+ | Tạo template cơ cấu
+ | Should
+ | Future (parked)
+ | US-006, US-015, US-017
+ | L
+ | Chờ duyệt
+ | 
+US-027
+ | G
+ | Tạo đơn vị từ template & tùy chỉnh
+ | Should
+ | Future (parked)
+ | US-026
+ | L
+ | Chờ duyệt
+ | 
+US-028
+ | H
+ | Tìm kiếm / lọc / phân trang
+ | Must
+ | GĐ1 (MVP)
+ | –
+ | M
+ | Chờ duyệt
+ | 
+US-029
+ | H
+ | Xuất danh sách (Excel/PDF)
+ | Must
+ | GĐ1 (MVP)
+ | US-002–009
+ | S
+ | Chờ duyệt
+ | 
+US-030
+ | I
+ | Tạo công việc / yêu cầu phối hợp
+ | Must
+ | GĐ1 (MVP)
+ | US-006, US-008, US-009
+ | M
+ | Chờ duyệt
+ | 
+US-031
+ | I
+ | Giao việc cho cá nhân/phòng ban
+ | Must
+ | GĐ1 (MVP)
+ | US-030, US-009
+ | M
+ | Chờ duyệt
+ | 
+US-032
+ | I
+ | Theo dõi trạng thái công việc
+ | Must
+ | GĐ1 (MVP)
+ | US-030, US-031
+ | M
+ | Chờ duyệt
+ | 
+US-033
+ | I
+ | Phê duyệt công việc 1 cấp (trưởng phòng người nhận mặc định)
+ | Must
+ | GĐ1 (MVP)
+ | US-030–032, US-008
+ | M
+ | Chờ duyệt
+ | 
+US-034
+ | C
+ | Hồ sơ hợp đồng lao động (lưu + đính kèm)
+ | Should
+ | Sau MVP (MVP+)
+ | US-009
+ | M
+ | Chờ duyệt
+ | 
+US-035
+ | C
+ | Hồ sơ bảo hiểm (lưu + đính kèm)
+ | Should
+ | Sau MVP (MVP+)
+ | US-009
+ | M
+ | Chờ duyệt
+ | 
+US-037
+ | I
+ | Liên thông dữ liệu công việc sang KPI
+ | Should
+ | Sau MVP (MVP+)
+ | US-030–033, Module 13
+ | S
+ | Chờ duyệt
+ | 
+9.1. Đề xuất Backlog MVP Sprint 2 – Nhân sự nền tảng + Giao việc/phê duyệt 1 cấp
+Sprint Goal: hoàn thiện nền nhân sự/phòng ban để giao việc được trong Module 1, đồng thời demo được luồng tạo công việc → giao cho cá nhân/phòng ban → xử lý → gửi duyệt → trưởng phòng người nhận duyệt hoặc từ chối.
+Điều kiện vào Sprint 2: US-001–US-006 đã hoàn thành hoặc tối thiểu US-006 (phòng ban gắn đơn vị) phải được kéo vào đầu Sprint 2 nếu Sprint 1 chưa xong. Phê duyệt MVP chỉ làm 1 cấp; workflow nhiều cấp để sau.
+Ưu tiên
+ | Mã
+ | Hạng mục Sprint 2
+ | Kết quả cần đạt
+ | Phụ thuộc
+ | Ghi chú
+ | 
+P0
+ | US-015
+ | Danh mục chức vụ
+ | Tạo/sửa/vô hiệu hóa chức vụ; dùng để gán cho nhân sự.
+ | –
+ | Nền để US-010 chạy đúng.
+ | 
+P0
+ | US-009
+ | Tạo / sửa hồ sơ nhân sự
+ | Có hồ sơ nhân sự đầy đủ trường bắt buộc, validate trùng email/SĐT/CCCD/mã NV.
+ | US-006
+ | Core của Sprint 2.
+ | 
+P0
+ | US-010
+ | Gán nhân sự vào phòng ban, chi nhánh, chức vụ
+ | Nhân sự có phòng ban chính, chi nhánh/đơn vị công tác và chức vụ chính.
+ | US-009, US-015
+ | Làm nền cho giao việc.
+ | 
+P0
+ | US-011
+ | Quản lý trạng thái nhân sự
+ | Không cho giao việc mới cho nhân sự nghỉ việc/tạm ngưng; giữ lịch sử trạng thái.
+ | US-009
+ | Liên quan disable account qua M9.
+ | 
+P0
+ | US-008
+ | Gán trưởng phòng ban / người duyệt mặc định
+ | Mỗi phòng ban có thể chỉ định trưởng phòng; trưởng phòng là người duyệt mặc định khi phòng/cá nhân thuộc phòng nhận việc.
+ | US-006, US-009
+ | Đưa lên MVP/Sprint 2 vì phê duyệt 1 cấp cần người duyệt.
+ | 
+P0
+ | US-030
+ | Tạo công việc / yêu cầu phối hợp
+ | Tạo công việc với tiêu đề, mô tả, người giao, phòng ban giao, hạn hoàn thành, ưu tiên, loại việc.
+ | US-006, US-008, US-009
+ | Mở Epic I trong Module 1.
+ | 
+P0
+ | US-031
+ | Giao việc cho cá nhân/phòng ban
+ | Giao cho nhân sự active hoặc phòng ban active; nếu giao phòng ban thì trưởng phòng nhận để phân công/xử lý.
+ | US-030, US-009
+ | Không giao cho người nghỉ/tạm ngưng.
+ | 
+P0
+ | US-032
+ | Theo dõi trạng thái công việc
+ | Trạng thái MVP: Mới tạo, Đã giao, Đang xử lý, Chờ duyệt, Hoàn thành, Từ chối/Yêu cầu làm lại, Hủy; quá hạn hiển thị theo deadline.
+ | US-030, US-031
+ | Lưu lịch sử đổi trạng thái.
+ | 
+P0
+ | US-033
+ | Phê duyệt công việc 1 cấp
+ | Người nhận gửi duyệt; trưởng phòng người nhận/phòng ban nhận duyệt mặc định; có thể chỉ định người duyệt khác nếu có quyền; người nhận không tự duyệt.
+ | US-030–032, US-008
+ | Duyệt → Hoàn thành; Từ chối → quay về Đang xử lý và bắt buộc nhập lý do.
+ | 
+P1
+ | US-028
+ | Tìm kiếm / lọc / phân trang
+ | Áp dụng tối thiểu cho danh sách nhân sự, chức vụ và công việc.
+ | Các màn hình liên quan
+ | Nên có để demo và test dữ liệu nhiều.
+ | 
+P1
+ | US-012
+ | Liên kết nhân sự – tài khoản
+ | Liên kết/điều hướng sang Module 9; không xử lý mật khẩu/xác thực trong M1.
+ | US-009, Module 9
+ | Làm nếu M9 sẵn sàng API/luồng.
+ | 
+P2
+ | US-029
+ | Xuất danh sách
+ | Xuất danh sách nhân sự/công việc cơ bản.
+ | US-009, US-030
+ | Đẩy Sprint 3 nếu thiếu capacity.
+ | 
+Không đưa vào Sprint 2: full RBAC/ma trận quyền chi tiết, kế thừa scope đa cấp/theo kho, import Excel, hợp đồng/bảo hiểm, workflow nhiều cấp, tự động tính KPI và báo cáo hiệu suất chi tiết.
+Demo cuối Sprint 2: tạo chức vụ → tạo nhân sự → gán phòng ban/chức vụ → gán trưởng phòng → tạo công việc → giao cho cá nhân/phòng ban → người nhận chuyển trạng thái và gửi duyệt → trưởng phòng người nhận duyệt/từ chối.
+Định nghĩa Sẵn sàng (Definition of Ready) cho Module 1: một user story chỉ đưa vào Sprint khi đạt đủ các điều kiện sau.
+Nhóm điều kiện
+ | Tiêu chí
+ | 
+Nghiệp vụ
+ | Có actor, mục tiêu, input, output, rule xử lý, trạng thái, edge case
+ | 
+Phân quyền
+ | Có role được phép thao tác, role không được phép, data scope áp dụng
+ | 
+Dữ liệu
+ | Có field chính, unique key nếu cần, status, effective date/history nếu cần
+ | 
+Kiểm thử
+ | Có AC rõ pass/fail, có test data, có negative case
+ | 
+Kỹ thuật
+ | DEV estimate được, biết dependency, biết API/DB cần xử lý
+ | 
+Rủi ro
+ | Có ghi nhận rủi ro hoặc câu hỏi còn cần confirm nếu chưa chắc chắn
+ | 
+Story mapping (theo luồng nghiệp vụ):
+Bước trong luồng
+ | User story
+ | Giai đoạn
+ | 
+1. Thiết lập cơ cấu tổ chức
+ | US-001, US-002, US-003, US-004, US-005
+ | GĐ1 (MVP)
+ | 
+2. Phòng ban & nhóm/tổ
+ | US-006, US-007, US-008
+ | US-006/008 MVP; US-007 sau MVP
+ | 
+3. Hồ sơ & vòng đời nhân sự
+ | US-009, US-010, US-011, US-012, US-013, US-014
+ | Must ở GĐ1; 013/014 sau
+ | 
+4. Chức vụ
+ | US-015, US-016
+ | US-015 MVP; 016 sau
+ | 
+5. Vai trò & phân quyền
+ | US-017, US-018, US-019, US-020, US-021, US-036
+ | GĐ1 (MVP); US-036 có thể làm cùng nhóm RBAC sau Sprint 2
+ | 
+6. Giao việc & phê duyệt 1 cấp
+ | US-030, US-031, US-032, US-033
+ | GĐ1 (MVP)
+ | 
+7. Liên thông KPI từ công việc
+ | US-037
+ | Sau MVP / MVP+
+ | 
+Ghi chú ước lượng: cột Ước lượng (S/M/L) ở backlog là cỡ sơ bộ do BA đề xuất để xếp ưu tiên; điểm/giờ chính thức do DEV xác nhận khi vào Sprint.
+Tổng quan (theo 3 bậc): nhóm MVP (Must) là xương sống GĐ1, gồm cơ cấu tổ chức, phòng ban, nhân sự, chức vụ, vai trò/phân quyền (bao gồm direct scope US-036), sơ đồ cơ bản, tiện ích và giao việc/phê duyệt 1 cấp (US-008, US-030..033). Nhóm MVP+ (Should – làm ngay sau MVP) gồm US-007, US-014, US-016, US-023, US-025, US-034, US-035 và US-037 (liên thông KPI từ dữ liệu công việc). Nhóm Non-MVP/Future gồm US-013 và workflow nhiều cấp/rule động phức tạp; nhóm parked gồm US-026/US-027 (nhân bản mô hình).
+Phụ lục A – Mô hình dữ liệu sơ bộ (thực thể & quan hệ)
+Thực thể
+ | Mô tả
+ | Trường tiêu biểu
+ | Quan hệ chính
+ | 
+Đơn vị (Org Unit)
+ | Pháp nhân/đơn vị: công ty mẹ, công ty con, chi nhánh
+ | mã, tên, loại, đơn_vị_cha, MST, tỉnh/khu vực, trạng thái
+ | Tự tham chiếu cha–con; 1–n với Phòng ban
+ | 
+Phòng ban
+ | Phòng/ban/nhóm/tổ trong một đơn vị
+ | mã, tên, đơn_vị_id, phòng_ban_cha, trưởng_phòng_id, trạng thái
+ | n–1 với Đơn vị; tự tham chiếu cha–con; 1–n với Nhân sự
+ | 
+Chức vụ
+ | Chức danh công việc (kèm cấp bậc/ngạch)
+ | mã, tên, cấp_bậc, mô tả, trạng thái
+ | 1–n với Nhân sự (qua phân công)
+ | 
+Vai trò (Role)
+ | Tập hợp quyền tái sử dụng
+ | mã, tên, mô tả, trạng thái
+ | n–n với Quyền (qua Vai trò–Quyền); n–n với Nhân sự
+ | 
+Quyền (Permission)
+ | Quyền trên một chức năng/hành động
+ | mã, phân_hệ, hành_động (xem/thêm/sửa/xóa/duyệt/xuất)
+ | n–n với Vai trò. Sở hữu chi tiết: Module 9
+ | 
+Vai trò – Quyền
+ | Bảng nối gán quyền cho vai trò
+ | vai_trò_id, quyền_id
+ | Nối Vai trò ↔ Quyền
+ | 
+Phạm vi dữ liệu
+ | Giới hạn dữ liệu theo đơn vị cho vai trò/người dùng
+ | đối_tượng_id, loại (hệ thống/công ty/chi nhánh/kho), đơn_vị_id
+ | Gắn với Vai trò và/hoặc Nhân sự
+ | 
+Nhân sự
+ | Hồ sơ người lao động
+ | mã NV, họ tên, liên hệ, ngày vào làm, đơn_vị_id, phòng_ban_id, chức_vụ_id, trạng thái
+ | n–1 với Phòng ban/Đơn vị/Chức vụ; n–n với Vai trò; 1–1 với Tài khoản
+ | 
+Nhân sự – Vai trò
+ | Bảng nối gán vai trò cho nhân sự
+ | nhân_sự_id, vai_trò_id
+ | Nối Nhân sự ↔ Vai trò
+ | 
+Tài khoản (User)
+ | Tài khoản đăng nhập (sở hữu bởi Module 9)
+ | username, trạng thái, nhân_sự_id
+ | 1–1 (tùy chọn) với Nhân sự. Mật khẩu/đăng nhập: Module 9
+ | 
+Template cơ cấu (Future)
+ | Khuôn mẫu phòng ban + chức vụ + vai trò để nhân bản
+ | mã, tên, cấu_trúc_mẫu (phòng ban/chức vụ/vai trò)
+ | Dùng để sinh Đơn vị + Phòng ban mới
+ | 
+Lịch sử công tác
+ | Lưu vết thay đổi vị trí của nhân sự (Could)
+ | nhân_sự_id, mốc thời gian, nội dung thay đổi
+ | n–1 với Nhân sự
+ | 
+Công việc (Work Item)
+ | Công việc/yêu cầu phối hợp cá nhân hoặc liên phòng ban
+ | mã, tiêu đề, mô tả, người_giao_id, phòng_ban_giao_id, hạn_hoàn_thành, mức_ưu_tiên, trạng_thái
+ | n–1 với Nhân sự/Phòng ban; 1–n với người nhận, lịch sử trạng thái, phê duyệt
+ | 
+Người nhận công việc
+ | Bảng nối công việc với cá nhân hoặc phòng ban nhận việc
+ | work_item_id, assignee_employee_id, assignee_department_id, vai_trò_nhận, trạng_thái
+ | n–1 với Công việc; n–1 với Nhân sự hoặc Phòng ban
+ | 
+Lịch sử trạng thái công việc
+ | Lưu vết mọi lần đổi trạng thái công việc
+ | work_item_id, trạng_thái_cũ, trạng_thái_mới, người_thực_hiện_id, thời_điểm, ghi_chú
+ | n–1 với Công việc
+ | 
+Phê duyệt công việc
+ | Lưu kết quả duyệt/từ chối 1 cấp
+ | work_item_id, approval_level=1, approver_employee_id, approval_status, approved_at/rejected_at, comment
+ | n–1 với Công việc; n–1 với Nhân sự duyệt
+ | 
+Phụ lục B – Thuật ngữ (Glossary)
+Thuật ngữ
+ | Giải thích ngắn gọn
+ | 
+BRD
+ | Business Requirements Document – tài liệu mô tả yêu cầu nghiệp vụ làm cơ sở thiết kế và phát triển.
+ | 
+MVP
+ | Minimum Viable Product – tập chức năng tối thiểu đủ để hệ thống vận hành và mang lại giá trị ở giai đoạn đầu.
+ | 
+MoSCoW
+ | Phương pháp phân loại ưu tiên: Must (bắt buộc), Should (nên có), Could (có thì tốt), Won’t/Future (chưa làm).
+ | 
+Epic
+ | Nhóm lớn các chức năng/user story cùng một chủ đề nghiệp vụ.
+ | 
+User Story
+ | Mô tả nhu cầu theo góc nhìn người dùng: “Là <vai trò>, tôi muốn <mục tiêu>, để <giá trị>”.
+ | 
+Acceptance Criteria
+ | Tiêu chí nghiệm thu – điều kiện để xác nhận một story đã hoàn thành đúng yêu cầu (thường viết Given–When–Then).
+ | 
+Business Flow
+ | Luồng nghiệp vụ – trình tự các bước thực hiện một nghiệp vụ từ đầu đến cuối.
+ | 
+Wireframe
+ | Bản phác bố cục màn hình ở mức thấp (low-fi) hoặc chi tiết (hi-fi), chưa phải giao diện hoàn thiện.
+ | 
+Backlog
+ | Danh sách hạng mục công việc/yêu cầu chờ triển khai, có ưu tiên, để đưa vào các sprint.
+ | 
+Master data
+ | Dữ liệu gốc/danh mục nền tảng (đơn vị, phòng ban, chức vụ, vai trò...) được nhiều module dùng chung.
+ | 
+Pháp nhân
+ | Thực thể doanh nghiệp có tư cách pháp lý (công ty mẹ, công ty con).
+ | 
+Đơn vị (Org Unit)
+ | Khái niệm chung cho công ty mẹ/công ty con/chi nhánh trong cây cơ cấu.
+ | 
+Chức vụ
+ | Chức danh công việc của nhân sự (ví dụ Trưởng phòng, Nhân viên kinh doanh).
+ | 
+Vai trò (Role)
+ | Tập hợp quyền được đặt tên, gán cho người dùng để cấp quyền theo nhóm.
+ | 
+Phân quyền chức năng
+ | Kiểm soát người dùng được thực hiện hành động gì (xem/thêm/sửa/xóa/duyệt/xuất) trên từng chức năng.
+ | 
+Phân quyền dữ liệu
+ | Giới hạn người dùng chỉ thấy/thao tác dữ liệu thuộc phạm vi (công ty/chi nhánh/kho) được phép.
+ | 
+RBAC
+ | Role-Based Access Control – mô hình phân quyền dựa trên vai trò.
+ | 
+Multi-company / Multi-tenant
+ | Khả năng quản lý nhiều pháp nhân/đơn vị trên cùng một hệ thống, có cô lập dữ liệu theo đơn vị.
+ | 
+Soft delete (xóa mềm)
+ | Đánh dấu ngừng hoạt động thay vì xóa vĩnh viễn, để giữ dữ liệu lịch sử.
+ | 
+Audit log (nhật ký thao tác)
+ | Bản ghi các thao tác của người dùng phục vụ kiểm soát minh bạch (thuộc Module 9).
+ | 
+Nhân bản mô hình
+ | Sao chép khuôn mẫu cơ cấu (phòng ban + chức vụ + vai trò) để mở đơn vị mới nhanh theo mô hình chuẩn.
+ | 
+Công việc / Work Item
+ | Đầu việc hoặc yêu cầu phối hợp được tạo trong Module 1, có người giao, người/phòng ban nhận, hạn hoàn thành, trạng thái và lịch sử xử lý.
+ | 
+Người duyệt cấp 1
+ | Người kiểm tra kết quả công việc ở MVP. Mặc định là trưởng phòng của người nhận/phòng ban nhận việc; có thể được chỉ định khác nếu có quyền.
+ | 
+Chờ duyệt
+ | Trạng thái công việc sau khi người nhận xử lý xong và gửi kết quả để người duyệt cấp 1 xác nhận hoặc từ chối.
+ | 
+
+Phụ lục C – Đặc tả trường dữ liệu & quy tắc validate (6 đối tượng chính + hồ sơ hợp đồng/bảo hiểm)
+Các trường bắt buộc không được để trống; các mã định danh phải duy nhất; email/điện thoại đúng định dạng. Trạng thái ’Bắt buộc (tạm thời)’ của MST: hiện chốt là ’có’ — MST duy nhất toàn hệ thống, không cho phép trùng (đã chốt câu A6); trường hợp chưa có MST dùng mã quy ước tạm TMP (quy tắc chi tiết ngay sau bảng 1; xem thêm Phụ lục D, BR-10).
+1. Công ty / Pháp nhân (công ty mẹ & công ty con)
+Trường
+ | Bắt buộc?
+ | Kiểu / định dạng
+ | Quy tắc validate
+ | 
+Tên công ty
+ | Bắt buộc
+ | Text, ≤ 200 ký tự
+ | Không để trống
+ | 
+Mã công ty
+ | Bắt buộc
+ | Text
+ | Nhập tay; 2–20 ký tự; chỉ A–Z in hoa, 0–9, dấu - và _; tự chuyển in hoa khi lưu; duy nhất toàn hệ thống kể cả bản ghi inactive/soft-delete; trùng → ’Mã công ty đã tồn tại’, sai định dạng → ’Mã chỉ gồm chữ in hoa, số, dấu - hoặc _, dài 2–20 ký tự’ (đã chốt B5)
+ | 
+Mã số thuế (MST)
+ | Bắt buộc (tạm thời)
+ | Số, 10–13 chữ số
+ | Duy nhất toàn hệ thống — không cho phép trùng, kể cả bản ghi inactive/soft-delete (không tái sử dụng MST của bản ghi đã xóa mềm); trùng → báo ’Mã số thuế đã tồn tại trong hệ thống’, không lưu; nếu chưa có → mã quy ước tạm TMP + cảnh báo (BR-10, quy tắc mã tạm ngay dưới bảng này)
+ | 
+Đơn vị cha
+ | Bắt buộc (với công ty con)
+ | Tham chiếu đơn vị
+ | Không tạo quan hệ vòng; thuộc 3 cấp (A2)
+ | 
+Địa chỉ
+ | Bắt buộc
+ | Text
+ | Không để trống
+ | 
+Người đại diện
+ | Không
+ | Text
+ | —
+ | 
+Điện thoại
+ | Không
+ | Text
+ | Đúng định dạng nếu nhập
+ | 
+Email
+ | Không
+ | Text
+ | Đúng định dạng email nếu nhập
+ | 
+Logo
+ | Không
+ | Ảnh
+ | —
+ | 
+Trạng thái
+ | Bắt buộc (hệ thống)
+ | Enum
+ | Hoạt động / Ngừng hoạt động
+ | 
+Quy tắc mã quy ước tạm (TMP) thay MST — áp dụng khi công ty/đơn vị chưa có MST (đã chốt; BR-10, câu B13/A6)
+Phân biệt được ngay với MST thật: MST thật là 10–13 chữ số thuần. Mã tạm bắt buộc có tiền tố chữ (chuẩn: ’TMP-’) để người dùng, báo cáo và rule validate không bao giờ nhầm nó là MST hợp lệ. Tuyệt đối KHÔNG sinh một chuỗi 10 số giả vì nó sẽ ’trông như’ MST thật và gây sai ở khâu hóa đơn/đối soát.
+Duy nhất toàn hệ thống: hai công ty cùng chưa có MST KHÔNG được trùng mã tạm với nhau (kiểm tra trùng như với MST, bao gồm cả bản ghi inactive/soft-delete). Mã tạm tạm thời đóng vai trò khóa nghiệp vụ thay MST cho đến khi có MST thật.
+Tự sinh, tăng dần: định dạng TMP-000123 hoặc TMP-<mã đơn vị> — ngắn, đọc được, in được trên danh sách kèm nhãn ’(chưa có MST)’.
+Trạng thái rõ ràng: đơn vị dùng mã tạm mang trạng thái ’Chờ cấp MST’, kèm hạn cập nhật (mốc 7–14 ngày) để hệ thống nhắc/đếm ngược.
+Thay thế được & giữ lịch sử: khi MST thật về, cập nhật trường MST (validate 10–13 số, duy nhất toàn hệ thống) → trạng thái chuyển ’Đã có MST’; mã tạm bị khóa (không tái sử dụng) nhưng được lưu lại kèm ánh xạ sang các chứng từ/đơn hàng cũ đã phát sinh trong giai đoạn dùng mã tạm, để không mất truy vết.
+Vòng đời: Tạo đơn vị chưa có MST → hệ thống sinh mã tạm + đặt trạng thái ’Chờ cấp MST’ + hạn 7–14 ngày → cho vận hành hạn chế (tạo hồ sơ, đặt hàng nội bộ) kèm cảnh báo → khi có MST thật thì nhập, validate (10–13 số, duy nhất), khóa mã tạm và lưu lịch sử → nếu quá hạn chưa cập nhật thì leo thang cảnh báo và cân nhắc chặn tạo đơn mới cho đơn vị đó.
+2. Chi nhánh
+Trường
+ | Bắt buộc?
+ | Kiểu / định dạng
+ | Quy tắc validate
+ | 
+Tên chi nhánh
+ | Bắt buộc
+ | Text, ≤ 200
+ | Không để trống
+ | 
+Mã chi nhánh
+ | Bắt buộc
+ | Text
+ | Duy nhất
+ | 
+Công ty/đơn vị cha
+ | Bắt buộc
+ | Tham chiếu
+ | Thuộc 3 cấp pháp nhân (A2)
+ | 
+Tỉnh/khu vực
+ | Bắt buộc
+ | Enum/Text
+ | Không để trống
+ | 
+Địa chỉ
+ | Bắt buộc
+ | Text
+ | Không để trống
+ | 
+Người phụ trách
+ | Không
+ | Tham chiếu nhân sự
+ | —
+ | 
+Điện thoại / Email
+ | Không
+ | Text
+ | Đúng định dạng nếu nhập
+ | 
+Trạng thái
+ | Bắt buộc
+ | Enum
+ | Hoạt động / Ngừng hoạt động
+ | 
+3. Phòng ban
+Trường
+ | Bắt buộc?
+ | Kiểu / định dạng
+ | Quy tắc validate
+ | 
+Tên phòng ban
+ | Bắt buộc
+ | Text, ≤ 200
+ | Không để trống
+ | 
+Mã phòng ban
+ | Bắt buộc
+ | Text
+ | Tự sinh theo tiền tố cấu hình, cho phép sửa; 2–20 ký tự; chỉ A–Z in hoa, 0–9, dấu - và _; tự chuyển in hoa khi lưu; duy nhất toàn hệ thống kể cả bản ghi inactive/soft-delete; trùng → ’Mã phòng ban đã tồn tại’, sai định dạng → ’Mã chỉ gồm chữ in hoa, số, dấu - hoặc _, dài 2–20 ký tự’ (đã chốt B5)
+ | 
+Đơn vị trực thuộc
+ | Bắt buộc
+ | Tham chiếu
+ | —
+ | 
+Trưởng phòng
+ | Không
+ | Tham chiếu nhân sự
+ | Nếu chưa có → cấp quyền tạm thời ngắn hạn (B7)
+ | 
+Mô tả
+ | Không
+ | Text
+ | —
+ | 
+Trạng thái
+ | Bắt buộc
+ | Enum
+ | Hoạt động / Inactive; inactive ẩn khỏi dropdown mặc định (B10); báo cáo cũ vẫn hiển thị (B11)
+ | 
+4. Nhân sự
+Trường
+ | Bắt buộc?
+ | Kiểu / định dạng
+ | Quy tắc validate
+ | 
+Họ và tên
+ | Bắt buộc
+ | Text
+ | Không để trống
+ | 
+Mã nhân viên (ID)
+ | Bắt buộc
+ | Text
+ | Duy nhất toàn hệ thống
+ | 
+Số điện thoại
+ | Bắt buộc
+ | Text
+ | Đúng định dạng; duy nhất trong cùng tenant/công ty — UNIQUE(tenant_id, phone) (đã chốt C12)
+ | 
+Email
+ | Bắt buộc
+ | Text
+ | Đúng định dạng email; duy nhất trong cùng tenant/công ty — UNIQUE(tenant_id, email) (đã chốt C12)
+ | 
+Địa chỉ
+ | Bắt buộc
+ | Text
+ | Không để trống
+ | 
+Giới tính
+ | Bắt buộc
+ | Enum
+ | Nam / Nữ / Khác
+ | 
+Ngày sinh
+ | Bắt buộc
+ | Date
+ | Ngày trong quá khứ; tuổi ≥ tuổi lao động tối thiểu
+ | 
+Số CCCD/CMND
+ | Bắt buộc
+ | Text
+ | 12 chữ số (CCCD) hoặc 9 chữ số (CMND cũ); duy nhất toàn hệ thống
+ | 
+Mã số thuế cá nhân
+ | Không (cho phép bổ sung sau)
+ | Text
+ | 10 chữ số nếu có nhập; duy nhất; cho phép chờ cấp
+ | 
+Phòng ban
+ | Bắt buộc
+ | Tham chiếu
+ | Đúng MỘT phòng ban chính đang hiệu lực = phòng ban tại chi nhánh chính (BR-20, A3). Làm đa chi nhánh: thuộc thêm phòng ban ở chi nhánh khác qua Assignment (QA-8) — không tính là phòng ban chính thứ hai. Điều chuyển tạo bản ghi mới theo effective date, không ghi đè; không tồn tại hai phòng ban chính active cùng lúc.
+ | 
+Chi nhánh/đơn vị công tác
+ | Bắt buộc
+ | Tham chiếu
+ | —
+ | 
+Người quản lý
+ | Bắt buộc
+ | Tham chiếu nhân sự
+ | —
+ | 
+Ngày vào làm
+ | Không
+ | Date
+ | —
+ | 
+Trạng thái
+ | Bắt buộc
+ | Enum
+ | Thử việc / TTS / Chính thức / Tạm ngưng / Nghỉ việc (C9)
+ | 
+Tài khoản đăng nhập (liên kết Module 9)
+ | Bắt buộc (A6)
+ | Tham chiếu tài khoản
+ | Mọi nhân sự đều có tài khoản; tạo qua Module 9
+ | 
+5. Chức vụ
+Trường
+ | Bắt buộc?
+ | Kiểu / định dạng
+ | Quy tắc validate
+ | 
+Tên chức vụ
+ | Bắt buộc
+ | Text, ≤ 200
+ | Không để trống
+ | 
+Mã chức vụ
+ | Bắt buộc
+ | Text
+ | Duy nhất
+ | 
+Mô tả
+ | Không
+ | Text
+ | —
+ | 
+Cấp bậc/ngạch
+ | Không
+ | Enum
+ | Chi tiết để Module 14
+ | 
+Trạng thái
+ | Bắt buộc
+ | Enum
+ | Hoạt động / Ngừng hoạt động
+ | 
+6. Vai trò (system role)
+Trường
+ | Bắt buộc?
+ | Kiểu / định dạng
+ | Quy tắc validate
+ | 
+Mã vai trò (role code)
+ | Bắt buộc
+ | Text
+ | Duy nhất toàn hệ thống
+ | 
+Tên vai trò (role name)
+ | Bắt buộc
+ | Text, ≤ 150
+ | Không để trống
+ | 
+Mô tả
+ | Không
+ | Text
+ | —
+ | 
+Loại vai trò
+ | Bắt buộc
+ | Enum
+ | Cố định (cấp 3,4) / Linh hoạt
+ | 
+Bộ quyền (permissions)
+ | Bắt buộc
+ | Danh sách quyền
+ | Theo danh mục quyền (Phụ lục E); mặc định deny
+ | 
+Trạng thái
+ | Bắt buộc
+ | Enum
+ | Hoạt động / Ngừng hoạt động
+ | 
+Ghi chú (bổ sung 15/06/2026): Vai trò KHÔNG chứa Phạm vi (scope) và KHÔNG chứa Hiệu lực — hai trường này đã bỏ khỏi entity Vai trò. Phạm vi (và thời hạn nếu là vai trò tạm/ủy quyền) được gán khi gán vai trò cho người dùng: mỗi bản ghi gán = vai trò + phạm vi + effective date, lưu ở bảng user_role_scopes. Phạm vi cộng thêm/cấm thêm trực tiếp cho một user (không gắn vai trò) nằm ở bảng riêng user_data_scopes. Nhờ vậy cùng một vai trò (vd “Trưởng chi nhánh”) tái dùng cho nhiều đơn vị qua nhiều lần gán, không phình vai trò. Chi tiết: Phụ lục E.6 và Phụ lục G.
+7. Hồ sơ hợp đồng & bảo hiểm (lưu trữ – MVP+, xem F3.8/F3.9)
+Trường
+ | Bắt buộc?
+ | Kiểu / định dạng
+ | Quy tắc validate
+ | 
+Loại hợp đồng
+ | Bắt buộc
+ | Enum
+ | Thử việc / Xác định thời hạn / Không xác định thời hạn / Thời vụ
+ | 
+Số hợp đồng
+ | Bắt buộc
+ | Text
+ | Duy nhất theo nhân sự
+ | 
+Ngày bắt đầu HĐ
+ | Bắt buộc
+ | Date
+ | ≤ ngày kết thúc nếu có
+ | 
+Ngày kết thúc HĐ
+ | Không
+ | Date
+ | ≥ ngày bắt đầu; trống nếu HĐ không thời hạn
+ | 
+Trạng thái HĐ
+ | Bắt buộc
+ | Enum
+ | Còn hiệu lực / Hết hạn / Đã chấm dứt — NHẬP TAY (không tự đổi ở MVP+)
+ | 
+Số sổ BHXH
+ | Không
+ | Text
+ | Đúng định dạng nếu nhập
+ | 
+Số thẻ BHYT
+ | Không
+ | Text
+ | Đúng định dạng nếu nhập
+ | 
+Ngày tham gia / dừng BH
+ | Không
+ | Date
+ | —
+ | 
+Mức lương đóng BH
+ | Không
+ | Số
+ | CHỈ lưu trữ, KHÔNG dùng để tính (tính thuộc Module 14)
+ | 
+File đính kèm
+ | Không
+ | File (PDF/ảnh)
+ | —
+ | 
+Ghi chú
+ | Không
+ | Text
+ | —
+ | 
+Phụ lục D – Quy tắc nghiệp vụ (Business Rules) đã chốt
+Tổng hợp các quy tắc nghiệp vụ đã được chốt (Quang Hiệp Nguyễn xác nhận, trao đổi với khách hàng), dùng làm ràng buộc khi thiết kế và phát triển.
+Mã
+ | Quy tắc nghiệp vụ (đã chốt)
+ | Nguồn
+ | 
+BR-01
+ | Mô hình pháp nhân gồm đúng 3 cấp: Công ty mẹ → Công ty con → Chi nhánh. Phòng ban, nhóm/tổ và nhân sự nằm dưới chi nhánh, không tính vào 3 cấp pháp nhân.
+ | A2
+ | 
+BR-02
+ | Mọi nhân sự bắt buộc được tạo tài khoản và cấp mã, kèm quyền truy cập tương ứng.
+ | A6
+ | 
+BR-03
+ | Hợp đồng lao động & bảo hiểm nằm trong ERP. MVP+ chỉ LƯU TRỮ hồ sơ ở mức tham chiếu + đính kèm (F3.8/F3.9): loại HĐ, số HĐ, ngày bắt đầu/kết thúc, số sổ BHXH/BHYT, mức lương đóng (chỉ lưu — KHÔNG tính), file scan. KHÔNG vòng đời tự động, KHÔNG cảnh báo hết hạn, KHÔNG tính lương.
+ | A8
+ | 
+BR-04
+ | MVP của M1: thao tác tạo/sửa cơ cấu, tuyển dụng KHÔNG bắt buộc qua workflow phê duyệt nhiều cấp — chỉ kiểm tra quyền (G2). Riêng nghiệp vụ giao việc/phối hợp liên phòng ban được giữ trong Module 1 và MVP chỉ làm phê duyệt công việc 1 cấp. Workflow nhiều cấp/rule động phức tạp là Future; KPI/hiệu suất thuộc Module 13.
+ | A9, I1, I4, I6
+ | 
+BR-05
+ | Mặc định xóa mềm để giữ lịch sử; hồ sơ nhân sự giữ tối thiểu 6 tháng (có log). Cronjob là tác vụ chạy theo chu kỳ (vd mỗi 30 ngày) chỉ xóa cứng những bản ghi đã quá thời hạn giữ VÀ không còn ràng buộc nghiệp vụ (theo BR-14) — 30 ngày là chu kỳ quét, không phải thời hạn giữ. Giám đốc được quyền xem và khôi phục dữ liệu inactive.
+ | A10, C5, B9
+ | 
+BR-06
+ | Phân quyền RBAC theo chức năng; trước mắt vai trò cố định (cấp 3, cấp 4), sau bổ sung phân quyền linh hoạt (gán nhiều chi nhánh).
+ | A5, D5
+ | 
+BR-07
+ | Mặc định khi chưa có rule = Deny (chờ cấp). Quyền cấm (deny) ưu tiên hơn quyền cho phép khi mâu thuẫn. Tích quyền Sửa thì tự động kèm quyền Xem. Không có quyền Xem thì ẩn/chặn các thao tác liên quan.
+ | E8, E4, E9, E7
+ | 
+BR-08
+ | Vai trò cấp trên (vd giám đốc) tự động kế thừa vai trò/quyền của cấp dưới theo nhánh đơn vị. Trưởng phòng/trưởng chi nhánh KHÔNG tự kèm quyền nhân viên. Admin ngang cấp không cấp quyền chéo. Khi tạo chi nhánh mới từ công ty con, chỉ quản lý công ty được tự động xem; còn lại phải gán quyền.
+ | E5, D7, E11, E10
+ | 
+BR-09
+ | Khi hai người cùng vai trò mâu thuẫn quyết định, người có quyền cao hơn xử lý.
+ | D6
+ | 
+BR-10
+ | MST tạm thời bắt buộc (’có’); KHÔNG cho phép trùng MST — duy nhất toàn hệ thống, kiểm tra trùng bao gồm cả bản ghi inactive/soft-delete (không tái sử dụng); message khi trùng: ’Mã số thuế đã tồn tại trong hệ thống’. Công ty chưa có MST vẫn cho đặt hàng bằng mã quy ước tạm TMP thay thế (tự sinh; duy nhất toàn hệ thống — hai công ty cùng chưa có MST không được trùng mã tạm; bắt buộc có tiền tố chữ, không phải chuỗi 10 số thuần), trạng thái ’Chờ cấp MST’, kèm cảnh báo chưa có MST/giấy phép (cập nhật trong 7–14 ngày); khi có MST thật thì khóa mã tạm và giữ ánh xạ lịch sử. Quy tắc chi tiết: Phụ lục C, mục ’Quy tắc mã quy ước tạm (TMP)’.
+ | B13, A6
+ | 
+BR-11
+ | Tất cả trường bắt buộc không được để trống; mã (công ty/chi nhánh/phòng ban/nhân viên/chức vụ) phải duy nhất; email/điện thoại đúng định dạng. Chi tiết theo Phụ lục C.
+ | Phụ lục C
+ | 
+BR-12
+ | Phân quyền dữ liệu theo chi nhánh/pháp nhân: công ty con chỉ thấy dữ liệu chi nhánh trực thuộc nó; công ty mẹ chỉ dừng ở xem các đơn vị trực thuộc; danh mục sản phẩm đặc thù riêng theo công ty/chi nhánh.
+ | QA-7, QA-9, QA-10
+ | 
+BR-13
+ | Tái cơ cấu tổ chức (đổi tên/tách/gộp/giải thể đơn vị) phải giữ dữ liệu lịch sử: đơn vị cũ chuyển inactive/archive, không xóa cứng; báo cáo cũ vẫn truy được; khi gộp/tách có thể cấu hình ánh xạ đơn vị cũ → đơn vị mới (xử lý dữ liệu cũ ở mức nghiệp vụ).
+ | B8, A2
+ | 
+BR-14
+ | KHÔNG xóa cứng bản ghi (nhân sự, đơn vị, phòng ban…) khi đã phát sinh nghiệp vụ ở module khác hoặc trong giao việc/phê duyệt (giao việc – M1, KPI – M13, bán hàng – M5, kho – M2). Khi đó chỉ inactive / soft delete / archive và giữ lịch sử.
+ | A10
+ | 
+BR-15
+ | Chính sách xóa nhiều mức: Inactive (ẩn, còn dữ liệu) → Soft delete (có deleted_at, khôi phục được) → Archive (lưu trữ dài hạn) → Anonymize (ẩn danh PII khi cần tuân thủ) → Hard delete (chỉ khi không phát sinh nghiệp vụ; KHÔNG bắt buộc). Chi tiết Phụ lục F.
+ | Phụ lục F
+ | 
+BR-16
+ | Chức vụ (job title) KHÔNG tự sinh quyền. Quyền chỉ có khi gán vai trò (system role). Khi tạo vai trò/gán chức vụ, hệ thống GỢI Ý bộ quyền mẫu nhưng người cấu hình phải xác nhận mới áp dụng.
+ | A4, D1
+ | 
+BR-17
+ | Data scope hỗ trợ phạm vi theo công ty/chi nhánh/kho và theo assignment (vị trí công tác); hỗ trợ kế thừa scope theo nhánh đơn vị. Một user nhiều chi nhánh có thể có vai trò/scope khác nhau theo từng chi nhánh. Khi phạm vi đến từ cả vai trò và gán trực tiếp, lấy hợp nhất (union) các vùng được phép; ngoài vùng mặc định DENY; rule cấm cụ thể luôn ưu tiên kể cả trong vùng đã hợp nhất (đã chốt E12; đồng bộ E4/BR-07). Bổ sung (15/06/2026): phạm vi gắn theo từng lần gán vai trò lưu ở bảng user_role_scopes; phạm vi cộng thêm/cấm thêm trực tiếp cho user lưu ở bảng riêng user_data_scopes (có effect allow/deny, lý do, hiệu lực từ ngày–đến ngày, audit thu hồi). CẤM dùng cách “gán thêm một vai trò mới” để mở vùng dữ liệu tạm thời — vì sẽ làm bẩn lịch sử bổ nhiệm vai trò. “Rule cấm cụ thể” nêu ở trên chính là một dòng deny của user_data_scopes. Thuật toán hợp nhất: Phụ lục E.6.
+ | Phụ lục E, QA-12, E12
+ | 
+BR-18
+ | Quản lý đầy đủ vòng đời HĐ/bảo hiểm (tự đổi trạng thái theo ngày, cảnh báo hết hạn, phụ lục/gia hạn) là Non-MVP (F3.10). Phần tính mức đóng bảo hiểm và liên thông lương/hoa hồng thuộc Module 14; workflow gia hạn dùng cơ chế Module 13 — KHÔNG hiện thực trong Module 1 ở MVP.
+ | A8
+ | 
+BR-19
+ | Xóa phòng ban/chi nhánh còn nhân sự đang hoạt động: hệ thống cảnh báo (nêu số nhân sự bị ảnh hưởng) và yêu cầu xác nhận — KHÔNG chặn. Khi xác nhận: toàn bộ nhân sự đang hoạt động của đơn vị chuyển Inactive; đơn vị (kèm phòng ban/nhóm-tổ bên dưới) chuyển Xóa mềm với cửa sổ khôi phục 14 ngày, giao diện hiển thị số ngày còn lại. Khôi phục trong 14 ngày (Giám đốc/Quản trị viên): đơn vị hoạt động trở lại; các nhân sự bị inactive bởi chính thao tác xóa này chuyển lại Active; nhân sự đã nghỉ việc/inactive từ trước giữ nguyên. Hết 14 ngày không khôi phục: xóa vĩnh viễn nếu không còn ràng buộc nghiệp vụ (BR-14); nếu còn ràng buộc → tự chuyển Lưu trữ (Archive). Hồ sơ và lịch sử phân công của nhân sự KHÔNG bị xóa theo đơn vị (giữ tham chiếu lịch sử theo effective date — Phụ lục G). Trạng thái Ngừng hoạt động (inactive) của đơn vị theo B9–B11 là trạng thái riêng, không áp dụng đếm ngược.
+ | B12, A10, BR-14
+ | 
+BR-20
+ | Phòng ban chính của nhân sự (đã chốt 14/06/2026): tại một thời điểm, mỗi nhân sự có đúng MỘT phòng ban chính đang hiệu lực (active). Mô hình: mỗi bản phân công (Assignment) đang hiệu lực gắn đúng một phòng ban thuộc chính chi nhánh của bản phân công đó; một nhân sự có thể có nhiều bản phân công đang hiệu lực ở nhiều chi nhánh khác nhau (đa chi nhánh — QA-8/QA-12); trong số đó đúng MỘT chi nhánh được đánh dấu là 'chính', và phòng ban tại chi nhánh chính chính là phòng ban chính của nhân sự (dùng tính headcount, xác định quản lý trực tiếp, là đầu vào chi phí lương Module 14 — QA-8). Điều chuyển/đổi phòng ban chính: hệ thống tạo bản ghi mới theo effective date và tự đóng (đặt ngày kết thúc) bản ghi cũ — KHÔNG ghi đè, KHÔNG để hai phòng ban chính active đồng thời. Phân biệt: 'đa chi nhánh' (thuộc các phòng ban ở các chi nhánh KHÁC nhau, mỗi cái qua một Assignment) thuộc MVP và được phép; 'kiêm nhiệm nhiều phòng ban trong CÙNG một chi nhánh' là Non-MVP (F3.7). Đồng bộ Phụ lục C (mục 4 — Nhân sự) và Phụ lục G.2.
+ | A3, C3, QA-8, QA-12, B6, F3.7, Phụ lục G
+ | 
+BR-21
+ | Vai trò KHÔNG chứa phạm vi dữ liệu và KHÔNG chứa thời hạn hiệu lực. Phạm vi (và thời hạn nếu là vai trò tạm/ủy quyền) được gán khi gán vai trò cho người dùng — mỗi bản ghi gán = vai trò + phạm vi + effective date (bảng user_role_scopes). Cùng một vai trò tái dùng cho nhiều đơn vị qua nhiều lần gán (vd “Trưởng chi nhánh” gán cho A với Hà Nội, cho B với HCM) — KHÔNG tạo vai trò riêng theo từng chi nhánh để tránh phình vai trò. Mở/cấm vùng dữ liệu tạm thời cho một user dùng direct scope (bảng user_data_scopes: allow/deny + lý do + hiệu lực từ ngày–đến ngày + audit), KHÔNG gán thêm vai trò mới. Quyền hiệu lực = hợp nhất (union) scope từ các lần gán vai trò và direct scope allow, trừ mọi vùng deny (Phụ lục E.6).
+ | E12, BR-16, BR-17, Phụ lục E.6, Phụ lục G
+ | 
+BR-22
+ | Phê duyệt công việc trong MVP là 1 cấp: chỉ công việc ở trạng thái Chờ duyệt mới được duyệt/từ chối; người nhận không được tự duyệt; người duyệt mặc định là trưởng phòng của người nhận/phòng ban nhận việc; người giao có thể chỉ định người duyệt khác nếu người đó có quyền; nếu không có trưởng phòng thì fallback về người giao việc hoặc Admin/Quản trị viên. Mỗi lần duyệt/từ chối phải lưu người thực hiện, thời điểm, kết quả và ghi chú/lý do.
+ | I4, I6, US-M1-033
+ | 
+Phụ lục E – Thiết kế phân quyền (RBAC) & Danh mục quyền
+Phân quyền theo mô hình RBAC: mỗi Vai trò chỉ gồm bộ Quyền theo chức năng (KHÔNG chứa phạm vi dữ liệu). Phạm vi dữ liệu (data scope) được xác định khi gán vai trò cho người dùng (bản ghi user_role_scopes), và có thể được cộng/cấm thêm trực tiếp cho user qua bảng user_data_scopes — không nằm trong định nghĩa vai trò. Nguyên tắc nền: mặc định DENY.
+E.1 Danh mục quyền (Permission catalog)
+Mã quyền
+ | Đối tượng
+ | Hành động
+ | Mô tả
+ | 
+ORG_VIEW
+ | Đơn vị/tổ chức
+ | Xem
+ | Xem cây tổ chức, đơn vị trong phạm vi
+ | 
+ORG_CREATE
+ | Đơn vị/tổ chức
+ | Thêm
+ | Tạo công ty con/chi nhánh
+ | 
+ORG_EDIT
+ | Đơn vị/tổ chức
+ | Sửa
+ | Sửa thông tin, đổi đơn vị cha
+ | 
+ORG_INACTIVE
+ | Đơn vị/tổ chức
+ | Inactive/Xóa mềm
+ | Ngừng hoạt động, khôi phục
+ | 
+ORG_EXPORT
+ | Đơn vị/tổ chức
+ | Xuất
+ | Xuất danh sách đơn vị
+ | 
+DEPT_VIEW
+ | Phòng ban
+ | Xem
+ | 
+ | 
+DEPT_CREATE
+ | Phòng ban
+ | Thêm
+ | 
+ | 
+DEPT_EDIT
+ | Phòng ban
+ | Sửa
+ | 
+ | 
+DEPT_INACTIVE
+ | Phòng ban
+ | Inactive/Xóa mềm
+ | 
+ | 
+EMP_VIEW
+ | Nhân sự
+ | Xem
+ | Xem hồ sơ trong phạm vi
+ | 
+EMP_CREATE
+ | Nhân sự
+ | Thêm
+ | Tạo hồ sơ nhân sự
+ | 
+EMP_EDIT
+ | Nhân sự
+ | Sửa
+ | 
+ | 
+EMP_STATUS
+ | Nhân sự
+ | Đổi trạng thái/Disable
+ | Đổi trạng thái, vô hiệu tài khoản
+ | 
+EMP_EXPORT
+ | Nhân sự
+ | Xuất
+ | 
+ | 
+EMP_IMPORT
+ | Nhân sự
+ | Import
+ | Nhập từ Excel
+ | 
+POS_VIEW
+ | Chức vụ
+ | Xem
+ | 
+ | 
+POS_CREATE
+ | Chức vụ
+ | Thêm
+ | 
+ | 
+POS_EDIT
+ | Chức vụ
+ | Sửa
+ | 
+ | 
+POS_INACTIVE
+ | Chức vụ
+ | Inactive
+ | 
+ | 
+ROLE_VIEW
+ | Vai trò & quyền
+ | Xem
+ | 
+ | 
+ROLE_MANAGE
+ | Vai trò & quyền
+ | Tạo/Sửa vai trò
+ | 
+ | 
+ROLE_ASSIGN
+ | Vai trò & quyền
+ | Gán vai trò
+ | Gán vai trò cho người dùng
+ | 
+PERM_CONFIG
+ | Vai trò & quyền
+ | Cấu hình quyền
+ | Cấu hình quyền chức năng cho vai trò
+ | 
+SCOPE_CONFIG
+ | Vai trò & quyền
+ | Cấu hình data scope
+ | Cấu hình phạm vi dữ liệu cho vai trò
+ | 
+E.2 Ma trận vai trò – quyền (mẫu, áp dụng theo scope)
+Vai trò mẫu
+ | Tổ chức
+ | Phòng ban
+ | Nhân sự
+ | Chức vụ
+ | Vai trò & quyền
+ | 
+Quản trị viên hệ thống
+ | Toàn quyền
+ | Toàn quyền
+ | Toàn quyền
+ | Toàn quyền
+ | Toàn quyền
+ | 
+Giám đốc (công ty)
+ | Xem+Sửa
+ | Xem+Sửa
+ | Xem+Sửa
+ | Xem
+ | Xem (kế thừa cấp dưới)
+ | 
+Trưởng chi nhánh
+ | Xem
+ | Xem+Sửa
+ | Xem+Sửa
+ | Xem
+ | –
+ | 
+Trưởng phòng
+ | Xem
+ | Xem (phòng mình)
+ | Xem+Sửa (trong phòng)
+ | Xem
+ | –
+ | 
+Nhân sự (HR)
+ | Xem
+ | Xem+Sửa
+ | Toàn quyền hồ sơ
+ | Xem+Sửa
+ | – (gán vai trò qua quy trình)
+ | 
+Nhân viên
+ | –
+ | –
+ | Xem hồ sơ của mình
+ | –
+ | –
+ | 
+Lưu ý: các mức trên áp dụng trong phạm vi dữ liệu (scope) của vai trò; ngoài scope luôn bị từ chối.
+E.3 Quy tắc Allow/Deny
+Mặc định DENY: chưa gán quyền thì không được phép (chờ cấp/accept).
+Deny ưu tiên: khi mâu thuẫn giữa cho phép và cấm, ưu tiên CẤM (vd vừa có quyền sửa/xóa vừa bị chặn xóa → chặn xóa).
+Tích quyền Sửa thì tự động kèm quyền Xem; không có quyền Xem thì ẩn/chặn các thao tác liên quan.
+Vai trò cấp trên (vd giám đốc) kế thừa vai trò/quyền cấp dưới theo nhánh; trưởng phòng/chi nhánh KHÔNG tự kèm quyền nhân viên; admin ngang cấp không cấp quyền chéo.
+Hai người cùng vai trò mâu thuẫn quyết định → người có quyền cao hơn xử lý.
+Phối hợp đa nguồn (đã chốt E12 — 14/06/2026): khi người dùng có phạm vi từ cả vai trò và gán trực tiếp, lấy HỢP NHẤT (union) các vùng được phép từ hai nguồn; đơn vị ngoài cả hai vùng mặc định DENY; rule cấm cụ thể luôn ưu tiên kể cả khi đối tượng nằm trong vùng đã hợp nhất (đồng bộ E4/BR-07).
+Hai trục allow/deny tách biệt (bổ sung 15/06/2026): deny VÙNG DỮ LIỆU — một dòng deny trong bảng user_data_scopes (vd cấm xem một kho) — khác với deny HÀNH ĐỘNG chức năng (effect = ‘deny’ trong role_has_permissions, vd chặn thao tác Xóa). Cả hai loại deny đều ưu tiên hơn allow tương ứng. “Rule cấm cụ thể” nêu ở mục trên chính là deny vùng dữ liệu (user_data_scopes).
+E.4 Phạm vi dữ liệu (Data scope)
+Mức phạm vi (scope)
+ | Mô tả
+ | 
+Toàn hệ thống
+ | Thấy mọi dữ liệu (chỉ quản trị viên)
+ | 
+Công ty
+ | Thấy dữ liệu công ty và các đơn vị trực thuộc (công ty mẹ chỉ dừng ở xem đơn vị trực thuộc)
+ | 
+Chi nhánh
+ | Thấy dữ liệu của chi nhánh và phòng ban/nhân sự bên dưới; công ty con chỉ thấy chi nhánh trực thuộc nó
+ | 
+Kho
+ | Theo chi nhánh gắn kho (phối hợp Module 2)
+ | 
+Theo assignment/vị trí
+ | Thấy dữ liệu theo vị trí công tác được phân (nhiều chi nhánh → scope riêng từng chi nhánh)
+ | 
+Kế thừa
+ | Cấp trên kế thừa scope cấp dưới theo nhánh đơn vị; mặc định ngoài scope là DENY
+ | 
+Lưu ý (15/06/2026): các mức scope ở bảng trên được áp dụng KHI gán vai trò cho người dùng (lưu ở user_role_scopes), KHÔNG lưu trên định nghĩa vai trò. Phạm vi cộng thêm/cấm thêm trực tiếp cho một user (không gắn vai trò) và cách hợp nhất nhiều nguồn scope: xem E.6.
+E.5 Vai trò linh hoạt & quyền tạm thời
+Giai đoạn đầu dùng vai trò CỐ ĐỊNH (ưu tiên cấp 3 và cấp 4); sau đó bổ sung vai trò LINH HOẠT (gán nhiều chi nhánh, tùy biến quyền).
+Quyền tạm thời / ủy quyền (khi đi vắng, phụ trách ngắn hạn): có hiệu lực theo effective date (từ ngày – đến ngày), tự hết hạn; mọi thay đổi quyền nên được audit (Module 9). Cơ chế cấp/thu hồi và tự hết hạn này lưu ở bảng user_data_scopes (effective_to + revoked_by/revoked_at) — xem E.6.
+E.6 Phạm vi dữ liệu trực tiếp (direct data scope) & hợp nhất nhiều nguồn
+Một người dùng có thể nhận phạm vi dữ liệu từ HAI nguồn. (1) Phạm vi gắn theo từng lần GÁN VAI TRÒ — mỗi bản ghi user_role_scopes là “user + vai trò + phạm vi”, thể hiện việc bổ nhiệm chính thức (vd “A là HR tại Hà Nội”). (2) Phạm vi cấp TRỰC TIẾP cho user — bảng user_data_scopes, mỗi dòng là “user + vùng + allow/deny + thời hạn + lý do”, KHÔNG gắn vai trò nào; dùng để cộng thêm hoặc cấm thêm vùng dữ liệu tạm thời (vd “mở thêm HCM cho A trong 30 ngày”).
+Thuật toán tính vùng dữ liệu hiệu lực của user (tại một thời điểm): Vùng_cho_phép = (hợp nhất phạm vi của mọi bản ghi user_role_scopes đang hiệu lực) ∪ (mọi dòng allow đang hiệu lực trong user_data_scopes). Vùng_cấm = (mọi dòng deny đang hiệu lực trong user_data_scopes) cùng các rule cấm cụ thể. Vùng hiệu lực = Vùng_cho_phép − Vùng_cấm. Đơn vị ngoài Vùng_cho_phép: mặc định DENY. Quy tắc deny LUÔN thắng kể cả khi đơn vị nằm trong vùng đã hợp nhất (đồng bộ E12 / BR-07 / BR-17).
+Vì sao cần bảng riêng user_data_scopes: nếu mở vùng tạm bằng cách thêm một bản ghi gán vai trò mới (vd “A + vai trò HR + scope HCM”) thì nghiệp vụ và lịch sử sẽ hiểu nhầm A được BỔ NHIỆM chính thức làm HR của HCM, trong khi thực tế A chỉ được mở thêm vùng dữ liệu HCM tạm thời. Direct scope tách bạch hai ý nghĩa này, đồng thời có sẵn lý do + thời hạn + audit thu hồi để tự hết hạn và truy vết.
+Ví dụ (A là HR tại Hà Nội, cần xem thêm dữ liệu HCM trong 30 ngày để hỗ trợ nhập hồ sơ):— Cách SAI: thêm bản ghi “A + vai trò HR + scope HCM” → bị hiểu A là HR chính thức của HCM, lịch sử bổ nhiệm bị sai.— Cách ĐÚNG: giữ nguyên bản ghi gán “A + vai trò HR + scope Hà Nội”; thêm một dòng direct scope “A + allow vùng HCM + 30 ngày + lý do hỗ trợ nhập hồ sơ”. Khi tính quyền: scope từ vai trò = Hà Nội; direct allow = HCM ⇒ vùng hiệu lực = Hà Nội + HCM. Sau 30 ngày, dòng direct tự hết hiệu lực, A trở lại chỉ còn Hà Nội. Cấu trúc cột của bảng user_data_scopes: xem Phụ lục G.
+Phụ lục F – Vòng đời nhân sự & Chính sách xóa/khôi phục
+F.1 Vòng đời & trạng thái nhân sự
+Trạng thái
+ | Mô tả
+ | Tài khoản
+ | Có thể chuyển sang
+ | 
+TTS / Thực tập
+ | Thực tập sinh
+ | Có tài khoản
+ | Thử việc, Nghỉ việc
+ | 
+Thử việc
+ | Đang thử việc
+ | Có tài khoản
+ | Chính thức, Nghỉ việc
+ | 
+Chính thức
+ | Nhân viên chính thức
+ | Có tài khoản
+ | Tạm ngưng, Nghỉ việc
+ | 
+Tạm ngưng (suspend)
+ | Tạm dừng công tác
+ | Khóa tạm
+ | Chính thức (tái kích hoạt), Nghỉ việc
+ | 
+Nghỉ việc
+ | Đã nghỉ việc
+ | Disable
+ | Tái kích hoạt (nếu quay lại)
+ | 
+Disable (tài khoản)
+ | Vô hiệu đăng nhập
+ | Không đăng nhập được
+ | (theo trạng thái nhân sự)
+ | 
+Lưu trữ / Archive
+ | Hồ sơ lưu trữ sau thời gian giữ
+ | –
+ | Khôi phục (trong thời hạn)
+ | 
+Tái kích hoạt (reactivate): nhân sự đã nghỉ quay lại được xử lý theo quy tắc ĐÃ CHỐT tại câu hỏi C15, Nhóm C mục 5 (12/06/2026): trong thời hạn lưu 6 tháng → khôi phục hồ sơ cũ, giữ nguyên mã NV và lịch sử; quá thời hạn/đã archive → tạo hồ sơ mới có liên kết tham chiếu hồ sơ cũ; tài khoản mở khóa lại qua Module 9; vai trò/quyền cũ KHÔNG tự khôi phục — phải gán lại theo vị trí mới. (Tham chiếu cũ “Q-13” đã được thay bằng C15.)
+F.2 Rule giữ lịch sử & liên kết module khác
+Khi nhân sự chuyển chi nhánh/phòng ban/chức vụ: lưu lịch sử điều chuyển dạng chuỗi thời gian (effective date), không ghi đè dữ liệu cũ.
+KHÔNG xóa cứng nhân sự/đơn vị đã phát sinh nghiệp vụ ở module khác hoặc trong giao việc/phê duyệt (giao việc – M1, KPI – M13, bán hàng – M5, kho – M2); chỉ inactive/soft delete/archive (BR-14).
+Nghỉ việc → disable tài khoản (không đăng nhập được); hồ sơ giữ tối thiểu 6 tháng (có log) trước khi archive/anonymize/hard delete.
+F.3 Chính sách xóa, khôi phục, lưu trữ, ẩn danh
+Đối tượng
+ | Inactive
+ | Soft delete
+ | Archive / Anonymize
+ | Hard delete
+ | Khôi phục
+ | 
+Công ty/đơn vị
+ | Có
+ | Có
+ | Archive
+ | Chỉ khi chưa phát sinh nghiệp vụ; tự động sau cửa sổ khôi phục 14 ngày của luồng xóa B12/BR-19
+ | Giám đốc/Admin (trong 14 ngày với bản ghi xóa mềm theo B12)
+ | 
+Phòng ban
+ | Có
+ | Có
+ | Archive
+ | Chỉ khi không còn nhân sự hoạt động & nghiệp vụ; tự động sau cửa sổ khôi phục 14 ngày (B12/BR-19)
+ | Có
+ | 
+Nhân sự
+ | Có (nghỉ việc)
+ | Có (giữ 6 tháng, có log)
+ | Archive + Anonymize PII
+ | Không nếu có nghiệp vụ; KHÔNG bắt buộc
+ | Có (trong thời hạn)
+ | 
+Chức vụ
+ | Có
+ | Có
+ | Archive
+ | Chỉ khi không gán ai
+ | Có
+ | 
+Vai trò
+ | Có
+ | Có
+ | –
+ | Chỉ khi không gán user
+ | Có
+ | 
+Ghi chú: Hard delete KHÔNG bắt buộc; chỉ áp dụng khi đối tượng chưa/không còn ràng buộc nghiệp vụ. Anonymize dùng khi cần tuân thủ bảo vệ dữ liệu cá nhân (ẩn danh PII) nhưng vẫn giữ bản ghi phục vụ báo cáo lịch sử. Yêu cầu giao diện (cập nhật 12/06/2026, theo B12/BR-19): danh sách bản ghi đã xóa mềm hiển thị số ngày còn lại trước khi bị xóa vĩnh viễn — đơn vị/phòng ban xóa qua luồng B12 đếm theo cửa sổ khôi phục 14 ngày; hồ sơ nhân sự xóa mềm (nghỉ việc) đếm theo thời hạn giữ 6 tháng; bản ghi còn ràng buộc nghiệp vụ không bị xóa cứng (BR-14) — khi hết hạn sẽ chuyển Lưu trữ (Archive) thay vì xóa.
+Phụ lục G – Mô hình dữ liệu nghiệp vụ & ERD nghiệp vụ
+Mô hình ở mức nghiệp vụ để DEV thiết kế ERD kỹ thuật chi tiết (primary key, foreign key, index, migration) trong tài liệu riêng của DEV (M1_ERD_Draft). Phần dưới làm rõ thực thể, quan hệ và effective date ở góc độ nghiệp vụ.
+G.1 Danh sách thực thể (entity) mức nghiệp vụ
+Thực thể (entity)
+ | Vai trò nghiệp vụ
+ | Khóa nghiệp vụ
+ | Trạng thái / Effective date
+ | 
+Đơn vị tổ chức (Công ty mẹ/con, Chi nhánh)
+ | Cấp pháp nhân, cây tổ chức (≤ 3 cấp)
+ | Mã đơn vị
+ | Trạng thái Hoạt động/Inactive
+ | 
+Phòng ban
+ | Bộ phận chức năng trong đơn vị
+ | Mã phòng ban
+ | Trạng thái
+ | 
+Nhóm/Tổ
+ | Cấp con của phòng ban
+ | Mã nhóm (trong phòng)
+ | Trạng thái
+ | 
+Nhân sự
+ | Hồ sơ con người
+ | Mã nhân viên
+ | Trạng thái (vòng đời)
+ | 
+Chức vụ
+ | Chức danh công việc (job title)
+ | Mã chức vụ
+ | Trạng thái
+ | 
+Vai trò
+ | Tập quyền hệ thống (system role)
+ | Mã vai trò
+ | Trạng thái (effective date chuyển sang entity Gán vai trò–phạm vi)
+ | 
+Quyền
+ | Hành động trên đối tượng
+ | Mã quyền
+ | –
+ | 
+Gán vai trò theo phạm vi (User–Role–Scope)
+ | Bản ghi gán vai trò cho user kèm phạm vi của vai trò đó (bảng user_role_scopes)
+ | (user + vai trò + phạm vi/đơn vị)
+ | Effective date (từ – đến)
+ | 
+Phạm vi dữ liệu trực tiếp của user (User Data Scope)
+ | Vùng dữ liệu cộng thêm/cấm thêm trực tiếp cho user, không gắn vai trò (bảng user_data_scopes)
+ | (user + vùng + effect)
+ | allow/deny + lý do + effective date + audit thu hồi
+ | 
+Phân công (Assignment)
+ | Nhân sự ↔ đơn vị/phòng ban ↔ chức vụ
+ | (nhân sự + đơn vị + chức vụ)
+ | Effective date (từ – đến)
+ | 
+Lịch sử trạng thái nhân sự
+ | Truy vết vòng đời & điều chuyển
+ | (nhân sự + mốc thời gian)
+ | Effective date
+ | 
+Tài khoản (Module 9)
+ | Đăng nhập, liên kết nhân sự
+ | (thuộc M9)
+ | M1 chỉ tham chiếu
+ | 
+Công việc (Work Item)
+ | Giao việc/yêu cầu phối hợp trong Module 1
+ | Mã công việc
+ | Trạng thái + deadline; effective date qua lịch sử trạng thái
+ | 
+Người nhận công việc (Work Item Assignee)
+ | Cá nhân/phòng ban nhận xử lý
+ | (công việc + người/phòng ban nhận)
+ | Trạng thái xử lý theo công việc
+ | 
+Phê duyệt công việc (Work Item Approval)
+ | Kết quả duyệt/từ chối 1 cấp
+ | (công việc + level + người duyệt)
+ | pending/approved/rejected + thời điểm
+ | 
+Lịch sử trạng thái công việc
+ | Truy vết thay đổi trạng thái công việc
+ | (công việc + mốc thời gian)
+ | Lưu trạng thái cũ/mới + người thực hiện
+ | 
+G.2 Quan hệ giữa thực thể (ERD nghiệp vụ)
+Thực thể A
+ | Quan hệ
+ | Thực thể B
+ | Bản số (cardinality)
+ | 
+Đơn vị tổ chức
+ | cha – con
+ | Đơn vị tổ chức
+ | 1 – n (≤ 3 cấp)
+ | 
+Đơn vị tổ chức
+ | chứa
+ | Phòng ban
+ | 1 – n
+ | 
+Phòng ban
+ | chứa
+ | Nhóm/Tổ
+ | 1 – n
+ | 
+Nhân sự
+ | thuộc (chính)
+ | Phòng ban
+ | n – 1 (phòng ban chính đang hiệu lực, tại chi nhánh chính — BR-20); các phòng ban ở chi nhánh khác đến qua Assignment ở hàng trên
+ | 
+Nhân sự
+ | công tác tại
+ | Đơn vị/Chi nhánh
+ | n – n (qua Assignment, có effective date)
+ | 
+Nhân sự
+ | giữ
+ | Chức vụ
+ | n – n (qua Assignment)
+ | 
+Nhân sự
+ | có
+ | Tài khoản (M9)
+ | 1 – 1
+ | 
+Nhân sự
+ | được gán
+ | Vai trò
+ | n – n qua bảng Gán vai trò–phạm vi (user_role_scopes); mỗi bản ghi mang phạm vi + effective date
+ | 
+Người dùng (tài khoản/nhân sự)
+ | được cấp trực tiếp
+ | Phạm vi dữ liệu (User Data Scope)
+ | 1 – n (mỗi dòng allow/deny, có effective date)
+ | 
+Vai trò
+ | gồm
+ | Quyền
+ | n – n
+ | 
+Nhân sự
+ | có
+ | Lịch sử trạng thái
+ | 1 – n
+ | 
+Nhân sự
+ | tạo/giao
+ | Công việc
+ | 1 – n
+ | 
+Công việc
+ | được giao cho
+ | Nhân sự hoặc Phòng ban
+ | n – n qua Work Item Assignee
+ | 
+Công việc
+ | có
+ | Lịch sử trạng thái công việc
+ | 1 – n
+ | 
+Công việc
+ | có
+ | Phê duyệt công việc
+ | 1 – n (MVP dùng approval_level = 1)
+ | 
+Nhân sự
+ | duyệt
+ | Phê duyệt công việc
+ | 1 – n
+ | 
+Effective date: áp dụng cho Phân công (Assignment) và Lịch sử trạng thái nhân sự để truy vết theo thời gian (ai – ở đâu – chức vụ gì – từ ngày nào), phục vụ chuyển chi nhánh, tái cơ cấu và báo cáo lịch sử.
+Phụ lục I – Luồng Demo MVP
+Luồng demo tối thiểu để minh chứng Module 1 chạy được đầu-cuối (end-to-end):
+Bước 1 — Tạo công ty mẹ, rồi công ty con, rồi chi nhánh (kiểm tra rule 3 cấp & chặn vòng lặp).
+Bước 2 — Tạo phòng ban (và nhóm/tổ) gắn vào chi nhánh.
+Bước 3 — Tạo nhân sự, hệ thống bắt buộc khởi tạo tài khoản (qua Module 9).
+Bước 4 — Gán nhân sự vào phòng ban và gán chức vụ.
+Bước 5 — Tạo vai trò, chỉ cấu hình quyền chức năng (hệ thống gợi ý bộ quyền); KHÔNG gắn phạm vi dữ liệu vào vai trò — phạm vi chọn ở Bước 6 khi gán vai trò theo chi nhánh.
+Bước 6 — Gán vai trò cho nhân sự (theo chi nhánh).
+Bước 7 — Đăng nhập bằng tài khoản đó: kiểm tra chỉ thấy đúng dữ liệu trong scope, bị chặn ngoài scope (mặc định deny).
+Bước 8 — Đổi trạng thái nhân sự sang Nghỉ việc → tài khoản bị disable (qua Module 9), không đăng nhập được; dữ liệu lịch sử vẫn giữ.
+Bước 9 — Tạo công việc/yêu cầu phối hợp, giao cho cá nhân hoặc phòng ban đang hoạt động.
+Bước 10 — Người nhận cập nhật trạng thái Đang xử lý → Chờ duyệt; trưởng phòng người nhận/phòng ban nhận duyệt hoàn thành hoặc từ chối yêu cầu làm lại.
+Tiêu chí demo đạt: chạy trọn các bước, dữ liệu hiển thị đúng cây tổ chức, phân quyền đúng scope, giao việc/phê duyệt 1 cấp chạy đúng rule, và minh chứng không mất lịch sử khi inactive/nghỉ việc.
