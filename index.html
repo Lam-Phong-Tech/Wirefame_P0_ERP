@@ -1049,22 +1049,23 @@
         </div>
       </section>
 
-      <section style="flex:none; width:920px;">
-        <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">H · Mapping Màn hình → API → Test Case <span style="font-size:11px; font-weight:600; background:#f6eed6; color:#8a6d1f; border:1px solid #d9c489; padding:1px 7px; border-radius:3px; vertical-align:2px;">P1</span> <span style="font-weight:400; color:#7a766c; font-size:13px;">— trace cho Dev/Tester</span></div>
+      <section style="flex:none; width:980px;">
+        <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:4px;">H · Mapping Màn hình → API → Test Case <span style="font-size:11px; font-weight:600; background:#f6eed6; color:#8a6d1f; border:1px solid #d9c489; padding:1px 7px; border-radius:3px; vertical-align:2px;">P1</span> <span style="font-weight:400; color:#7a766c; font-size:13px;">— trace Dev / Tester · Module 1</span></div>
+        <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-size:12.5px; color:#8c887e; margin-bottom:12px; max-width:900px;">Cập nhật theo API Contract V2 + ERD M1 hiện tại: org_units, departments, positions, employees, assignments, histories, RBAC, audit_logs.</div>
         <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); overflow:hidden;">
-          <div style="display:grid; grid-template-columns:1.3fr 1.5fr 1.2fr 1.6fr; gap:0; background:#f3f1ea; font-size:12.5px; color:#6b675e; font-weight:700; border-bottom:1.5px solid #d8d5cc;">
-            <div style="padding:11px 14px;">Màn hình</div><div style="padding:11px 14px;">API</div><div style="padding:11px 14px;">Test Case</div><div style="padding:11px 14px;">Rule / Ghi chú</div>
+          <div style="display:grid; grid-template-columns:1.3fr 1.7fr 1fr 1.9fr; gap:0; background:#f3f1ea; font-size:12.5px; color:#6b675e; font-weight:700; border-bottom:1.5px solid #d8d5cc;">
+            <div style="padding:11px 14px;">Màn hình / Chức năng</div><div style="padding:11px 14px;">API chính</div><div style="padding:11px 14px;">Test Case</div><div style="padding:11px 14px;">Rule / Ghi chú ERD</div>
           </div>
-          <sc-for list="{{ mapRows }}" as="m" hint-placeholder-count="10">
-            <div style="display:grid; grid-template-columns:1.3fr 1.5fr 1.2fr 1.6fr; gap:0; font-size:13px; border-bottom:1px solid #ece9e1; align-items:center;">
-              <div style="padding:10px 14px; font-weight:600;">{{ m.screen }}</div>
-              <div style="padding:10px 14px; color:#356fa3; font-family:ui-monospace,monospace; font-size:12px;">{{ m.api }}</div>
-              <div style="padding:10px 14px; color:#7a766c; font-family:ui-monospace,monospace; font-size:12px;">{{ m.tc }}</div>
-              <div style="padding:10px 14px; color:#6b675e; font-size:12.5px;">{{ m.rule }}</div>
+          <sc-for list="{{ mapRows }}" as="m" hint-placeholder-count="15">
+            <div style="display:grid; grid-template-columns:1.3fr 1.7fr 1fr 1.9fr; gap:0; font-size:13px; border-bottom:1px solid #ece9e1; align-items:flex-start;">
+              <div style="padding:12px 14px; font-weight:700;">{{ m.screen }}</div>
+              <div style="padding:12px 14px;">{{ m.apiEl }}</div>
+              <div style="padding:12px 14px; color:#7a766c; font-family:ui-monospace,monospace; font-size:12px;">{{ m.tc }}</div>
+              <div style="padding:12px 14px; color:#6b675e; font-size:12.5px; line-height:1.5;">{{ m.rule }}</div>
             </div>
           </sc-for>
         </div>
-        <div style="margin-top:14px; transform:rotate(-.4deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Bảng trích dẫn; danh sách đầy đủ endpoint &amp; test case theo ERD/API spec được BA duy trì riêng.</div>
+        <div style="margin-top:14px; transform:rotate(-.4deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Prefix <code>/api</code> thể hiện route thực tế; trong Postman collection các path nằm sau <code>&#123;&#123;base_url&#125;&#125;</code>. Org Chart hiện map bằng dữ liệu tree/list thay vì endpoint riêng.</div>
       </section>
 
     </div>
@@ -1200,6 +1201,16 @@ class Component extends DCLogic {
     } }, mk);
   }
 
+  apiLines(arr) {
+    const col = { GET: '#356fa3', POST: '#2f7d63', PUT: '#8a6d1f', DELETE: '#b94a48', PATCH: '#7a5ea8' };
+    return React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '3px', fontFamily: 'ui-monospace, monospace', fontSize: '12px', lineHeight: 1.35 } },
+      arr.map((ln, i) => React.createElement('div', { key: i },
+        React.createElement('span', { style: { color: col[ln.m] || '#6b675e', fontWeight: 700 } }, ln.m),
+        React.createElement('span', { style: { color: '#4a463e' } }, ' ' + ln.p)
+      ))
+    );
+  }
+
   renderVals() {
     const t = this.state.tab;
     const set = (v) => () => this.setState({ tab: v });
@@ -1270,17 +1281,23 @@ class Component extends DCLogic {
       { fn: 'Xóa / khôi phục', cells: ['allow','deny','deny'] },
     ].map(r => ({ fn: r.fn, c0: A(r.cells[0]), c1: A(r.cells[1]), c2: A(r.cells[2]) }));
 
+    const AL = (arr) => this.apiLines(arr);
     const mapRows = [
-      { screen: 'Org Unit · cây/list', api: 'GET /api/org-units/tree', tc: 'TC-A1.x', rule: 'Lọc theo data scope; chặn vòng lặp parent' },
-      { screen: 'Org Unit · tạo/sửa', api: 'POST/PUT /api/org-units', tc: 'TC-A2/A3', rule: 'Mã duy nhất; cấp Mẹ→Con→Chi nhánh' },
-      { screen: 'Department · list', api: 'GET /api/departments', tc: 'TC-B2.x', rule: 'Scope theo đơn vị actor' },
-      { screen: 'Department · tạo/sửa', api: 'POST/PUT /api/departments', tc: 'TC-B3/B6', rule: 'Phải thuộc đúng 1 org_unit; mã duy nhất' },
-      { screen: 'Employee · list', api: 'GET /api/employees', tc: 'TC-C·F8', rule: 'Scope theo chi nhánh; tìm + lọc' },
-      { screen: 'Employee · tạo/sửa', api: 'POST/PUT /api/employees', tc: 'TC-C2/VAL', rule: 'CCCD/SĐT/email duy nhất; field bắt buộc' },
-      { screen: 'Điều chuyển công tác', api: 'POST /api/employee-assignments', tc: 'TC-ASSIGN-01', rule: 'Ghi bản ghi mới; không ghi đè lịch sử' },
-      { screen: 'Position · list/form', api: 'GET/POST /api/positions', tc: 'TC-D1.x', rule: 'Mã duy nhất; soft delete' },
-      { screen: 'Org Chart', api: 'GET /api/org-chart', tc: 'TC-F6.x', rule: 'Render từ tree; click node xem chi tiết' },
-      { screen: 'Role & Scope', api: 'POST /api/users/:id/role-scopes', tc: 'TC-E5', rule: 'Default deny; conflict→ưu tiên cấm' },
+      { screen: 'Auth / phiên đăng nhập', apiEl: AL([{m:'POST',p:'/api/auth/login'},{m:'GET',p:'/api/auth/me'}]), tc: 'TC-AUTH', rule: 'JWT bearer; 401 khi sai token/mật khẩu; response envelope success/error.' },
+      { screen: 'Org Unit · list/tree', apiEl: AL([{m:'GET',p:'/api/org-units'},{m:'GET',p:'/api/org-units/tree'}]), tc: 'TC-OU-01', rule: 'Lọc theo data scope; render cây Mẹ → Con → Chi nhánh; chặn vòng lặp parent.' },
+      { screen: 'Org Unit · tạo/sửa/xóa', apiEl: AL([{m:'POST',p:'/api/org-units'},{m:'PUT',p:'/DELETE /api/org-units/{id}'},{m:'PATCH',p:'/api/org-units/{id}/restore'}]), tc: 'TC-OU-02/03', rule: 'Mã/tax_code/email/phone duy nhất; soft delete; force delete chỉ khi không còn ràng buộc nghiệp vụ.' },
+      { screen: 'Department · list/tree', apiEl: AL([{m:'GET',p:'/api/departments'},{m:'GET',p:'/api/departments/tree'}]), tc: 'TC-DPT-01', rule: 'Scope theo org_unit của actor; phòng ban cha/con phải cùng org_unit; hỗ trợ q/filter/sort.' },
+      { screen: 'Department · tạo/sửa/xóa', apiEl: AL([{m:'POST',p:'/api/departments'},{m:'PUT',p:'/DELETE /api/departments/{id}'},{m:'PATCH',p:'/api/departments/{id}/restore'}]), tc: 'TC-DPT-02/03', rule: 'Bắt buộc org_unit_id; mã phòng ban duy nhất; chặn vòng lặp parent; soft delete/restore.' },
+      { screen: 'Position · list/form', apiEl: AL([{m:'GET',p:'/api/positions'},{m:'POST',p:'/PUT /api/positions'},{m:'DELETE',p:'/api/positions/{id}'}]), tc: 'TC-POS-01', rule: 'Mã chức vụ duy nhất; status dùng 1/0; soft delete + restore + force khi hợp lệ.' },
+      { screen: 'Employee · list/detail', apiEl: AL([{m:'GET',p:'/api/employees'},{m:'GET',p:'/api/employees/{id}'}]), tc: 'TC-EMP-01', rule: 'Tìm/lọc theo q, employment_status, org_unit_id, department_id; áp dụng data scope.' },
+      { screen: 'Employee · tạo/sửa', apiEl: AL([{m:'POST',p:'/api/employees'},{m:'PUT',p:'/api/employees/{id}'}]), tc: 'TC-EMP-02/VAL', rule: 'Mã NV/email/CCCD/SĐT duy nhất; field bắt buộc; org_unit/department/position phải hợp lệ.' },
+      { screen: 'Employee · xóa/khôi phục', apiEl: AL([{m:'DELETE',p:'/api/employees/{id}'},{m:'GET',p:'/api/employees/trashed'},{m:'PATCH',p:'/api/employees/{id}/restore'}]), tc: 'TC-EMP-DEL', rule: 'Xóa mềm trước; danh sách trashed riêng; force delete chỉ khi không còn ràng buộc.' },
+      { screen: 'Phân công / điều chuyển', apiEl: AL([{m:'GET',p:'/api/employee-assignments'},{m:'POST',p:'/api/employee-assignments'},{m:'PUT',p:'/api/employee-assignments/{assignment_id}'}]), tc: 'TC-ASG-01', rule: 'Ghi lịch sử phân công; detail/update/delete dùng assignment_id; chặn overlap thời gian.' },
+      { screen: 'Lịch sử trạng thái nhân sự', apiEl: AL([{m:'GET',p:'/api/employee-status-histories'},{m:'GET',p:'/api/employee-status-histories/{id}'}]), tc: 'TC-HIS-01', rule: 'Theo dõi thay đổi employment_status; không ghi đè lịch sử; lọc theo employee_id/thời gian.' },
+      { screen: 'Role & Permission', apiEl: AL([{m:'GET',p:'/POST /api/roles'},{m:'GET',p:'/api/permissions'},{m:'POST',p:'/api/roles/{id}/permissions'}]), tc: 'TC-RBAC-01', rule: 'permission_ids; default deny; 403 khi thiếu quyền quản trị; xóa role phải kiểm tra ràng buộc.' },
+      { screen: 'User Role Scope', apiEl: AL([{m:'GET',p:'/POST /api/user-role-scopes'},{m:'DELETE',p:'/api/user-role-scopes/{id}'}]), tc: 'TC-SCOPE-01', rule: 'Gán role theo phạm vi dữ liệu; scope_type phải khớp scope_org_unit_id; conflict xử lý theo rule ưu tiên cấm.' },
+      { screen: 'Audit Log', apiEl: AL([{m:'GET',p:'/api/audit-logs'}]), tc: 'TC-AUD-01', rule: 'Read-only; lọc actor/action/module/time; lưu thao tác người dùng dùng chung toàn hệ thống.' },
+      { screen: 'Org Chart', apiEl: AL([{m:'GET',p:'/api/org-units/tree'},{m:'GET',p:'/api/departments/tree'},{m:'GET',p:'/api/employees?org_unit_id=…'}]), tc: 'TC-CHART-01', rule: 'Không thấy endpoint /org-chart trong API Contract V2; render từ tree + employee list để khớp ERD hiện tại.' },
     ];
 
     const c = this.state.confirm;
