@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  @keyframes wfin { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+</style>
+</helmet>
+<div style="min-width:100%; width:max-content; min-height:100vh; box-sizing:border-box; background:#e7e5df; font-family:'Be Vietnam Pro', system-ui, sans-serif; color:#2b2b2b;">
+  <header style="position:sticky; top:0; left:0; z-index:50; background:#e7e5df; padding:22px 48px 14px 48px; border-bottom:2px dashed #b8b4aa;">
+    <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-size:12.5px; color:#8a857a; letter-spacing:.02em; margin-bottom:6px;">Module 1 · Quản lý Tổ chức — Wireframe P0 <span style="background:#fff4cf; border:1px solid #d8b53d; padding:1px 8px; border-radius:3px; margin-left:4px; color:#6b5a12;">Low-fi · MVP</span> <span style="background:#eef6f0; border:1px solid #9cc3a8; padding:1px 8px; border-radius:3px; color:#2f5640;">Rev2 · đã áp review P0/P1</span></div>
+    <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:21px;">⑥ Thiết kế wireframe P0 cho Employee Status / Vòng đời trạng thái nhân sự</div>
+    <div style="display:flex; gap:8px; margin-top:15px; flex-wrap:wrap;">
+      <a href="BA%20Wireframe%20P0%20-%2001%20Org%20Unit.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">① Org Unit</a>
+      <a href="BA%20Wireframe%20P0%20-%2002%20Department.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">② Department</a>
+      <a href="BA%20Wireframe%20P0%20-%2003%20Position.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">③ Chức vụ</a>
+      <a href="BA%20Wireframe%20P0%20-%2004%20Employee.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">④ Employee</a>
+      <a href="BA%20Wireframe%20P0%20-%2005%20Employee%20Assignment.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">⑤ Điều chuyển</a>
+      <a href="BA%20Wireframe%20P0%20-%2006%20Employee%20Status.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#356fa3; color:#fff; box-shadow:3px 3px 0 rgba(43,43,43,.2);">⑥ Vòng đời TT</a>
+      <a href="BA%20Wireframe%20P0%20-%2007%20Role%20Permission%20Matrix.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">⑦ Vai trò &amp; quyền</a>
+      <a href="BA%20Wireframe%20P0%20-%2008%20User%20Role%20Scope.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">⑧ Data Scope</a>
+      <a href="BA%20Wireframe%20P0%20-%2009%20Org%20Chart.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">⑨ Sơ đồ TC</a>
+      <a href="BA%20Wireframe%20P0%20-%2010%20Task%20Assignment%20Approval.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">⑩ Giao việc</a>
+      <a href="BA%20Wireframe%20P0%20-%2011%20Mapping%20API%20Rule%20TestCase.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">⑪ Mapping</a>
+      <a href="BA%20Wireframe%20P0%20-%2012%20UI%20States%20Validate.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">⑫ Trạng thái UI</a>
+    </div>
+  </header>
+
+<main style="padding:40px 48px 80px 48px;">
+    <div style="max-width:1140px; margin-bottom:32px; background:#eef3f9; border:2px solid #356fa3; border-left-width:6px; border-radius:4px; padding:14px 18px; box-shadow:3px 3px 0 rgba(53,111,163,.10);">
+      <div style="display:flex; align-items:center; gap:8px; font-weight:700; font-size:14.5px; color:#2b5170; margin-bottom:8px;"><span style="font-size:16px;">⚑</span> Quyết định cần chốt trước khi Done <span style="font-size:11px; font-weight:600; background:#fbe7e6; color:#a5413f; border:1px solid #dcb1af; padding:1px 8px; border-radius:3px;">P0</span></div>
+      <div style="display:flex; flex-direction:column; gap:5px; font-size:12.5px; color:#3a4654; line-height:1.55;">
+        <div>① <b>Quyền đổi trạng thái:</b> chỉ <b>HR / Admin</b> đổi thật. Quản lý chi nhánh đổi được <b>chỉ khi</b> có quyền HR tương ứng (theo data scope); nếu không → chỉ <b>xem / đề xuất</b>. Bảng &amp; note phải khớp.</div>
+        <div>② Đổi trạng thái ghi vào <b>lịch sử trạng thái nhân sự</b> (<code>employee_status_histories</code>) — <b style="color:#a5413f;">KHÔNG phải</b> lịch sử công tác / điều chuyển (<code>employee_assignments</code>).</div>
+        <div>③ <b>Chuẩn API duy nhất:</b> <code>POST /api/employees/{id}/status</code> cho mọi chuyển đổi; side-effect server quyết theo <code>to_status</code> (không dùng /suspend /resign /reactivate riêng). Mọi thao tác ghi <b>audit log (M9)</b>: người · thời điểm · cũ→mới · lý do.</div>
+      </div>
+    </div>
+    <div style="display:flex; gap:44px; align-items:flex-start;">
+
+    <!-- Frame A: lifecycle (rebuilt) -->
+    <section style="flex:none; width:900px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">A · Sơ đồ vòng đời trạng thái nhân sự <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span> <span style="font-weight:400; color:#7a766c;">— F3.4 · enum chuẩn</span></div>      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:24px 22px;">
+        <div style="display:flex; align-items:center; justify-content:center; flex-wrap:nowrap;"><div style="width:108px; flex:none; background:#eaf1f8; border:2px solid #356fa3; border-radius:8px; padding:9px 5px; text-align:center;"><div style="font-size:15px; line-height:1; margin-bottom:4px; color:#356fa3;">◔</div><div style="font-weight:700; font-size:12px; color:#2b5170;">TTS / Thực tập</div><div style="font-size:9.5px; color:#7a766c; margin-top:2px;">trạng thái đầu</div></div><div style="width:66px; flex:none; display:flex; flex-direction:column; align-items:center; justify-content:center;"><div style="font-size:9.5px; font-weight:700; color:#3c6e4f; line-height:1.15; margin-bottom:4px; text-align:center;">Lên thử việc</div><div style="display:flex; align-items:center; width:100%;"><div style="flex:1; height:2px; background:#3c6e4f;"></div><span style="color:#3c6e4f; font-size:11px; margin-left:-3px;">▶</span></div></div><div style="width:108px; flex:none; background:#eaf1f8; border:2px solid #356fa3; border-radius:8px; padding:9px 5px; text-align:center;"><div style="font-size:15px; line-height:1; margin-bottom:4px; color:#356fa3;">◔</div><div style="font-weight:700; font-size:12px; color:#2b5170;">Thử việc</div><div style="font-size:9.5px; color:#7a766c; margin-top:2px;">probation</div></div><div style="width:66px; flex:none; display:flex; flex-direction:column; align-items:center; justify-content:center;"><div style="font-size:9.5px; font-weight:700; color:#3c6e4f; line-height:1.15; margin-bottom:4px; text-align:center;">Đạt thử việc</div><div style="display:flex; align-items:center; width:100%;"><div style="flex:1; height:2px; background:#3c6e4f;"></div><span style="color:#3c6e4f; font-size:11px; margin-left:-3px;">▶</span></div></div><div style="width:108px; flex:none; background:#dceadf; border:2px solid #3c6e4f; border-radius:8px; padding:9px 5px; text-align:center;"><div style="font-size:15px; line-height:1; margin-bottom:4px; color:#3c6e4f;">●</div><div style="font-weight:700; font-size:12px; color:#2f5e44;">Chính thức</div><div style="font-size:9.5px; color:#7a766c; margin-top:2px;">official · active</div></div><div style="width:96px; flex:none; display:flex; flex-direction:column; align-items:center; justify-content:center;"><div style="font-size:9.5px; font-weight:700; color:#8a6d1f; text-align:center;">Suspend ▶</div><div style="width:100%; height:2px; background:#c9a227; margin:4px 0;"></div><div style="font-size:9.5px; font-weight:700; color:#3c6e4f; text-align:center;">◀ Tái kích hoạt</div></div><div style="width:108px; flex:none; background:#f6eed6; border:2px solid #c9a227; border-radius:8px; padding:9px 5px; text-align:center;"><div style="font-size:15px; line-height:1; margin-bottom:4px; color:#8a6d1f;">◐</div><div style="font-weight:700; font-size:12px; color:#7a611a;">Tạm ngưng</div><div style="font-size:9.5px; color:#7a766c; margin-top:2px;">suspended</div></div><div style="width:66px; flex:none; display:flex; flex-direction:column; align-items:center; justify-content:center;"><div style="font-size:9.5px; font-weight:700; color:#b94a48; line-height:1.15; margin-bottom:4px; text-align:center;">Off-board</div><div style="display:flex; align-items:center; width:100%;"><div style="flex:1; height:2px; background:#b94a48;"></div><span style="color:#b94a48; font-size:11px; margin-left:-3px;">▶</span></div></div><div style="width:108px; flex:none; background:#eceae6; border:2px solid #8c887e; border-radius:8px; padding:9px 5px; text-align:center;"><div style="font-size:15px; line-height:1; margin-bottom:4px; color:#6b675e;">✕</div><div style="font-weight:700; font-size:12px; color:#5c584f;">Nghỉ việc</div><div style="font-size:9.5px; color:#7a766c; margin-top:2px;">resigned · soft del</div></div></div>
+        <div style="margin-top:16px; border-top:2px dashed #d8a9a6; padding-top:10px; display:flex; align-items:center; gap:8px; justify-content:center; flex-wrap:wrap;"><span style="color:#b94a48; font-size:14px;">▶</span><span style="font-size:11.5px; color:#8f3937; text-align:center;"><b>Nghỉ việc trực tiếp:</b> TTS / Thử việc / Chính thức / Tạm ngưng đều có thể → Nghỉ việc (off-boarding).</span></div>
+        <div style="text-align:center; font-size:11.5px; color:#3c6e4f; margin-top:6px;">↺ <b>Tái kích hoạt:</b> Nghỉ việc / Tạm ngưng → Chính thức (xem rule 6 tháng ở khung E).</div>
+        <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:13.5px; color:#356fa3; margin:20px 0 8px;">Chuyển trạng thái hợp lệ</div>
+        <div style="border:1.5px solid #d8d5cc; border-radius:4px; overflow:hidden;"><div style="display:grid; grid-template-columns:1.7fr 1.1fr 2.2fr; gap:0; background:#f3f1ea; font-size:11.5px; color:#6b675e; font-weight:700; border-bottom:1.5px solid #d8d5cc;"><div style="padding:8px 12px;">Từ</div><div style="padding:8px 12px;">Đến</div><div style="padding:8px 12px;">Hành động / Rule</div></div><div style="display:grid; grid-template-columns:1.7fr 1.1fr 2.2fr; gap:0; font-size:12px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="padding:8px 12px;">◔ TTS</div><div style="padding:8px 12px; font-weight:600;">◔ Thử việc</div><div style="padding:8px 12px; color:#6b675e;">Đạt đánh giá thực tập; giữ tài khoản.</div></div><div style="display:grid; grid-template-columns:1.7fr 1.1fr 2.2fr; gap:0; font-size:12px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="padding:8px 12px;">◔ TTS</div><div style="padding:8px 12px; font-weight:600;">✕ Nghỉ việc</div><div style="padding:8px 12px; color:#6b675e;">Kết thúc thực tập (off-board).</div></div><div style="display:grid; grid-template-columns:1.7fr 1.1fr 2.2fr; gap:0; font-size:12px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="padding:8px 12px;">◔ Thử việc</div><div style="padding:8px 12px; font-weight:600;">● Chính thức</div><div style="padding:8px 12px; color:#6b675e;">Đạt đánh giá thử việc.</div></div><div style="display:grid; grid-template-columns:1.7fr 1.1fr 2.2fr; gap:0; font-size:12px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="padding:8px 12px;">◔ Thử việc</div><div style="padding:8px 12px; font-weight:600;">✕ Nghỉ việc</div><div style="padding:8px 12px; color:#6b675e;">Không đạt thử việc.</div></div><div style="display:grid; grid-template-columns:1.7fr 1.1fr 2.2fr; gap:0; font-size:12px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="padding:8px 12px;">● Chính thức</div><div style="padding:8px 12px; font-weight:600;">◐ Tạm ngưng</div><div style="padding:8px 12px; color:#6b675e;">Suspend — giữ hồ sơ, chặn giao việc mới.</div></div><div style="display:grid; grid-template-columns:1.7fr 1.1fr 2.2fr; gap:0; font-size:12px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="padding:8px 12px;">◐ Tạm ngưng</div><div style="padding:8px 12px; font-weight:600;">● Chính thức</div><div style="padding:8px 12px; color:#6b675e;">Tái kích hoạt — xét lại tài khoản &amp; vai trò.</div></div><div style="display:grid; grid-template-columns:1.7fr 1.1fr 2.2fr; gap:0; font-size:12px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="padding:8px 12px;">● / ◐</div><div style="padding:8px 12px; font-weight:600;">✕ Nghỉ việc</div><div style="padding:8px 12px; color:#6b675e;">Off-boarding — disable TK (M9), thu hồi role, giữ lịch sử.</div></div><div style="display:grid; grid-template-columns:1.7fr 1.1fr 2.2fr; gap:0; font-size:12px;  align-items:center;"><div style="padding:8px 12px;">✕ Nghỉ việc</div><div style="padding:8px 12px; font-weight:600;">● Chính thức</div><div style="padding:8px 12px; color:#6b675e;">Tái kích hoạt ≤ 6 tháng — khôi phục hồ sơ cũ.</div></div></div>
+      </div>
+      <div style="margin-top:14px; transform:rotate(-.5deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Enum chuẩn toàn hệ thống: <b>TTS · Thử việc · Chính thức · Tạm ngưng · Nghỉ việc</b> (+ Tái kích hoạt). Mọi đổi trạng thái <b>ghi lịch sử</b>, không ghi đè; không xóa cứng nếu còn nghiệp vụ.</div>
+    </section>
+
+    <!-- Frame B: Change status form (moved from Employee) -->
+    <section style="flex:none; width:440px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">B · Đổi trạng thái nhân sự <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span> <span style="font-weight:400; color:#7a766c;">— F3.4 · vòng đời</span></div>
+      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:22px;">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+          <span style="width:42px; height:42px; border-radius:50%; background:#dfe6ee; flex:none;"></span>
+          <div><div style="font-weight:700; font-size:16px;">Hoàng Thị E</div><div style="font-size:13px; color:#7a766c;">NV-1004 · Quản lý kho · CN Hải Phòng</div></div>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:18px;">
+          <div style="font-size:13px; color:#8c887e;">Hiện tại:</div>
+          <span style="background:#dceadf; color:#3c6e4f; border:1px solid #9cc3a8; padding:2px 10px; border-radius:10px; font-size:12.5px;">● Chính thức</span>
+          <span style="color:#9a968c;">→</span>
+          <span style="background:#f6eed6; color:#8a6d1f; border:1px solid #d9c489; padding:2px 10px; border-radius:10px; font-size:12.5px;">◐ Trạng thái mới</span>
+        </div>
+        <div style="font-size:13px; color:#8c887e; margin-bottom:6px;">Trạng thái mới *</div>
+        <div style="display:flex; gap:8px; margin-bottom:8px;">
+          <div style="flex:1; text-align:center; padding:7px 0; border:1.5px dashed #c4c0b6; background:#f6f4ee; border-radius:3px; font-size:13px; color:#b0aca2;">⊘ Chính thức<div style="font-size:10px;">hiện tại · khóa</div></div>
+          <div style="flex:1; text-align:center; padding:7px 0; border:1.5px solid #356fa3; background:#eaf1f8; border-radius:3px; font-size:13px;">◉ Tạm ngưng</div>
+          <div style="flex:1; text-align:center; padding:7px 0; border:1.5px solid #b9b6ad; border-radius:3px; font-size:13px; color:#4a463e;">○ Nghỉ việc</div>
+        </div>
+        <div style="font-size:11.5px; color:#b94a48; margin-bottom:16px;">⚠ Trạng thái mới không được trùng trạng thái hiện tại (no-op bị chặn).</div>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div><div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Ngày hiệu lực *</div><div style="height:36px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; padding:0 10px; color:#9a968c; font-size:13px;"><img src="https://img.icons8.com/fluency-systems-regular/96/9a968c/calendar.png" alt="" style="width:14px;height:14px;vertical-align:-2px;display:inline-block;flex:none;" /> dd/mm/yyyy</div><div style="font-size:11px; color:#9a968c; margin-top:3px;">≥ ngày vào làm · không đảo mốc · không trùng hiệu lực</div></div>
+          <div><div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Lý do</div><div style="height:64px; border:1.5px solid #b9b6ad; border-radius:3px;"></div></div>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px; margin-top:14px; background:#f6f4ee; border:1.5px dashed #c4c0b6; border-radius:4px; padding:9px 12px; font-size:12.5px; color:#6b675e;">
+          <span><img src="https://img.icons8.com/fluency-systems-regular/96/6b675e/checkmark.png" alt="" style="width:15px;height:15px;vertical-align:-2px;display:inline-block;flex:none;" /></span> Lưu mốc vào <b>lịch sử trạng thái nhân sự</b> (<code>employee_status_histories</code>) — <b>không phải</b> lịch sử công tác / điều chuyển
+        </div>
+        <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:20px;">
+          <div style="height:38px; padding:0 18px; border:1.5px solid #2b2b2b; border-radius:3px; display:flex; align-items:center; font-size:14px;">Hủy</div>
+          <div style="height:38px; padding:0 22px; background:#356fa3; color:#fff; border-radius:3px; display:flex; align-items:center; font-weight:700; font-size:14px;">Cập nhật</div>
+        </div>
+        <div style="margin-top:14px; transform:rotate(-.5deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 10px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Đổi trạng thái → <code>employee_status_histories</code> (F3.5). Lịch sử <b>công tác / điều chuyển</b> theo effective date là <code>employee_assignments</code> — luồng riêng ở màn ⑤. <b>Đừng dùng nhầm bảng.</b></div>
+      </div>
+    </section>
+
+    <!-- Frame C: status history timeline -->
+    <section style="flex:none; width:430px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">C · Lịch sử trạng thái <span style="font-size:11px; font-weight:600; background:#f6eed6; color:#8a6d1f; border:1px solid #d9c489; padding:1px 7px; border-radius:3px; vertical-align:2px;">F3.5 · data layer</span></div>
+      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:18px 20px;">
+        <div style="display:flex; align-items:center; gap:11px; margin-bottom:6px;">
+          <span style="width:38px; height:38px; border-radius:50%; background:#dfe6ee; flex:none;"></span>
+          <div style="flex:1;"><div style="font-weight:700; font-size:15px;">Hoàng Thị E</div><div style="font-size:12px; color:#7a766c;">NV-1004 · Quản lý kho · CN Hải Phòng</div></div>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px; margin:10px 0 12px; padding:8px 11px; background:#f6f4ee; border:1.5px solid #e3e0d8; border-radius:4px; font-size:13px; color:#6b675e;">Hiện tại: <span style="background:#dceadf; color:#3c6e4f; border:1px solid #9cc3a8; padding:2px 9px; border-radius:10px; font-size:12.5px;">● Chính thức</span></div>
+        <div style="font-size:11px; color:#8c887e; margin-bottom:5px;">Lọc lịch sử <span style="font-size:9px; background:#eef0f4; color:#6b675e; border:1px solid #cdd2da; padding:0 4px; border-radius:3px;">P2</span></div>
+        <div style="display:flex; gap:6px; margin-bottom:16px; flex-wrap:wrap;"><div style="flex:1; min-width:96px; height:30px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; gap:5px; padding:0 8px; font-size:11px; color:#9a968c;"><img src="https://img.icons8.com/fluency-systems-regular/96/9a968c/calendar.png" alt="" style="width:13px;height:13px;flex:none;" /> Khoảng ngày</div><div style="height:30px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; padding:0 8px; font-size:11px; color:#9a968c;">Trạng thái ▾</div><div style="height:30px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; padding:0 8px; font-size:11px; color:#9a968c;">Người cập nhật ▾</div></div>
+        <div style="display:flex; flex-direction:column;">
+          <sc-for list="{{ statusLog }}" as="h" hint-placeholder-count="4">
+            <div style="display:flex; gap:11px; align-items:flex-start;">
+              <div style="display:flex; flex-direction:column; align-items:center; flex:none; padding-top:3px;">
+                <span style="width:11px; height:11px; border-radius:50%; background:#356fa3; border:2px solid #cfe0f0;"></span>
+                <span style="width:2px; flex:1; min-height:30px; background:#e0ddd4;"></span>
+              </div>
+              <div style="padding-bottom:16px;">
+                <div style="margin-bottom:3px;">{{ h.nameEl }}</div>
+                <div style="font-size:13px; color:#4a463e;">{{ h.note }}</div>
+                <div style="font-size:11.5px; color:#9a968c; margin-top:2px;">Hiệu lực {{ h.eff }} · {{ h.by }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="transform:rotate(-.4deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 11px; font-size:12px; color:#6b5a12; line-height:1.5;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:12px;height:12px;vertical-align:-2px;display:inline-block;flex:none;" /> Chuỗi theo <b>ngày hiệu lực</b>, không ghi đè. Màn quản lý đầy đủ F3.5 sau MVP — tầng dữ liệu MVP vẫn ghi. <code>GET /api/employee-status-histories</code></div>
+      </div>
+    </section>
+
+      </div>
+
+    <div style="margin-top:46px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">A＋ · Ma trận chuyển trạng thái (hợp lệ / chặn) <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span> <span style="font-weight:400; color:#7a766c;">— transition matrix · từ × đến</span></div>
+      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); overflow:hidden; max-width:760px;">
+        <div style="display:flex; align-items:center; gap:16px; padding:10px 16px; border-bottom:1.5px solid #d8d5cc; font-size:11.5px; color:#6b675e;"><span><span style="display:inline-block; width:10px; height:10px; background:#dceadf; border:1px solid #9cc3a8; border-radius:2px; vertical-align:-1px;"></span> Hợp lệ</span><span><span style="display:inline-block; width:10px; height:10px; background:#fbe7e6; border:1px solid #dcb1af; border-radius:2px; vertical-align:-1px;"></span> Chặn</span><span><span style="display:inline-block; width:10px; height:10px; background:#f3f1ea; border:1px solid #dad6cc; border-radius:2px; vertical-align:-1px;"></span> Cùng trạng thái (no-op)</span></div>
+        <div style="display:grid; grid-template-columns:1.3fr repeat(5,1fr); gap:6px; padding:10px 16px; background:#f3f1ea; font-size:11px; color:#6b675e; font-weight:700; border-bottom:1.5px solid #d8d5cc; align-items:center;"><div>Từ ＼ Đến</div><div style="text-align:center;">◔ TTS</div><div style="text-align:center;">◔ Thử việc</div><div style="text-align:center;">● Chính thức</div><div style="text-align:center;">◐ Tạm ngưng</div><div style="text-align:center;">✕ Nghỉ việc</div></div>
+        <div style="display:grid; grid-template-columns:1.3fr repeat(5,1fr); gap:6px; padding:8px 16px; font-size:12px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="font-weight:600;">◔ TTS</div><div style="text-align:center; padding:5px 0; background:#f3f1ea; color:#a8a499; border:1px solid #dad6cc; border-radius:3px; font-weight:700;">–</div><div style="text-align:center; padding:5px 0; background:#dceadf; color:#3c6e4f; border:1px solid #9cc3a8; border-radius:3px; font-weight:700;">✓</div><div style="text-align:center; padding:5px 0; background:#fbe7e6; color:#a5413f; border:1px solid #dcb1af; border-radius:3px; font-weight:700;">✕<sup style="font-size:8px;">1</sup></div><div style="text-align:center; padding:5px 0; background:#fbe7e6; color:#a5413f; border:1px solid #dcb1af; border-radius:3px; font-weight:700;">✕</div><div style="text-align:center; padding:5px 0; background:#dceadf; color:#3c6e4f; border:1px solid #9cc3a8; border-radius:3px; font-weight:700;">✓</div></div>
+        <div style="display:grid; grid-template-columns:1.3fr repeat(5,1fr); gap:6px; padding:8px 16px; font-size:12px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="font-weight:600;">◔ Thử việc</div><div style="text-align:center; padding:5px 0; background:#fbe7e6; color:#a5413f; border:1px solid #dcb1af; border-radius:3px; font-weight:700;">✕</div><div style="text-align:center; padding:5px 0; background:#f3f1ea; color:#a8a499; border:1px solid #dad6cc; border-radius:3px; font-weight:700;">–</div><div style="text-align:center; padding:5px 0; background:#dceadf; color:#3c6e4f; border:1px solid #9cc3a8; border-radius:3px; font-weight:700;">✓</div><div style="text-align:center; padding:5px 0; background:#fbe7e6; color:#a5413f; border:1px solid #dcb1af; border-radius:3px; font-weight:700;">✕</div><div style="text-align:center; padding:5px 0; background:#dceadf; color:#3c6e4f; border:1px solid #9cc3a8; border-radius:3px; font-weight:700;">✓</div></div>
+        <div style="display:grid; grid-template-columns:1.3fr repeat(5,1fr); gap:6px; padding:8px 16px; font-size:12px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="font-weight:600;">● Chính thức</div><div style="text-align:center; padding:5px 0; background:#fbe7e6; color:#a5413f; border:1px solid #dcb1af; border-radius:3px; font-weight:700;">✕</div><div style="text-align:center; padding:5px 0; background:#fbe7e6; color:#a5413f; border:1px solid #dcb1af; border-radius:3px; font-weight:700;">✕</div><div style="text-align:center; padding:5px 0; background:#f3f1ea; color:#a8a499; border:1px solid #dad6cc; border-radius:3px; font-weight:700;">–</div><div style="text-align:center; padding:5px 0; background:#dceadf; color:#3c6e4f; border:1px solid #9cc3a8; border-radius:3px; font-weight:700;">✓</div><div style="text-align:center; padding:5px 0; background:#dceadf; color:#3c6e4f; border:1px solid #9cc3a8; border-radius:3px; font-weight:700;">✓</div></div>
+        <div style="display:grid; grid-template-columns:1.3fr repeat(5,1fr); gap:6px; padding:8px 16px; font-size:12px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="font-weight:600;">◐ Tạm ngưng</div><div style="text-align:center; padding:5px 0; background:#fbe7e6; color:#a5413f; border:1px solid #dcb1af; border-radius:3px; font-weight:700;">✕</div><div style="text-align:center; padding:5px 0; background:#fbe7e6; color:#a5413f; border:1px solid #dcb1af; border-radius:3px; font-weight:700;">✕</div><div style="text-align:center; padding:5px 0; background:#dceadf; color:#3c6e4f; border:1px solid #9cc3a8; border-radius:3px; font-weight:700;">✓</div><div style="text-align:center; padding:5px 0; background:#f3f1ea; color:#a8a499; border:1px solid #dad6cc; border-radius:3px; font-weight:700;">–</div><div style="text-align:center; padding:5px 0; background:#dceadf; color:#3c6e4f; border:1px solid #9cc3a8; border-radius:3px; font-weight:700;">✓</div></div>
+        <div style="display:grid; grid-template-columns:1.3fr repeat(5,1fr); gap:6px; padding:8px 16px; font-size:12px; align-items:center;"><div style="font-weight:600;">✕ Nghỉ việc</div><div style="text-align:center; padding:5px 0; background:#fbe7e6; color:#a5413f; border:1px solid #dcb1af; border-radius:3px; font-weight:700;">✕</div><div style="text-align:center; padding:5px 0; background:#fbe7e6; color:#a5413f; border:1px solid #dcb1af; border-radius:3px; font-weight:700;">✕</div><div style="text-align:center; padding:5px 0; background:#dceadf; color:#3c6e4f; border:1px solid #9cc3a8; border-radius:3px; font-weight:700;">✓<sup style="font-size:8px;">2</sup></div><div style="text-align:center; padding:5px 0; background:#fbe7e6; color:#a5413f; border:1px solid #dcb1af; border-radius:3px; font-weight:700;">✕<sup style="font-size:8px;">3</sup></div><div style="text-align:center; padding:5px 0; background:#f3f1ea; color:#a8a499; border:1px solid #dad6cc; border-radius:3px; font-weight:700;">–</div></div>
+      </div>
+      <div style="margin-top:12px; max-width:760px; display:flex; flex-direction:column; gap:4px; font-size:11.5px; color:#6b675e; line-height:1.5;"><div><b style="color:#a5413f;">①</b> TTS → Chính thức: <b>hiện chặn</b> — phải qua Thử việc. Nếu muốn tuyển thẳng cần BA chốt &amp; cập nhật rule.</div><div><b style="color:#3c6e4f;">②</b> Nghỉ việc → Chính thức = <b>Reactivate</b>: ≤6 tháng khôi phục hồ sơ, &gt;6 tháng tạo mới (mục E).</div><div><b style="color:#a5413f;">③</b> Nghỉ việc → Tạm ngưng: <b>chặn</b> — đã off-board; chỉ Reactivate về Chính thức.</div></div>
+      <div style="margin-top:12px; transform:rotate(-.5deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12; display:inline-block;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Server validate theo ma trận này; chuyển không hợp lệ → báo lỗi, không lưu. <span style="color:#8a6d1f;">TC-EMP-05 · TRANSITION_MATRIX</span></div>
+    </div>
+
+    <div style="display:flex; gap:44px; align-items:flex-start; margin-top:46px;">
+    <section style="flex:none; width:480px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">D · Xác nhận đổi sang Tạm ngưng / Nghỉ việc <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span> <span style="font-weight:400; color:#7a766c;">— confirm modal</span></div>      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); overflow:hidden;">
+        <div style="display:flex; align-items:center; gap:10px; padding:15px 18px; border-bottom:1.5px solid #e3e0d8;"><div style="width:32px; height:32px; border-radius:50%; background:#fbe7e6; border:1.5px solid #d8a9a6; display:flex; align-items:center; justify-content:center;"><img src="https://img.icons8.com/fluency-systems-regular/96/b94a48/error.png" alt="" style="width:18px;height:18px;" /></div><div style="font-weight:700; font-size:16px;">Chuyển sang “Nghỉ việc”?</div></div>
+        <div style="padding:14px 18px;">
+          <div style="font-size:13px; color:#7a766c; margin-bottom:8px;">Hoàng Thị E (NV-1004) · hiệu lực 01/07/2026</div>
+          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:10px; padding:7px 11px; background:#eef3f9; border:1.5px solid #bcd2e6; border-radius:4px; font-size:12px; color:#2b5170;">Tài khoản: <span style="background:#dceadf; color:#3c6e4f; border:1px solid #9cc3a8; padding:1px 8px; border-radius:10px; font-size:11px; white-space:nowrap;">● Đã liên kết</span> <span style="color:#6b675e;">→ sẽ <b>Disable qua M9</b></span></div>
+          <div style="background:#fbf3f2; border:1.5px solid #d8a9a6; border-radius:4px; padding:6px 12px; margin-bottom:12px;"><div style="display:flex; align-items:flex-start; gap:8px; font-size:12.5px; color:#8f3937; padding:6px 0;"><img src="https://img.icons8.com/fluency-systems-regular/96/b94a48/error.png" alt="" style="width:14px;height:14px;flex:none;margin-top:1px;" /><div><b>Khóa / disable tài khoản đăng nhập</b> qua Module 9.</div></div><div style="display:flex; align-items:flex-start; gap:8px; font-size:12.5px; color:#8f3937; padding:6px 0;"><img src="https://img.icons8.com/fluency-systems-regular/96/b94a48/error.png" alt="" style="width:14px;height:14px;flex:none;margin-top:1px;" /><div><b>Review &amp; thu hồi vai trò / quyền</b> đang gán.</div></div><div style="display:flex; align-items:flex-start; gap:8px; font-size:12.5px; color:#8f3937; padding:6px 0;"><img src="https://img.icons8.com/fluency-systems-regular/96/b94a48/error.png" alt="" style="width:14px;height:14px;flex:none;margin-top:1px;" /><div><b>Chặn giao việc mới</b> cho nhân sự này.</div></div><div style="display:flex; align-items:flex-start; gap:8px; font-size:12.5px; color:#8f3937; padding:6px 0;"><img src="https://img.icons8.com/fluency-systems-regular/96/b94a48/error.png" alt="" style="width:14px;height:14px;flex:none;margin-top:1px;" /><div>Giữ <b>hồ sơ &amp; lịch sử</b> — không xóa cứng.</div></div></div>
+          <div style="display:flex; gap:10px; justify-content:flex-end;"><div style="height:36px; padding:0 16px; border:1.5px solid #2b2b2b; border-radius:3px; display:flex; align-items:center; font-size:14px;">Hủy</div><div style="height:36px; padding:0 18px; background:#b94a48; color:#fff; border-radius:3px; display:flex; align-items:center; font-weight:700; font-size:14px;">Xác nhận</div></div>
+        </div>
+      </div>
+      <div style="margin-top:14px; transform:rotate(-.5deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Bắt buộc confirm khi sang Tạm ngưng / Nghỉ việc. Tạm ngưng: khóa tạm TK. <span style="color:#8a6d1f;">TC-EMP-05</span></div>
+    </section>
+    <section style="flex:none; width:500px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">E · Tái kích hoạt (reactivate) <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0-lite</span> <span style="font-weight:400; color:#7a766c;">— US-M1-011 · rule 6 tháng · M9</span></div>      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:18px 20px;">
+        <div style="display:flex; gap:12px; margin-bottom:14px;"><div style="flex:1; border:1.5px solid #9cc3a8; background:#f4f9f5; border-radius:5px; padding:12px;"><div style="font-weight:700; font-size:13px; color:#3c6e4f; margin-bottom:6px;">≤ 6 tháng</div><div style="font-size:12px; color:#4a463e; line-height:1.6;">Khôi phục <b>hồ sơ cũ</b>, giữ <b>mã NV</b> &amp; lịch sử.</div></div><div style="flex:1; border:1.5px solid #d9c489; background:#fdfaf0; border-radius:5px; padding:12px;"><div style="font-weight:700; font-size:13px; color:#8a6d1f; margin-bottom:6px;">&gt; 6 tháng / đã archive</div><div style="font-size:12px; color:#4a463e; line-height:1.6;">Tạo <b>hồ sơ mới</b> liên kết hồ sơ cũ.</div></div></div>
+        <div style="display:flex; flex-direction:column; gap:6px; font-size:12.5px; color:#4a463e;"><div style="display:flex; gap:7px;"><span style="color:#356fa3;">→</span><span>Tài khoản <b>mở khóa qua Module 9</b> (không tự mở ở M1).</span></div><div style="display:flex; gap:7px;"><span style="color:#b94a48;">✕</span><span>Vai trò / quyền cũ <b>không tự khôi phục</b> — phải gán lại.</span></div><div style="display:flex; gap:7px;"><span style="color:#8a6d1f;">▢</span><span>Sau 6 tháng có thể <b>archive / anonymize</b> hồ sơ theo policy (ngoài P0).</span></div></div>
+      </div>
+      <div style="margin-top:14px; transform:rotate(-.5deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Reactivate <b>P0-lite</b> cho demo vòng đời Sprint 2: mở lại hồ sơ ≤6 tháng; role / account vẫn qua M9. <span style="color:#8a6d1f;">REACTIVATE · REACTIVATE_OVER_6M</span></div>
+    </section>
+    </div>
+
+    <div style="display:flex; gap:44px; align-items:flex-start; margin-top:46px;">
+    <section style="flex:none; width:480px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">F · Rule ngày hiệu lực & chặn giao việc <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span> <span style="font-weight:400; color:#7a766c;">— validate</span></div>      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:18px 20px; display:flex; flex-direction:column; gap:7px;">
+        <div style="display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:#4a463e; padding:3px 0;"><span style="color:#3c6e4f; flex:none;">✓</span><span>Ngày hiệu lực <b>không nhỏ hơn ngày vào làm</b>.</span></div>        <div style="display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:#4a463e; padding:3px 0;"><span style="color:#b94a48; flex:none;">✕</span><span>Không <b>đảo mốc</b> lịch sử (mốc sau ≥ mốc trước).</span></div>        <div style="display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:#4a463e; padding:3px 0;"><span style="color:#b94a48; flex:none;">✕</span><span>Không tạo bản ghi <b>trùng ngày hiệu lực</b>.</span></div>        <div style="display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:#4a463e; padding:3px 0;"><span style="color:#b94a48; flex:none;">✕</span><span>Ngày <b>nghỉ việc</b> không trước ngày bắt đầu làm.</span></div>        <div style="height:1px; background:#ece9e1; margin:6px 0;"></div>        <div style="display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:#4a463e; padding:3px 0;"><span style="color:#8a6d1f; flex:none;">⊘</span><span>Nhân sự <b>Nghỉ việc / Tạm ngưng</b> → <b>không được giao việc mới</b>: dropdown người nhận ở màn ⑩ Giao việc <b>ẩn / disable</b> nhân sự này.</span></div>      </div>
+      <div style="margin-top:14px; transform:rotate(-.5deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Validate mốc thời gian + chặn giao việc khi không active. Loading / empty / error / 403 dùng chung ở màn ⑫. <span style="color:#8a6d1f;">TC-EMP-05</span></div>
+    </section>
+    <section style="flex:none; width:480px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">G · Quyền đổi trạng thái <span style="font-size:11px; font-weight:600; background:#f6eed6; color:#8a6d1f; border:1px solid #d9c489; padding:1px 7px; border-radius:3px; vertical-align:2px;">P1</span> <span style="font-weight:400; color:#7a766c;">— RBAC</span></div>      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); overflow:hidden;">
+        <div style="display:grid; grid-template-columns:1.4fr 100px 1.1fr; gap:6px; padding:10px 14px; background:#f3f1ea; font-size:12px; color:#6b675e; font-weight:700; border-bottom:1.5px solid #d8d5cc;"><div>Vai trò</div><div style="text-align:center;">Đổi trạng thái</div><div>Phạm vi</div></div>
+        <div style="display:grid; grid-template-columns:1.4fr 100px 1.1fr; gap:6px; padding:10px 14px; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="font-weight:600;">HR / Quản trị viên</div><div style="text-align:center;"><span style="color:#3c6e4f; font-weight:700;">✓</span></div><div style="color:#6b675e;">Theo phân công</div></div>
+        <div style="display:grid; grid-template-columns:1.4fr 100px 1.1fr; gap:6px; padding:10px 14px; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="font-weight:600;">Quản lý chi nhánh</div><div style="text-align:center;"><span style="background:#f6eed6; color:#8a6d1f; border:1px solid #d9c489; padding:1px 7px; border-radius:10px; font-size:10.5px; white-space:nowrap;">◐ Có ĐK</span></div><div style="color:#6b675e;">Chỉ khi có quyền HR; nếu không: xem / đề xuất</div></div>
+        <div style="display:grid; grid-template-columns:1.4fr 100px 1.1fr; gap:6px; padding:10px 14px; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="font-weight:600;">Trưởng phòng</div><div style="text-align:center;"><span style="color:#b0aca2;">–</span></div><div style="color:#6b675e;">Xem / đề xuất (nếu có quyền)</div></div>
+        <div style="display:grid; grid-template-columns:1.4fr 100px 1.1fr; gap:6px; padding:10px 14px; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="font-weight:600;">Nhân viên</div><div style="text-align:center;"><span style="color:#b0aca2;">–</span></div><div style="color:#6b675e;">Không thao tác</div></div>
+        <div style="display:flex; align-items:flex-start; gap:8px; margin:12px 14px 14px; background:#f6eed6; border:1.5px solid #d9c489; border-radius:4px; padding:9px 12px; font-size:12.5px; color:#6b5a12;"><span style="font-size:15px; line-height:1;">⊘</span><div>Mặc định chỉ <b>HR / Admin</b> đổi trạng thái thật. <b>Quản lý chi nhánh</b> đổi được <b>chỉ khi</b> có quyền HR tương ứng trong scope; còn lại <b>xem / đề xuất</b>. Nhân viên không thao tác; ngoài quyền → <b>403</b>.</div></div>
+      </div>
+      <div style="margin-top:14px; transform:rotate(-.5deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> TC-EMP-06 · permission/data scope</div>
+    </section>
+    <section style="flex:none; width:400px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">H · Ca âm &amp; thông báo mẫu <span style="font-size:11px; font-weight:600; background:#f6eed6; color:#8a6d1f; border:1px solid #d9c489; padding:1px 7px; border-radius:3px; vertical-align:2px;">P1 · P2</span> <span style="font-weight:400; color:#7a766c;">— negative + messages</span></div>
+      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:18px 20px;">
+        <div style="font-weight:700; font-size:13px; color:#a5413f; margin-bottom:8px;">Ca kiểm thử âm (negative)</div>
+        <div style="display:flex; flex-direction:column; gap:6px; font-size:12px; color:#4a463e;"><div style="display:flex; gap:7px; align-items:flex-start;"><span style="color:#a5413f; flex:none;">✕</span><span>No-op — trùng trạng thái hiện tại <code style="font-size:10.5px; color:#7a766c;">NOOP</code></span></div><div style="display:flex; gap:7px; align-items:flex-start;"><span style="color:#a5413f; flex:none;">✕</span><span>Ngày hiệu lực &lt; ngày vào làm <code style="font-size:10.5px; color:#7a766c;">EFF_BEFORE_HIRE</code></span></div><div style="display:flex; gap:7px; align-items:flex-start;"><span style="color:#a5413f; flex:none;">✕</span><span>Đảo mốc lịch sử <code style="font-size:10.5px; color:#7a766c;">REVERSED_ORDER</code></span></div><div style="display:flex; gap:7px; align-items:flex-start;"><span style="color:#a5413f; flex:none;">✕</span><span>Trùng ngày hiệu lực <code style="font-size:10.5px; color:#7a766c;">DUP_EFF_DATE</code></span></div><div style="display:flex; gap:7px; align-items:flex-start;"><span style="color:#a5413f; flex:none;">✕</span><span>Nghỉ việc khi còn role active <code style="font-size:10.5px; color:#7a766c;">RESIGN_WITH_ROLE</code></span></div><div style="display:flex; gap:7px; align-items:flex-start;"><span style="color:#a5413f; flex:none;">✕</span><span>Reactivate &gt; 6 tháng <code style="font-size:10.5px; color:#7a766c;">REACTIVATE_OVER_6M</code></span></div></div>
+        <div style="height:1px; background:#ece9e1; margin:13px 0;"></div>
+        <div style="font-weight:700; font-size:13px; color:#356fa3; margin-bottom:8px;">Thông báo mẫu <span style="font-size:9px; background:#eef0f4; color:#6b675e; border:1px solid #cdd2da; padding:0 4px; border-radius:3px; font-weight:400;">P2</span></div>
+        <div style="display:flex; flex-direction:column; gap:7px;"><div style="display:flex; align-items:flex-start; gap:7px; background:#fbf3f2; border:1.5px solid #d8a9a6; border-radius:4px; padding:7px 10px; font-size:12px; color:#8f3937;"><img src="https://img.icons8.com/fluency-systems-regular/96/b94a48/error.png" alt="" style="width:14px;height:14px;flex:none;margin-top:1px;" /> "Không thể chọn trạng thái hiện tại."</div><div style="display:flex; align-items:flex-start; gap:7px; background:#fbf3f2; border:1.5px solid #d8a9a6; border-radius:4px; padding:7px 10px; font-size:12px; color:#8f3937;"><img src="https://img.icons8.com/fluency-systems-regular/96/b94a48/error.png" alt="" style="width:14px;height:14px;flex:none;margin-top:1px;" /> "Ngày hiệu lực không hợp lệ (≥ ngày vào làm, không đảo mốc)."</div><div style="display:flex; align-items:flex-start; gap:7px; background:#fbf3f2; border:1.5px solid #d8a9a6; border-radius:4px; padding:7px 10px; font-size:12px; color:#8f3937;"><img src="https://img.icons8.com/fluency-systems-regular/96/b94a48/error.png" alt="" style="width:14px;height:14px;flex:none;margin-top:1px;" /> "Nhân sự đã nghỉ việc — không thể giao việc."</div></div>
+      </div>
+      <div style="margin-top:14px; transform:rotate(-.5deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Mỗi ca âm = 1 test case riêng cho Tester. <span style="color:#8a6d1f;">TC-EMP-05-NEG</span></div>
+    </section>
+    </div>
+
+    <div style="margin-top:50px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">J · Mapping Màn hình → API → Rule → Test Case (Trạng thái) <span style="font-size:11px; font-weight:600; background:#f6eed6; color:#8a6d1f; border:1px solid #d9c489; padding:1px 7px; border-radius:3px; vertical-align:2px;">P1</span> <span style="font-weight:400; color:#7a766c;">— trace Dev / Tester</span></div>      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); overflow:hidden; max-width:1120px;">
+        <div style="display:grid; grid-template-columns:1.2fr 2fr 1.6fr 0.9fr; gap:0; background:#f3f1ea; font-size:12.5px; color:#6b675e; font-weight:700; border-bottom:1.5px solid #d8d5cc;"><div style="padding:11px 14px;">Hành động</div><div style="padding:11px 14px;">API</div><div style="padding:11px 14px;">Rule</div><div style="padding:11px 14px;">Test Case</div></div>
+        <div style="display:grid; grid-template-columns:1.2fr 2fr 1.6fr 0.9fr; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:11px 14px; font-weight:700;">Lịch sử trạng thái</div><div style="padding:11px 14px; font-family:ui-monospace,monospace; font-size:11px; line-height:1.5; color:#4a463e;"><span style="color:#356fa3; font-weight:700;">GET</span> /api/employee-status-histories?employee_id={id}</div><div style="padding:11px 14px; color:#6b675e; line-height:1.5;">Theo employee; không ghi đè; lọc ngày / trạng thái / người cập nhật.</div><div style="padding:11px 14px; color:#7a766c; font-family:ui-monospace,monospace; font-size:11px;">TC-HIS-01</div></div>
+        <div style="display:grid; grid-template-columns:1.2fr 2fr 1.6fr 0.9fr; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:11px 14px; font-weight:700;">Đổi trạng thái <span style="font-size:9.5px; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:0 5px; border-radius:3px; white-space:nowrap;">chuẩn duy nhất</span></div><div style="padding:11px 14px; font-family:ui-monospace,monospace; font-size:11px; line-height:1.5; color:#4a463e;"><span style="color:#2f7d63; font-weight:700;">POST</span> /api/employees/{id}/status<div style="color:#7a766c; font-size:10px; margin-top:2px;">body: {to_status, effective_date, reason}</div></div><div style="padding:11px 14px; color:#6b675e; line-height:1.5;">Enum chuẩn; chặn no-op; validate mốc ngày; side-effect server quyết theo <b>to_status</b>.</div><div style="padding:11px 14px; color:#7a766c; font-family:ui-monospace,monospace; font-size:11px;">TC-EMP-05 · NOOP</div></div>
+        <div style="display:grid; grid-template-columns:1.2fr 2fr 1.6fr 0.9fr; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:11px 14px; font-weight:700;">↳ Tạm ngưng</div><div style="padding:11px 14px; font-family:ui-monospace,monospace; font-size:11px; line-height:1.5; color:#4a463e;"><span style="color:#6b675e;">to_status =</span> "Tạm ngưng"<div style="color:#a8a499; font-size:10px; margin-top:2px;">nhánh của /status</div></div><div style="padding:11px 14px; color:#6b675e; line-height:1.5;">Khóa tạm TK; chặn giao việc mới.</div><div style="padding:11px 14px; color:#7a766c; font-family:ui-monospace,monospace; font-size:11px;">TC-EMP-05</div></div>
+        <div style="display:grid; grid-template-columns:1.2fr 2fr 1.6fr 0.9fr; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:11px 14px; font-weight:700;">↳ Nghỉ việc</div><div style="padding:11px 14px; font-family:ui-monospace,monospace; font-size:11px; line-height:1.5; color:#4a463e;"><span style="color:#6b675e;">to_status =</span> "Nghỉ việc"<div style="color:#a8a499; font-size:10px; margin-top:2px;">nhánh của /status</div></div><div style="padding:11px 14px; color:#6b675e; line-height:1.5;">Disable TK (M9); thu hồi role; soft delete; giữ lịch sử. Cảnh báo nếu còn role active.</div><div style="padding:11px 14px; color:#7a766c; font-family:ui-monospace,monospace; font-size:11px;">TC-EMP-05 · RESIGN_WITH_ROLE</div></div>
+        <div style="display:grid; grid-template-columns:1.2fr 2fr 1.6fr 0.9fr; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:11px 14px; font-weight:700;">↳ Tái kích hoạt</div><div style="padding:11px 14px; font-family:ui-monospace,monospace; font-size:11px; line-height:1.5; color:#4a463e;"><span style="color:#6b675e;">to_status =</span> "Chính thức"<div style="color:#a8a499; font-size:10px; margin-top:2px;">reactivate; nhánh của /status</div></div><div style="padding:11px 14px; color:#6b675e; line-height:1.5;">≤6 tháng khôi phục hồ sơ cũ; >6 tháng tạo mới liên kết; role không tự khôi phục.</div><div style="padding:11px 14px; color:#7a766c; font-family:ui-monospace,monospace; font-size:11px;">TC-EMP-05 · REACTIVATE_OVER_6M</div></div>
+      </div>
+      <div style="margin-top:14px; transform:rotate(-.5deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> <b>Chuẩn API:</b> 1 endpoint generic <code>POST /api/employees/{id}/status</code>, <code>to_status</code> quyết side-effect — KHÔNG dùng /suspend /resign /reactivate riêng. Mọi thao tác ghi <b>audit log (M9)</b>: người · thời điểm · cũ→mới · lý do. Path sau biến <code>base_url</code>.</div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { tab: 'org', showTransfer: false, confirm: null, toast: null };
+
+  confirmCfg(c) {
+    const map = {
+      inactive: {
+        title: 'Vô hiệu hóa ' + c.label + '?',
+        body: c.label + ' sẽ bị ẩn khỏi danh sách chọn nhưng vẫn xem được ở bộ lọc “Đã vô hiệu” và có thể khôi phục sau.',
+        icon: '⊘', needType: false, btn: 'Vô hiệu hóa', btnBg: '#8a6d1f',
+        iconBg: '#f6eed6', iconBd: '#d9c489', iconFg: '#8a6d1f',
+        ok: 'Đã vô hiệu hóa ' + c.label + '.',
+      },
+      restore: {
+        title: 'Khôi phục ' + c.label + '?',
+        body: c.label + ' sẽ hoạt động trở lại và hiện trong danh sách chọn.',
+        icon: '↺', needType: false, btn: 'Khôi phục', btnBg: '#3c6e4f',
+        iconBg: '#dceadf', iconBd: '#9cc3a8', iconFg: '#3c6e4f',
+        ok: 'Đã khôi phục ' + c.label + '.',
+      },
+      delete: {
+        title: 'Xóa (mềm) ' + c.label + '?',
+        body: c.label + ' sẽ được ẩn (soft delete) và có thể khôi phục. Nhập XÓA để xác nhận.',
+        icon: '✕', needType: true, btn: 'Xóa', btnBg: '#b94a48',
+        iconBg: '#fbe7e6', iconBd: '#d8a9a6', iconFg: '#b94a48',
+        ok: 'Đã xóa (mềm) ' + c.label + '. Có thể khôi phục ở bộ lọc “Đã xóa”.',
+      },
+    };
+    return map[c.type] || map.inactive;
+  }
+
+  tabStyle(active) {
+    const base = "font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:15px; padding:9px 18px; border:2px solid #2b2b2b; border-radius:4px; cursor:pointer;";
+    return active
+      ? base + "background:#356fa3; color:#fff; box-shadow:3px 3px 0 rgba(43,43,43,.2);"
+      : base + "background:#fff; color:#2b2b2b;";
+  }
+
+  statusPill(text, kind) {
+    const map = {
+      active:    ['#dceadf', '#3c6e4f', '#9cc3a8', '●'],
+      off:       ['#efe7e6', '#9a5b59', '#d3b3b1', '○'],
+      pause:     ['#f6eed6', '#8a6d1f', '#d9c489', '◐'],
+      quit:      ['#eceae6', '#6b675e', '#c9c5bb', '✕'],
+      probation: ['#eaf1f8', '#356fa3', '#bcd2e6', '◔'],
+    };
+    const [bg, fg, bd, dot] = map[kind] || map.active;
+    return React.createElement('span', { style: {
+      background: bg, color: fg, border: '1px solid ' + bd,
+      padding: '2px 9px', borderRadius: '10px', fontSize: '12.5px', whiteSpace: 'nowrap'
+    } }, dot + ' ' + text);
+  }
+
+  taskPill(text, kind) {
+    const map = {
+      newt:    ['#eef0f4', '#5a6573', '#cdd2da', '○'],
+      assigned:['#eaf1f8', '#356fa3', '#bcd2e6', '◔'],
+      progress:['#e7f0ed', '#2f7d63', '#a9cdc0', '◑'],
+      review:  ['#f6eed6', '#8a6d1f', '#d9c489', '◕'],
+      done:    ['#dceadf', '#3c6e4f', '#9cc3a8', '●'],
+      reject:  ['#fbe7e6', '#a5413f', '#dcb1af', '✕'],
+      cancel:  ['#eceae6', '#6b675e', '#c9c5bb', '⊘'],
+      overdue: ['#fbe3d6', '#b15a2a', '#e0b598', '⏱'],
+    };
+    const [bg, fg, bd, dot] = map[kind] || map.newt;
+    return React.createElement('span', { style: {
+      background: bg, color: fg, border: '1px solid ' + bd,
+      padding: '2px 9px', borderRadius: '10px', fontSize: '12.5px', whiteSpace: 'nowrap'
+    } }, dot + ' ' + text);
+  }
+
+  priPill(kind) {
+    const map = { high: ['#fbe7e6', '#a5413f', 'Cao'], mid: ['#f6eed6', '#8a6d1f', 'TB'], low: ['#eef0f4', '#6b675e', 'Thấp'] };
+    const [bg, fg, t] = map[kind] || map.mid;
+    return React.createElement('span', { style: {
+      background: bg, color: fg, padding: '1px 8px', borderRadius: '3px', fontSize: '12px', fontWeight: 600
+    } }, t);
+  }
+
+  acctPill(linked) {
+    return linked
+      ? React.createElement('span', { style: { color: '#3c6e4f', fontSize: '13px' } }, '✓ Đã liên kết')
+      : React.createElement('span', { style: { color: '#b0aca2', fontSize: '13px' } }, '— Chưa');
+  }
+
+  asgPill(text, kind) {
+    const map = {
+      live:  ['#dceadf', '#3c6e4f', '#9cc3a8', '●'],
+      sched: ['#eaf1f8', '#356fa3', '#bcd2e6', '◔'],
+      end:   ['#eceae6', '#6b675e', '#c9c5bb', '✓'],
+    };
+    const [bg, fg, bd, dot] = map[kind] || map.live;
+    return React.createElement('span', { style: {
+      background: bg, color: fg, border: '1px solid ' + bd,
+      padding: '2px 9px', borderRadius: '10px', fontSize: '12.5px', whiteSpace: 'nowrap'
+    } }, dot + ' ' + text);
+  }
+
+  allowCell(mode) {
+    const map = {
+      allow: ['#dceadf', '#3c6e4f', '#9cc3a8', '✓'],
+      deny:  ['#fbe7e6', '#a5413f', '#dcb1af', '✕'],
+      none:  ['#f3f1ea', '#a8a499', '#dad6cc', '–'],
+    };
+    const [bg, fg, bd, mk] = map[mode] || map.none;
+    return React.createElement('div', { style: {
+      width: '100%', textAlign: 'center', padding: '5px 0', background: bg, color: fg,
+      border: '1px solid ' + bd, borderRadius: '3px', fontSize: '13px', fontWeight: 700
+    } }, mk);
+  }
+
+  apiLines(arr) {
+    const col = { GET: '#356fa3', POST: '#2f7d63', PUT: '#8a6d1f', DELETE: '#b94a48', PATCH: '#7a5ea8' };
+    return React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '3px', fontFamily: 'ui-monospace, monospace', fontSize: '12px', lineHeight: 1.35 } },
+      arr.map((ln, i) => React.createElement('div', { key: i },
+        React.createElement('span', { style: { color: col[ln.m] || '#6b675e', fontWeight: 700 } }, ln.m),
+        React.createElement('span', { style: { color: '#4a463e' } }, ' ' + ln.p)
+      ))
+    );
+  }
+
+  renderVals() {
+    const t = this.state.tab;
+    const set = (v) => () => this.setState({ tab: v });
+
+    const depts = [
+      { code: 'PB-001', name: 'Phòng Kinh doanh', unit: 'Chi nhánh Hà Nội', head: 'Trần B', count: 18, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'PB-002', name: 'Phòng Kế toán', unit: 'Công ty mẹ ABC', head: 'Lê C', count: 7, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'PB-003', name: 'Phòng Nhân sự', unit: 'Công ty mẹ ABC', head: 'Phạm D', count: 5, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'PB-004', name: 'Phòng Kho vận', unit: 'Chi nhánh Hải Phòng', head: 'Hoàng E', count: 12, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'PB-005', name: 'Phòng Marketing', unit: 'CT con Miền Nam', head: '— chưa gán', count: 4, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'PB-006', name: 'Tổ Bảo trì (cũ)', unit: 'Chi nhánh Hà Nội', head: 'Đỗ F', count: 0, statusEl: this.statusPill('Vô hiệu', 'off') },
+    ];
+
+    const emps = [
+      { code: 'NV-1001', name: 'Trần Văn B', dept: 'Kinh doanh', title: 'Trưởng phòng', branch: 'CN Hà Nội', statusEl: this.statusPill('Đang làm', 'active'), acctEl: this.acctPill(true) },
+      { code: 'NV-1002', name: 'Lê Thị C', dept: 'Kế toán', title: 'Kế toán trưởng', branch: 'CT mẹ ABC', statusEl: this.statusPill('Đang làm', 'active'), acctEl: this.acctPill(true) },
+      { code: 'NV-1003', name: 'Phạm Văn D', dept: 'Nhân sự', title: 'Chuyên viên', branch: 'CT mẹ ABC', statusEl: this.statusPill('Đang làm', 'active'), acctEl: this.acctPill(false) },
+      { code: 'NV-1004', name: 'Hoàng Thị E', dept: 'Kho vận', title: 'Quản lý kho', branch: 'CN Hải Phòng', statusEl: this.statusPill('Tạm ngưng', 'pause'), acctEl: this.acctPill(true) },
+      { code: 'NV-1005', name: 'Vũ Văn G', dept: 'Kinh doanh', title: 'Nhân viên', branch: 'CN Hà Nội', statusEl: this.statusPill('Đang làm', 'active'), acctEl: this.acctPill(false) },
+      { code: 'NV-1006', name: 'Đỗ Thị H', dept: 'Marketing', title: 'Nhân viên', branch: 'CN Miền Nam', statusEl: this.statusPill('Đang làm', 'active'), acctEl: this.acctPill(true) },
+      { code: 'NV-0099', name: 'Bùi Văn K', dept: 'Bảo trì', title: 'Kỹ thuật viên', branch: 'CN Hà Nội', statusEl: this.statusPill('Nghỉ việc', 'quit'), acctEl: this.acctPill(false) },
+    ];
+
+    const assignments = [
+      { nv: 'Nguyễn Văn A', code: 'NV-1001', type: 'Điều chuyển', from: 'P. Kế toán · Nhân viên', to: 'P. Tài chính · Chuyên viên', eff: '01/07/2026', by: 'HR — Phạm Văn D', statusEl: this.asgPill('Lên lịch', 'sched') },
+      { nv: 'Hoàng Thị E', code: 'NV-1004', type: 'Điều chuyển', from: 'CN Hải Phòng · QL kho', to: 'CN Hà Nội · QL kho', eff: '20/06/2026', by: 'HR — Phạm Văn D', statusEl: this.asgPill('Có hiệu lực', 'live') },
+      { nv: 'Vũ Văn G', code: 'NV-1005', type: 'Bổ nhiệm', from: 'P. Kinh doanh · Nhân viên', to: 'P. Kinh doanh · Phó phòng', eff: '15/06/2026', by: 'HR — Lê Thị C', statusEl: this.asgPill('Có hiệu lực', 'live') },
+      { nv: 'Đỗ Thị H', code: 'NV-1006', type: 'Điều chuyển', from: 'CN Miền Nam · NV', to: 'CT mẹ ABC · NV', eff: '01/06/2026', by: 'HR — Lê Thị C', statusEl: this.asgPill('Có hiệu lực', 'live') },
+      { nv: 'Phạm Văn D', code: 'NV-1003', type: 'Kết thúc CT', from: 'P. Nhân sự · Chuyên viên (kiêm)', to: '— đóng công tác cũ', eff: '31/05/2026', by: 'HR — Lê Thị C', statusEl: this.asgPill('Đã đóng', 'end') },
+    ];
+
+    const statusLog = [
+      { nameEl: this.statusPill('Thử việc', 'probation'), note: 'Onboard — bắt đầu thử việc', eff: '01/09/2024', by: 'HR — Phạm Văn D' },
+      { nameEl: this.statusPill('Chính thức', 'active'), note: 'Lên chính thức (đạt đánh giá thử việc)', eff: '01/03/2025', by: 'HR — Phạm Văn D' },
+      { nameEl: this.statusPill('Tạm ngưng', 'pause'), note: 'Suspend — nghỉ không lương 3 tháng', eff: '01/02/2026', by: 'HR — Phạm Văn D' },
+      { nameEl: this.statusPill('Chính thức', 'active'), note: 'Tái kích hoạt — quay lại làm việc', eff: '01/05/2026', by: 'HR — Phạm Văn D' },
+    ];
+
+    const deptStaff = [
+      { code: 'NV-1001', name: 'Trần Văn B', title: 'Trưởng phòng', statusEl: this.statusPill('Đang làm', 'active') },
+      { code: 'NV-1005', name: 'Vũ Văn G', title: 'Nhân viên KD', statusEl: this.statusPill('Đang làm', 'active') },
+      { code: 'NV-1012', name: 'Ngô Thị M', title: 'Nhân viên KD', statusEl: this.statusPill('Đang làm', 'active') },
+      { code: 'NV-1018', name: 'Lý Văn N', title: 'Thực tập sinh', statusEl: this.statusPill('Tạm ngưng', 'pause') },
+    ];
+
+    const positions = [
+      { code: 'CV-001', name: 'Giám đốc', level: 'Cấp 1 — Điều hành', count: 2, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'CV-002', name: 'Trưởng phòng', level: 'Cấp 2 — Quản lý', count: 6, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'CV-003', name: 'Phó phòng', level: 'Cấp 2 — Quản lý', count: 4, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'CV-004', name: 'Chuyên viên', level: 'Cấp 3 — Nhân viên', count: 38, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'CV-005', name: 'Nhân viên', level: 'Cấp 3 — Nhân viên', count: 64, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'CV-006', name: 'Quản lý kho', level: 'Cấp 2 — Quản lý', count: 5, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'CV-007', name: 'Thực tập sinh', level: 'Cấp 4 — Tập sự', count: 9, statusEl: this.statusPill('Vô hiệu', 'off') },
+    ];
+
+    const tasks = [
+      { code: 'CV#1042', title: 'Chuẩn bị báo giá khách hàng Vinaco', from: 'Trần Văn B', to: 'Vũ Văn G', due: '20/06/2026', priEl: this.priPill('high'), statusEl: this.taskPill('Đang xử lý', 'progress') },
+      { code: 'CV#1041', title: 'Đối chiếu công nợ Q2', from: 'Lê Thị C', to: 'P. Kế toán', due: '19/06/2026', priEl: this.priPill('mid'), statusEl: this.taskPill('Chờ duyệt', 'review') },
+      { code: 'CV#1039', title: 'Kiểm kê kho Hải Phòng', from: 'Hoàng Thị E', to: 'P. Kho vận', due: '15/06/2026', priEl: this.priPill('high'), statusEl: this.taskPill('Quá hạn', 'overdue') },
+      { code: 'CV#1037', title: 'Cập nhật hồ sơ nhân sự mới', from: 'Phạm Văn D', to: 'Phạm Văn D', due: '22/06/2026', priEl: this.priPill('low'), statusEl: this.taskPill('Đã giao', 'assigned') },
+      { code: 'CV#1035', title: 'Soạn hợp đồng đại lý Miền Nam', from: 'Trần Văn B', to: 'Đỗ Thị H', due: '18/06/2026', priEl: this.priPill('mid'), statusEl: this.taskPill('Hoàn thành', 'done') },
+      { code: 'CV#1033', title: 'Phối hợp: dữ liệu doanh số cho KT', from: 'Lê Thị C', to: 'P. Kinh doanh', due: '14/06/2026', priEl: this.priPill('mid'), statusEl: this.taskPill('Từ chối', 'reject') },
+      { code: 'CV#1030', title: 'Lập kế hoạch tuyển dụng', from: 'Phạm Văn D', to: 'P. Nhân sự', due: '25/06/2026', priEl: this.priPill('low'), statusEl: this.taskPill('Mới tạo', 'newt') },
+    ];
+
+    const roles = [
+      { code: 'R-01', name: 'Quản trị viên hệ thống', scope: 'Toàn doanh nghiệp', users: 2, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'R-02', name: 'Quản lý chi nhánh', scope: '1 chi nhánh (gán khi gán vai trò)', users: 5, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'R-03', name: 'Trưởng phòng', scope: 'Phòng ban phụ trách', users: 6, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'R-04', name: 'Nhân viên (cấp 3)', scope: 'Cá nhân', users: 78, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'R-05', name: 'Thực tập sinh (cấp 4)', scope: 'Cá nhân (giới hạn)', users: 9, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'R-06', name: 'Quản lý kho', scope: 'Kho được gán', users: 5, statusEl: this.statusPill('Hoạt động', 'active') },
+    ];
+
+    // permission matrix rows: each = function group; cells per role R-02..R-04 sample
+    const A = (m) => this.allowCell(m);
+    const permRows = [
+      { fn: 'Org Unit / Chi nhánh', cells: ['allow','deny','deny'] },
+      { fn: 'Phòng ban', cells: ['allow','allow','deny'] },
+      { fn: 'Nhân sự', cells: ['allow','allow','none'] },
+      { fn: 'Chức vụ', cells: ['allow','deny','deny'] },
+      { fn: 'Giao việc / phê duyệt', cells: ['allow','allow','allow'] },
+      { fn: 'Xóa / khôi phục', cells: ['allow','deny','deny'] },
+    ].map(r => ({ fn: r.fn, c0: A(r.cells[0]), c1: A(r.cells[1]), c2: A(r.cells[2]) }));
+
+    const AL = (arr) => this.apiLines(arr);
+    const mapRows = [
+      { screen: 'Auth / phiên đăng nhập', apiEl: AL([{m:'POST',p:'/api/auth/login'},{m:'GET',p:'/api/auth/me'}]), tc: 'TC-AUTH', rule: 'JWT bearer; 401 khi sai token/mật khẩu; response envelope success/error.' },
+      { screen: 'Org Unit · list/tree', apiEl: AL([{m:'GET',p:'/api/org-units'},{m:'GET',p:'/api/org-units/tree'}]), tc: 'TC-OU-01', rule: 'Lọc theo data scope; render cây Mẹ → Con → Chi nhánh; chặn vòng lặp parent.' },
+      { screen: 'Org Unit · tạo/sửa/xóa', apiEl: AL([{m:'POST',p:'/api/org-units'},{m:'PUT',p:'/DELETE /api/org-units/{id}'},{m:'PATCH',p:'/api/org-units/{id}/restore'}]), tc: 'TC-OU-02/03', rule: 'Mã/tax_code/email/phone duy nhất; soft delete; force delete chỉ khi không còn ràng buộc nghiệp vụ.' },
+      { screen: 'Department · list/tree', apiEl: AL([{m:'GET',p:'/api/departments'},{m:'GET',p:'/api/departments/tree'}]), tc: 'TC-DPT-01', rule: 'Scope theo org_unit của actor; phòng ban cha/con phải cùng org_unit; hỗ trợ q/filter/sort.' },
+      { screen: 'Department · tạo/sửa/xóa', apiEl: AL([{m:'POST',p:'/api/departments'},{m:'PUT',p:'/DELETE /api/departments/{id}'},{m:'PATCH',p:'/api/departments/{id}/restore'}]), tc: 'TC-DPT-02/03', rule: 'Bắt buộc org_unit_id; mã phòng ban duy nhất; chặn vòng lặp parent; soft delete/restore.' },
+      { screen: 'Position · list/form', apiEl: AL([{m:'GET',p:'/api/positions'},{m:'POST',p:'/PUT /api/positions'},{m:'DELETE',p:'/api/positions/{id}'}]), tc: 'TC-POS-01', rule: 'Mã chức vụ duy nhất; status dùng 1/0; soft delete + restore + force khi hợp lệ.' },
+      { screen: 'Employee · list/detail', apiEl: AL([{m:'GET',p:'/api/employees'},{m:'GET',p:'/api/employees/{id}'}]), tc: 'TC-EMP-01', rule: 'Tìm/lọc theo q, employment_status, org_unit_id, department_id; áp dụng data scope.' },
+      { screen: 'Employee · tạo/sửa', apiEl: AL([{m:'POST',p:'/api/employees'},{m:'PUT',p:'/api/employees/{id}'}]), tc: 'TC-EMP-02/VAL', rule: 'Mã NV/email/CCCD/SĐT duy nhất; field bắt buộc; org_unit/department/position phải hợp lệ.' },
+      { screen: 'Employee · xóa/khôi phục', apiEl: AL([{m:'DELETE',p:'/api/employees/{id}'},{m:'GET',p:'/api/employees/trashed'},{m:'PATCH',p:'/api/employees/{id}/restore'}]), tc: 'TC-EMP-DEL', rule: 'Xóa mềm trước; danh sách trashed riêng; force delete chỉ khi không còn ràng buộc.' },
+      { screen: 'Phân công / điều chuyển', apiEl: AL([{m:'GET',p:'/api/employee-assignments'},{m:'POST',p:'/api/employee-assignments'},{m:'PUT',p:'/api/employee-assignments/{assignment_id}'}]), tc: 'TC-ASG-01', rule: 'Ghi lịch sử phân công; detail/update/delete dùng assignment_id; chặn overlap thời gian.' },
+      { screen: 'Lịch sử trạng thái nhân sự', apiEl: AL([{m:'GET',p:'/api/employee-status-histories'},{m:'GET',p:'/api/employee-status-histories/{id}'}]), tc: 'TC-HIS-01', rule: 'Theo dõi thay đổi employment_status; không ghi đè lịch sử; lọc theo employee_id/thời gian.' },
+      { screen: 'Role & Permission', apiEl: AL([{m:'GET',p:'/POST /api/roles'},{m:'GET',p:'/api/permissions'},{m:'POST',p:'/api/roles/{id}/permissions'}]), tc: 'TC-RBAC-01', rule: 'permission_ids; default deny; 403 khi thiếu quyền quản trị; xóa role phải kiểm tra ràng buộc.' },
+      { screen: 'User Role Scope', apiEl: AL([{m:'GET',p:'/POST /api/user-role-scopes'},{m:'DELETE',p:'/api/user-role-scopes/{id}'}]), tc: 'TC-SCOPE-01', rule: 'Gán role theo phạm vi dữ liệu; scope_type phải khớp scope_org_unit_id; conflict xử lý theo rule ưu tiên cấm.' },
+      { screen: 'Audit Log', apiEl: AL([{m:'GET',p:'/api/audit-logs'}]), tc: 'TC-AUD-01', rule: 'Read-only; lọc actor/action/module/time; lưu thao tác người dùng dùng chung toàn hệ thống.' },
+      { screen: 'Org Chart', apiEl: AL([{m:'GET',p:'/api/org-units/tree'},{m:'GET',p:'/api/departments/tree'},{m:'GET',p:'/api/employees?org_unit_id=…'}]), tc: 'TC-CHART-01', rule: 'Không thấy endpoint /org-chart trong API Contract V2; render từ tree + employee list để khớp ERD hiện tại.' },
+    ];
+
+    const c = this.state.confirm;
+    const cfg = c ? this.confirmCfg(c) : null;
+    const openConfirm = (type, label) => () => this.setState({ confirm: { type, label } });
+    const closeConfirm = () => this.setState({ confirm: null });
+    const doConfirm = () => this.setState({ confirm: null, toast: cfg ? cfg.ok : null });
+
+    return {
+      isOrg: t === 'org', isDept: t === 'dept', isEmp: t === 'emp',
+      isAssign: t === 'assign', isStatus: t === 'status',
+      isPos: t === 'pos', isChart: t === 'chart', isTask: t === 'task',
+      isRole: t === 'role', isStates: t === 'states',
+      deptStaff, positions, tasks, roles, permRows, mapRows,
+      assignments, statusLog,
+      goOrg: set('org'), goDept: set('dept'), goEmp: set('emp'),
+      goAssign: () => { window.location.href = "BA%20Wireframe%20P0%20-%2005%20Employee%20Assignment.dc.html"; }, goStatus: set('status'),
+      goPos: set('pos'), goChart: set('chart'), goTask: set('task'),
+      goRole: set('role'), goStates: set('states'),
+      tabOrgStyle: this.tabStyle(t === 'org'),
+      tabDeptStyle: this.tabStyle(t === 'dept'),
+      tabEmpStyle: this.tabStyle(t === 'emp'),
+      tabAssignStyle: this.tabStyle(t === 'assign'),
+      tabStatusStyle: this.tabStyle(t === 'status'),
+      tabPosStyle: this.tabStyle(t === 'pos'),
+      tabChartStyle: this.tabStyle(t === 'chart'),
+      tabTaskStyle: this.tabStyle(t === 'task'),
+      tabRoleStyle: this.tabStyle(t === 'role'),
+      tabStatesStyle: this.tabStyle(t === 'states'),
+      depts, emps,
+      showTransfer: this.state.showTransfer,
+      openTransfer: () => this.setState({ showTransfer: true }),
+      closeTransfer: () => this.setState({ showTransfer: false }),
+      confirmOpen: !!c,
+      confirmTitle: cfg ? cfg.title : '',
+      confirmBody: cfg ? cfg.body : '',
+      confirmIcon: cfg ? cfg.icon : '',
+      confirmBtn: cfg ? cfg.btn : '',
+      confirmNeedType: cfg ? cfg.needType : false,
+      confirmIconStyle: cfg ? { width: '34px', height: '34px', borderRadius: '50%', flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px', background: cfg.iconBg, border: '1.5px solid ' + cfg.iconBd, color: cfg.iconFg } : {},
+      confirmBtnStyle: cfg ? { height: '38px', padding: '0 20px', background: cfg.btnBg, color: '#fff', borderRadius: '3px', display: 'flex', alignItems: 'center', fontWeight: 700, fontSize: '14px', cursor: 'pointer' } : {},
+      openConfirm, closeConfirm, doConfirm,
+      vohieuDept: openConfirm('inactive', 'phòng ban “Phòng Kinh doanh”'),
+      xoaDept: openConfirm('delete', 'phòng ban “Phòng Kinh doanh”'),
+      khoiphucPos: openConfirm('restore', 'chức vụ “Thực tập sinh”'),
+      vohieuPos: openConfirm('inactive', 'chức vụ “Thực tập sinh”'),
+      xoaPos: openConfirm('delete', 'chức vụ “Thực tập sinh”'),
+      toast: this.state.toast,
+      dismissToast: () => this.setState({ toast: null }),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  @keyframes wfin { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+</style>
+</helmet>
+<div style="min-width:100%; width:max-content; min-height:100vh; box-sizing:border-box; background:#e7e5df; font-family:'Be Vietnam Pro', system-ui, sans-serif; color:#2b2b2b;">
+  <header style="position:sticky; top:0; left:0; z-index:50; background:#e7e5df; padding:22px 48px 14px 48px; border-bottom:2px dashed #b8b4aa;">
+    <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-size:12.5px; color:#8a857a; letter-spacing:.02em; margin-bottom:6px;">Module 1 · Quản lý Tổ chức — Wireframe P0 <span style="background:#fff4cf; border:1px solid #d8b53d; padding:1px 8px; border-radius:3px; margin-left:4px; color:#6b5a12;">Low-fi · MVP</span> <span style="background:#eef6f0; border:1px solid #9cc3a8; padding:1px 8px; border-radius:3px; color:#2f5640;">Rev2 · đã áp review P0/P1</span></div>
+    <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:21px;">⑧ Thiết kế wireframe P0 cho User Role Scope / Data Scope</div>
+    <div style="display:flex; gap:8px; margin-top:15px; flex-wrap:wrap;">
+      <a href="BA%20Wireframe%20P0%20-%2001%20Org%20Unit.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">① Org Unit</a>
+      <a href="BA%20Wireframe%20P0%20-%2002%20Department.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">② Department</a>
+      <a href="BA%20Wireframe%20P0%20-%2003%20Position.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">③ Chức vụ</a>
+      <a href="BA%20Wireframe%20P0%20-%2004%20Employee.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">④ Employee</a>
+      <a href="BA%20Wireframe%20P0%20-%2005%20Employee%20Assignment.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">⑤ Điều chuyển</a>
+      <a href="BA%20Wireframe%20P0%20-%2006%20Employee%20Status.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">⑥ Vòng đời TT</a>
+      <a href="BA%20Wireframe%20P0%20-%2007%20Role%20Permission%20Matrix.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">⑦ Vai trò &amp; quyền</a>
+      <a href="BA%20Wireframe%20P0%20-%2008%20User%20Role%20Scope.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#356fa3; color:#fff; box-shadow:3px 3px 0 rgba(43,43,43,.2);">⑧ Data Scope</a>
+      <a href="BA%20Wireframe%20P0%20-%2009%20Org%20Chart.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">⑨ Sơ đồ TC</a>
+      <a href="BA%20Wireframe%20P0%20-%2010%20Task%20Assignment%20Approval.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">⑩ Giao việc</a>
+      <a href="BA%20Wireframe%20P0%20-%2011%20Mapping%20API%20Rule%20TestCase.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">⑪ Mapping</a>
+      <a href="BA%20Wireframe%20P0%20-%2012%20UI%20States%20Validate.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">⑫ Trạng thái UI</a>
+    </div>
+  </header>
+
+<main style="padding:40px 48px 80px 48px;">
+    <div style="max-width:1140px; margin-bottom:32px; background:#eef3f9; border:2px solid #356fa3; border-left-width:6px; border-radius:4px; padding:14px 18px; box-shadow:3px 3px 0 rgba(53,111,163,.10);">
+      <div style="display:flex; align-items:center; gap:8px; font-weight:700; font-size:14.5px; color:#2b5170; margin-bottom:8px;"><span style="font-size:16px;">⚑</span> Lỗi &amp; quyết định cần sửa trước khi Done <span style="font-size:11px; font-weight:600; background:#fbe7e6; color:#a5413f; border:1px solid #dcb1af; padding:1px 8px; border-radius:3px;">P0</span></div>
+      <div style="display:flex; flex-direction:column; gap:5px; font-size:12.5px; color:#3a4654; line-height:1.55;">
+        <div>① <b>Sửa lỗi mismatch:</b> <code>scope_type</code> PHẢI khớp <code>scope_target</code> (Chi nhánh→chi nhánh · Phòng ban→phòng ban · Kho→kho). Ví dụ cũ "Chi nhánh ↔ Kho HN-02" đã sửa.</div>
+        <div>② <b>Bổ sung scope_type "Phòng ban"</b> cho Direct data scope theo <b>BRD US-M1-036</b> (Công ty / Chi nhánh / Phòng ban / Kho).</div>
+        <div>③ <b>Kho = MVP+</b> (chưa vào Sprint 2): không dùng làm ví dụ chính ở P0 → ví dụ dùng Chi nhánh / Phòng ban, chip Kho để <b>disabled / MVP+</b>. Mọi gán / thu hồi ghi <b>audit (M9)</b>.</div>
+      </div>
+    </div>
+    <div style="display:flex; gap:44px; align-items:flex-start;">
+    <section style="flex:none; width:500px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">A · Gán Role + Scope (user_role_scopes) <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span> <span style="font-weight:400; color:#7a766c;">— F5.4</span></div>      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:18px 20px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;"><span style="width:38px; height:38px; border-radius:50%; background:#dfe6ee; flex:none;"></span><div><div style="font-weight:700; font-size:14px;">Hoàng Thị E</div><div style="font-size:12px; color:#7a766c;">NV-1004 · user_id = U-1004</div></div></div>
+        <div style="margin-bottom:11px;"><div style="font-size:12px; color:#8c887e; margin-bottom:4px;">Vai trò (role_id) *</div><div style="height:34px; border:1.5px solid #356fa3; border-radius:3px; display:flex; align-items:center; padding:0 10px; font-size:13px; color:#4a463e;">✓ Quản lý kho (R-06)   ＋ thêm vai trò…</div></div>        <div style="margin-bottom:11px;"><div style="font-size:12px; color:#8c887e; margin-bottom:5px;">Scope type *</div><div style="display:flex; gap:6px; flex-wrap:wrap;"><div style="padding:6px 10px; border:1.5px solid #b9b6ad; background:#fff; border-radius:3px; font-size:12.5px; color:#6b675e;">○ Toàn HT</div><div style="padding:6px 10px; border:1.5px solid #b9b6ad; background:#fff; border-radius:3px; font-size:12.5px; color:#6b675e;">○ Công ty</div><div style="padding:6px 10px; border:1.5px solid #356fa3; background:#eaf1f8; border-radius:3px; font-size:12.5px; color:#2b2b2b;">◉ Chi nhánh</div><div style="padding:6px 9px; border:1.5px dashed #c4c0b6; background:#f6f4ee; border-radius:3px; font-size:12px; color:#b0aca2;">○ Kho <span style="font-size:9px; background:#f6eed6; color:#8a6d1f; border:1px solid #d9c489; padding:0 4px; border-radius:3px;">MVP+</span></div></div></div>
+        <div style="margin-bottom:11px;"><div style="font-size:12px; color:#8c887e; margin-bottom:4px;">Scope cụ thể (scope_id) *</div><div style="height:34px; border:1.5px solid #356fa3; border-radius:3px; display:flex; align-items:center; padding:0 10px; font-size:13px; color:#4a463e;">CN Hải Phòng ▾</div></div>        <div style="display:flex; gap:12px;"><div style="flex:1;"><div style="margin-bottom:11px;"><div style="font-size:12px; color:#8c887e; margin-bottom:4px;">effective_from</div><div style="height:34px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; padding:0 10px; font-size:13px; color:#4a463e;">01/07/2026</div></div></div><div style="flex:1;"><div style="margin-bottom:11px;"><div style="font-size:12px; color:#8c887e; margin-bottom:4px;">effective_to</div><div style="height:34px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; padding:0 10px; font-size:13px; color:#4a463e;">— không giới hạn</div></div></div></div>
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;"><span style="font-size:12px; color:#8c887e;">status:</span><span style="background:#dceadf; color:#3c6e4f; border:1px solid #9cc3a8; padding:1px 8px; border-radius:10px; font-size:11px; white-space:nowrap;">● Active</span><span style="font-size:11.5px; color:#9a968c;">revoked_at = null</span></div>
+        <div style="background:#eef6f0; border:1.5px solid #9cc3a8; border-radius:4px; padding:9px 12px; font-size:12.5px; color:#2f5640;"><b>Quyền hiệu lực sau khi lưu:</b> Role <b>Quản lý kho (R-06)</b> + Scope <b>Chi nhánh · CN Hải Phòng</b>.</div>
+        <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:14px;"><div style="height:36px; padding:0 16px; border:1.5px solid #2b2b2b; border-radius:3px; display:flex; align-items:center; font-size:14px;">Hủy</div><div style="height:36px; padding:0 18px; background:#356fa3; color:#fff; border-radius:3px; display:flex; align-items:center; font-weight:700; font-size:14px;">Lưu</div></div>
+      </div>
+      <div style="margin-top:14px; transform:rotate(-.5deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Scope gắn khi gán vai trò → lưu ở <code>user_role_scopes</code> (KHÔNG phải user_data_scopes). Kho scope (F5.3b) = <b>MVP+</b>. <span style="color:#8a6d1f;">TC-ROLE-ASSIGN</span></div>
+    </section>
+    <section style="flex:none; width:640px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">B · Role Scope đã gán <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span> <span style="font-weight:400; color:#7a766c;">— user_role_scopes</span></div>      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); overflow:hidden;">
+        <div style="display:flex; align-items:center; gap:7px; padding:10px 14px; border-bottom:1.5px solid #d8d5cc; flex-wrap:wrap;"><span style="font-size:10.5px; color:#8c887e; font-weight:700;">Lọc:</span><div style="height:28px; padding:0 9px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; font-size:11px; color:#9a968c;">User ▾</div><div style="height:28px; padding:0 9px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; font-size:11px; color:#9a968c;">Role ▾</div><div style="height:28px; padding:0 9px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; font-size:11px; color:#9a968c;">Scope type ▾</div><div style="height:28px; padding:0 9px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; font-size:11px; color:#9a968c;">Status ▾</div><div style="flex:1; min-width:8px;"></div><div style="height:28px; padding:0 10px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; gap:5px; font-size:11px; color:#5b574e;"><img src="https://img.icons8.com/fluency-systems-regular/96/5b574e/export.png" alt="" style="width:13px;height:13px;flex:none;" /> Xuất</div></div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1.1fr 1fr 90px 64px; gap:6px; padding:10px 14px; background:#f3f1ea; font-size:11px; color:#6b675e; font-weight:700; border-bottom:1.5px solid #d8d5cc;"><div>User</div><div>Role</div><div>Scope</div><div>Từ – Đến</div><div>Status</div><div></div></div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1.1fr 1fr 90px 64px; gap:6px; padding:9px 14px; font-size:11.5px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="font-weight:600;">Hoàng Thị E</div><div style="color:#6b675e;">Quản lý kho</div><div style="color:#6b675e;">CN Hải Phòng</div><div style="color:#7a766c;">01/07/26 – —</div><div><span style="background:#dceadf; color:#3c6e4f; border:1px solid #9cc3a8; padding:1px 8px; border-radius:10px; font-size:11px; white-space:nowrap;">● Active</span></div><div><span style="color:#b94a48; font-weight:600;">Thu hồi</span></div></div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1.1fr 1fr 90px 64px; gap:6px; padding:9px 14px; font-size:11.5px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="font-weight:600;">Vũ Văn G</div><div style="color:#6b675e;">Nhân viên</div><div style="color:#6b675e;">CN Hà Nội</div><div style="color:#7a766c;">01/01/26 – —</div><div><span style="background:#dceadf; color:#3c6e4f; border:1px solid #9cc3a8; padding:1px 8px; border-radius:10px; font-size:11px; white-space:nowrap;">● Active</span></div><div><span style="color:#b94a48; font-weight:600;">Thu hồi</span></div></div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1.1fr 1fr 90px 64px; gap:6px; padding:9px 14px; font-size:11.5px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="font-weight:600;">Lê Thị C</div><div style="color:#6b675e;">Trưởng phòng</div><div style="color:#6b675e;">P. Kế toán</div><div style="color:#7a766c;">01/01 – 30/06/26</div><div><span style="background:#eceae6; color:#6b675e; border:1px solid #c9c5bb; padding:1px 8px; border-radius:10px; font-size:11px; white-space:nowrap;">◷ Expired</span></div><div><span style="color:#b0aca2;">—</span></div></div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1.1fr 1fr 90px 64px; gap:6px; padding:9px 14px; font-size:11.5px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="font-weight:600;">Đỗ Thị H</div><div style="color:#6b675e;">Nhân viên</div><div style="color:#6b675e;">CN Miền Nam</div><div style="color:#7a766c;">01/02 – 10/05/26</div><div><span style="background:#fbe7e6; color:#a5413f; border:1px solid #dcb1af; padding:1px 8px; border-radius:10px; font-size:11px; white-space:nowrap;">✕ Revoked</span></div><div><span style="color:#b0aca2;">—</span></div></div>
+      </div>
+      <div style="margin-top:14px; transform:rotate(-.5deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Thu hồi ghi <code>revoked_at / revoked_by</code>; status Active / Expired / Revoked. <span style="color:#8a6d1f;">TC-RS-REVOKE</span></div>
+    </section>
+    </div>
+
+    <div style="display:flex; gap:44px; align-items:flex-start; margin-top:46px;">
+    <section style="flex:none; width:500px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">C · Direct Data Scope (user_data_scopes) <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span> <span style="font-weight:400; color:#7a766c;">— F5.6 · allow / deny</span></div>      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:18px 20px;">
+        <div style="margin-bottom:11px;"><div style="font-size:12px; color:#8c887e; margin-bottom:4px;">User *</div><div style="height:34px; border:1.5px solid #356fa3; border-radius:3px; display:flex; align-items:center; padding:0 10px; font-size:13px; color:#4a463e;">Hoàng Thị E (U-1004) ▾</div></div>        <div style="margin-bottom:11px;"><div style="font-size:12px; color:#8c887e; margin-bottom:5px;">Scope type *</div><div style="display:flex; gap:6px; flex-wrap:wrap;"><div style="padding:6px 10px; border:1.5px solid #b9b6ad; background:#fff; border-radius:3px; font-size:12.5px; color:#6b675e;">○ Toàn HT</div><div style="padding:6px 10px; border:1.5px solid #b9b6ad; background:#fff; border-radius:3px; font-size:12.5px; color:#6b675e;">○ Công ty</div><div style="padding:6px 10px; border:1.5px solid #b9b6ad; background:#fff; border-radius:3px; font-size:12.5px; color:#6b675e;">○ Chi nhánh</div><div style="padding:6px 10px; border:1.5px solid #356fa3; background:#eaf1f8; border-radius:3px; font-size:12.5px; color:#2b2b2b;">◉ Phòng ban</div><div style="padding:6px 9px; border:1.5px dashed #c4c0b6; background:#f6f4ee; border-radius:3px; font-size:12px; color:#b0aca2;">○ Kho <span style="font-size:9px; background:#f6eed6; color:#8a6d1f; border:1px solid #d9c489; padding:0 4px; border-radius:3px;">MVP+</span></div></div><div style="display:flex; align-items:flex-start; gap:5px; margin-top:7px; font-size:10.5px; color:#9a5b59; line-height:1.4;"><span style="flex:none;">⚠</span><span><code>scope_target</code> phải khớp <code>scope_type</code>. Chọn <b>Toàn HT / Công ty mẹ</b> → hiện cảnh báo quyền rộng.</span></div></div>
+        <div style="margin-bottom:11px;"><div style="font-size:12px; color:#8c887e; margin-bottom:4px;">Scope target (scope_id) * <span style="font-size:10px; color:#9a968c;">— khớp type = Phòng ban</span></div><div style="height:34px; border:1.5px solid #356fa3; border-radius:3px; display:flex; align-items:center; padding:0 10px; font-size:13px; color:#4a463e;">P. Kho vận ▾</div></div>        <div style="margin-bottom:11px;"><div style="font-size:12px; color:#8c887e; margin-bottom:5px;">Effect *</div><div style="display:flex; gap:8px;"><div style="flex:1; text-align:center; padding:7px 0; border:1.5px solid #3c6e4f; background:#eef6f0; border-radius:3px; font-size:13px; color:#2f5640;">◉ allow (cấp)</div><div style="flex:1; text-align:center; padding:7px 0; border:1.5px solid #b9b6ad; background:#fff; border-radius:3px; font-size:13px; color:#6b675e;">○ deny (cấm)</div></div></div>
+        <div style="display:flex; gap:12px;"><div style="flex:1;"><div style="margin-bottom:11px;"><div style="font-size:12px; color:#8c887e; margin-bottom:4px;">effective_from</div><div style="height:34px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; padding:0 10px; font-size:13px; color:#4a463e;">01/07/2026</div></div></div><div style="flex:1;"><div style="margin-bottom:11px;"><div style="font-size:12px; color:#8c887e; margin-bottom:4px;">effective_to</div><div style="height:34px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; padding:0 10px; font-size:13px; color:#4a463e;">31/12/2026</div></div></div></div>
+        <div style="margin-bottom:6px;"><div style="font-size:12px; color:#8c887e; margin-bottom:4px;">Lý do (reason) *</div><div style="height:48px; border:1.5px solid #356fa3; border-radius:3px; padding:7px 10px; font-size:12.5px; color:#9a968c;">Phụ trách kho vận (P. Kho vận) tạm trong Q3…</div></div>
+        <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:12px;"><div style="height:36px; padding:0 16px; border:1.5px solid #2b2b2b; border-radius:3px; display:flex; align-items:center; font-size:14px;">Hủy</div><div style="height:36px; padding:0 18px; background:#356fa3; color:#fff; border-radius:3px; display:flex; align-items:center; font-weight:700; font-size:14px;">Lưu vùng</div></div>
+      </div>
+      <div style="margin-top:14px; transform:rotate(-.5deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Cấp/cấm vùng <b>trực tiếp</b> (Công ty / Chi nhánh / <b>Phòng ban</b> / Kho‑MVP+ — US-M1-036), không gắn role → <code>user_data_scopes</code>; bắt buộc <b>effect + reason</b>; <code>scope_target</code> khớp <code>scope_type</code>. Deny thắng allow; ghi audit (M9). <span style="color:#8a6d1f;">TC-DIRECT-SCOPE · SCOPE-MISMATCH</span></div>
+    </section>
+    <section style="flex:none; width:780px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">D · Direct Data Scope đã cấp / cấm <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span> <span style="font-weight:400; color:#7a766c;">— user_data_scopes</span></div>      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); overflow:hidden;">
+        <div style="display:flex; align-items:center; gap:7px; padding:9px 13px; border-bottom:1.5px solid #d8d5cc; flex-wrap:wrap;"><span style="font-size:10.5px; color:#8c887e; font-weight:700;">Lọc:</span><div style="height:27px; padding:0 9px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; font-size:11px; color:#9a968c;">User ▾</div><div style="height:27px; padding:0 9px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; font-size:11px; color:#9a968c;">Scope type ▾</div><div style="height:27px; padding:0 9px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; font-size:11px; color:#9a968c;">Effect ▾</div><div style="height:27px; padding:0 9px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; font-size:11px; color:#9a968c;">Status ▾</div><div style="height:27px; padding:0 9px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; font-size:11px; color:#9a968c;">Khoảng ngày</div><div style="flex:1; min-width:8px;"></div><div style="height:27px; padding:0 10px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; gap:5px; font-size:11px; color:#5b574e;"><img src="https://img.icons8.com/fluency-systems-regular/96/5b574e/export.png" alt="" style="width:13px;height:13px;flex:none;" /> Xuất</div></div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 56px 0.95fr 1.1fr 0.95fr 84px 60px; gap:5px; padding:9px 13px; background:#f3f1ea; font-size:10.5px; color:#6b675e; font-weight:700; border-bottom:1.5px solid #d8d5cc;"><div>User</div><div>Target</div><div>Effect</div><div>Từ – Đến</div><div>Lý do</div><div>revoked_by</div><div>Status</div><div></div></div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 56px 0.95fr 1.1fr 0.95fr 84px 60px; gap:5px; padding:9px 13px; font-size:11px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="font-weight:600;">Hoàng Thị E</div><div style="color:#6b675e;">P. Kho vận</div><div><span style="background:#dceadf; color:#3c6e4f; border:1px solid #9cc3a8; padding:1px 8px; border-radius:10px; font-size:11px;">✓ allow</span></div><div style="color:#7a766c;">01/07 – 31/12</div><div style="color:#7a766c;">Phụ trách tạm</div><div style="color:#7a766c;">—</div><div><span style="background:#dceadf; color:#3c6e4f; border:1px solid #9cc3a8; padding:1px 8px; border-radius:10px; font-size:11px; white-space:nowrap;">● Active</span></div><div><span style="color:#b94a48; font-weight:600;">Thu hồi</span></div></div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 56px 0.95fr 1.1fr 0.95fr 84px 60px; gap:5px; padding:9px 13px; font-size:11px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="font-weight:600;">Vũ Văn G</div><div style="color:#6b675e;">CN Miền Nam</div><div><span style="background:#fbe7e6; color:#a5413f; border:1px solid #dcb1af; padding:1px 8px; border-radius:10px; font-size:11px;">✕ deny</span></div><div style="color:#7a766c;">01/06 – —</div><div style="color:#7a766c;">Tạm khóa</div><div style="color:#7a766c;">—</div><div><span style="background:#dceadf; color:#3c6e4f; border:1px solid #9cc3a8; padding:1px 8px; border-radius:10px; font-size:11px; white-space:nowrap;">● Active</span></div><div><span style="color:#b94a48; font-weight:600;">Thu hồi</span></div></div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 56px 0.95fr 1.1fr 0.95fr 84px 60px; gap:5px; padding:9px 13px; font-size:11px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="font-weight:600;">Phạm Văn D</div><div style="color:#6b675e;">CN Hải Phòng</div><div><span style="background:#dceadf; color:#3c6e4f; border:1px solid #9cc3a8; padding:1px 8px; border-radius:10px; font-size:11px;">✓ allow</span></div><div style="color:#7a766c;">01/02 – 30/04</div><div style="color:#7a766c;">Dự án</div><div style="color:#7a766c;">HR-D · 02/05</div><div><span style="background:#fbe7e6; color:#a5413f; border:1px solid #dcb1af; padding:1px 8px; border-radius:10px; font-size:11px; white-space:nowrap;">✕ Revoked</span></div><div><span style="color:#b0aca2;">—</span></div></div>
+      </div>
+      <div style="margin-top:14px; transform:rotate(-.5deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Action <b>Thu hồi</b> ghi <code>revoked_at / revoked_by</code>; hết <code>effective_to</code> → tự Expired. <span style="color:#8a6d1f;">TC-DS-REVOKE</span></div>
+    </section>
+    </div>
+
+    <div style="display:flex; gap:44px; align-items:flex-start; margin-top:46px;">
+    <section style="flex:none; width:500px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">E · Validate khi gán <span style="font-size:11px; font-weight:600; background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 7px; border-radius:3px; vertical-align:2px;">P0</span> <span style="font-weight:400; color:#7a766c;">— F5.4 / F5.6</span></div>      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:18px 20px; display:flex; flex-direction:column; gap:4px;">
+        <div style="display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:#4a463e; padding:4px 0;"><span style="color:#b94a48; flex:none; font-weight:700;">✕</span><span>Không lưu nếu <b>chưa chọn role</b> (với role scope).</span></div>        <div style="display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:#4a463e; padding:4px 0;"><span style="color:#b94a48; flex:none; font-weight:700;">✕</span><span>Không lưu nếu <b>chưa chọn scope type / scope value</b>.</span></div>        <div style="display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:#4a463e; padding:4px 0;"><span style="color:#b94a48; flex:none; font-weight:700;">✕</span><span>Chặn gán <b>trùng user + role + scope đang Active</b>.</span></div>        <div style="display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:#4a463e; padding:4px 0;"><span style="color:#3c6e4f; flex:none; font-weight:700;">✓</span><span><b>effective_from ≤ effective_to</b>; đến ngày rỗng = không giới hạn.</span></div>        <div style="display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:#4a463e; padding:4px 0;"><span style="color:#8a6d1f; flex:none; font-weight:700;">◷</span><span>Scope <b>hết hạn</b> (quá effective_to) → tự <b>không còn hiệu lực</b>.</span></div>        <div style="display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:#4a463e; padding:4px 0;"><span style="color:#a5413f; flex:none; font-weight:700;">⊘</span><span><b>Deny luôn thắng Allow</b> khi resolve.</span></div>
+        <div style="height:1px; background:#ece9e1; margin:8px 0 5px;"></div>
+        <div style="font-size:11.5px; font-weight:700; color:#a5413f; margin-bottom:3px;">Thông báo lỗi mẫu</div>
+        <div style="display:flex; align-items:flex-start; gap:7px; background:#fbf3f2; border:1.5px solid #d8a9a6; border-radius:4px; padding:6px 10px; font-size:11.5px; color:#8f3937;"><span style="flex:none; font-weight:700;">✕</span> "Scope target không khớp scope type."</div>
+        <div style="display:flex; align-items:flex-start; gap:7px; background:#fbf3f2; border:1.5px solid #d8a9a6; border-radius:4px; padding:6px 10px; font-size:11.5px; color:#8f3937;"><span style="flex:none; font-weight:700;">✕</span> "Role scope đã tồn tại và đang active."</div>
+        <div style="display:flex; align-items:flex-start; gap:7px; background:#fbf3f2; border:1.5px solid #d8a9a6; border-radius:4px; padding:6px 10px; font-size:11.5px; color:#8f3937;"><span style="flex:none; font-weight:700;">✕</span> "Ngày hiệu lực không hợp lệ."</div>      </div>
+      <div style="margin-top:14px; transform:rotate(-.5deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Báo lỗi rõ field; chặn trùng bản ghi active. <span style="color:#8a6d1f;">TC-SCOPE-VALIDATE</span></div>
+    </section>
+    <section style="flex:none; width:500px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">F · Ai được gán role / scope <span style="font-size:11px; font-weight:600; background:#f6eed6; color:#8a6d1f; border:1px solid #d9c489; padding:1px 7px; border-radius:3px; vertical-align:2px;">P1</span> <span style="font-weight:400; color:#7a766c;">— permission</span></div>      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:18px 20px;">
+        <div style="display:flex; flex-direction:column; gap:8px;"><div style="display:flex; align-items:center; gap:10px; border:1px solid #ece9e1; border-radius:4px; padding:9px 12px;"><span style="font-weight:600; font-size:13px; flex:1;">Quản trị viên / System Admin</span><span style="background:#dceadf; color:#3c6e4f; border:1px solid #9cc3a8; padding:1px 9px; border-radius:10px; font-size:11.5px;">✓ Được gán</span></div><div style="display:flex; align-items:center; gap:10px; border:1px solid #ece9e1; border-radius:4px; padding:9px 12px;"><span style="font-weight:600; font-size:13px; flex:1;">Role có ROLE_ASSIGN / SCOPE_CONFIG</span><span style="background:#dceadf; color:#3c6e4f; border:1px solid #9cc3a8; padding:1px 9px; border-radius:10px; font-size:11.5px;">✓ Được gán</span></div><div style="display:flex; align-items:center; gap:10px; border:1px solid #ece9e1; border-radius:4px; padding:9px 12px; background:#f6f4ee;"><span style="font-weight:600; font-size:13px; flex:1; color:#8c887e;">Manager / Nhân viên thường</span><span style="background:#eceae6; color:#6b675e; border:1px solid #c9c5bb; padding:1px 9px; border-radius:10px; font-size:11.5px;">– Không</span></div></div>
+        <div style="display:flex; align-items:flex-start; gap:8px; margin-top:12px; background:#f6eed6; border:1.5px solid #d9c489; border-radius:4px; padding:9px 12px; font-size:12.5px; color:#6b5a12;"><span style="font-size:15px; line-height:1;">⊘</span><div>Không có quyền → màn này <b>ẩn / disable</b>; gọi API → <b>403</b>.</div></div>
+      </div>
+      <div style="margin-top:14px; transform:rotate(-.5deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Chỉ Admin hoặc role có ROLE_ASSIGN / SCOPE_CONFIG. <span style="color:#8a6d1f;">TC-SCOPE-PERM</span></div>
+    </section>
+    </div>
+
+    <div style="display:flex; gap:44px; align-items:flex-start; margin-top:46px;">
+    <section style="flex:none; width:480px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">G · Xác nhận thu hồi scope <span style="font-size:11px; font-weight:600; background:#f6eed6; color:#8a6d1f; border:1px solid #d9c489; padding:1px 7px; border-radius:3px; vertical-align:2px;">P1</span> <span style="font-weight:400; color:#7a766c;">— confirm revoke</span></div>
+      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); overflow:hidden;">
+        <div style="display:flex; align-items:center; gap:10px; padding:14px 18px; border-bottom:1.5px solid #e3e0d8;"><div style="width:32px; height:32px; border-radius:50%; background:#fbe7e6; border:1.5px solid #d8a9a6; display:flex; align-items:center; justify-content:center;"><img src="https://img.icons8.com/fluency-systems-regular/96/b94a48/error.png" alt="" style="width:18px;height:18px;" /></div><div style="font-weight:700; font-size:15px;">Thu hồi scope này?</div></div>
+        <div style="padding:14px 18px;">
+          <div style="display:flex; flex-direction:column; gap:8px; font-size:12.5px; color:#4a463e; margin-bottom:12px;"><div style="display:flex; gap:8px;"><span style="color:#8c887e; width:120px; flex:none;">Người ảnh hưởng</span><b>Hoàng Thị E (NV-1004)</b></div><div style="display:flex; gap:8px;"><span style="color:#8c887e; width:120px; flex:none;">Scope thu hồi</span><b>Role Quản lý kho · Chi nhánh CN Hải Phòng</b></div><div style="display:flex; gap:8px;"><span style="color:#8c887e; width:120px; flex:none;">Hiệu lực từ</span><b>01/07/2026</b></div></div>
+          <div style="background:#fbf3f2; border:1.5px solid #d8a9a6; border-radius:4px; padding:8px 12px; font-size:12px; color:#8f3937; margin-bottom:13px; line-height:1.5;">User <b>mất quyền theo scope này ngay</b> sau khi thu hồi. Ghi <code>revoked_at / revoked_by</code> + <b>audit (M9)</b>; giữ lịch sử (không xóa cứng).</div>
+          <div style="display:flex; gap:10px; justify-content:flex-end;"><div style="height:36px; padding:0 16px; border:1.5px solid #2b2b2b; border-radius:3px; display:flex; align-items:center; font-size:14px;">Hủy</div><div style="height:36px; padding:0 18px; background:#b94a48; color:#fff; border-radius:3px; display:flex; align-items:center; font-weight:700; font-size:14px;">Thu hồi</div></div>
+        </div>
+      </div>
+      <div style="margin-top:14px; transform:rotate(-.5deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Confirm trước khi revoke role scope &amp; direct scope. <span style="color:#8a6d1f;">TC-RS-REVOKE · TC-DS-REVOKE</span></div>
+    </section>
+    <section style="flex:none; width:560px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">H · Quyền hiệu lực sau resolve <span style="font-size:11px; font-weight:600; background:#f6eed6; color:#8a6d1f; border:1px solid #d9c489; padding:1px 7px; border-radius:3px; vertical-align:2px;">P1</span> <span style="font-weight:400; color:#7a766c;">— preview</span></div>
+      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:18px 20px;">
+        <div style="display:flex; align-items:center; gap:7px; flex-wrap:wrap; margin-bottom:14px; font-size:12px;"><span style="background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:3px 9px; border-radius:3px; font-weight:600;">Role scope</span><span style="color:#7a766c;">∪</span><span style="background:#dceadf; color:#3c6e4f; border:1px solid #9cc3a8; padding:3px 9px; border-radius:3px; font-weight:600;">Direct allow</span><span style="color:#7a766c;">−</span><span style="background:#fbe7e6; color:#a5413f; border:1px solid #dcb1af; padding:3px 9px; border-radius:3px; font-weight:600;">Direct deny</span><span style="color:#7a766c;">=</span><span style="background:#2b2b2b; color:#fff; padding:3px 9px; border-radius:3px; font-weight:700;">Quyền hiệu lực</span></div>
+        <div style="border:1.5px solid #d8d5cc; border-radius:4px; overflow:hidden;"><div style="display:grid; grid-template-columns:1.3fr 1.2fr 1fr; gap:0; background:#f3f1ea; font-size:11.5px; color:#6b675e; font-weight:700; border-bottom:1.5px solid #d8d5cc;"><div style="padding:8px 12px;">Nguồn</div><div style="padding:8px 12px;">Vùng</div><div style="padding:8px 12px;">Kết quả</div></div><div style="display:grid; grid-template-columns:1.3fr 1.2fr 1fr; gap:0; font-size:12px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="padding:8px 12px; color:#356fa3;">Role: Quản lý kho</div><div style="padding:8px 12px; color:#6b675e;">CN Hải Phòng</div><div style="padding:8px 12px;"><span style="background:#dceadf; color:#3c6e4f; border:1px solid #9cc3a8; padding:1px 8px; border-radius:10px; font-size:11px;">✓ có</span></div></div><div style="display:grid; grid-template-columns:1.3fr 1.2fr 1fr; gap:0; font-size:12px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="padding:8px 12px; color:#3c6e4f;">Direct allow</div><div style="padding:8px 12px; color:#6b675e;">P. Kho vận</div><div style="padding:8px 12px;"><span style="background:#dceadf; color:#3c6e4f; border:1px solid #9cc3a8; padding:1px 8px; border-radius:10px; font-size:11px;">✓ thêm</span></div></div><div style="display:grid; grid-template-columns:1.3fr 1.2fr 1fr; gap:0; font-size:12px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="padding:8px 12px; color:#a5413f;">Direct deny</div><div style="padding:8px 12px; color:#6b675e;">CN Miền Nam</div><div style="padding:8px 12px;"><span style="background:#fbe7e6; color:#a5413f; border:1px solid #dcb1af; padding:1px 8px; border-radius:10px; font-size:11px;">✕ loại</span></div></div><div style="display:grid; grid-template-columns:1fr; gap:0; font-size:12px; background:#eef6f0; align-items:center;"><div style="padding:9px 12px; color:#2f5640;"><b>= Hiệu lực cuối:</b> CN Hải Phòng + P. Kho vận <span style="color:#6b8a76;">(loại CN Miền Nam)</span></div></div></div>
+        <div style="display:flex; align-items:flex-start; gap:8px; margin-top:12px; background:#f6f4ee; border:1.5px dashed #c4c0b6; border-radius:4px; padding:9px 12px; font-size:11.5px; color:#6b675e; line-height:1.5;"><span style="font-weight:700;">⊘</span><div>Deny luôn thắng allow; scope <b>hết hạn / revoked</b> bị loại trước khi resolve.</div></div>
+      </div>
+      <div style="margin-top:14px; transform:rotate(-.5deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Preview để HR/Admin kiểm tra quyền cuối trước khi lưu. <code>GET /api/auth/me/permissions</code> <span style="color:#8a6d1f;">TC-PERM-RESOLVE</span></div>
+    </section>
+    </div>
+
+    <div style="margin-top:50px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">J · Mapping Màn hình → API → Rule → Test Case (Scope) <span style="font-size:11px; font-weight:600; background:#f6eed6; color:#8a6d1f; border:1px solid #d9c489; padding:1px 7px; border-radius:3px; vertical-align:2px;">P1</span> <span style="font-weight:400; color:#7a766c;">— trace</span></div>      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); overflow:hidden; max-width:1140px;">
+        <div style="display:grid; grid-template-columns:1.1fr 2fr 1.7fr 1fr; gap:0; background:#f3f1ea; font-size:12.5px; color:#6b675e; font-weight:700; border-bottom:1.5px solid #d8d5cc;"><div style="padding:11px 14px;">Hành động</div><div style="padding:11px 14px;">API</div><div style="padding:11px 14px;">Rule</div><div style="padding:11px 14px;">Test Case</div></div>
+        <div style="display:grid; grid-template-columns:1.1fr 2fr 1.7fr 1fr; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:11px 14px; font-weight:700;">Gán / list / chi tiết role scope</div><div style="padding:11px 14px; font-family:ui-monospace,monospace; font-size:10.5px; line-height:1.5; color:#4a463e;"><span style="color:#2f7d63; font-weight:700;">POST</span> /api/user-role-scopes<br><span style="color:#356fa3; font-weight:700;">GET</span> /api/user-role-scopes<span style="color:#a8a499;">?user_id&amp;role_id&amp;scope_type&amp;status</span><br><span style="color:#356fa3; font-weight:700;">GET</span> /api/user-role-scopes/{id}</div><div style="padding:11px 14px; color:#6b675e; line-height:1.5;">scope_type khớp scope_id; chặn trùng active; from ≤ to; filter user/role/type/status; có detail.</div><div style="padding:11px 14px; color:#7a766c; font-family:ui-monospace,monospace; font-size:10.5px;">TC-ROLE-ASSIGN · TC-RS-DETAIL</div></div>
+        <div style="display:grid; grid-template-columns:1.1fr 2fr 1.7fr 1fr; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:11px 14px; font-weight:700;">Thu hồi role scope</div><div style="padding:11px 14px; font-family:ui-monospace,monospace; font-size:10.5px; line-height:1.5; color:#4a463e;"><span style="color:#7a5ea8; font-weight:700;">PATCH</span> /api/user-role-scopes/{id}/revoke</div><div style="padding:11px 14px; color:#6b675e; line-height:1.5;">Ghi revoked_at/by; status → Revoked.</div><div style="padding:11px 14px; color:#7a766c; font-family:ui-monospace,monospace; font-size:10.5px;">TC-RS-REVOKE</div></div>
+        <div style="display:grid; grid-template-columns:1.1fr 2fr 1.7fr 1fr; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:11px 14px; font-weight:700;">Direct scope / list / chi tiết</div><div style="padding:11px 14px; font-family:ui-monospace,monospace; font-size:10.5px; line-height:1.5; color:#4a463e;"><span style="color:#2f7d63; font-weight:700;">POST</span> /api/user-data-scopes<br><span style="color:#356fa3; font-weight:700;">GET</span> /api/user-data-scopes<span style="color:#a8a499;">?user_id&amp;scope_type&amp;effect&amp;status</span><br><span style="color:#356fa3; font-weight:700;">GET</span> /api/user-data-scopes/{id}</div><div style="padding:11px 14px; color:#6b675e; line-height:1.5;">effect + reason bắt buộc; thời hạn; scope_target khớp scope_type; filter user/type/effect/status.</div><div style="padding:11px 14px; color:#7a766c; font-family:ui-monospace,monospace; font-size:10.5px;">TC-DIRECT-SCOPE · TC-DS-DETAIL</div></div>
+        <div style="display:grid; grid-template-columns:1.1fr 2fr 1.7fr 1fr; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:11px 14px; font-weight:700;">Thu hồi direct</div><div style="padding:11px 14px; font-family:ui-monospace,monospace; font-size:10.5px; line-height:1.5; color:#4a463e;"><span style="color:#7a5ea8; font-weight:700;">PATCH</span> /api/user-data-scopes/{id}/revoke</div><div style="padding:11px 14px; color:#6b675e; line-height:1.5;">Ghi revoked_at/by; hết hạn → Expired.</div><div style="padding:11px 14px; color:#7a766c; font-family:ui-monospace,monospace; font-size:10.5px;">TC-DS-REVOKE</div></div>
+        <div style="display:grid; grid-template-columns:1.1fr 2fr 1.7fr 1fr; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:11px 14px; font-weight:700;">Quyền hiệu lực</div><div style="padding:11px 14px; font-family:ui-monospace,monospace; font-size:10.5px; line-height:1.5; color:#4a463e;"><span style="color:#356fa3; font-weight:700;">GET</span> /api/auth/me/permissions</div><div style="padding:11px 14px; color:#6b675e; line-height:1.5;">Resolve role + direct; deny thắng allow; loại scope hết hạn.</div><div style="padding:11px 14px; color:#7a766c; font-family:ui-monospace,monospace; font-size:10.5px;">TC-PERM-RESOLVE</div></div>
+      </div>
+      <div style="margin-top:14px; transform:rotate(-.5deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Role scope ↔ <code>user_role_scopes</code>; direct scope ↔ <code>user_data_scopes</code>. <b>Mọi gán / thu hồi scope ghi audit log (Module 9).</b> Loading / empty / error / 403 dùng chung màn ⑫. Path sau biến <code>base_url</code>.</div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { tab: 'org', showTransfer: false, confirm: null, toast: null };
+
+  confirmCfg(c) {
+    const map = {
+      inactive: {
+        title: 'Vô hiệu hóa ' + c.label + '?',
+        body: c.label + ' sẽ bị ẩn khỏi danh sách chọn nhưng vẫn xem được ở bộ lọc “Đã vô hiệu” và có thể khôi phục sau.',
+        icon: '⊘', needType: false, btn: 'Vô hiệu hóa', btnBg: '#8a6d1f',
+        iconBg: '#f6eed6', iconBd: '#d9c489', iconFg: '#8a6d1f',
+        ok: 'Đã vô hiệu hóa ' + c.label + '.',
+      },
+      restore: {
+        title: 'Khôi phục ' + c.label + '?',
+        body: c.label + ' sẽ hoạt động trở lại và hiện trong danh sách chọn.',
+        icon: '↺', needType: false, btn: 'Khôi phục', btnBg: '#3c6e4f',
+        iconBg: '#dceadf', iconBd: '#9cc3a8', iconFg: '#3c6e4f',
+        ok: 'Đã khôi phục ' + c.label + '.',
+      },
+      delete: {
+        title: 'Xóa (mềm) ' + c.label + '?',
+        body: c.label + ' sẽ được ẩn (soft delete) và có thể khôi phục. Nhập XÓA để xác nhận.',
+        icon: '✕', needType: true, btn: 'Xóa', btnBg: '#b94a48',
+        iconBg: '#fbe7e6', iconBd: '#d8a9a6', iconFg: '#b94a48',
+        ok: 'Đã xóa (mềm) ' + c.label + '. Có thể khôi phục ở bộ lọc “Đã xóa”.',
+      },
+    };
+    return map[c.type] || map.inactive;
+  }
+
+  tabStyle(active) {
+    const base = "font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:15px; padding:9px 18px; border:2px solid #2b2b2b; border-radius:4px; cursor:pointer;";
+    return active
+      ? base + "background:#356fa3; color:#fff; box-shadow:3px 3px 0 rgba(43,43,43,.2);"
+      : base + "background:#fff; color:#2b2b2b;";
+  }
+
+  statusPill(text, kind) {
+    const map = {
+      active:    ['#dceadf', '#3c6e4f', '#9cc3a8', '●'],
+      off:       ['#efe7e6', '#9a5b59', '#d3b3b1', '○'],
+      pause:     ['#f6eed6', '#8a6d1f', '#d9c489', '◐'],
+      quit:      ['#eceae6', '#6b675e', '#c9c5bb', '✕'],
+      probation: ['#eaf1f8', '#356fa3', '#bcd2e6', '◔'],
+    };
+    const [bg, fg, bd, dot] = map[kind] || map.active;
+    return React.createElement('span', { style: {
+      background: bg, color: fg, border: '1px solid ' + bd,
+      padding: '2px 9px', borderRadius: '10px', fontSize: '12.5px', whiteSpace: 'nowrap'
+    } }, dot + ' ' + text);
+  }
+
+  taskPill(text, kind) {
+    const map = {
+      newt:    ['#eef0f4', '#5a6573', '#cdd2da', '○'],
+      assigned:['#eaf1f8', '#356fa3', '#bcd2e6', '◔'],
+      progress:['#e7f0ed', '#2f7d63', '#a9cdc0', '◑'],
+      review:  ['#f6eed6', '#8a6d1f', '#d9c489', '◕'],
+      done:    ['#dceadf', '#3c6e4f', '#9cc3a8', '●'],
+      reject:  ['#fbe7e6', '#a5413f', '#dcb1af', '✕'],
+      cancel:  ['#eceae6', '#6b675e', '#c9c5bb', '⊘'],
+      overdue: ['#fbe3d6', '#b15a2a', '#e0b598', '⏱'],
+    };
+    const [bg, fg, bd, dot] = map[kind] || map.newt;
+    return React.createElement('span', { style: {
+      background: bg, color: fg, border: '1px solid ' + bd,
+      padding: '2px 9px', borderRadius: '10px', fontSize: '12.5px', whiteSpace: 'nowrap'
+    } }, dot + ' ' + text);
+  }
+
+  priPill(kind) {
+    const map = { high: ['#fbe7e6', '#a5413f', 'Cao'], mid: ['#f6eed6', '#8a6d1f', 'TB'], low: ['#eef0f4', '#6b675e', 'Thấp'] };
+    const [bg, fg, t] = map[kind] || map.mid;
+    return React.createElement('span', { style: {
+      background: bg, color: fg, padding: '1px 8px', borderRadius: '3px', fontSize: '12px', fontWeight: 600
+    } }, t);
+  }
+
+  acctPill(linked) {
+    return linked
+      ? React.createElement('span', { style: { color: '#3c6e4f', fontSize: '13px' } }, '✓ Đã liên kết')
+      : React.createElement('span', { style: { color: '#b0aca2', fontSize: '13px' } }, '— Chưa');
+  }
+
+  asgPill(text, kind) {
+    const map = {
+      live:  ['#dceadf', '#3c6e4f', '#9cc3a8', '●'],
+      sched: ['#eaf1f8', '#356fa3', '#bcd2e6', '◔'],
+      end:   ['#eceae6', '#6b675e', '#c9c5bb', '✓'],
+    };
+    const [bg, fg, bd, dot] = map[kind] || map.live;
+    return React.createElement('span', { style: {
+      background: bg, color: fg, border: '1px solid ' + bd,
+      padding: '2px 9px', borderRadius: '10px', fontSize: '12.5px', whiteSpace: 'nowrap'
+    } }, dot + ' ' + text);
+  }
+
+  allowCell(mode) {
+    const map = {
+      allow: ['#dceadf', '#3c6e4f', '#9cc3a8', '✓'],
+      deny:  ['#fbe7e6', '#a5413f', '#dcb1af', '✕'],
+      none:  ['#f3f1ea', '#a8a499', '#dad6cc', '–'],
+    };
+    const [bg, fg, bd, mk] = map[mode] || map.none;
+    return React.createElement('div', { style: {
+      width: '100%', textAlign: 'center', padding: '5px 0', background: bg, color: fg,
+      border: '1px solid ' + bd, borderRadius: '3px', fontSize: '13px', fontWeight: 700
+    } }, mk);
+  }
+
+  apiLines(arr) {
+    const col = { GET: '#356fa3', POST: '#2f7d63', PUT: '#8a6d1f', DELETE: '#b94a48', PATCH: '#7a5ea8' };
+    return React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '3px', fontFamily: 'ui-monospace, monospace', fontSize: '12px', lineHeight: 1.35 } },
+      arr.map((ln, i) => React.createElement('div', { key: i },
+        React.createElement('span', { style: { color: col[ln.m] || '#6b675e', fontWeight: 700 } }, ln.m),
+        React.createElement('span', { style: { color: '#4a463e' } }, ' ' + ln.p)
+      ))
+    );
+  }
+
+  renderVals() {
+    const t = this.state.tab;
+    const set = (v) => () => this.setState({ tab: v });
+
+    const depts = [
+      { code: 'PB-001', name: 'Phòng Kinh doanh', unit: 'Chi nhánh Hà Nội', head: 'Trần B', count: 18, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'PB-002', name: 'Phòng Kế toán', unit: 'Công ty mẹ ABC', head: 'Lê C', count: 7, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'PB-003', name: 'Phòng Nhân sự', unit: 'Công ty mẹ ABC', head: 'Phạm D', count: 5, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'PB-004', name: 'Phòng Kho vận', unit: 'Chi nhánh Hải Phòng', head: 'Hoàng E', count: 12, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'PB-005', name: 'Phòng Marketing', unit: 'CT con Miền Nam', head: '— chưa gán', count: 4, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'PB-006', name: 'Tổ Bảo trì (cũ)', unit: 'Chi nhánh Hà Nội', head: 'Đỗ F', count: 0, statusEl: this.statusPill('Vô hiệu', 'off') },
+    ];
+
+    const emps = [
+      { code: 'NV-1001', name: 'Trần Văn B', dept: 'Kinh doanh', title: 'Trưởng phòng', branch: 'CN Hà Nội', statusEl: this.statusPill('Đang làm', 'active'), acctEl: this.acctPill(true) },
+      { code: 'NV-1002', name: 'Lê Thị C', dept: 'Kế toán', title: 'Kế toán trưởng', branch: 'CT mẹ ABC', statusEl: this.statusPill('Đang làm', 'active'), acctEl: this.acctPill(true) },
+      { code: 'NV-1003', name: 'Phạm Văn D', dept: 'Nhân sự', title: 'Chuyên viên', branch: 'CT mẹ ABC', statusEl: this.statusPill('Đang làm', 'active'), acctEl: this.acctPill(false) },
+      { code: 'NV-1004', name: 'Hoàng Thị E', dept: 'Kho vận', title: 'Quản lý kho', branch: 'CN Hải Phòng', statusEl: this.statusPill('Tạm ngưng', 'pause'), acctEl: this.acctPill(true) },
+      { code: 'NV-1005', name: 'Vũ Văn G', dept: 'Kinh doanh', title: 'Nhân viên', branch: 'CN Hà Nội', statusEl: this.statusPill('Đang làm', 'active'), acctEl: this.acctPill(false) },
+      { code: 'NV-1006', name: 'Đỗ Thị H', dept: 'Marketing', title: 'Nhân viên', branch: 'CN Miền Nam', statusEl: this.statusPill('Đang làm', 'active'), acctEl: this.acctPill(true) },
+      { code: 'NV-0099', name: 'Bùi Văn K', dept: 'Bảo trì', title: 'Kỹ thuật viên', branch: 'CN Hà Nội', statusEl: this.statusPill('Nghỉ việc', 'quit'), acctEl: this.acctPill(false) },
+    ];
+
+    const assignments = [
+      { nv: 'Nguyễn Văn A', code: 'NV-1001', type: 'Điều chuyển', from: 'P. Kế toán · Nhân viên', to: 'P. Tài chính · Chuyên viên', eff: '01/07/2026', by: 'HR — Phạm Văn D', statusEl: this.asgPill('Lên lịch', 'sched') },
+      { nv: 'Hoàng Thị E', code: 'NV-1004', type: 'Điều chuyển', from: 'CN Hải Phòng · QL kho', to: 'CN Hà Nội · QL kho', eff: '20/06/2026', by: 'HR — Phạm Văn D', statusEl: this.asgPill('Có hiệu lực', 'live') },
+      { nv: 'Vũ Văn G', code: 'NV-1005', type: 'Bổ nhiệm', from: 'P. Kinh doanh · Nhân viên', to: 'P. Kinh doanh · Phó phòng', eff: '15/06/2026', by: 'HR — Lê Thị C', statusEl: this.asgPill('Có hiệu lực', 'live') },
+      { nv: 'Đỗ Thị H', code: 'NV-1006', type: 'Điều chuyển', from: 'CN Miền Nam · NV', to: 'CT mẹ ABC · NV', eff: '01/06/2026', by: 'HR — Lê Thị C', statusEl: this.asgPill('Có hiệu lực', 'live') },
+      { nv: 'Phạm Văn D', code: 'NV-1003', type: 'Kết thúc CT', from: 'P. Nhân sự · Chuyên viên (kiêm)', to: '— đóng công tác cũ', eff: '31/05/2026', by: 'HR — Lê Thị C', statusEl: this.asgPill('Đã đóng', 'end') },
+    ];
+
+    const statusLog = [
+      { nameEl: this.statusPill('Thử việc / TTS', 'probation'), note: 'Onboard — bắt đầu thử việc', eff: '01/09/2024', by: 'HR — Phạm Văn D' },
+      { nameEl: this.statusPill('Đang làm', 'active'), note: 'Lên chính thức (đạt đánh giá thử việc)', eff: '01/03/2025', by: 'HR — Phạm Văn D' },
+      { nameEl: this.statusPill('Tạm ngưng', 'pause'), note: 'Suspend — nghỉ không lương 3 tháng', eff: '01/02/2026', by: 'HR — Phạm Văn D' },
+      { nameEl: this.statusPill('Đang làm', 'active'), note: 'Tái kích hoạt — quay lại làm việc', eff: '01/05/2026', by: 'HR — Phạm Văn D' },
+    ];
+
+    const deptStaff = [
+      { code: 'NV-1001', name: 'Trần Văn B', title: 'Trưởng phòng', statusEl: this.statusPill('Đang làm', 'active') },
+      { code: 'NV-1005', name: 'Vũ Văn G', title: 'Nhân viên KD', statusEl: this.statusPill('Đang làm', 'active') },
+      { code: 'NV-1012', name: 'Ngô Thị M', title: 'Nhân viên KD', statusEl: this.statusPill('Đang làm', 'active') },
+      { code: 'NV-1018', name: 'Lý Văn N', title: 'Thực tập sinh', statusEl: this.statusPill('Tạm ngưng', 'pause') },
+    ];
+
+    const positions = [
+      { code: 'CV-001', name: 'Giám đốc', level: 'Cấp 1 — Điều hành', count: 2, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'CV-002', name: 'Trưởng phòng', level: 'Cấp 2 — Quản lý', count: 6, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'CV-003', name: 'Phó phòng', level: 'Cấp 2 — Quản lý', count: 4, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'CV-004', name: 'Chuyên viên', level: 'Cấp 3 — Nhân viên', count: 38, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'CV-005', name: 'Nhân viên', level: 'Cấp 3 — Nhân viên', count: 64, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'CV-006', name: 'Quản lý kho', level: 'Cấp 2 — Quản lý', count: 5, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'CV-007', name: 'Thực tập sinh', level: 'Cấp 4 — Tập sự', count: 9, statusEl: this.statusPill('Vô hiệu', 'off') },
+    ];
+
+    const tasks = [
+      { code: 'CV#1042', title: 'Chuẩn bị báo giá khách hàng Vinaco', from: 'Trần Văn B', to: 'Vũ Văn G', due: '20/06/2026', priEl: this.priPill('high'), statusEl: this.taskPill('Đang xử lý', 'progress') },
+      { code: 'CV#1041', title: 'Đối chiếu công nợ Q2', from: 'Lê Thị C', to: 'P. Kế toán', due: '19/06/2026', priEl: this.priPill('mid'), statusEl: this.taskPill('Chờ duyệt', 'review') },
+      { code: 'CV#1039', title: 'Kiểm kê kho Hải Phòng', from: 'Hoàng Thị E', to: 'P. Kho vận', due: '15/06/2026', priEl: this.priPill('high'), statusEl: this.taskPill('Quá hạn', 'overdue') },
+      { code: 'CV#1037', title: 'Cập nhật hồ sơ nhân sự mới', from: 'Phạm Văn D', to: 'Phạm Văn D', due: '22/06/2026', priEl: this.priPill('low'), statusEl: this.taskPill('Đã giao', 'assigned') },
+      { code: 'CV#1035', title: 'Soạn hợp đồng đại lý Miền Nam', from: 'Trần Văn B', to: 'Đỗ Thị H', due: '18/06/2026', priEl: this.priPill('mid'), statusEl: this.taskPill('Hoàn thành', 'done') },
+      { code: 'CV#1033', title: 'Phối hợp: dữ liệu doanh số cho KT', from: 'Lê Thị C', to: 'P. Kinh doanh', due: '14/06/2026', priEl: this.priPill('mid'), statusEl: this.taskPill('Từ chối', 'reject') },
+      { code: 'CV#1030', title: 'Lập kế hoạch tuyển dụng', from: 'Phạm Văn D', to: 'P. Nhân sự', due: '25/06/2026', priEl: this.priPill('low'), statusEl: this.taskPill('Mới tạo', 'newt') },
+    ];
+
+    const roles = [
+      { code: 'R-01', name: 'Quản trị viên hệ thống', scope: 'Toàn doanh nghiệp', users: 2, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'R-02', name: 'Quản lý chi nhánh', scope: '1 chi nhánh (gán khi gán vai trò)', users: 5, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'R-03', name: 'Trưởng phòng', scope: 'Phòng ban phụ trách', users: 6, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'R-04', name: 'Nhân viên (cấp 3)', scope: 'Cá nhân', users: 78, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'R-05', name: 'Thực tập sinh (cấp 4)', scope: 'Cá nhân (giới hạn)', users: 9, statusEl: this.statusPill('Hoạt động', 'active') },
+      { code: 'R-06', name: 'Quản lý kho', scope: 'Kho được gán', users: 5, statusEl: this.statusPill('Hoạt động', 'active') },
+    ];
+
+    // permission matrix rows: each = function group; cells per role R-02..R-04 sample
+    const A = (m) => this.allowCell(m);
+    const permRows = [
+      { fn: 'Org Unit / Chi nhánh', cells: ['allow','deny','deny'] },
+      { fn: 'Phòng ban', cells: ['allow','allow','deny'] },
+      { fn: 'Nhân sự', cells: ['allow','allow','none'] },
+      { fn: 'Chức vụ', cells: ['allow','deny','deny'] },
+      { fn: 'Giao việc / phê duyệt', cells: ['allow','allow','allow'] },
+      { fn: 'Xóa / khôi phục', cells: ['allow','deny','deny'] },
+    ].map(r => ({ fn: r.fn, c0: A(r.cells[0]), c1: A(r.cells[1]), c2: A(r.cells[2]) }));
+
+    const AL = (arr) => this.apiLines(arr);
+    const mapRows = [
+      { screen: 'Auth / phiên đăng nhập', apiEl: AL([{m:'POST',p:'/api/auth/login'},{m:'GET',p:'/api/auth/me'}]), tc: 'TC-AUTH', rule: 'JWT bearer; 401 khi sai token/mật khẩu; response envelope success/error.' },
+      { screen: 'Org Unit · list/tree', apiEl: AL([{m:'GET',p:'/api/org-units'},{m:'GET',p:'/api/org-units/tree'}]), tc: 'TC-OU-01', rule: 'Lọc theo data scope; render cây Mẹ → Con → Chi nhánh; chặn vòng lặp parent.' },
+      { screen: 'Org Unit · tạo/sửa/xóa', apiEl: AL([{m:'POST',p:'/api/org-units'},{m:'PUT',p:'/DELETE /api/org-units/{id}'},{m:'PATCH',p:'/api/org-units/{id}/restore'}]), tc: 'TC-OU-02/03', rule: 'Mã/tax_code/email/phone duy nhất; soft delete; force delete chỉ khi không còn ràng buộc nghiệp vụ.' },
+      { screen: 'Department · list/tree', apiEl: AL([{m:'GET',p:'/api/departments'},{m:'GET',p:'/api/departments/tree'}]), tc: 'TC-DPT-01', rule: 'Scope theo org_unit của actor; phòng ban cha/con phải cùng org_unit; hỗ trợ q/filter/sort.' },
+      { screen: 'Department · tạo/sửa/xóa', apiEl: AL([{m:'POST',p:'/api/departments'},{m:'PUT',p:'/DELETE /api/departments/{id}'},{m:'PATCH',p:'/api/departments/{id}/restore'}]), tc: 'TC-DPT-02/03', rule: 'Bắt buộc org_unit_id; mã phòng ban duy nhất; chặn vòng lặp parent; soft delete/restore.' },
+      { screen: 'Position · list/form', apiEl: AL([{m:'GET',p:'/api/positions'},{m:'POST',p:'/PUT /api/positions'},{m:'DELETE',p:'/api/positions/{id}'}]), tc: 'TC-POS-01', rule: 'Mã chức vụ duy nhất; status dùng 1/0; soft delete + restore + force khi hợp lệ.' },
+      { screen: 'Employee · list/detail', apiEl: AL([{m:'GET',p:'/api/employees'},{m:'GET',p:'/api/employees/{id}'}]), tc: 'TC-EMP-01', rule: 'Tìm/lọc theo q, employment_status, org_unit_id, department_id; áp dụng data scope.' },
+      { screen: 'Employee · tạo/sửa', apiEl: AL([{m:'POST',p:'/api/employees'},{m:'PUT',p:'/api/employees/{id}'}]), tc: 'TC-EMP-02/VAL', rule: 'Mã NV/email/CCCD/SĐT duy nhất; field bắt buộc; org_unit/department/position phải hợp lệ.' },
+      { screen: 'Employee · xóa/khôi phục', apiEl: AL([{m:'DELETE',p:'/api/employees/{id}'},{m:'GET',p:'/api/employees/trashed'},{m:'PATCH',p:'/api/employees/{id}/restore'}]), tc: 'TC-EMP-DEL', rule: 'Xóa mềm trước; danh sách trashed riêng; force delete chỉ khi không còn ràng buộc.' },
+      { screen: 'Phân công / điều chuyển', apiEl: AL([{m:'GET',p:'/api/employee-assignments'},{m:'POST',p:'/api/employee-assignments'},{m:'PUT',p:'/api/employee-assignments/{assignment_id}'}]), tc: 'TC-ASG-01', rule: 'Ghi lịch sử phân công; detail/update/delete dùng assignment_id; chặn overlap thời gian.' },
+      { screen: 'Lịch sử trạng thái nhân sự', apiEl: AL([{m:'GET',p:'/api/employee-status-histories'},{m:'GET',p:'/api/employee-status-histories/{id}'}]), tc: 'TC-HIS-01', rule: 'Theo dõi thay đổi employment_status; không ghi đè lịch sử; lọc theo employee_id/thời gian.' },
+      { screen: 'Role & Permission', apiEl: AL([{m:'GET',p:'/POST /api/roles'},{m:'GET',p:'/api/permissions'},{m:'POST',p:'/api/roles/{id}/permissions'}]), tc: 'TC-RBAC-01', rule: 'permission_ids; default deny; 403 khi thiếu quyền quản trị; xóa role phải kiểm tra ràng buộc.' },
+      { screen: 'User Role Scope', apiEl: AL([{m:'GET',p:'/POST /api/user-role-scopes'},{m:'DELETE',p:'/api/user-role-scopes/{id}'}]), tc: 'TC-SCOPE-01', rule: 'Gán role theo phạm vi dữ liệu; scope_type phải khớp scope_org_unit_id; conflict xử lý theo rule ưu tiên cấm.' },
+      { screen: 'Audit Log', apiEl: AL([{m:'GET',p:'/api/audit-logs'}]), tc: 'TC-AUD-01', rule: 'Read-only; lọc actor/action/module/time; lưu thao tác người dùng dùng chung toàn hệ thống.' },
+      { screen: 'Org Chart', apiEl: AL([{m:'GET',p:'/api/org-units/tree'},{m:'GET',p:'/api/departments/tree'},{m:'GET',p:'/api/employees?org_unit_id=…'}]), tc: 'TC-CHART-01', rule: 'Không thấy endpoint /org-chart trong API Contract V2; render từ tree + employee list để khớp ERD hiện tại.' },
+    ];
+
+    const c = this.state.confirm;
+    const cfg = c ? this.confirmCfg(c) : null;
+    const openConfirm = (type, label) => () => this.setState({ confirm: { type, label } });
+    const closeConfirm = () => this.setState({ confirm: null });
+    const doConfirm = () => this.setState({ confirm: null, toast: cfg ? cfg.ok : null });
+
+    return {
+      isOrg: t === 'org', isDept: t === 'dept', isEmp: t === 'emp',
+      isAssign: t === 'assign', isStatus: t === 'status',
+      isPos: t === 'pos', isChart: t === 'chart', isTask: t === 'task',
+      isRole: t === 'role', isStates: t === 'states',
+      deptStaff, positions, tasks, roles, permRows, mapRows,
+      assignments, statusLog,
+      goOrg: set('org'), goDept: set('dept'), goEmp: set('emp'),
+      goAssign: () => { window.location.href = "BA%20Wireframe%20P0%20-%2005%20Employee%20Assignment.dc.html"; }, goStatus: set('status'),
+      goPos: set('pos'), goChart: set('chart'), goTask: set('task'),
+      goRole: set('role'), goStates: set('states'),
+      tabOrgStyle: this.tabStyle(t === 'org'),
+      tabDeptStyle: this.tabStyle(t === 'dept'),
+      tabEmpStyle: this.tabStyle(t === 'emp'),
+      tabAssignStyle: this.tabStyle(t === 'assign'),
+      tabStatusStyle: this.tabStyle(t === 'status'),
+      tabPosStyle: this.tabStyle(t === 'pos'),
+      tabChartStyle: this.tabStyle(t === 'chart'),
+      tabTaskStyle: this.tabStyle(t === 'task'),
+      tabRoleStyle: this.tabStyle(t === 'role'),
+      tabStatesStyle: this.tabStyle(t === 'states'),
+      depts, emps,
+      showTransfer: this.state.showTransfer,
+      openTransfer: () => this.setState({ showTransfer: true }),
+      closeTransfer: () => this.setState({ showTransfer: false }),
+      confirmOpen: !!c,
+      confirmTitle: cfg ? cfg.title : '',
+      confirmBody: cfg ? cfg.body : '',
+      confirmIcon: cfg ? cfg.icon : '',
+      confirmBtn: cfg ? cfg.btn : '',
+      confirmNeedType: cfg ? cfg.needType : false,
+      confirmIconStyle: cfg ? { width: '34px', height: '34px', borderRadius: '50%', flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px', background: cfg.iconBg, border: '1.5px solid ' + cfg.iconBd, color: cfg.iconFg } : {},
+      confirmBtnStyle: cfg ? { height: '38px', padding: '0 20px', background: cfg.btnBg, color: '#fff', borderRadius: '3px', display: 'flex', alignItems: 'center', fontWeight: 700, fontSize: '14px', cursor: 'pointer' } : {},
+      openConfirm, closeConfirm, doConfirm,
+      vohieuDept: openConfirm('inactive', 'phòng ban “Phòng Kinh doanh”'),
+      xoaDept: openConfirm('delete', 'phòng ban “Phòng Kinh doanh”'),
+      khoiphucPos: openConfirm('restore', 'chức vụ “Thực tập sinh”'),
+      vohieuPos: openConfirm('inactive', 'chức vụ “Thực tập sinh”'),
+      xoaPos: openConfirm('delete', 'chức vụ “Thực tập sinh”'),
+      toast: this.state.toast,
+      dismissToast: () => this.setState({ toast: null }),
+    };
+  }
+}
+</script>
+</body>
+</html>

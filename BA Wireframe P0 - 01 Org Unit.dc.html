@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  @keyframes wfin { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  @keyframes wfpulse { from { opacity: .45; } to { opacity: 1; } }
+</style>
+</helmet>
+<div style="min-width:100%; width:max-content; min-height:100vh; box-sizing:border-box; background:#e7e5df; font-family:'Be Vietnam Pro', system-ui, sans-serif; color:#2b2b2b;">
+  <header style="position:sticky; top:0; left:0; z-index:50; background:#e7e5df; padding:22px 48px 14px 48px; border-bottom:2px dashed #b8b4aa;">
+    <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-size:12.5px; color:#8a857a; letter-spacing:.02em; margin-bottom:6px;">Module 1 · Quản lý Tổ chức — Wireframe P0 <span style="background:#fff4cf; border:1px solid #d8b53d; padding:1px 8px; border-radius:3px; margin-left:4px; color:#6b5a12;">Low-fi · MVP</span></div>
+    <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:21px;">① Thiết kế wireframe P0 cho Org Unit / Công ty mẹ – công ty con – chi nhánh</div>
+    <div style="display:flex; gap:8px; margin-top:15px; flex-wrap:wrap;">
+      <a href="BA%20Wireframe%20P0%20-%2001%20Org%20Unit.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#356fa3; color:#fff; box-shadow:3px 3px 0 rgba(43,43,43,.2);">① Org Unit</a>
+      <a href="BA%20Wireframe%20P0%20-%2002%20Department.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">② Department</a>
+      <a href="BA%20Wireframe%20P0%20-%2003%20Position.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">③ Chức vụ</a>
+      <a href="BA%20Wireframe%20P0%20-%2004%20Employee.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">④ Employee</a>
+      <a href="BA%20Wireframe%20P0%20-%2005%20Employee%20Assignment.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">⑤ Điều chuyển</a>
+      <a href="BA%20Wireframe%20P0%20-%2006%20Employee%20Status.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">⑥ Vòng đời TT</a>
+      <a href="BA%20Wireframe%20P0%20-%2007%20Role%20Permission%20Matrix.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">⑦ Vai trò &amp; quyền</a>
+      <a href="BA%20Wireframe%20P0%20-%2008%20User%20Role%20Scope.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">⑧ Data Scope</a>
+      <a href="BA%20Wireframe%20P0%20-%2009%20Org%20Chart.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">⑨ Sơ đồ TC</a>
+      <a href="BA%20Wireframe%20P0%20-%2010%20Task%20Assignment%20Approval.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">⑩ Giao việc</a>
+      <a href="BA%20Wireframe%20P0%20-%2011%20Mapping%20API%20Rule%20TestCase.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">⑪ Mapping</a>
+      <a href="BA%20Wireframe%20P0%20-%2012%20UI%20States%20Validate.dc.html" style="font-family:'Be Vietnam Pro',system-ui,sans-serif; font-weight:700; font-size:13.5px; padding:8px 13px; border:2px solid #2b2b2b; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;background:#fff; color:#2b2b2b;">⑫ Trạng thái UI</a>
+    </div>
+  </header>
+
+<main style="padding:40px 48px 80px 48px;">
+
+  <div style="max-width:1180px; margin-bottom:26px;">
+    <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-size:13px; color:#8c887e; line-height:1.6;">Wireframe vòng đời đơn vị tổ chức: tạo · phân cấp pháp nhân (Mẹ → Con → Chi nhánh) · vô hiệu · xóa mềm · khôi phục · lưu trữ. Mỗi khung gắn mã chức năng BRD (F1.x) để truy vết; ô <b>Rule</b> &amp; <b>Test Case</b> giữ nguyên để Dev/Tester dùng.</div>
+  </div>
+
+  <!-- ROW 1: Tree+detail / Form -->
+  <div style="display:flex; gap:44px; align-items:flex-start;">
+
+    <section style="flex:none; width:920px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">A · Cây tổ chức &amp; chi tiết đơn vị <span style="font-weight:400; color:#7a766c;">— F1.1–F1.4</span></div>
+      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); overflow:hidden;">
+        <div style="display:flex; align-items:center; gap:10px; padding:14px 16px; border-bottom:1.5px solid #d8d5cc;">
+          <div style="flex:none; width:240px; height:34px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; padding:0 10px; color:#8c887e; font-size:14px;"><img src="https://img.icons8.com/fluency-systems-regular/96/8c887e/search.png" alt="" style="width:15px;height:15px;vertical-align:-2px;display:inline-block;flex:none;" /> Tìm đơn vị…</div>
+          <div style="height:34px; padding:0 12px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; color:#6b675e; font-size:13.5px;">Loại ▾</div>
+          <div style="height:34px; padding:0 12px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; color:#6b675e; font-size:13.5px;">Tỉnh / khu vực ▾</div>
+          <div style="height:34px; padding:0 12px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; color:#6b675e; font-size:13.5px;">Trạng thái ▾</div>
+          <div style="flex:1;"></div>
+          <div style="height:34px; padding:0 12px; border:1.5px solid #2b2b2b; border-radius:3px; display:flex; align-items:center; font-size:14px;"><img src="https://img.icons8.com/fluency-systems-regular/96/5b574e/export.png" alt="" style="width:15px;height:15px;vertical-align:-2px;display:inline-block;flex:none;" /> Export</div>
+          <div style="height:34px; padding:0 14px; background:#356fa3; color:#fff; border-radius:3px; display:flex; align-items:center; font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:14px;">+ Thêm đơn vị</div>
+        </div>
+        <div style="display:flex; min-height:430px;">
+          <div style="flex:none; width:380px; border-right:1.5px solid #d8d5cc; padding:14px 12px;">
+            <div style="display:flex; flex-direction:column; gap:2px; font-size:15px;">
+              <div style="display:flex; align-items:center; gap:8px; padding:7px 8px; background:#eaf1f8; border:1.5px solid #356fa3; border-radius:3px;">
+                <span style="color:#356fa3;">▾</span><img src="https://img.icons8.com/fluency-systems-regular/96/5b574e/company.png" alt="" style="width:15px;height:15px;vertical-align:-2px;display:inline-block;flex:none;" /> <b>Công ty mẹ ABC</b>
+                <span style="margin-left:auto; font-size:11px; background:#356fa3; color:#fff; padding:1px 7px; border-radius:10px;">Mẹ</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:8px; padding:7px 8px; margin-left:22px;">
+                <span style="color:#7a766c;">▾</span><img src="https://img.icons8.com/fluency-systems-regular/96/5b574e/organization.png" alt="" style="width:15px;height:15px;vertical-align:-2px;display:inline-block;flex:none;" /> Công ty con Miền Bắc
+                <span style="margin-left:auto; font-size:11px; background:#e3e0d8; color:#5b574e; padding:1px 7px; border-radius:10px;">Con</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:8px; padding:7px 8px; margin-left:44px; color:#4a463e;"><img src="https://img.icons8.com/fluency-systems-regular/96/5b574e/marker.png" alt="" style="width:15px;height:15px;vertical-align:-2px;display:inline-block;flex:none;" /> Chi nhánh Hà Nội</div>
+              <div style="display:flex; align-items:center; gap:8px; padding:7px 8px; margin-left:44px; color:#4a463e;"><img src="https://img.icons8.com/fluency-systems-regular/96/5b574e/marker.png" alt="" style="width:15px;height:15px;vertical-align:-2px;display:inline-block;flex:none;" /> Chi nhánh Hải Phòng</div>
+              <div style="display:flex; align-items:center; gap:8px; padding:7px 8px; margin-left:22px;">
+                <span style="color:#7a766c;">▸</span><img src="https://img.icons8.com/fluency-systems-regular/96/5b574e/organization.png" alt="" style="width:15px;height:15px;vertical-align:-2px;display:inline-block;flex:none;" /> Công ty con Miền Nam
+                <span style="margin-left:auto; font-size:11px; background:#e3e0d8; color:#5b574e; padding:1px 7px; border-radius:10px;">Con</span>
+              </div>
+              <div style="margin-left:22px; margin-top:6px; font-family:'Be Vietnam Pro', system-ui, sans-serif; color:#356fa3; font-size:13px;">+ thêm chi nhánh con…</div>
+            </div>
+            <div style="margin-top:18px; transform:rotate(-1deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 10px; font-family:'Be Vietnam Pro', system-ui, sans-serif; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> 3 cấp pháp nhân: Mẹ → Con → Chi nhánh (A2). Chặn vòng lặp khi chọn đơn vị cha.<br><span style="color:#356fa3;">▣ Data scope: cây giới hạn theo đơn vị actor.</span> <span style="color:#8a6d1f;">API: <code>GET /api/org-units/tree</code> · TC-OU-001</span><br><span style="color:#6b5a12;">Admin xem toàn bộ · Manager xem phạm vi được gán · User xem cá nhân.</span></div>
+          </div>
+          <div style="flex:1; padding:18px 20px;">
+            <div style="display:flex; align-items:center; gap:14px;">
+              <div style="flex:none; width:56px; height:56px; border:1.5px dashed #b9b6ad; border-radius:6px; display:flex; align-items:center; justify-content:center; color:#9a968c; font-size:12px; text-align:center;">Logo</div>
+              <div>
+                <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:20px;">Công ty mẹ ABC</div>
+                <div style="font-size:13px; color:#7a766c;">Mã: PL-001 · Loại: Công ty mẹ</div>
+              </div>
+              <div style="margin-left:auto; display:flex; gap:8px;">
+                <div style="height:32px; padding:0 14px; border:1.5px solid #2b2b2b; border-radius:3px; display:flex; align-items:center; font-size:14px;">✎ Sửa</div>
+                <div style="height:32px; padding:0 12px; border:1.5px solid #b94a48; color:#b94a48; border-radius:3px; display:flex; align-items:center; font-size:14px;">⊘ Vô hiệu</div>
+              </div>
+            </div>
+            <div style="height:1.5px; background:#e3e0d8; margin:16px 0;"></div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px 24px;">
+              <div><div style="font-size:13px; color:#8c887e;">Mã số thuế (MST)</div><div style="font-size:15px; border-bottom:1.5px solid #d8d5cc; padding:4px 0;">0101234567</div></div>
+              <div><div style="font-size:13px; color:#8c887e;">Người đại diện</div><div style="font-size:15px; border-bottom:1.5px solid #d8d5cc; padding:4px 0;">Nguyễn Văn A</div></div>
+              <div style="grid-column:1 / -1;"><div style="font-size:13px; color:#8c887e;">Địa chỉ</div><div style="font-size:15px; border-bottom:1.5px solid #d8d5cc; padding:4px 0;">Số 1, Đường X, Quận Y, Hà Nội</div></div>
+              <div><div style="font-size:13px; color:#8c887e;">Đơn vị cha</div><div style="font-size:15px; border-bottom:1.5px solid #d8d5cc; padding:4px 0; color:#9a968c;">— (gốc)</div></div>
+              <div><div style="font-size:13px; color:#8c887e;">Trạng thái</div><div style="font-size:14px; padding:4px 0;"><span style="background:#dceadf; color:#3c6e4f; border:1px solid #9cc3a8; padding:2px 10px; border-radius:10px;">● Đang hoạt động</span></div></div>
+            </div>
+            <div style="margin-top:20px; display:flex; gap:14px;">
+              <div style="flex:1; border:1.5px solid #e3e0d8; border-radius:4px; padding:10px 12px; text-align:center;"><div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:22px;">2</div><div style="font-size:12px; color:#8c887e;">Công ty con</div></div>
+              <div style="flex:1; border:1.5px solid #e3e0d8; border-radius:4px; padding:10px 12px; text-align:center;"><div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:22px;">5</div><div style="font-size:12px; color:#8c887e;">Chi nhánh</div></div>
+              <div style="flex:1; border:1.5px solid #e3e0d8; border-radius:4px; padding:10px 12px; text-align:center;"><div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:22px;">128</div><div style="font-size:12px; color:#8c887e;">Nhân sự</div></div>
+            </div>
+            <div style="margin-top:16px; display:flex; align-items:flex-start; gap:8px; background:#f3f1ea; border:1px solid #d8d5cc; border-radius:4px; padding:9px 12px; font-size:12.5px; color:#6b675e;"><img src="https://img.icons8.com/fluency-systems-regular/96/6b675e/time-machine.png" alt="" style="width:15px;height:15px;flex:none;margin-top:1px;" /> <div><b>Audit log (Module 9):</b> mọi thao tác tạo / sửa / vô hiệu / khôi phục / xóa trên đơn vị đều ghi nhật ký dùng chung — actor · hành động · trước/sau · thời gian. <span style="color:#356fa3;">GET /api/audit-logs</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="flex:none; width:480px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">B · Tạo / Sửa đơn vị <span style="font-weight:400; color:#7a766c;">— form</span></div>
+      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:20px 22px;">
+        <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:18px; margin-bottom:16px;">Thêm đơn vị mới</div>
+        <div style="font-size:13px; color:#8c887e; margin-bottom:6px;">Loại đơn vị *</div>
+        <div style="display:flex; gap:8px; margin-bottom:16px;">
+          <div style="flex:1; text-align:center; padding:8px 0; border:1.5px solid #356fa3; background:#eaf1f8; border-radius:3px; font-size:14px;">◉ Công ty mẹ</div>
+          <div style="flex:1; text-align:center; padding:8px 0; border:1.5px solid #b9b6ad; border-radius:3px; font-size:14px; color:#6b675e;">○ Công ty con</div>
+          <div style="flex:1; text-align:center; padding:8px 0; border:1.5px solid #b9b6ad; border-radius:3px; font-size:14px; color:#6b675e;">○ Chi nhánh</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div><div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Đơn vị cha</div><div style="height:36px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; padding:0 10px; color:#9a968c; font-size:14px;">— Không có (đơn vị gốc) ▾</div></div>
+          <div style="display:flex; gap:12px;">
+            <div style="flex:2;"><div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Tên đơn vị *</div><div style="height:36px; border:1.5px solid #b9b6ad; border-radius:3px;"></div></div>
+            <div style="flex:1;"><div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Mã *</div><div style="height:36px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; padding:0 10px; font-size:14px; letter-spacing:.04em;">PL-001</div><div style="font-size:11.5px; color:#9a968c; margin-top:3px;">Tự viết hoa · 2–20 ký tự (A–Z, 0–9, -, _)</div></div>
+          </div>
+          <div><div style="display:flex; align-items:baseline; gap:8px; margin-bottom:4px;"><span style="font-size:13px; color:#8c887e;">Mã số thuế (MST)</span><span style="font-size:11.5px; color:#9a968c;">10–13 chữ số · duy nhất toàn hệ thống</span></div><div style="height:36px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; padding:0 10px; font-size:14px; color:#4a463e;">0101234567</div><div style="display:flex; align-items:center; gap:7px; margin-top:8px;"><span style="width:16px; height:16px; border:1.5px solid #356fa3; border-radius:3px; background:#eaf1f8; color:#356fa3; display:inline-flex; align-items:center; justify-content:center; font-size:11px; flex:none;">✓</span><span style="font-size:13px; color:#4a463e;">Chưa có MST — cấp mã tạm <b>TMP-0007</b></span><span style="background:#f6eed6; color:#8a6d1f; border:1px solid #d9c489; padding:1px 8px; border-radius:10px; font-size:11.5px; white-space:nowrap;">◐ Chờ cấp MST</span></div></div>
+          <div><div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Người đại diện</div><div style="height:36px; border:1.5px solid #b9b6ad; border-radius:3px;"></div></div>
+          <div><div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Địa chỉ / Tỉnh — khu vực</div><div style="height:36px; border:1.5px solid #b9b6ad; border-radius:3px;"></div></div>
+          <div style="display:flex; gap:12px; align-items:flex-end;">
+            <div style="flex:1;"><div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Logo</div><div style="height:54px; border:1.5px dashed #b9b6ad; border-radius:3px; display:flex; align-items:center; justify-content:center; color:#9a968c; font-size:13px;"><img src="https://img.icons8.com/fluency-systems-regular/96/9a968c/upload.png" alt="" style="width:18px;height:18px;vertical-align:-2px;display:inline-block;flex:none;" /> Tải ảnh lên</div></div>
+            <div style="flex:1;"><div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Trạng thái</div><div style="height:36px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; padding:0 10px; font-size:14px;">Đang hoạt động ▾</div></div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:22px;">
+          <div style="height:38px; padding:0 18px; border:1.5px solid #2b2b2b; border-radius:3px; display:flex; align-items:center; font-size:14px;">Hủy</div>
+          <div style="height:38px; padding:0 22px; background:#356fa3; color:#fff; border-radius:3px; display:flex; align-items:center; font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:15px;">Lưu đơn vị</div>
+        </div>
+        <div style="margin-top:14px; transform:rotate(-.6deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 10px; font-family:'Be Vietnam Pro', system-ui, sans-serif; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Mã *: bắt buộc, duy nhất, 2–20 ký tự (A–Z, 0–9, "-", "_"), tự động viết hoa. MST: 10–13 chữ số, duy nhất; chưa có → cấp mã tạm <b>TMP</b> (Chờ cấp MST). "Đơn vị cha" lọc theo loại, giữ đúng 3 cấp pháp nhân &amp; chặn vòng lặp.</div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ROW 2: STATE MODEL (P0-1 & P0-2) -->
+  <div style="margin-top:46px;">
+    <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">C · Mô hình trạng thái đơn vị <span style="font-weight:400; color:#7a766c;">— state model · F1.3–F1.4 · BR-13/14 · TC-OU-005/007</span></div>
+    <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:22px 24px; max-width:1180px;">
+
+      <!-- 5 named states -->
+      <div style="display:flex; align-items:stretch; gap:0; flex-wrap:nowrap;">
+        <div style="flex:1; border:1.5px solid #9cc3a8; background:#f4f9f5; border-radius:5px; padding:11px 12px;">
+          <div style="margin-bottom:7px;"><span style="background:#dceadf; color:#3c6e4f; border:1px solid #9cc3a8; padding:2px 9px; border-radius:10px; font-size:12px; white-space:nowrap;">● Đang hoạt động</span></div>
+          <div style="font-family:ui-monospace,monospace; font-size:11.5px; color:#3c6e4f; font-weight:700;">active</div>
+          <div style="font-size:11.5px; color:#6b675e; margin-top:4px; line-height:1.45;">Dùng bình thường, hiện trong mọi danh sách chọn.</div>
+        </div>
+        <div style="flex:none; width:40px; display:flex; align-items:center; justify-content:center; color:#9a968c; font-size:13px;">⇄</div>
+        <div style="flex:1; border:1.5px solid #d3b3b1; background:#fbf6f5; border-radius:5px; padding:11px 12px;">
+          <div style="margin-bottom:7px;"><span style="background:#efe7e6; color:#9a5b59; border:1px solid #d3b3b1; padding:2px 9px; border-radius:10px; font-size:12px; white-space:nowrap;">○ Vô hiệu hóa</span></div>
+          <div style="font-family:ui-monospace,monospace; font-size:11.5px; color:#9a5b59; font-weight:700;">inactive</div>
+          <div style="font-size:11.5px; color:#6b675e; margin-top:4px; line-height:1.45;">Ẩn khỏi dropdown chọn; vẫn tra cứu &amp; báo cáo. Không vào thùng rác.</div>
+        </div>
+        <div style="flex:none; width:40px; display:flex; align-items:center; justify-content:center; color:#9a968c; font-size:13px;">→</div>
+        <div style="flex:1; border:1.5px solid #d8a9a6; background:#fdf4f3; border-radius:5px; padding:11px 12px;">
+          <div style="margin-bottom:7px;"><span style="background:#fbe7e6; color:#b94a48; border:1px solid #d8a9a6; padding:2px 9px; border-radius:10px; font-size:12px; white-space:nowrap;">🗑 Đã xóa mềm</span></div>
+          <div style="font-family:ui-monospace,monospace; font-size:11.5px; color:#b94a48; font-weight:700;">soft_deleted</div>
+          <div style="font-size:11.5px; color:#6b675e; margin-top:4px; line-height:1.45;">Vào thùng rác, đếm ngược <b>14 ngày</b>. Khôi phục được trong hạn.</div>
+        </div>
+        <div style="flex:none; width:40px; display:flex; align-items:center; justify-content:center; color:#9a968c; font-size:13px;">→</div>
+        <div style="flex:1; border:1.5px solid #c9c5bb; background:#f6f5f1; border-radius:5px; padding:11px 12px;">
+          <div style="margin-bottom:7px;"><span style="background:#eceae6; color:#6b675e; border:1px solid #c9c5bb; padding:2px 9px; border-radius:10px; font-size:12px; white-space:nowrap;">▣ Lưu trữ</span></div>
+          <div style="font-family:ui-monospace,monospace; font-size:11.5px; color:#6b675e; font-weight:700;">archived</div>
+          <div style="font-size:11.5px; color:#6b675e; margin-top:4px; line-height:1.45;">Quá 14 ngày mà <b>còn ràng buộc</b> → tự lưu trữ (read-only), không tự xóa cứng.</div>
+        </div>
+        <div style="flex:none; width:40px; display:flex; align-items:center; justify-content:center; color:#9a968c; font-size:13px;">→</div>
+        <div style="flex:1; border:1.5px dashed #b94a48; background:#fbf0ef; border-radius:5px; padding:11px 12px;">
+          <div style="margin-bottom:7px;"><span style="background:#f3dcda; color:#8f3937; border:1px solid #d8a9a6; padding:2px 9px; border-radius:10px; font-size:12px; white-space:nowrap;">✕ Xóa vĩnh viễn</span></div>
+          <div style="font-family:ui-monospace,monospace; font-size:11.5px; color:#8f3937; font-weight:700;">force_deleted</div>
+          <div style="font-size:11.5px; color:#6b675e; margin-top:4px; line-height:1.45;">Xóa cứng khỏi DB — <b>chỉ khi hết ràng buộc</b> &amp; quyền Admin hạn chế.</div>
+        </div>
+      </div>
+
+      <!-- transitions legend -->
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:16px;">
+        <div style="font-size:12px; color:#4a463e; background:#f3f1ea; border:1px solid #d8d5cc; border-radius:3px; padding:5px 10px;"><b>active → inactive</b> &nbsp;Vô hiệu hóa (ẩn chọn)</div>
+        <div style="font-size:12px; color:#4a463e; background:#f3f1ea; border:1px solid #d8d5cc; border-radius:3px; padding:5px 10px;"><b>inactive → active</b> &nbsp;Kích hoạt lại</div>
+        <div style="font-size:12px; color:#4a463e; background:#f3f1ea; border:1px solid #d8d5cc; border-radius:3px; padding:5px 10px;"><b>active/inactive → soft_deleted</b> &nbsp;Xóa mềm</div>
+        <div style="font-size:12px; color:#4a463e; background:#f3f1ea; border:1px solid #d8d5cc; border-radius:3px; padding:5px 10px;"><b>soft_deleted → active</b> &nbsp;Khôi phục ≤ 14 ngày</div>
+        <div style="font-size:12px; color:#4a463e; background:#f3f1ea; border:1px solid #d8d5cc; border-radius:3px; padding:5px 10px;"><b>soft_deleted → archived</b> &nbsp;Hết 14 ngày, còn ràng buộc</div>
+        <div style="font-size:12px; color:#4a463e; background:#f3f1ea; border:1px solid #d8d5cc; border-radius:3px; padding:5px 10px;"><b>soft_deleted → force_deleted</b> &nbsp;Hết ràng buộc + Admin</div>
+        <div style="font-size:12px; color:#4a463e; background:#f3f1ea; border:1px solid #d8d5cc; border-radius:3px; padding:5px 10px;"><b>archived → active</b> &nbsp;Khôi phục (Admin)</div>
+      </div>
+
+      <div style="height:1.5px; background:#e3e0d8; margin:20px 0;"></div>
+
+      <!-- P0-2: Vô hiệu ≠ Xóa mềm -->
+      <div style="display:flex; gap:24px; align-items:flex-start;">
+        <div style="flex:1;">
+          <div style="font-weight:700; font-size:14.5px; margin-bottom:9px;">Vô hiệu hóa <span style="color:#9a5b59;">≠</span> Xóa mềm — phân biệt rõ</div>
+          <div style="border:1.5px solid #d8d5cc; border-radius:4px; overflow:hidden;">
+            <div style="display:grid; grid-template-columns:1.15fr 1fr 1fr; background:#f3f1ea; font-size:12px; color:#6b675e; font-weight:700; border-bottom:1.5px solid #d8d5cc;"><div style="padding:8px 11px;">Tiêu chí</div><div style="padding:8px 11px; color:#9a5b59;">○ Vô hiệu hóa</div><div style="padding:8px 11px; color:#b94a48;">🗑 Xóa mềm</div></div>
+            <div style="display:grid; grid-template-columns:1.15fr 1fr 1fr; font-size:12px; border-bottom:1px solid #ece9e1;"><div style="padding:8px 11px; color:#6b675e;">Mục đích</div><div style="padding:8px 11px;">Ngừng dùng tạm thời</div><div style="padding:8px 11px;">Loại bỏ / dọn dẹp</div></div>
+            <div style="display:grid; grid-template-columns:1.15fr 1fr 1fr; font-size:12px; border-bottom:1px solid #ece9e1;"><div style="padding:8px 11px; color:#6b675e;">Trong dropdown chọn</div><div style="padding:8px 11px; color:#9a5b59;">Ẩn</div><div style="padding:8px 11px; color:#9a5b59;">Ẩn</div></div>
+            <div style="display:grid; grid-template-columns:1.15fr 1fr 1fr; font-size:12px; border-bottom:1px solid #ece9e1;"><div style="padding:8px 11px; color:#6b675e;">Tra cứu / báo cáo</div><div style="padding:8px 11px; color:#3c6e4f;">✓ Vẫn còn</div><div style="padding:8px 11px;">Vào thùng rác</div></div>
+            <div style="display:grid; grid-template-columns:1.15fr 1fr 1fr; font-size:12px; border-bottom:1px solid #ece9e1;"><div style="padding:8px 11px; color:#6b675e;">Thùng rác 14 ngày</div><div style="padding:8px 11px; color:#b0aca2;">— Không</div><div style="padding:8px 11px; color:#b15a2a;">✓ Có, đếm ngược</div></div>
+            <div style="display:grid; grid-template-columns:1.15fr 1fr 1fr; font-size:12px;"><div style="padding:8px 11px; color:#6b675e;">Cách khôi phục</div><div style="padding:8px 11px;">Kích hoạt lại bất kỳ lúc nào</div><div style="padding:8px 11px;">Khôi phục trong 14 ngày</div></div>
+          </div>
+        </div>
+        <div style="flex:none; width:340px;">
+          <div style="font-weight:700; font-size:14.5px; margin-bottom:9px;">Đối tượng &amp; vị trí trên UI</div>
+          <div style="display:flex; flex-direction:column; gap:9px;">
+            <div style="border:1.5px solid #d3b3b1; background:#fbf6f5; border-radius:4px; padding:10px 12px; font-size:12.5px; color:#4a463e; line-height:1.5;"><b style="color:#9a5b59;">○ Vô hiệu hóa</b> — nút "⊘ Vô hiệu" ở chi tiết đơn vị. Lọc lại bằng <b>Trạng thái → Đã vô hiệu</b>.</div>
+            <div style="border:1.5px solid #d8a9a6; background:#fdf4f3; border-radius:4px; padding:10px 12px; font-size:12.5px; color:#4a463e; line-height:1.5;"><b style="color:#b94a48;">🗑 Xóa mềm</b> — menu "⋯ → Xóa". Tìm lại ở <b>bộ lọc Đã xóa / Thùng rác</b> (khung J).</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px; transform:rotate(-.4deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:9px 12px; font-size:12.5px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> 5 trạng thái lưu ở field <code>status</code>: <b>active · inactive · soft_deleted · archived · force_deleted</b>. Chuyển trạng thái đều ghi mốc thời gian + audit (Module 9). Hết 14 ngày <b>không tự xóa cứng</b> nếu còn ràng buộc → archive.</div>
+    </div>
+  </div>
+
+  <!-- ROW 3: Deactivate+transfer / Force-delete blocked / MST -->
+  <div style="display:flex; gap:44px; align-items:flex-start; margin-top:46px;">
+
+    <section style="flex:none; width:440px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">D · Vô hiệu hóa khi còn trực thuộc <span style="font-weight:400; color:#7a766c;">— rule · tái cơ cấu</span></div>
+      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:22px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+          <div style="width:34px; height:34px; border-radius:50%; background:#f6eed6; border:1.5px solid #d9c489; display:flex; align-items:center; justify-content:center; font-size:18px; color:#8a6d1f;">⊘</div>
+          <div style="font-weight:700; font-size:18px;">Vô hiệu hóa đơn vị?</div>
+        </div>
+        <div style="font-size:14px; color:#4a463e; line-height:1.5;">Đơn vị <b>Chi nhánh Hà Nội</b> đang còn dữ liệu trực thuộc đang hoạt động:</div>
+        <div style="display:flex; gap:10px; margin:12px 0 16px;">
+          <div style="flex:1; border:1.5px solid #e3e0d8; border-radius:4px; padding:9px; text-align:center;"><div style="font-weight:700; font-size:20px; color:#8a6d1f;">3</div><div style="font-size:12px; color:#8c887e;">Phòng ban</div></div>
+          <div style="flex:1; border:1.5px solid #e3e0d8; border-radius:4px; padding:9px; text-align:center;"><div style="font-weight:700; font-size:20px; color:#8a6d1f;">18</div><div style="font-size:12px; color:#8c887e;">Nhân sự</div></div>
+          <div style="flex:1; border:1.5px solid #e3e0d8; border-radius:4px; padding:9px; text-align:center;"><div style="font-weight:700; font-size:20px; color:#8a6d1f;">2</div><div style="font-size:12px; color:#8c887e;">Kho gắn</div></div>
+        </div>
+        <div style="font-size:13px; color:#8c887e; margin-bottom:8px;">Chọn cách xử lý:</div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div style="border:1.5px solid #356fa3; background:#eaf1f8; border-radius:4px; padding:10px 12px; font-size:14px;">◉ Chuyển dữ liệu sang đơn vị khác trước<div style="font-size:12.5px; color:#7a766c; margin-top:3px;">Chọn đơn vị đích cho phòng ban &amp; nhân sự rồi mới vô hiệu</div></div>
+          <div style="border:1.5px solid #b9b6ad; border-radius:4px; padding:10px 12px; font-size:14px; color:#4a463e;">○ Chỉ vô hiệu đơn vị (giữ nguyên trực thuộc, ẩn khỏi danh sách chọn)</div>
+        </div>
+        <div style="margin-top:14px;"><div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Ngày hiệu lực</div><div style="height:34px; border:1.5px solid #b9b6ad; border-radius:3px; display:flex; align-items:center; padding:0 10px; color:#9a968c; font-size:13px;"><img src="https://img.icons8.com/fluency-systems-regular/96/9a968c/calendar.png" alt="" style="width:14px;height:14px;vertical-align:-2px;display:inline-block;flex:none;" /> dd/mm/yyyy</div></div>
+        <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:20px;">
+          <div style="height:38px; padding:0 18px; border:1.5px solid #2b2b2b; border-radius:3px; display:flex; align-items:center; font-size:14px;">Hủy</div>
+          <div style="height:38px; padding:0 20px; background:#8a6d1f; color:#fff; border-radius:3px; display:flex; align-items:center; font-weight:700; font-size:14px;">Vô hiệu hóa</div>
+        </div>
+        <div style="margin-top:14px; transform:rotate(-.6deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 10px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Vô hiệu = chỉ ẩn khỏi danh sách chọn, <b>không xóa</b>. Chặn vòng lặp khi tái cơ cấu; lưu mốc theo ngày hiệu lực (BR-13/14). <span style="color:#8a6d1f;">TC-OU-005</span></div>
+      </div>
+    </section>
+
+    <section style="flex:none; width:440px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">E · Chặn xóa cứng khi còn ràng buộc <span style="font-weight:400; color:#7a766c;">— BR · F1.4</span></div>
+      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:22px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+          <div style="width:34px; height:34px; border-radius:50%; background:#fbe7e6; border:1.5px solid #d8a9a6; display:flex; align-items:center; justify-content:center;"><img src="https://img.icons8.com/fluency-systems-regular/96/b94a48/error.png" alt="" style="width:20px;height:20px;display:inline-block;flex:none;" /></div>
+          <div style="font-weight:700; font-size:18px; color:#a5413f;">Không thể xóa vĩnh viễn</div>
+        </div>
+        <div style="font-size:14px; color:#4a463e; line-height:1.55;">Đơn vị <b>Chi nhánh Hà Nội</b> vẫn còn <b>ràng buộc nghiệp vụ</b>. Theo BRD, hệ thống <b>không hard delete</b> khi còn dữ liệu phụ thuộc.</div>
+        <div style="margin:14px 0; border:1.5px solid #d8a9a6; border-radius:4px; overflow:hidden;">
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:9px 12px; background:#fdf4f3; border-bottom:1px solid #f0dad8; font-size:13px;"><span style="color:#4a463e;">Phòng ban còn gắn</span><span style="font-weight:700; color:#b94a48;">3 →</span></div>
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:9px 12px; background:#fdf4f3; border-bottom:1px solid #f0dad8; font-size:13px;"><span style="color:#4a463e;">Nhân sự đang thuộc</span><span style="font-weight:700; color:#b94a48;">18 →</span></div>
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:9px 12px; background:#fdf4f3; font-size:13px;"><span style="color:#4a463e;">Kho liên kết</span><span style="font-weight:700; color:#b94a48;">2 →</span></div>
+        </div>
+        <div style="font-size:13px; color:#8c887e; margin-bottom:7px;">Cần làm trước khi xóa vĩnh viễn:</div>
+        <div style="display:flex; flex-direction:column; gap:6px; font-size:12.5px; color:#4a463e;">
+          <div style="display:flex; gap:7px;"><span style="color:#3c6e4f;">1.</span><span>Chuyển / gỡ <b>phòng ban</b> &amp; <b>nhân sự</b> sang đơn vị khác.</span></div>
+          <div style="display:flex; gap:7px;"><span style="color:#3c6e4f;">2.</span><span>Gỡ liên kết <b>kho</b> khỏi đơn vị.</span></div>
+          <div style="display:flex; gap:7px;"><span style="color:#3c6e4f;">3.</span><span>Khi <b>= 0 ràng buộc</b> → nút "Xóa vĩnh viễn" mới bật (quyền Admin).</span></div>
+        </div>
+        <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:18px;">
+          <div style="height:38px; padding:0 16px; background:#356fa3; color:#fff; border-radius:3px; display:flex; align-items:center; font-weight:700; font-size:13.5px;">Mở chuyển dữ liệu</div>
+          <div style="height:38px; padding:0 16px; border:1.5px solid #c9c5bb; color:#b0aca2; border-radius:3px; display:flex; align-items:center; font-size:13.5px;">✕ Xóa vĩnh viễn</div>
+        </div>
+        <div style="margin-top:14px; transform:rotate(-.5deg); background:#fbf3f2; border:1px dashed #d8a9a6; border-radius:4px; padding:8px 11px; font-size:12.5px; color:#9a5b59;"><img src="https://img.icons8.com/fluency-systems-regular/96/9a5b59/error.png" alt="" style="width:14px;height:14px;vertical-align:-2px;display:inline-block;flex:none;" /> Nút "Xóa vĩnh viễn" <b>disable</b> đến khi ràng buộc = 0. Hết 14 ngày mà còn ràng buộc → tự <b>archive</b>. <span style="color:#8a6d1f;">TC-OU-010</span></div>
+      </div>
+    </section>
+
+    <section style="flex:none; width:420px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">F · Xử lý MST &amp; mã tạm <span style="font-weight:400; color:#7a766c;">— F1.1 · TC-OU-006</span></div>
+      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:18px 20px;">
+        <div style="border:1.5px solid #9cc3a8; background:#f4f9f5; border-radius:4px; padding:12px 14px; margin-bottom:12px;"><div style="margin-bottom:6px;"><span style="background:#dceadf; color:#3c6e4f; border:1px solid #9cc3a8; padding:1px 8px; border-radius:10px; font-size:11.5px;">● Đã có MST</span></div><div style="font-size:15px; font-weight:700; letter-spacing:.03em;">0101234567</div><div style="font-size:12px; color:#6b675e; margin-top:3px;">10–13 chữ số · hợp lệ · duy nhất toàn hệ thống.</div></div>
+        <div style="border:1.5px solid #d9c489; background:#fdfaf0; border-radius:4px; padding:12px 14px;"><div style="margin-bottom:6px;"><span style="background:#f6eed6; color:#8a6d1f; border:1px solid #d9c489; padding:1px 8px; border-radius:10px; font-size:11.5px;">◐ Chờ cấp MST</span></div><div style="font-size:15px; font-weight:700; letter-spacing:.03em; color:#7a611a;">TMP-0007</div><div style="font-size:12px; color:#6b675e; margin-top:3px;">Chưa có MST → hệ thống cấp <b>mã tạm TMP</b>. Khi nhập MST thật → tự gỡ trạng thái chờ.</div></div>
+      </div>
+      <div style="margin-top:14px; transform:rotate(-.5deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> MST bắt buộc khi đơn vị hoạt động chính thức; mã tạm để không chặn nghiệp vụ. <span style="color:#8a6d1f;">TC-OU-006</span></div>
+    </section>
+
+  </div>
+
+  <!-- ROW 4: Validation / Parent rules -->
+  <div style="display:flex; gap:44px; align-items:flex-start; margin-top:46px;">
+    <section style="flex:none; width:520px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">G · Lỗi nhập liệu khi tạo / sửa đơn vị <span style="font-weight:400; color:#7a766c;">— validation · TC-OU-003</span></div>
+      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:20px 22px;">
+        <div style="display:flex; align-items:flex-start; gap:8px; background:#fbe7e6; border:1.5px solid #d8a9a6; border-radius:4px; padding:10px 12px; font-size:13px; color:#a5413f; margin-bottom:16px;"><img src="https://img.icons8.com/fluency-systems-regular/96/b94a48/error.png" alt="" style="width:16px;height:16px;flex:none;margin-top:1px;" /> <div>Không lưu được — kiểm tra 3 lỗi bên dưới.</div></div>
+        <div style="margin-bottom:14px;"><div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Mã đơn vị *</div><div style="height:36px; border:1.5px solid #b94a48; background:#fdf4f3; border-radius:3px; display:flex; align-items:center; padding:0 10px; font-size:14px; color:#2b2b2b;">PL-001</div><div style="font-size:12px; color:#b94a48; margin-top:4px;"><img src="https://img.icons8.com/fluency-systems-regular/96/b94a48/error.png" alt="" style="width:12px;height:12px;vertical-align:-2px;" /> Mã đã tồn tại — mỗi mã phải duy nhất (2–20 ký tự A–Z, 0–9, -, _).</div></div>
+        <div style="margin-bottom:14px;"><div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Mã số thuế (MST)</div><div style="height:36px; border:1.5px solid #b94a48; background:#fdf4f3; border-radius:3px; display:flex; align-items:center; padding:0 10px; font-size:14px; color:#2b2b2b;">0101</div><div style="font-size:12px; color:#b94a48; margin-top:4px;"><img src="https://img.icons8.com/fluency-systems-regular/96/b94a48/error.png" alt="" style="width:12px;height:12px;vertical-align:-2px;" /> MST phải gồm 10–13 chữ số. Chưa có MST → tích "cấp mã tạm TMP".</div></div>
+        <div style=""><div style="font-size:13px; color:#8c887e; margin-bottom:4px;">Đơn vị cha</div><div style="height:36px; border:1.5px solid #b94a48; background:#fdf4f3; border-radius:3px; display:flex; align-items:center; padding:0 10px; font-size:14px; color:#2b2b2b;">Chi nhánh Hà Nội ▾</div><div style="font-size:12px; color:#b94a48; margin-top:4px;"><img src="https://img.icons8.com/fluency-systems-regular/96/b94a48/error.png" alt="" style="width:12px;height:12px;vertical-align:-2px;" /> Sai cấp / vòng lặp — không thể chọn chính nó hoặc đơn vị con–cháu làm cha.</div></div>
+      </div>
+      <div style="margin-top:14px; width:480px; transform:rotate(-.5deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Rule validate: <b>mã trùng / sai định dạng / bỏ trống</b>, <b>MST 10–13 số / trùng</b>, <b>parent sai cấp / vòng lặp</b>. <span style="color:#8a6d1f;">TC-OU-003 · TC-OU-004</span></div>
+    </section>
+    <section style="flex:none; width:480px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">H · Quy tắc đơn vị cha (3 cấp pháp nhân) <span style="font-weight:400; color:#7a766c;">— F1.2 · TC-OU-004</span></div>
+      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:20px 22px;">
+        <div style="display:flex; align-items:center; justify-content:center; margin-bottom:18px;"><div style="flex:1; text-align:center; background:#eaf1f8; border:1.5px solid #356fa3; border-radius:6px; padding:9px 6px;"><div style="font-weight:700; font-size:12.5px; color:#2b5170;">Công ty mẹ</div><div style="font-size:10px; color:#7a766c; margin-top:2px;">không có cha</div></div><span style="color:#356fa3; font-size:16px; padding:0 5px;">→</span><div style="flex:1; text-align:center; background:#fbfaf7; border:1.5px solid #6b675e; border-radius:6px; padding:9px 6px;"><div style="font-weight:700; font-size:12.5px; color:#2b2b2b;">Công ty con</div><div style="font-size:10px; color:#7a766c; margin-top:2px;">cha = mẹ</div></div><span style="color:#356fa3; font-size:16px; padding:0 5px;">→</span><div style="flex:1; text-align:center; background:#fff; border:1.5px solid #2b2b2b; border-radius:6px; padding:9px 6px;"><div style="font-weight:700; font-size:12.5px; color:#2b2b2b;">Chi nhánh</div><div style="font-size:10px; color:#7a766c; margin-top:2px;">cha = con/mẹ</div></div></div>
+        <div style="border:1.5px solid #d8d5cc; border-radius:4px; overflow:hidden;"><div style="display:grid; grid-template-columns:1fr 1.3fr; background:#f3f1ea; font-size:12px; color:#6b675e; font-weight:700; border-bottom:1.5px solid #d8d5cc;"><div style="padding:8px 12px;">Loại</div><div style="padding:8px 12px;">Được chọn cha là</div></div><div style="display:grid; grid-template-columns:1fr 1.3fr; font-size:12.5px; border-bottom:1px solid #ece9e1;"><div style="padding:8px 12px; font-weight:600;">Công ty mẹ</div><div style="padding:8px 12px; color:#6b675e;">— (đơn vị gốc, không có cha)</div></div><div style="display:grid; grid-template-columns:1fr 1.3fr; font-size:12.5px; border-bottom:1px solid #ece9e1;"><div style="padding:8px 12px; font-weight:600;">Công ty con</div><div style="padding:8px 12px; color:#6b675e;">Công ty mẹ</div></div><div style="display:grid; grid-template-columns:1fr 1.3fr; font-size:12.5px; "><div style="padding:8px 12px; font-weight:600;">Chi nhánh</div><div style="padding:8px 12px; color:#6b675e;">Công ty con hoặc Công ty mẹ</div></div></div>
+        <div style="display:flex; flex-direction:column; gap:6px; margin-top:14px; font-size:12.5px; color:#4a463e;"><div style="display:flex; gap:7px;"><span style="color:#b94a48;">✕</span><span>Không chọn <b>chính nó</b> hoặc đơn vị <b>con / cháu</b> làm cha (chặn vòng lặp).</span></div><div style="display:flex; gap:7px;"><span style="color:#b94a48;">✕</span><span>Không vượt <b>3 cấp pháp nhân</b> (Mẹ → Con → Chi nhánh).</span></div><div style="display:flex; gap:7px;"><span style="color:#3c6e4f;">✓</span><span>Dropdown "Đơn vị cha" tự lọc theo loại đang chọn.</span></div></div>
+      </div>
+      <div style="margin-top:14px; transform:rotate(-.5deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> BR: kiểm tra cây trước khi lưu — chống tự tham chiếu &amp; vòng lặp parent. <span style="color:#8a6d1f;">TC-OU-004</span></div>
+    </section>
+  </div>
+
+  <!-- ROW 5: Standard messages / Trash -->
+  <div style="display:flex; gap:44px; align-items:flex-start; margin-top:46px;">
+
+    <section style="flex:none; width:560px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">I · Thông điệp chuẩn (confirm / lỗi) <span style="font-weight:400; color:#7a766c;">— message spec</span></div>
+      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); overflow:hidden;">
+        <div style="display:grid; grid-template-columns:0.85fr 1.7fr 0.7fr; gap:0; background:#f3f1ea; font-size:12px; color:#6b675e; font-weight:700; border-bottom:1.5px solid #d8d5cc;"><div style="padding:9px 13px;">Tình huống</div><div style="padding:9px 13px;">Thông điệp chuẩn</div><div style="padding:9px 13px;">Kiểu / vị trí</div></div>
+        <div style="display:grid; grid-template-columns:0.85fr 1.7fr 0.7fr; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:10px 13px; font-weight:600;">Trùng mã</div><div style="padding:10px 13px; color:#4a463e; line-height:1.5;">"Mã đơn vị «PL-001» đã tồn tại. Vui lòng dùng mã khác."</div><div style="padding:10px 13px;"><span style="background:#fbe7e6; color:#a5413f; border:1px solid #d8a9a6; padding:1px 7px; border-radius:10px; font-size:11px; white-space:nowrap;">Lỗi · inline</span></div></div>
+        <div style="display:grid; grid-template-columns:0.85fr 1.7fr 0.7fr; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:10px 13px; font-weight:600;">Sai MST</div><div style="padding:10px 13px; color:#4a463e; line-height:1.5;">"Mã số thuế phải gồm 10–13 chữ số. Chưa có MST → tích «cấp mã tạm TMP»."</div><div style="padding:10px 13px;"><span style="background:#fbe7e6; color:#a5413f; border:1px solid #d8a9a6; padding:1px 7px; border-radius:10px; font-size:11px; white-space:nowrap;">Lỗi · inline</span></div></div>
+        <div style="display:grid; grid-template-columns:0.85fr 1.7fr 0.7fr; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:10px 13px; font-weight:600;">Vòng lặp cha</div><div style="padding:10px 13px; color:#4a463e; line-height:1.5;">"Không thể chọn đơn vị này (hoặc đơn vị con/cháu) làm đơn vị cha — sẽ tạo vòng lặp."</div><div style="padding:10px 13px;"><span style="background:#fbe7e6; color:#a5413f; border:1px solid #d8a9a6; padding:1px 7px; border-radius:10px; font-size:11px; white-space:nowrap;">Lỗi · inline</span></div></div>
+        <div style="display:grid; grid-template-columns:0.85fr 1.7fr 0.7fr; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:10px 13px; font-weight:600;">Không có quyền</div><div style="padding:10px 13px; color:#4a463e; line-height:1.5;">"Bạn không có quyền thực hiện thao tác này (ngoài phạm vi dữ liệu được gán)."</div><div style="padding:10px 13px;"><span style="background:#f6eed6; color:#8a6d1f; border:1px solid #d9c489; padding:1px 7px; border-radius:10px; font-size:11px; white-space:nowrap;">403 · toast</span></div></div>
+        <div style="display:grid; grid-template-columns:0.85fr 1.7fr 0.7fr; gap:0; font-size:12.5px; align-items:flex-start;"><div style="padding:10px 13px; font-weight:600;">Khôi phục quá hạn</div><div style="padding:10px 13px; color:#4a463e; line-height:1.5;">"Đã quá 14 ngày — không thể khôi phục. Đơn vị đã chuyển sang lưu trữ."</div><div style="padding:10px 13px;"><span style="background:#f6eed6; color:#8a6d1f; border:1px solid #d9c489; padding:1px 7px; border-radius:10px; font-size:11px; white-space:nowrap;">Cảnh báo</span></div></div>
+      </div>
+      <div style="margin-top:14px; transform:rotate(-.4deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Câu chữ thống nhất toàn Module 1; dùng «» cho giá trị động. Lỗi field → inline đỏ; lỗi quyền → toast.</div>
+    </section>
+
+    <section style="flex:none; width:560px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">J · Thùng rác · Khôi phục 14 ngày <span style="font-weight:400; color:#7a766c;">— F1.4 · TC-OU-007</span></div>
+      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); overflow:hidden;">
+        <div style="display:flex; align-items:center; gap:8px; padding:14px 16px; border-bottom:1.5px solid #e3e0d8; flex-wrap:wrap;"><span style="background:#fbe7e6; color:#b94a48; border:1px solid #d8a9a6; padding:2px 9px; border-radius:10px; font-size:12px; white-space:nowrap;">🗑 soft_deleted</span><span style="color:#9a968c; font-size:13px;">→</span><span style="background:#dceadf; color:#3c6e4f; border:1px solid #9cc3a8; padding:2px 9px; border-radius:10px; font-size:12px; white-space:nowrap;">↺ Khôi phục ≤14 ngày</span><span style="color:#9a968c; font-size:13px;">/</span><span style="background:#eceae6; color:#6b675e; border:1px solid #c9c5bb; padding:2px 9px; border-radius:10px; font-size:12px; white-space:nowrap;">▣ archived (quá hạn)</span></div>
+        <div style="display:flex; align-items:center; gap:10px; padding:12px 16px 6px;"><div style="font-weight:700; font-size:14px;">Đơn vị đã xóa mềm</div><div style="flex:1;"></div><div style="font-size:12.5px; color:#356fa3;">Bộ lọc: Đã xóa ▾</div></div>
+        <div style="display:grid; grid-template-columns:1.5fr 0.9fr 96px 150px; gap:8px; padding:9px 16px; background:#f3f1ea; font-size:12.5px; color:#6b675e; border-bottom:1.5px solid #d8d5cc;"><div>Tên đơn vị</div><div>Ngày xóa</div><div>Còn lại</div><div>Hành động</div></div>
+        <div style="display:grid; grid-template-columns:1.5fr 0.9fr 96px 150px; gap:8px; padding:11px 16px; font-size:13px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="font-weight:700;">Tổ Bảo trì (cũ)</div><div style="color:#7a766c;">18/06/2026</div><div><span style="background:#eceae6; color:#6b675e; border:1px solid #c9c5bb; padding:2px 9px; border-radius:10px; font-size:12px; white-space:nowrap;">Còn 11 ngày</span></div><div style="display:flex; gap:8px;"><span style="color:#3c6e4f; font-weight:600;">↺ Khôi phục</span><span style="color:#b94a48;">🗑 Vĩnh viễn</span></div></div>
+        <div style="display:grid; grid-template-columns:1.5fr 0.9fr 96px 150px; gap:8px; padding:11px 16px; font-size:13px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="font-weight:700;">CN Đà Nẵng (thử)</div><div style="color:#7a766c;">12/06/2026</div><div><span style="background:#fbe3d6; color:#b15a2a; border:1px solid #e0b598; padding:2px 9px; border-radius:10px; font-size:12px; white-space:nowrap;">Còn 5 ngày</span></div><div style="display:flex; gap:8px;"><span style="color:#3c6e4f; font-weight:600;">↺ Khôi phục</span><span style="color:#b94a48;">🗑 Vĩnh viễn</span></div></div>
+        <div style="display:grid; grid-template-columns:1.5fr 0.9fr 96px 150px; gap:8px; padding:11px 16px; font-size:13px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="font-weight:700;">Kho phụ B</div><div style="color:#7a766c;">02/06/2026</div><div><span style="background:#fbe7e6; color:#b94a48; border:1px solid #d8a9a6; padding:2px 9px; border-radius:10px; font-size:12px; white-space:nowrap;">Hết hạn</span></div><div style="display:flex; gap:8px;"><span style="color:#b0aca2;">↺ Khôi phục</span><span style="color:#6b675e;">▣ Đã lưu trữ</span></div></div>
+        <div style="display:flex; align-items:flex-start; gap:8px; margin:12px 16px 16px; background:#fbf3f2; border:1.5px dashed #d8a9a6; border-radius:4px; padding:9px 12px; font-size:12.5px; color:#9a5b59;"><img src="https://img.icons8.com/fluency-systems-regular/96/9a5b59/error.png" alt="" style="width:15px;height:15px;flex:none;margin-top:1px;" /> <div><b>Khôi phục</b> chỉ trong 14 ngày. Quá hạn → tự <b>archive</b> (read-only); <b>không tự xóa cứng</b> nếu còn ràng buộc.</div></div>
+      </div>
+      <div style="margin-top:14px; transform:rotate(-.5deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Xóa mềm vào thùng rác, <b>khôi phục trong 14 ngày</b>; quá hạn → archive. Khác hẳn "Vô hiệu" (chỉ ẩn, không vào thùng rác). <span style="color:#8a6d1f;">TC-OU-007</span></div>
+    </section>
+  </div>
+
+  <!-- ROW 6: Permission matrix / Test cases -->
+  <div style="display:flex; gap:44px; align-items:flex-start; margin-top:46px;">
+
+    <section style="flex:none; width:680px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">K · Ma trận phân quyền Org Unit <span style="font-weight:400; color:#7a766c;">— RBAC · data scope · TC-OU-008</span></div>
+      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); overflow:hidden;">
+        <div style="display:grid; grid-template-columns:1.5fr 46px 46px 46px 60px 64px 52px 1.1fr; gap:4px; padding:10px 14px; background:#f3f1ea; font-size:11.5px; color:#6b675e; font-weight:700; border-bottom:1.5px solid #d8d5cc;"><div>Vai trò</div><div style="text-align:center;">Xem</div><div style="text-align:center;">Tạo</div><div style="text-align:center;">Sửa</div><div style="text-align:center;">Xóa mềm</div><div style="text-align:center;">Khôi phục</div><div style="text-align:center;">Xuất</div><div>Phạm vi</div></div>
+        <div style="display:grid; grid-template-columns:1.5fr 46px 46px 46px 60px 64px 52px 1.1fr; gap:4px; padding:10px 14px; font-size:12px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="font-weight:600;">Quản trị viên</div><div style="text-align:center; color:#3c6e4f; font-weight:700;">✓</div><div style="text-align:center; color:#3c6e4f; font-weight:700;">✓</div><div style="text-align:center; color:#3c6e4f; font-weight:700;">✓</div><div style="text-align:center; color:#3c6e4f; font-weight:700;">✓</div><div style="text-align:center; color:#3c6e4f; font-weight:700;">✓</div><div style="text-align:center; color:#3c6e4f; font-weight:700;">✓</div><div style="color:#6b675e;">Toàn hệ thống</div></div>
+        <div style="display:grid; grid-template-columns:1.5fr 46px 46px 46px 60px 64px 52px 1.1fr; gap:4px; padding:10px 14px; font-size:12px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="font-weight:600;">Quản lý chi nhánh</div><div style="text-align:center; color:#3c6e4f; font-weight:700;">✓</div><div style="text-align:center; color:#3c6e4f; font-weight:700;">✓</div><div style="text-align:center; color:#3c6e4f; font-weight:700;">✓</div><div style="text-align:center; color:#b0aca2;">—</div><div style="text-align:center; color:#b0aca2;">—</div><div style="text-align:center; color:#3c6e4f; font-weight:700;">✓</div><div style="color:#6b675e;">Chi nhánh được gán</div></div>
+        <div style="display:grid; grid-template-columns:1.5fr 46px 46px 46px 60px 64px 52px 1.1fr; gap:4px; padding:10px 14px; font-size:12px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="font-weight:600;">Trưởng phòng</div><div style="text-align:center; color:#3c6e4f; font-weight:700;">✓</div><div style="text-align:center; color:#b0aca2;">—</div><div style="text-align:center; color:#b0aca2;">—</div><div style="text-align:center; color:#b0aca2;">—</div><div style="text-align:center; color:#b0aca2;">—</div><div style="text-align:center; color:#3c6e4f; font-weight:700;">✓</div><div style="color:#6b675e;">Phòng phụ trách</div></div>
+        <div style="display:grid; grid-template-columns:1.5fr 46px 46px 46px 60px 64px 52px 1.1fr; gap:4px; padding:10px 14px; font-size:12px; border-bottom:1px solid #ece9e1; align-items:center;"><div style="font-weight:600;">Nhân viên</div><div style="text-align:center; color:#3c6e4f; font-weight:700;">✓</div><div style="text-align:center; color:#b0aca2;">—</div><div style="text-align:center; color:#b0aca2;">—</div><div style="text-align:center; color:#b0aca2;">—</div><div style="text-align:center; color:#b0aca2;">—</div><div style="text-align:center; color:#b0aca2;">—</div><div style="color:#6b675e;">Cá nhân (read-only)</div></div>
+        <div style="display:flex; align-items:flex-start; gap:8px; margin:12px 14px 14px; background:#f6eed6; border:1.5px solid #d9c489; border-radius:4px; padding:9px 12px; font-size:12px; color:#6b5a12;"><span style="font-size:15px; line-height:1;">⊘</span><div><b>Xóa vĩnh viễn (force) = chỉ Admin hạn chế</b> — không có trên ma trận thường (xem khung N). Nút không có quyền sẽ <b>ẩn / disable</b>; mở đơn vị ngoài data scope → API <b>403</b>.</div></div>
+      </div>
+      <div style="margin-top:14px; transform:rotate(-.45deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Tách quyền <b>Xem · Tạo · Sửa · Xóa mềm · Khôi phục · Xuất</b>. <b>Export theo phạm vi</b>: chỉ xuất dòng/cột trong scope &amp; quyền của người dùng. <span style="color:#8a6d1f;">TC-OU-008</span></div>
+    </section>
+
+    <section style="flex:none; width:600px;">
+      <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">L · Bộ Test Case Org Unit <span style="font-weight:400; color:#7a766c;">— (+) positive · (−) negative · perm</span></div>
+      <div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); overflow:hidden;">
+        <div style="display:grid; grid-template-columns:96px 1.7fr 64px; gap:0; background:#f3f1ea; font-size:12px; color:#6b675e; font-weight:700; border-bottom:1.5px solid #d8d5cc;"><div style="padding:9px 13px;">Mã TC</div><div style="padding:9px 13px;">Kịch bản kiểm thử</div><div style="padding:9px 13px;">Loại</div></div>
+        <div style="display:grid; grid-template-columns:96px 1.7fr 64px; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:9px 13px; font-family:ui-monospace,monospace; font-size:11px; color:#356fa3; font-weight:700;">TC-OU-001</div><div style="padding:9px 13px; color:#4a463e;">Danh sách + cây hiển thị đúng theo data scope (Mẹ→Con→CN).</div><div style="padding:9px 13px;"><span style="color:#3c6e4f; font-size:13px;">+</span></div></div>
+        <div style="display:grid; grid-template-columns:96px 1.7fr 64px; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:9px 13px; font-family:ui-monospace,monospace; font-size:11px; color:#356fa3; font-weight:700;">TC-OU-002</div><div style="padding:9px 13px; color:#4a463e;">Chi tiết đơn vị trả kèm đếm công ty con / chi nhánh / nhân sự.</div><div style="padding:9px 13px;"><span style="color:#3c6e4f; font-size:13px;">+</span></div></div>
+        <div style="display:grid; grid-template-columns:96px 1.7fr 64px; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:9px 13px; font-family:ui-monospace,monospace; font-size:11px; color:#356fa3; font-weight:700;">TC-OU-003</div><div style="padding:9px 13px; color:#4a463e;">Tạo đơn vị: hợp lệ lưu được; <b>trùng mã / sai MST / bỏ trống</b> bị chặn.</div><div style="padding:9px 13px;"><span style="color:#3c6e4f; font-size:13px;">+</span> <span style="color:#b94a48; font-size:13px;">−</span></div></div>
+        <div style="display:grid; grid-template-columns:96px 1.7fr 64px; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:9px 13px; font-family:ui-monospace,monospace; font-size:11px; color:#356fa3; font-weight:700;">TC-OU-004</div><div style="padding:9px 13px; color:#4a463e;">Đơn vị cha: chọn chính nó / con–cháu → chặn vòng lặp; giữ ≤ 3 cấp.</div><div style="padding:9px 13px;"><span style="color:#b94a48; font-size:13px;">−</span></div></div>
+        <div style="display:grid; grid-template-columns:96px 1.7fr 64px; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:9px 13px; font-family:ui-monospace,monospace; font-size:11px; color:#356fa3; font-weight:700;">TC-OU-005</div><div style="padding:9px 13px; color:#4a463e;"><b>Vô hiệu</b> chỉ ẩn khỏi dropdown (vẫn tra cứu); <b>xóa mềm</b> vào thùng rác.</div><div style="padding:9px 13px;"><span style="color:#3c6e4f; font-size:13px;">+</span></div></div>
+        <div style="display:grid; grid-template-columns:96px 1.7fr 64px; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:9px 13px; font-family:ui-monospace,monospace; font-size:11px; color:#356fa3; font-weight:700;">TC-OU-006</div><div style="padding:9px 13px; color:#4a463e;">MST trống → cấp <b>mã tạm TMP</b> + "Chờ cấp MST"; nhập MST thật → tự gỡ.</div><div style="padding:9px 13px;"><span style="color:#3c6e4f; font-size:13px;">+</span></div></div>
+        <div style="display:grid; grid-template-columns:96px 1.7fr 64px; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:9px 13px; font-family:ui-monospace,monospace; font-size:11px; color:#356fa3; font-weight:700;">TC-OU-007</div><div style="padding:9px 13px; color:#4a463e;">Khôi phục trong 14 ngày OK; <b>quá hạn</b> → archive, không khôi phục thường.</div><div style="padding:9px 13px;"><span style="color:#3c6e4f; font-size:13px;">+</span> <span style="color:#b94a48; font-size:13px;">−</span></div></div>
+        <div style="display:grid; grid-template-columns:96px 1.7fr 64px; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:9px 13px; font-family:ui-monospace,monospace; font-size:11px; color:#356fa3; font-weight:700;">TC-OU-008</div><div style="padding:9px 13px; color:#4a463e;">Mở/sửa/xóa ngoài data scope → <b>403</b>; nút thiếu quyền ẩn/disable; export theo scope.</div><div style="padding:9px 13px;"><span style="color:#8a6d1f; font-size:11px; font-weight:700;">perm</span></div></div>
+        <div style="display:grid; grid-template-columns:96px 1.7fr 64px; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:9px 13px; font-family:ui-monospace,monospace; font-size:11px; color:#356fa3; font-weight:700;">TC-OU-009</div><div style="padding:9px 13px; color:#4a463e;">Trạng thái UI: loading · empty (theo filter) · 500 · timeout/offline · toast.</div><div style="padding:9px 13px;"><span style="color:#356fa3; font-size:11px; font-weight:700;">state</span></div></div>
+        <div style="display:grid; grid-template-columns:96px 1.7fr 64px; gap:0; font-size:12.5px; align-items:flex-start;"><div style="padding:9px 13px; font-family:ui-monospace,monospace; font-size:11px; color:#7a5ea8; font-weight:700;">TC-OU-010</div><div style="padding:9px 13px; color:#4a463e;">Xóa cứng bị chặn khi còn ràng buộc; archive sau 14 ngày <span style="background:#eceae6; color:#6b675e; border:1px solid #c9c5bb; padding:0 6px; border-radius:3px; font-size:10.5px;">P1 · Restricted</span></div><div style="padding:9px 13px;"><span style="color:#b94a48; font-size:13px;">−</span></div></div>
+      </div>
+      <div style="margin-top:14px; transform:rotate(-.45deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:8px 12px; font-size:13px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> Bộ TC bám theo từng rule trong các khung A–N; mỗi mã trace tới API ở khung N.</div>
+    </section>
+  </div>
+
+  <!-- ROW 7: UI states (P2) -->
+  <div style="margin-top:50px;">
+    <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">M · Trạng thái UI màn Org Unit <span style="font-weight:400; color:#7a766c;">— loading · empty (theo filter) · 500 · timeout · 403 · toast · TC-OU-009</span></div>
+    <div style="display:flex; gap:28px; align-items:flex-start; flex-wrap:nowrap;">
+
+      <section style="flex:none; width:280px;"><div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:14.5px; margin-bottom:9px;">Đang tải</div><div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:18px; min-height:180px; display:flex; flex-direction:column;"><div style="display:flex; gap:10px; margin-bottom:12px;"><div style="width:120px; height:26px; background:#ece9e1; border-radius:3px;"></div><div style="flex:1;"></div><div style="width:64px; height:26px; background:#e3eaf2; border-radius:3px;"></div></div><div style="display:flex; flex-direction:column; gap:9px;"><div style="height:13px; background:#ece9e1; border-radius:3px; width:88%; animation:wfpulse .9s ease-in-out infinite alternate;"></div><div style="height:13px; background:#ece9e1; border-radius:3px; width:72%; animation:wfpulse .9s ease-in-out infinite alternate;"></div><div style="height:13px; background:#ece9e1; border-radius:3px; width:80%; animation:wfpulse .9s ease-in-out infinite alternate;"></div></div><div style="text-align:center; margin-top:14px; font-size:12.5px; color:#9a968c;">Đang tải cây đơn vị…</div></div></section>
+
+      <section style="flex:none; width:280px;"><div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:14.5px; margin-bottom:9px;">Rỗng — chưa có đơn vị</div><div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:18px; min-height:180px; display:flex; flex-direction:column;"><div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;"><div style="width:48px; height:48px; border:1.5px dashed #b9b6ad; border-radius:8px; display:flex; align-items:center; justify-content:center; margin-bottom:12px;"><img src="https://img.icons8.com/fluency-systems-regular/96/9a968c/company.png" alt="" style="width:22px;height:22px;" /></div><div style="font-weight:700; font-size:14px; margin-bottom:5px;">Chưa có đơn vị nào</div><div style="font-size:12.5px; color:#8c887e; margin-bottom:14px;">Tạo công ty mẹ đầu tiên để bắt đầu.</div><div style="height:32px; padding:0 14px; background:#356fa3; color:#fff; border-radius:3px; display:flex; align-items:center; font-weight:700; font-size:13px;">+ Thêm đơn vị</div></div></div></section>
+
+      <section style="flex:none; width:280px;"><div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:14.5px; margin-bottom:9px;">Rỗng — theo bộ lọc</div><div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:18px; min-height:180px; display:flex; flex-direction:column;"><div style="display:flex; gap:6px; margin-bottom:12px; flex-wrap:wrap;"><span style="background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 8px; border-radius:10px; font-size:11px;">Chi nhánh ✕</span><span style="background:#eaf1f8; color:#356fa3; border:1px solid #bcd2e6; padding:1px 8px; border-radius:10px; font-size:11px;">Miền Nam ✕</span></div><div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;"><div style="width:44px; height:44px; border:1.5px dashed #b9b6ad; border-radius:8px; display:flex; align-items:center; justify-content:center; margin-bottom:11px;"><img src="https://img.icons8.com/fluency-systems-regular/96/9a968c/search.png" alt="" style="width:20px;height:20px;" /></div><div style="font-weight:700; font-size:13.5px; margin-bottom:5px;">Không có kết quả phù hợp</div><div style="font-size:12px; color:#8c887e; margin-bottom:12px;">Không có chi nhánh nào ở "Miền Nam". Thử bỏ bớt bộ lọc.</div><div style="height:30px; padding:0 13px; border:1.5px solid #2b2b2b; border-radius:3px; display:flex; align-items:center; font-weight:600; font-size:12.5px;">Xóa bộ lọc</div></div></div></section>
+
+      <section style="flex:none; width:280px;"><div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:14.5px; margin-bottom:9px;">Lỗi tải (500)</div><div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:18px; min-height:180px; display:flex; flex-direction:column;"><div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;"><div style="width:48px; height:48px; border-radius:50%; background:#fbe7e6; border:1.5px solid #d8a9a6; display:flex; align-items:center; justify-content:center; margin-bottom:12px;"><img src="https://img.icons8.com/fluency-systems-regular/96/b94a48/error.png" alt="" style="width:22px;height:22px;" /></div><div style="font-weight:700; font-size:14px; color:#a5413f; margin-bottom:5px;">Không tải được dữ liệu</div><div style="font-size:12.5px; color:#8c887e; margin-bottom:14px;">Lỗi máy chủ (500). Thử lại sau giây lát.</div><div style="height:32px; padding:0 14px; border:1.5px solid #2b2b2b; border-radius:3px; display:flex; align-items:center; font-weight:600; font-size:13px;">↻ Thử lại</div></div></div></section>
+
+      <section style="flex:none; width:280px;"><div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:14.5px; margin-bottom:9px;">Mất mạng / timeout</div><div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:18px; min-height:180px; display:flex; flex-direction:column;"><div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;"><div style="width:48px; height:48px; border-radius:50%; background:#f6eed6; border:1.5px solid #d9c489; display:flex; align-items:center; justify-content:center; margin-bottom:12px;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a6d1f/no-connection.png" alt="" style="width:22px;height:22px;" /></div><div style="font-weight:700; font-size:14px; color:#8a6d1f; margin-bottom:5px;">Mất kết nối</div><div style="font-size:12.5px; color:#8c887e; margin-bottom:14px;">Hết thời gian chờ (timeout). Kiểm tra mạng &amp; thử lại.</div><div style="height:32px; padding:0 14px; border:1.5px solid #2b2b2b; border-radius:3px; display:flex; align-items:center; font-weight:600; font-size:13px;">↻ Thử lại</div></div></div></section>
+
+      <section style="flex:none; width:280px;"><div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:14.5px; margin-bottom:9px;">Không có quyền (403)</div><div style="background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); padding:18px; min-height:180px; display:flex; flex-direction:column;"><div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;"><div style="width:48px; height:48px; border-radius:50%; background:#f6eed6; border:1.5px solid #d9c489; display:flex; align-items:center; justify-content:center; margin-bottom:12px; font-size:22px; color:#8a6d1f;">⊘</div><div style="font-weight:700; font-size:14px; color:#8a6d1f; margin-bottom:5px;">Bạn không có quyền</div><div style="font-size:12.5px; color:#8c887e;">Đơn vị nằm ngoài phạm vi dữ liệu được gán (403).</div></div></div></section>
+
+    </div>
+    <div style="display:flex; gap:16px; margin-top:20px; flex-wrap:wrap;"><div style="display:flex; align-items:flex-start; gap:10px; background:#eef6f0; border:1.5px solid #9cc3a8; border-left:5px solid #3c6e4f; border-radius:4px; padding:11px 14px; width:300px;"><img src="https://img.icons8.com/fluency-systems-regular/96/3c6e4f/checkmark.png" alt="" style="width:17px;height:17px;flex:none;margin-top:1px;" /><div style="font-size:13px; line-height:1.5;"><span style="color:#2f5640;"><b>Lưu thành công.</b> Đơn vị "CN Cần Thơ" đã được tạo.</span></div></div><div style="display:flex; align-items:flex-start; gap:10px; background:#fbe7e6; border:1.5px solid #d8a9a6; border-left:5px solid #b94a48; border-radius:4px; padding:11px 14px; width:300px;"><img src="https://img.icons8.com/fluency-systems-regular/96/b94a48/error.png" alt="" style="width:17px;height:17px;flex:none;margin-top:1px;" /><div style="font-size:13px; line-height:1.5;"><span style="color:#8f3937;"><b>Lưu thất bại.</b> Mã đơn vị đã tồn tại. Dữ liệu đã nhập được giữ lại.</span></div></div><div style="display:flex; align-items:flex-start; gap:10px; background:#f6eed6; border:1.5px solid #d9c489; border-left:5px solid #8a6d1f; border-radius:4px; padding:11px 14px; width:300px;"><span style="font-size:16px; line-height:1; color:#8a6d1f;">⚠</span><div style="font-size:13px; line-height:1.5;"><span style="color:#6b5a12;"><b>Đã vô hiệu hóa.</b> Đơn vị ẩn khỏi danh sách chọn, xem ở bộ lọc "Đã vô hiệu".</span></div></div><div style="display:flex; align-items:flex-start; gap:10px; background:#eceae6; border:1.5px solid #c9c5bb; border-left:5px solid #6b675e; border-radius:4px; padding:11px 14px; width:300px;"><span style="font-size:16px; line-height:1; color:#6b675e;">⏱</span><div style="font-size:13px; line-height:1.5;"><span style="color:#54514a;"><b>Quá hạn khôi phục.</b> Đã quá 14 ngày — đơn vị chuyển sang lưu trữ.</span></div></div></div>
+  </div>
+
+  <!-- ROW 8: API mapping (P0-4 / P1 / P2) -->
+  <div style="margin-top:50px;">
+    <div style="font-family:'Be Vietnam Pro', system-ui, sans-serif; font-weight:700; font-size:17px; margin-bottom:10px;">N · Mapping Màn hình → API → Rule → Test Case (Org Unit) <span style="font-weight:400; color:#7a766c;">— REST chuẩn · trace Dev / Tester</span></div>
+    <div style="display:flex; gap:32px; align-items:flex-start; flex-wrap:wrap;">
+      <div style="flex:none; width:1100px; background:#fff; border:2px solid #2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); overflow:hidden;">
+        <div style="display:grid; grid-template-columns:1.1fr 1.7fr 1.9fr 1.05fr; gap:0; background:#f3f1ea; font-size:12.5px; color:#6b675e; font-weight:700; border-bottom:1.5px solid #d8d5cc;"><div style="padding:11px 14px;">Hành động</div><div style="padding:11px 14px;">API (1 method / dòng)</div><div style="padding:11px 14px;">Rule</div><div style="padding:11px 14px;">Test Case</div></div>
+        <div style="display:grid; grid-template-columns:1.1fr 1.7fr 1.9fr 1.05fr; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:11px 14px; font-weight:700;">Danh sách / cây</div><div style="padding:11px 14px; font-family:ui-monospace,monospace; font-size:11.5px; line-height:1.5; color:#4a463e;"><span style="color:#356fa3; font-weight:700;">GET</span> /api/org-units<br><span style="color:#356fa3; font-weight:700;">GET</span> /api/org-units/tree</div><div style="padding:11px 14px; color:#6b675e; line-height:1.5;">Lọc theo data scope; render Mẹ → Con → Chi nhánh.</div><div style="padding:11px 14px; color:#7a766c; font-family:ui-monospace,monospace; font-size:11px;">TC-OU-001</div></div>
+        <div style="display:grid; grid-template-columns:1.1fr 1.7fr 1.9fr 1.05fr; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:11px 14px; font-weight:700;">Chi tiết</div><div style="padding:11px 14px; font-family:ui-monospace,monospace; font-size:11.5px; line-height:1.5; color:#4a463e;"><span style="color:#356fa3; font-weight:700;">GET</span> /api/org-units/{id}</div><div style="padding:11px 14px; color:#6b675e; line-height:1.5;">Trả kèm đếm công ty con / chi nhánh / nhân sự.</div><div style="padding:11px 14px; color:#7a766c; font-family:ui-monospace,monospace; font-size:11px;">TC-OU-002</div></div>
+        <div style="display:grid; grid-template-columns:1.1fr 1.7fr 1.9fr 1.05fr; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:11px 14px; font-weight:700;">Tạo</div><div style="padding:11px 14px; font-family:ui-monospace,monospace; font-size:11.5px; line-height:1.5; color:#4a463e;"><span style="color:#2f7d63; font-weight:700;">POST</span> /api/org-units</div><div style="padding:11px 14px; color:#6b675e; line-height:1.5;">Mã &amp; MST <b>duy nhất, đúng định dạng</b>; parent hợp lệ; mã tạm TMP nếu chưa có MST.</div><div style="padding:11px 14px; color:#7a766c; font-family:ui-monospace,monospace; font-size:11px;">TC-OU-003 · 006</div></div>
+        <div style="display:grid; grid-template-columns:1.1fr 1.7fr 1.9fr 1.05fr; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:11px 14px; font-weight:700;">Cập nhật</div><div style="padding:11px 14px; font-family:ui-monospace,monospace; font-size:11.5px; line-height:1.5; color:#4a463e;"><span style="color:#8a6d1f; font-weight:700;">PUT</span> /api/org-units/{id}</div><div style="padding:11px 14px; color:#6b675e; line-height:1.5;">Chặn <b>vòng lặp / sai cấp</b> parent; giữ ≤ 3 cấp.</div><div style="padding:11px 14px; color:#7a766c; font-family:ui-monospace,monospace; font-size:11px;">TC-OU-004</div></div>
+        <div style="display:grid; grid-template-columns:1.1fr 1.7fr 1.9fr 1.05fr; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:11px 14px; font-weight:700;">Vô hiệu hóa</div><div style="padding:11px 14px; font-family:ui-monospace,monospace; font-size:11.5px; line-height:1.5; color:#4a463e;"><span style="color:#7a5ea8; font-weight:700;">PATCH</span> /api/org-units/{id}/deactivate</div><div style="padding:11px 14px; color:#6b675e; line-height:1.5;">Đặt <code>status=inactive</code>; chỉ ẩn khỏi dropdown, <b>không</b> vào thùng rác.</div><div style="padding:11px 14px; color:#7a766c; font-family:ui-monospace,monospace; font-size:11px;">TC-OU-005</div></div>
+        <div style="display:grid; grid-template-columns:1.1fr 1.7fr 1.9fr 1.05fr; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:11px 14px; font-weight:700;">Xóa mềm</div><div style="padding:11px 14px; font-family:ui-monospace,monospace; font-size:11.5px; line-height:1.5; color:#4a463e;"><span style="color:#b94a48; font-weight:700;">DELETE</span> /api/org-units/{id}</div><div style="padding:11px 14px; color:#6b675e; line-height:1.5;">Đặt <code>status=soft_deleted</code>; vào thùng rác; đếm ngược 14 ngày.</div><div style="padding:11px 14px; color:#7a766c; font-family:ui-monospace,monospace; font-size:11px;">TC-OU-005 · 007</div></div>
+        <div style="display:grid; grid-template-columns:1.1fr 1.7fr 1.9fr 1.05fr; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:11px 14px; font-weight:700;">Khôi phục</div><div style="padding:11px 14px; font-family:ui-monospace,monospace; font-size:11.5px; line-height:1.5; color:#4a463e;"><span style="color:#7a5ea8; font-weight:700;">PATCH</span> /api/org-units/{id}/restore</div><div style="padding:11px 14px; color:#6b675e; line-height:1.5;">Khôi phục trong cửa sổ <b>14 ngày</b>; quá hạn trả lỗi → còn ở archive.</div><div style="padding:11px 14px; color:#7a766c; font-family:ui-monospace,monospace; font-size:11px;">TC-OU-007</div></div>
+        <div style="display:grid; grid-template-columns:1.1fr 1.7fr 1.9fr 1.05fr; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:11px 14px; font-weight:700;">Lưu trữ <span style="background:#f6eed6; color:#8a6d1f; border:1px solid #d9c489; padding:0 6px; border-radius:3px; font-size:10px;">P1</span></div><div style="padding:11px 14px; font-family:ui-monospace,monospace; font-size:11.5px; line-height:1.5; color:#4a463e;"><span style="color:#7a5ea8; font-weight:700;">PATCH</span> /api/org-units/{id}/archive</div><div style="padding:11px 14px; color:#6b675e; line-height:1.5;">Tự chạy khi hết 14 ngày &amp; còn ràng buộc → <code>status=archived</code> (read-only).</div><div style="padding:11px 14px; color:#7a766c; font-family:ui-monospace,monospace; font-size:11px;">TC-OU-010</div></div>
+        <div style="display:grid; grid-template-columns:1.1fr 1.7fr 1.9fr 1.05fr; gap:0; font-size:12.5px; border-bottom:1px solid #ece9e1; align-items:flex-start;"><div style="padding:11px 14px; font-weight:700;">Xóa cứng <span style="background:#eceae6; color:#6b675e; border:1px solid #c9c5bb; padding:0 6px; border-radius:3px; font-size:10px;">Future · Restricted Admin</span></div><div style="padding:11px 14px; font-family:ui-monospace,monospace; font-size:11.5px; line-height:1.5; color:#4a463e;"><span style="color:#b94a48; font-weight:700;">DELETE</span> /api/org-units/{id}/force</div><div style="padding:11px 14px; color:#6b675e; line-height:1.5;">Chỉ Admin hạn chế &amp; <b>khi không còn ràng buộc</b> (phòng ban/nhân sự/kho).</div><div style="padding:11px 14px; color:#7a766c; font-family:ui-monospace,monospace; font-size:11px;">TC-OU-010</div></div>
+        <div style="display:grid; grid-template-columns:1.1fr 1.7fr 1.9fr 1.05fr; gap:0; font-size:12.5px; align-items:flex-start;"><div style="padding:11px 14px; font-weight:700;">Xuất dữ liệu</div><div style="padding:11px 14px; font-family:ui-monospace,monospace; font-size:11.5px; line-height:1.5; color:#4a463e;"><span style="color:#356fa3; font-weight:700;">GET</span> /api/org-units/export?format=xlsx</div><div style="padding:11px 14px; color:#6b675e; line-height:1.5;"><b>Theo quyền &amp; scope</b>: chỉ xuất dòng/cột người dùng được phép.</div><div style="padding:11px 14px; color:#7a766c; font-family:ui-monospace,monospace; font-size:11px;">TC-OU-008</div></div>
+      </div>
+
+      <div style="flex:none; width:330px; display:flex; flex-direction:column; gap:16px;">
+        <div style="background:#2b2b2b; border-radius:4px; box-shadow:4px 5px 0 rgba(43,43,43,.12); overflow:hidden;">
+          <div style="display:flex; align-items:center; gap:8px; padding:9px 13px; border-bottom:1px solid #444;"><span style="width:9px; height:9px; border-radius:50%; background:#2f7d63; display:inline-block;"></span><span style="font-family:ui-monospace,monospace; font-size:11px; color:#cfcabd;">POST /api/org-units</span><span style="margin-left:auto; font-size:10.5px; color:#8a857a;">sample payload</span></div>
+          <pre style="margin:0; padding:13px; font-family:ui-monospace,monospace; font-size:11.5px; line-height:1.65; color:#e7e5df; white-space:pre-wrap;">{
+  "type": "branch",
+  "parent_id": 12,
+  "code": "CN-HN-01",
+  "tax_code": "0101234567",
+  "status": "active"
+}</pre>
+          <div style="padding:8px 13px; border-top:1px solid #444; font-size:10.5px; color:#9a958a; line-height:1.5;">type ∈ parent · subsidiary · branch · status ∈ active · inactive · soft_deleted · archived</div>
+        </div>
+        <div style="transform:rotate(-.5deg); background:#fff4cf; border:1px dashed #c9a227; border-radius:4px; padding:9px 12px; font-size:12.5px; color:#6b5a12;"><img src="https://img.icons8.com/fluency-systems-regular/96/8a7320/pin.png" alt="" style="width:13px;height:13px;vertical-align:-2px;display:inline-block;flex:none;" /> REST chuẩn: <b>mỗi method/path 1 dòng</b>. Prefix <code>/api</code> = route thật; Postman để sau <code>base_url</code>. Org Chart render từ <code>tree</code>, không có endpoint riêng.</div>
+        <div style="background:#f3f1ea; border:1px solid #d8d5cc; border-radius:4px; padding:9px 12px; font-size:12px; color:#6b675e; line-height:1.55;"><img src="https://img.icons8.com/fluency-systems-regular/96/6b675e/time-machine.png" alt="" style="width:14px;height:14px;vertical-align:-2px;display:inline-block;flex:none;" /> <b>Audit (Module 9):</b> create · update · deactivate · soft-delete · restore · archive · force đều ghi <code>GET /api/audit-logs</code> dùng chung.</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>
